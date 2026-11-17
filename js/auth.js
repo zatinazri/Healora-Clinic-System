@@ -29,14 +29,10 @@ const HealoraAuth = (() => {
         element.textContent = message;
 
         if (elementId === "loginError") {
-
             element.className = "login-error " + type;
             element.hidden = false;
-
         } else if (elementId === "registerMessage") {
-
             element.className = "register-message " + type;
-
         }
     }
 
@@ -50,14 +46,10 @@ const HealoraAuth = (() => {
         element.textContent = "";
 
         if (elementId === "loginError") {
-
             element.className = "login-error";
             element.hidden = true;
-
         } else if (elementId === "registerMessage") {
-
             element.className = "register-message";
-
         }
     }
 
@@ -82,30 +74,22 @@ const HealoraAuth = (() => {
 
 
     function redirectToLogin() {
-
         window.location.href = getPageUrl("login.html");
-
     }
 
 
     function redirectToDashboard(role) {
 
         if (role === "admin") {
-
             window.location.href = getPageUrl(
                 "pages/admin-dashboard.html"
             );
-
         } else if (role === "patient") {
-
             window.location.href = getPageUrl(
                 "pages/patient-dashboard.html"
             );
-
         } else {
-
             redirectToLogin();
-
         }
     }
 
@@ -121,72 +105,49 @@ const HealoraAuth = (() => {
         hideMessage("loginError");
 
         if (!window.HealoraStorage) {
-
             showMessage(
                 "loginError",
                 "System error. Please refresh the page and try again."
             );
-
             return;
         }
 
-
         const email = getElement("loginEmail")?.value.trim();
-
         const password = getElement("loginPassword")?.value;
 
-
-        // Validate required fields
         if (!email || !password) {
-
             showMessage(
                 "loginError",
                 "Please enter your email and password."
             );
-
             return;
         }
 
-
-        // Validate email format
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (!emailPattern.test(email)) {
-
             showMessage(
                 "loginError",
                 "Please enter a valid email address."
             );
-
             return;
         }
 
-
-        // Authenticate user
         const result = window.HealoraStorage.login(
             email,
             password
         );
 
-
         if (!result.success) {
-
-            showMessage(
-                "loginError",
-                result.message
-            );
-
+            showMessage("loginError", result.message);
             return;
         }
 
-
-        // Successful login
         showMessage(
             "loginError",
             "Login successful! Redirecting...",
             "success"
         );
-
 
         const loginButton = getElement("loginSubmit");
 
@@ -194,10 +155,7 @@ const HealoraAuth = (() => {
             loginButton.disabled = true;
         }
 
-
-        // Redirect according to user role
         redirectToDashboard(result.user.role);
-
     }
 
 
@@ -211,33 +169,21 @@ const HealoraAuth = (() => {
 
         hideMessage("registerMessage");
 
-
         if (!window.HealoraStorage) {
-
             showMessage(
                 "registerMessage",
                 "System error. Please refresh the page and try again."
             );
-
             return;
         }
 
-
-        // Get registration values
         const name = getElement("registerName")?.value.trim();
-
         const email = getElement("registerEmail")?.value.trim();
-
         const phone = getElement("registerPhone")?.value.trim();
-
         const password = getElement("registerPassword")?.value;
-
         const confirmPassword = getElement("confirmPassword")?.value;
-
         const agreeTerms = getElement("agreeTerms")?.checked;
 
-
-        // Required fields
         if (
             !name ||
             !email ||
@@ -245,121 +191,82 @@ const HealoraAuth = (() => {
             !password ||
             !confirmPassword
         ) {
-
             showMessage(
                 "registerMessage",
                 "Please complete all required fields."
             );
-
             return;
         }
 
-
-        // Full name validation
         if (name.length < 3) {
-
             showMessage(
                 "registerMessage",
                 "Full name must contain at least 3 characters."
             );
-
             return;
         }
 
-
-        // Email validation
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (!emailPattern.test(email)) {
-
             showMessage(
                 "registerMessage",
                 "Please enter a valid email address."
             );
-
             return;
         }
 
-
-        // Phone number validation
         const phonePattern = /^[0-9+\-\s()]{8,20}$/;
 
         if (!phonePattern.test(phone)) {
-
             showMessage(
                 "registerMessage",
                 "Please enter a valid phone number."
             );
-
             return;
         }
 
-
-        // Password validation
         if (password.length < 6) {
-
             showMessage(
                 "registerMessage",
                 "Password must contain at least 6 characters."
             );
-
             return;
         }
 
-
-        // Confirm password validation
         if (password !== confirmPassword) {
-
             showMessage(
                 "registerMessage",
                 "Passwords do not match."
             );
-
             return;
         }
 
-
-        // Terms and conditions
         if (!agreeTerms) {
-
             showMessage(
                 "registerMessage",
                 "Please agree to the terms and conditions."
             );
-
             return;
         }
 
-
-        // Register patient account
         const result = window.HealoraStorage.registerUser({
-
             name: name,
             email: email,
             phone: phone,
             password: password
-
         });
 
-
         if (!result.success) {
-
-            showMessage(
-                "registerMessage",
-                result.message
-            );
-
+            showMessage("registerMessage", result.message);
             return;
         }
 
-
-        // Registration successful
         showMessage(
             "registerMessage",
             "Account created successfully! Redirecting to login...",
             "success"
         );
-
 
         const registerButton = getElement("registerSubmit");
 
@@ -367,17 +274,11 @@ const HealoraAuth = (() => {
             registerButton.disabled = true;
         }
 
-
         event.target.reset();
 
-
-        // Return to login page
         setTimeout(() => {
-
             window.location.href = getPageUrl("login.html");
-
         }, 1500);
-
     }
 
 
@@ -393,11 +294,9 @@ const HealoraAuth = (() => {
 
         if (!confirmed) return;
 
-
         window.HealoraStorage.logout();
 
         redirectToLogin();
-
     }
 
 
@@ -406,9 +305,7 @@ const HealoraAuth = (() => {
     // =====================================
 
     function getLoggedInUser() {
-
         return window.HealoraStorage.getCurrentUser();
-
     }
 
 
@@ -416,40 +313,26 @@ const HealoraAuth = (() => {
 
         const user = getLoggedInUser();
 
-
-        // User is not logged in
         if (!user) {
-
             redirectToLogin();
-
             return false;
-
         }
 
-
-        // Check user role
         if (requiredRole && user.role !== requiredRole) {
 
             if (
                 user.role === "admin" ||
                 user.role === "patient"
             ) {
-
                 redirectToDashboard(user.role);
-
             } else {
-
                 redirectToLogin();
-
             }
 
             return false;
-
         }
 
-
         return true;
-
     }
 
 
@@ -463,116 +346,127 @@ const HealoraAuth = (() => {
 
         if (!user) return;
 
-
-        // Display name
         document.querySelectorAll("[data-user-name]")
             .forEach(element => {
-
                 element.textContent = user.name;
-
             });
 
-
-        // Display email
         document.querySelectorAll("[data-user-email]")
             .forEach(element => {
-
                 element.textContent = user.email;
-
             });
 
-
-        // Display role
         document.querySelectorAll("[data-user-role]")
             .forEach(element => {
-
                 element.textContent = user.role.toUpperCase();
-
             });
-
     }
 
 
     // =====================================
-    // 9. AUTOMATIC PAGE INITIALIZATION
+    // 9. MOBILE SIDEBAR
+    // =====================================
+
+    function initializeSidebar() {
+
+        const mobileToggle = getElement("mobileToggle");
+        const sidebar = document.querySelector(".sidebar");
+
+        if (!mobileToggle || !sidebar) return;
+
+        // Create overlay
+        let overlay = getElement("sidebarOverlay");
+
+        if (!overlay) {
+            overlay = document.createElement("div");
+            overlay.id = "sidebarOverlay";
+            overlay.className = "sidebar-overlay";
+            document.body.appendChild(overlay);
+        }
+
+        function closeSidebar() {
+            sidebar.classList.remove("active");
+            sidebar.classList.remove("show");
+            overlay.classList.remove("active");
+
+            mobileToggle.setAttribute("aria-expanded", "false");
+        }
+
+        function openSidebar() {
+            sidebar.classList.add("active");
+            overlay.classList.add("active");
+
+            mobileToggle.setAttribute("aria-expanded", "true");
+        }
+
+        mobileToggle.addEventListener("click", () => {
+
+            const isOpen =
+                sidebar.classList.contains("active") ||
+                sidebar.classList.contains("show");
+
+            if (isOpen) {
+                closeSidebar();
+            } else {
+                openSidebar();
+            }
+        });
+
+        overlay.addEventListener("click", closeSidebar);
+
+        // Close sidebar after selecting a menu link
+        sidebar.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", closeSidebar);
+        });
+
+        // Close sidebar when screen becomes desktop size
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 767) {
+                closeSidebar();
+            }
+        });
+    }
+
+
+    // =====================================
+    // 10. AUTOMATIC PAGE INITIALIZATION
     // =====================================
 
     function initializeAuthentication() {
 
-
-        // ---------------------------------
-        // LOGIN FORM
-        // ---------------------------------
-
         const loginForm = getElement("loginForm");
 
         if (loginForm) {
-
-            loginForm.addEventListener(
-                "submit",
-                handleLogin
-            );
-
+            loginForm.addEventListener("submit", handleLogin);
         }
-
-
-        // ---------------------------------
-        // REGISTER FORM
-        // ---------------------------------
 
         const registerForm = getElement("registerForm");
 
         if (registerForm) {
-
-            registerForm.addEventListener(
-                "submit",
-                handleRegister
-            );
-
+            registerForm.addEventListener("submit", handleRegister);
         }
-
-
-        // ---------------------------------
-        // LOGOUT BUTTONS
-        // ---------------------------------
 
         document.querySelectorAll("[data-logout]")
             .forEach(button => {
-
-                button.addEventListener(
-                    "click",
-                    handleLogout
-                );
-
+                button.addEventListener("click", handleLogout);
             });
-
-
-        // ---------------------------------
-        // PROTECTED PAGE ACCESS
-        // ---------------------------------
 
         const requiredRole = document.body.dataset.requiresAuth;
 
         if (requiredRole) {
-
             const accessGranted = requireLogin(requiredRole);
 
             if (!accessGranted) return;
-
         }
-
-
-        // ---------------------------------
-        // DISPLAY USER INFORMATION
-        // ---------------------------------
 
         displayUserInformation();
 
+        initializeSidebar();
     }
 
 
     // =====================================
-    // 10. PUBLIC FUNCTIONS
+    // 11. PUBLIC FUNCTIONS
     // =====================================
 
     return {
@@ -596,13 +490,11 @@ const HealoraAuth = (() => {
 
 
 // =========================================
-// 11. INITIALIZE AUTHENTICATION
+// 12. INITIALIZE AUTHENTICATION
 // =========================================
 
 document.addEventListener("DOMContentLoaded", () => {
-
     HealoraAuth.initializeAuthentication();
-
 });
 
 
