@@ -11,32 +11,16 @@
     <link href="../css/style.css" rel="stylesheet">
 
     <style>
-        :root {
-            --burgundy: #4A001F;
-            --burgundy-dark: #350017;
-            --burgundy-light: #800020;
-            --gold: #D6B77A;
-            --champagne: #F7E7CE;
-            --background: #FAF8F5;
-            --text-muted: #70666C;
-            --border: #E8E2E5;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
         body {
-            background: var(--background);
-            overflow-x: hidden;
+            background: #FAF8F5;
         }
 
         /* SIDEBAR */
         .sidebar {
-            background: linear-gradient(180deg, var(--burgundy-dark), var(--burgundy));
-            z-index: 1050;
+            background: linear-gradient(180deg, #350017, #4A001F);
         }
 
+        /* CENTERED BRANDING */
         .sidebar-brand {
             width: 100%;
             padding: 28px 15px;
@@ -61,20 +45,20 @@
         }
 
         .brand-heal {
-            color: var(--gold) !important;
+            color: #D6B77A !important;
             font-family: 'Manrope', sans-serif;
             font-weight: 800;
         }
 
         .brand-ora {
-            color: var(--champagne) !important;
+            color: #F7E7CE !important;
             font-family: 'Bodoni Moda', serif;
             font-style: italic;
             font-weight: 700;
         }
 
         .brand-clinic {
-            color: var(--champagne) !important;
+            color: #F7E7CE !important;
             font-family: 'Manrope', sans-serif;
             font-size: 10px;
             font-weight: 600;
@@ -89,7 +73,7 @@
         }
 
         .sidebar a {
-            color: var(--champagne);
+            color: #F7E7CE;
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -102,19 +86,18 @@
         }
 
         .sidebar a i {
-            color: var(--gold);
+            color: #D6B77A;
             font-size: 17px;
-            flex-shrink: 0;
         }
 
         .sidebar a:hover,
         .sidebar a.active {
-            background: var(--burgundy-light);
+            background: #800020;
             color: #FFFFFF;
         }
 
         .sidebar a.active {
-            border-left: 3px solid var(--gold);
+            border-left: 3px solid #D6B77A;
         }
 
         .sidebar-footer {
@@ -126,67 +109,35 @@
         .main-content {
             margin-left: 260px;
             padding: 30px;
-            min-width: 0;
-            width: calc(100% - 260px);
         }
 
-        /* TOPBAR */
         .topbar {
             display: flex;
-            justify-content: flex-start;
+            justify-content: space-between;
             align-items: center;
-            gap: 20px;
             margin-bottom: 30px;
-        }
-
-        .topbar-heading {
-            min-width: 0;
         }
 
         .page-heading {
             font-family: 'Manrope', sans-serif;
             font-weight: 800;
-            color: var(--burgundy);
+            color: #4A001F;
             font-size: 25px;
         }
 
-        .topbar-description {
-            color: #958A90;
-            font-size: 13px;
-            margin: 0;
-        }
-
-        /* MOBILE MENU BUTTON */
-        .mobile-menu-toggle {
-            display: none;
-            border: none;
-            background: var(--burgundy);
-            color: var(--gold);
-            width: 43px;
-            height: 43px;
-            border-radius: 11px;
-            font-size: 24px;
+        /* ADMIN PROFILE */
+        .admin-profile {
+            display: flex;
             align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            flex-shrink: 0;
+            gap: 13px;
         }
 
-        .mobile-menu-toggle:hover {
-            background: var(--burgundy-light);
-        }
-
-        .sidebar-backdrop {
-            display: none;
-        }
-
-        /* SIDEBAR ADMIN PROFILE */
         .admin-top-name {
             font-family: 'Bodoni Moda', serif;
             font-size: 17px;
             font-style: italic;
             font-weight: 700;
-            color: var(--burgundy);
+            color: #4A001F;
         }
 
         .admin-top-role {
@@ -203,9 +154,9 @@
             height: 48px;
             flex-shrink: 0;
             border-radius: 50%;
-            border: 2px solid var(--gold);
-            background: linear-gradient(145deg, var(--champagne), var(--gold));
-            color: var(--burgundy);
+            border: 2px solid #D6B77A;
+            background: linear-gradient(145deg, #F7E7CE, #D6B77A);
+            color: #4A001F;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -216,7 +167,7 @@
 
         /* WELCOME BANNER */
         .welcome-banner {
-            background: linear-gradient(135deg, var(--burgundy-dark), var(--burgundy));
+            background: linear-gradient(135deg, #350017, #4A001F);
             border-radius: 18px;
             padding: 35px 38px;
             margin-bottom: 28px;
@@ -225,7 +176,7 @@
         }
 
         .welcome-content h2 {
-            color: var(--gold);
+            color: #D6B77A;
             font-family: 'Bodoni Moda', serif;
             font-size: 29px;
             font-weight: 700;
@@ -233,9 +184,8 @@
         }
 
         .welcome-content p {
-            color: var(--champagne);
+            color: #F7E7CE;
             font-size: 13px;
-            line-height: 1.7;
             margin-bottom: 0;
             opacity: 0.9;
         }
@@ -243,7 +193,7 @@
         /* STATISTICS */
         .dashboard-stat {
             background: #FFFFFF;
-            border: 1px solid var(--border);
+            border: 1px solid #E8E2E5;
             border-radius: 14px;
             padding: 22px;
             height: 100%;
@@ -257,50 +207,45 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: var(--champagne);
-            color: var(--burgundy-light);
+            background: #F7E7CE;
+            color: #800020;
             font-size: 20px;
             margin-bottom: 15px;
         }
 
         .dashboard-stat h3 {
-            color: var(--burgundy);
+            color: #4A001F;
             font-size: 27px;
             font-weight: 800;
             margin-bottom: 4px;
         }
 
         .dashboard-stat p {
-            color: var(--text-muted);
+            color: #70666C;
             font-size: 12px;
             margin: 0;
         }
 
-        /* DASHBOARD CARD */
+        /* DASHBOARD CARDS */
         .dashboard-card {
             background: #FFFFFF;
-            border: 1px solid var(--border);
+            border: 1px solid #E8E2E5;
             border-radius: 14px;
             padding: 22px;
             box-shadow: 0 5px 18px rgba(74, 0, 31, 0.04);
             height: 100%;
-            min-width: 0;
         }
 
         .dashboard-card h5 {
-            color: var(--burgundy);
+            color: #4A001F;
             font-weight: 800;
             font-size: 15px;
         }
 
         /* TABLE */
-        .table {
-            min-width: 850px;
-        }
-
         .table thead th {
-            background: var(--burgundy) !important;
-            color: var(--gold) !important;
+            background: #4A001F !important;
+            color: #D6B77A !important;
             font-size: 11px;
             font-weight: 800;
             text-transform: uppercase;
@@ -312,36 +257,28 @@
 
         .table tbody td {
             background: #FFFFFF;
-            color: var(--text-muted);
+            color: #70666C;
             padding: 15px 13px;
             font-size: 12px;
-            white-space: nowrap;
         }
 
         .table tbody tr:nth-child(even) td {
-            background: var(--background);
+            background: #FAF8F5;
         }
 
         .table tbody tr:hover td {
-            background: var(--champagne);
+            background: #F7E7CE;
             transition: 0.2s ease;
-        }
-
-        .table-responsive {
-            width: 100%;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
         }
 
         /* SEARCH AND FILTER */
         .form-control,
         .form-select {
-            border: 1px solid var(--border);
+            border: 1px solid #E8E2E5;
             border-radius: 8px;
             padding: 10px 13px;
             font-size: 12px;
-            color: var(--burgundy);
-            min-width: 0;
+            color: #4A001F;
         }
 
         .form-control:focus,
@@ -352,7 +289,7 @@
 
         .input-group-text {
             background: #FFFFFF;
-            border: 1px solid var(--border);
+            border: 1px solid #E8E2E5;
             color: #B89555;
         }
 
@@ -387,54 +324,52 @@
         }
 
         .appointment-id {
-            color: var(--burgundy);
+            color: #4A001F;
             font-weight: 700;
         }
 
         .patient-name {
-            color: var(--burgundy);
+            color: #4A001F;
             font-weight: 700;
         }
 
         .view-btn {
-            background: var(--champagne);
-            color: var(--burgundy-light);
-            border: 1px solid var(--gold);
+            background: #F7E7CE;
+            color: #800020;
+            border: 1px solid #D6B77A;
             border-radius: 7px;
             padding: 6px 10px;
             font-size: 12px;
-            white-space: nowrap;
         }
 
         .view-btn:hover {
-            background: var(--burgundy);
-            color: var(--champagne);
+            background: #4A001F;
+            color: #F7E7CE;
         }
 
         .empty-state {
             padding: 40px 15px !important;
             text-align: center;
             color: #958A90 !important;
-            white-space: normal !important;
         }
 
         .empty-state i {
             display: block;
             font-size: 32px;
-            color: var(--gold);
+            color: #D6B77A;
             margin-bottom: 10px;
         }
 
         /* MODAL */
         .modal-content {
-            border: 1px solid var(--border);
+            border: 1px solid #E8E2E5;
             border-radius: 14px;
             overflow: hidden;
         }
 
         .modal-header {
-            background: var(--burgundy);
-            color: var(--champagne);
+            background: #4A001F;
+            color: #F7E7CE;
             border-bottom: 2px solid #B89555;
         }
 
@@ -449,7 +384,7 @@
         }
 
         .detail-value {
-            color: var(--burgundy);
+            color: #4A001F;
             font-size: 13px;
             font-weight: 700;
             margin-bottom: 18px;
@@ -462,273 +397,55 @@
             padding: 25px 0 5px;
             color: #958A90;
             font-size: 11px;
-            line-height: 1.8;
         }
 
-        /* TABLET */
-        @media (max-width: 991px) and (min-width: 768px) {
+        /* RESPONSIVE */
+        @media (max-width: 991px) {
             .sidebar {
                 width: 220px;
             }
 
             .main-content {
                 margin-left: 220px;
-                width: calc(100% - 220px);
-                padding: 22px;
-            }
-
-            .topbar {
-                gap: 12px;
+                padding: 20px;
             }
         }
 
-        /* MOBILE */
         @media (max-width: 767px) {
-
-            body {
-                overflow-x: hidden;
-            }
-
-            /* SIDEBAR DRAWER */
             .sidebar {
-                display: block !important;
-                position: fixed !important;
-                top: 0 !important;
-                left: 0 !important;
-                width: 275px !important;
-                max-width: 85vw;
-                height: 100vh !important;
-                min-height: 100vh !important;
-                overflow-y: auto !important;
-                padding: 10px 5px;
-                z-index: 1050 !important;
-                transform: translateX(-105%);
-                transition: transform 0.3s ease;
-                box-shadow: 8px 0 30px rgba(0, 0, 0, 0.15);
+                display: none;
             }
 
-            .sidebar.mobile-open {
-                transform: translateX(0);
-            }
-
-            .sidebar-brand {
-                padding: 22px 10px;
-            }
-
-            .brand-logo-light {
-                font-size: 25px;
-            }
-
-            .sidebar nav {
-                margin-top: 15px;
-            }
-
-            .sidebar a {
-                font-size: 12px;
-                gap: 12px;
-                padding: 12px 14px;
-                margin: 4px 8px;
-            }
-
-            .sidebar a i {
-                font-size: 17px;
-            }
-
-            .sidebar-footer {
-                padding: 15px 10px;
-                margin-top: 15px !important;
-            }
-
-            .sidebar-footer .admin-top-name {
-                font-size: 12px !important;
-            }
-
-            .sidebar-footer .admin-top-logo {
-                width: 35px !important;
-                height: 35px !important;
-                font-size: 21px !important;
-            }
-
-            /* BACKDROP */
-            .sidebar-backdrop.show {
-                display: block;
-                position: fixed;
-                inset: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(30, 0, 15, 0.48);
-                border: none;
-                z-index: 1040;
-            }
-
-            /* MAIN CONTENT */
             .main-content {
-                margin-left: 0 !important;
-                padding: 18px 15px;
-                width: 100% !important;
-                max-width: 100%;
+                margin-left: 0;
+                padding: 18px;
             }
 
-            /* MOBILE TOPBAR */
             .topbar {
-                display: grid;
-                grid-template-columns: 43px minmax(0, 1fr);
-                align-items: center;
-                column-gap: 12px;
-                margin-bottom: 22px;
+                gap: 15px;
+                flex-wrap: wrap;
             }
 
-            .mobile-menu-toggle {
-                display: flex;
-                grid-column: 1;
-                grid-row: 1;
-            }
-
-            .topbar-heading {
-                grid-column: 2;
-                grid-row: 1;
-            }
-
-            .page-heading {
-                font-size: 21px;
-                margin-bottom: 3px !important;
-            }
-
-            .topbar-description {
-                font-size: 11px;
-                line-height: 1.5;
-            }
-
-            /* WELCOME BANNER */
-            .welcome-banner {
-                padding: 23px 18px;
-                margin-bottom: 20px;
-                border-radius: 15px;
-            }
-
-            .welcome-content h2 {
-                font-size: 22px;
-                line-height: 1.35;
-            }
-
-            .welcome-content p {
-                font-size: 12px;
-                line-height: 1.7;
-            }
-
-            /* STATISTICS */
-            .dashboard-stat {
-                padding: 15px;
-                border-radius: 12px;
-            }
-
-            .dashboard-stat .stat-icon {
-                width: 38px;
-                height: 38px;
-                font-size: 17px;
-                margin-bottom: 12px;
-            }
-
-            .dashboard-stat h3 {
-                font-size: 22px;
-            }
-
-            .dashboard-stat p {
-                font-size: 11px;
-                line-height: 1.5;
-            }
-
-            /* DASHBOARD CARD */
-            .dashboard-card {
-                padding: 17px;
-                border-radius: 12px;
-            }
-
-            .dashboard-card h5 {
+            .admin-top-name {
                 font-size: 14px;
             }
 
-            /* SEARCH AND FILTER */
-            .form-control,
-            .form-select {
-                font-size: 12px;
-                padding: 10px 11px;
+            .admin-top-logo {
+                width: 42px;
+                height: 42px;
+                font-size: 25px;
             }
 
-            /* TABLE */
-            .table thead th,
-            .table tbody td {
-                font-size: 10px;
-                padding: 11px 9px;
-            }
-
-            /* MODAL */
-            .modal-dialog {
-                margin: 12px;
-            }
-
-            .modal-body {
-                padding: 17px;
-            }
-
-            /* FOOTER */
-            .dashboard-footer {
-                font-size: 10px;
-            }
-        }
-
-        /* SMALL MOBILE */
-        @media (max-width: 400px) {
-
-            .main-content {
-                padding: 15px 11px;
-            }
-
-            .topbar {
-                column-gap: 9px;
-                margin-bottom: 20px;
-            }
-
-            .mobile-menu-toggle {
-                width: 39px;
-                height: 39px;
-                font-size: 22px;
-            }
-
-            .page-heading {
-                font-size: 19px;
-            }
-
-            .topbar-description {
-                font-size: 10px;
+            .welcome-decoration {
+                display: none;
             }
 
             .welcome-banner {
-                padding: 20px 15px;
+                padding: 25px;
             }
 
             .welcome-content h2 {
-                font-size: 20px;
-            }
-
-            .dashboard-stat {
-                padding: 12px;
-            }
-
-            .dashboard-stat h3 {
-                font-size: 20px;
-            }
-
-            .dashboard-stat p {
-                font-size: 10px;
-            }
-
-            .dashboard-card {
-                padding: 14px;
-            }
-
-            .modal-dialog {
-                margin: 8px;
+                font-size: 25px;
             }
         }
     </style>
@@ -739,14 +456,18 @@
     <!-- SIDEBAR -->
     <aside class="sidebar">
 
+        <!-- HEALORA CLINIC BRAND -->
         <div class="sidebar-brand">
+
             <div class="brand-logo-light">
                 <span class="brand-heal">HEAL</span><span class="brand-ora">ORA</span>
             </div>
 
             <div class="brand-clinic">C L I N I C</div>
+
         </div>
 
+        <!-- NAVIGATION -->
         <nav>
 
             <a href="admin-dashboard.html">
@@ -796,7 +517,7 @@
 
             <a href="help-support.html">
                 <i class="bi bi-question-circle"></i>
-                Help &amp; Support
+                Help & Support
             </a>
 
         </nav>
@@ -831,12 +552,6 @@
 
     </aside>
 
-    <!-- MOBILE SIDEBAR BACKDROP -->
-    <button type="button"
-            class="sidebar-backdrop"
-            id="sidebarBackdrop"
-            aria-label="Close navigation menu">
-    </button>
 
     <!-- MAIN CONTENT -->
     <main class="main-content">
@@ -844,37 +559,50 @@
         <!-- TOPBAR -->
         <div class="topbar">
 
-            <button type="button"
-                    class="mobile-menu-toggle"
-                    id="mobileMenuToggle"
-                    aria-label="Open navigation menu"
-                    aria-expanded="false">
-                <i class="bi bi-list"></i>
-            </button>
-
-            <div class="topbar-heading">
+            <div>
                 <h1 class="page-heading mb-1">Appointment History</h1>
 
-                <p class="topbar-description">
+                <p class="text-muted small mb-0">
                     Review and keep track of previous clinic appointments.
                 </p>
             </div>
 
+            <!-- TOP RIGHT ADMIN PROFILE -->
+            <div class="admin-profile">
+
+                <div class="text-end">
+
+                    <div class="admin-top-name">
+                        Healora Administrator
+                    </div>
+
+                    <div class="admin-top-role">ADMIN</div>
+
+                </div>
+
+                <div class="admin-top-logo">H</div>
+
+            </div>
+
         </div>
+
 
         <!-- WELCOME BANNER -->
         <section class="welcome-banner">
 
             <div class="welcome-content">
+
                 <h2>Appointment History</h2>
 
                 <p>
                     Access and review appointment records at Healora Clinic.
                     Monitor appointment details and their current status.
                 </p>
+
             </div>
 
         </section>
+
 
         <!-- APPOINTMENT STATISTICS -->
         <section class="row g-3 mb-4">
@@ -933,6 +661,7 @@
 
         </section>
 
+
         <!-- APPOINTMENT HISTORY TABLE -->
         <section class="dashboard-card">
 
@@ -951,6 +680,7 @@
                 </span>
 
             </div>
+
 
             <!-- SEARCH AND FILTER -->
             <div class="row g-3 mb-4">
@@ -1004,6 +734,7 @@
 
             </div>
 
+
             <!-- APPOINTMENT TABLE -->
             <div class="table-responsive">
 
@@ -1038,6 +769,7 @@
 
         </section>
 
+
         <!-- FOOTER -->
         <footer class="dashboard-footer">
 
@@ -1052,6 +784,7 @@
         </footer>
 
     </main>
+
 
     <!-- VIEW APPOINTMENT MODAL -->
     <div class="modal fade" id="appointmentDetailsModal" tabindex="-1">
@@ -1146,6 +879,7 @@
 
     </div>
 
+
     <!-- JAVASCRIPT -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/storage.js"></script>
@@ -1153,11 +887,13 @@
     <script src="../js/auth.js"></script>
 
     <script>
+
         let appointments = [];
 
         const detailsModal = new bootstrap.Modal(
             document.getElementById("appointmentDetailsModal")
         );
+
 
         /* LOAD APPOINTMENTS */
         function loadAppointments() {
@@ -1191,6 +927,7 @@
 
         }
 
+
         /* ESCAPE HTML */
         function escapeHTML(value) {
 
@@ -1210,6 +947,7 @@
 
         }
 
+
         /* UPDATE STATISTICS */
         function updateStatistics() {
 
@@ -1226,6 +964,7 @@
                 appointments.filter(item => item.status === "Cancelled").length;
 
         }
+
 
         /* FORMAT DATE */
         function formatDate(dateValue) {
@@ -1248,6 +987,7 @@
 
         }
 
+
         /* STATUS BADGE */
         function getStatusBadge(status) {
 
@@ -1268,6 +1008,7 @@
 
         }
 
+
         /* DISPLAY APPOINTMENT HISTORY */
         function renderAppointmentHistory() {
 
@@ -1283,15 +1024,19 @@
                 .getElementById("statusFilter")
                 .value;
 
+
             const filteredAppointments = appointments.filter(appointment => {
 
                 const searchableContent = [
+
                     appointment.id,
                     appointment.patientName,
                     appointment.patientEmail,
                     appointment.doctorName,
                     appointment.service
+
                 ].join(" ").toLowerCase();
+
 
                 const matchesSearch =
                     searchableContent.includes(searchValue);
@@ -1300,13 +1045,16 @@
                     selectedStatus === "All" ||
                     appointment.status === selectedStatus;
 
+
                 return matchesSearch && matchesStatus;
 
             });
 
+
             document.getElementById("recordCount").textContent =
                 filteredAppointments.length +
                 (filteredAppointments.length === 1 ? " record" : " records");
+
 
             if (filteredAppointments.length === 0) {
 
@@ -1329,6 +1077,7 @@
                 return;
 
             }
+
 
             table.innerHTML = filteredAppointments.map(appointment => {
 
@@ -1381,6 +1130,7 @@
 
         }
 
+
         /* VIEW APPOINTMENT DETAILS */
         function viewAppointment(encodedId) {
 
@@ -1396,6 +1146,7 @@
                 return;
 
             }
+
 
             document.getElementById("detailId").textContent =
                 appointment.id || "-";
@@ -1421,9 +1172,11 @@
             document.getElementById("detailReason").textContent =
                 appointment.reason || "-";
 
+
             detailsModal.show();
 
         }
+
 
         /* RESET SEARCH AND FILTER */
         function resetFilters() {
@@ -1434,6 +1187,7 @@
             renderAppointmentHistory();
 
         }
+
 
         /* EVENT LISTENERS */
         document.getElementById("searchInput").addEventListener(
@@ -1451,75 +1205,10 @@
             resetFilters
         );
 
+
         /* INITIALIZE PAGE */
         document.addEventListener("DOMContentLoaded", loadAppointments);
 
-        /* MOBILE SIDEBAR FUNCTION */
-        document.addEventListener('DOMContentLoaded', function () {
-
-            const sidebar = document.querySelector('.sidebar');
-            const menuButton = document.getElementById('mobileMenuToggle');
-            const backdrop = document.getElementById('sidebarBackdrop');
-
-            if (!sidebar || !menuButton || !backdrop) {
-                return;
-            }
-
-            function openSidebar() {
-                sidebar.classList.add('mobile-open');
-                backdrop.classList.add('show');
-                menuButton.setAttribute('aria-expanded', 'true');
-
-                const icon = menuButton.querySelector('i');
-
-                if (icon) {
-                    icon.className = 'bi bi-x-lg';
-                }
-            }
-
-            function closeSidebar() {
-                sidebar.classList.remove('mobile-open');
-                backdrop.classList.remove('show');
-                menuButton.setAttribute('aria-expanded', 'false');
-
-                const icon = menuButton.querySelector('i');
-
-                if (icon) {
-                    icon.className = 'bi bi-list';
-                }
-            }
-
-            menuButton.addEventListener('click', function () {
-                if (sidebar.classList.contains('mobile-open')) {
-                    closeSidebar();
-                } else {
-                    openSidebar();
-                }
-            });
-
-            backdrop.addEventListener('click', closeSidebar);
-
-            document.addEventListener('keydown', function (event) {
-                if (event.key === 'Escape') {
-                    closeSidebar();
-                }
-            });
-
-            sidebar.querySelectorAll('nav a').forEach(function (link) {
-                link.addEventListener('click', function () {
-                    if (window.innerWidth <= 767) {
-                        closeSidebar();
-                    }
-                });
-            });
-
-            window.addEventListener('resize', function () {
-                if (window.innerWidth > 767) {
-                    closeSidebar();
-                }
-            });
-
-        });
     </script>
 
 </body>
