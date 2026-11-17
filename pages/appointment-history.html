@@ -8,41 +8,65 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600;6..96,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
 
     <style>
+        :root {
+            --wine: #350017;
+            --burgundy: #4A001F;
+            --burgundy-light: #800020;
+            --gold: #D6B77A;
+            --gold-dark: #B89552;
+            --ivory: #FAF8F4;
+            --cream: #F7E7CE;
+            --white: #FFFFFF;
+            --text: #30252A;
+            --muted: #70666C;
+            --border: #EEE7E2;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            background: #FAF8F5;
             margin: 0;
+            background: var(--ivory);
+            color: var(--text);
+            font-family: 'Manrope', sans-serif;
+            font-size: 14px;
+            overflow-x: hidden;
         }
 
         /* SIDEBAR */
+
         .sidebar {
-            width: 260px;
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1050;
-            display: flex;
-            flex-direction: column;
+            width: 260px !important;
+            height: 100vh !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            z-index: 1000 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            padding: 0 19px 22px !important;
+            background: linear-gradient(180deg, #350017 0%, #4A001F 100%) !important;
+            transform: translateX(0) !important;
+            transition: transform .3s ease !important;
             overflow-y: auto;
-            overflow-x: hidden;
-            background: linear-gradient(180deg, #350017, #4A001F);
-            padding: 0 0 15px;
-            transition: transform 0.3s ease;
         }
 
         .sidebar-brand {
             width: 100%;
             padding: 28px 15px;
-            border-bottom: 1px solid rgba(247, 231, 206, 0.15);
+            border-bottom: 1px solid rgba(247, 231, 206, .15);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            flex-shrink: 0;
+            margin-bottom: 27px;
         }
 
         .brand-logo-light {
@@ -58,21 +82,19 @@
         }
 
         .brand-heal {
-            color: #D6B77A !important;
-            font-family: 'Manrope', sans-serif;
+            color: var(--gold) !important;
             font-weight: 800;
         }
 
         .brand-ora {
-            color: #F7E7CE !important;
+            color: var(--cream) !important;
             font-family: 'Bodoni Moda', serif;
             font-style: italic;
             font-weight: 700;
         }
 
         .brand-clinic {
-            color: #F7E7CE !important;
-            font-family: 'Manrope', sans-serif;
+            color: var(--cream) !important;
             font-size: 10px;
             font-weight: 600;
             letter-spacing: 4px;
@@ -81,225 +103,371 @@
             width: 100%;
         }
 
-        .sidebar nav {
-            margin-top: 20px;
-            flex: 1;
+        .nav-label {
+            color: rgba(247, 231, 206, .55);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            padding: 0 13px;
+            margin-bottom: 13px;
         }
 
-        .sidebar a {
-            color: #F7E7CE;
-            text-decoration: none;
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .sidebar-nav a {
             display: flex;
             align-items: center;
             gap: 13px;
-            padding: 12px 18px;
-            margin: 4px 12px;
-            border-radius: 9px;
+            padding: 12px 14px;
+            margin: 0 !important;
+            color: rgba(247, 231, 206, .82) !important;
+            text-decoration: none;
             font-size: 13px;
-            transition: 0.3s;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: .2s ease;
         }
 
-        .sidebar a i {
-            color: #D6B77A;
+        .sidebar-nav a i {
+            width: 19px;
             font-size: 17px;
+            color: var(--gold);
         }
 
-        .sidebar a:hover,
-        .sidebar a.active {
-            background: #800020;
-            color: #FFFFFF;
+        .sidebar-nav a:hover {
+            background: rgba(255, 255, 255, .08);
+            color: var(--cream) !important;
         }
 
-        .sidebar a.active {
-            border-left: 3px solid #D6B77A;
+        .sidebar-nav a.active {
+            background: var(--burgundy-light);
+            color: var(--cream) !important;
+            border-left: 3px solid var(--gold);
+            padding-left: 11px;
         }
 
-        .sidebar-footer {
-            border-top: 1px solid rgba(247, 231, 206, 0.15);
-            padding: 18px;
+        .sidebar-bottom {
             margin-top: auto;
-            flex-shrink: 0;
+            border-top: 1px solid rgba(247, 231, 206, .15);
+            padding-top: 18px;
         }
 
         .sidebar-profile {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-
-        .admin-top-name {
-            font-family: 'Bodoni Moda', serif;
-            font-size: 14px;
-            font-style: italic;
-            font-weight: 700;
-            color: #F7E7CE;
-        }
-
-        .admin-top-role {
-            font-family: 'Manrope', sans-serif;
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: #B89555;
-            margin-top: 3px;
-        }
-
-        .admin-top-logo {
-            width: 40px;
-            height: 40px;
-            flex-shrink: 0;
-            border-radius: 50%;
-            border: 2px solid #D6B77A;
-            background: linear-gradient(145deg, #F7E7CE, #D6B77A);
-            color: #4A001F;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Bodoni Moda', serif;
-            font-size: 24px;
-            font-weight: 700;
-        }
-
-        .sidebar-footer a {
-            margin: 0;
-            padding: 10px 12px;
-        }
-
-        /* SIDEBAR OVERLAY */
-        .sidebar-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(20, 0, 10, 0.55);
-            z-index: 1040;
-        }
-
-        .sidebar-overlay.show {
-            display: block;
-        }
-
-        /* MAIN CONTENT */
-        .main-content {
-            margin-left: 260px;
-            padding: 30px;
-            min-height: 100vh;
-            transition: margin-left 0.3s ease;
-        }
-
-        /* TOPBAR - SAME AS ADMIN DASHBOARD */
-        .topbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 30px;
-            padding: 0;
-            background: transparent;
-            border: none;
-            border-radius: 0;
-            box-shadow: none;
-        }
-
-        .topbar-left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
+            gap: 12px;
+            padding: 15px 10px;
+            margin-bottom: 12px;
+            border-top: 1px solid rgba(247, 231, 206, .15);
+            border-bottom: 1px solid rgba(247, 231, 206, .15);
             min-width: 0;
         }
 
-        .topbar-right {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            flex-shrink: 0;
-        }
-
-        .page-heading {
-            font-family: 'Manrope', sans-serif;
-            font-weight: 800;
-            color: #4A001F;
-            font-size: 25px;
-            margin: 0;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            width: 40px;
-            height: 40px;
-            border: none;
-            border-radius: 9px;
-            background: #4A001F;
-            color: #F7E7CE;
-            align-items: center;
-            justify-content: center;
-            font-size: 21px;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-
-        .notification-btn {
-            width: 40px;
-            height: 40px;
-            border: none;
-            background: transparent;
-            color: #4A001F;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 21px;
-            cursor: pointer;
-        }
-
-        .topbar-avatar {
+        .sidebar-profile-avatar {
             width: 42px;
             height: 42px;
+            min-width: 42px;
             border-radius: 50%;
-            border: 2px solid #D6B77A;
-            background: linear-gradient(145deg, #F7E7CE, #D6B77A);
-            color: #4A001F;
+            background: var(--gold);
+            color: var(--wine);
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'Bodoni Moda', serif;
-            font-size: 25px;
+            font-size: 22px;
             font-weight: 700;
+        }
+
+        .sidebar-profile-info {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .sidebar-profile-info strong {
+            display: block;
+            color: var(--cream);
+            font-size: 13px;
+            font-weight: 800;
+            line-height: 1.5;
+        }
+
+        .sidebar-profile-info span {
+            display: block;
+            color: var(--gold);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            margin-top: 3px;
+        }
+
+        .logout-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 13px;
+            margin: 0 !important;
+            color: rgba(247, 231, 206, .82) !important;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+
+        .logout-link i {
+            color: var(--gold);
+            font-size: 17px;
+        }
+
+        .logout-link:hover {
+            background: rgba(255, 255, 255, .08);
+            color: var(--cream) !important;
+        }
+
+        .sidebar-overlay {
+            display: none;
+        }
+
+        /* MAIN CONTENT */
+
+        .main-content {
+            margin-left: 260px !important;
+            padding: 32px 40px 45px !important;
+            min-height: 100vh;
+            width: auto;
+        }
+
+        /* HEADER - SAME AS ADMIN DASHBOARD */
+
+        .main-content .topbar {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            text-align: left !important;
+            margin-bottom: 29px !important;
+            padding: 0 !important;
+            gap: 15px !important;
+            width: 100% !important;
+            min-height: 50px;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
+        }
+
+        .main-content .topbar::before,
+        .main-content .topbar::after {
+            display: none !important;
+            content: none !important;
+        }
+
+        .main-content .topbar-left {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            text-align: left !important;
+            gap: 13px !important;
+            flex: 1 1 auto !important;
+            min-width: 0;
+            width: auto !important;
+        }
+
+        .main-content .page-heading {
+            display: block !important;
+            text-align: left !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            min-width: 0;
+            width: auto !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .main-content .page-heading small {
+            display: block !important;
+            color: var(--gold-dark);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 0 0 5px 0 !important;
+            text-align: left !important;
+        }
+
+        .main-content .page-heading h2 {
+            display: block !important;
+            color: var(--wine);
+            font-family: 'Manrope', sans-serif;
+            font-size: 25px;
+            font-weight: 800;
+            margin: 0 !important;
+            padding: 0 !important;
+            text-align: left !important;
+            line-height: 1.3;
+        }
+
+        .main-content .topbar-right {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: flex-end !important;
+            gap: 19px !important;
+            flex: 0 0 auto !important;
+            width: auto !important;
+            margin-left: auto !important;
+            padding: 0 !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .notification-btn {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            background: var(--white);
+            color: var(--wine);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            position: relative;
             flex-shrink: 0;
         }
 
+        .notification-dot {
+            width: 8px;
+            height: 8px;
+            background: #B65D56;
+            border-radius: 50%;
+            position: absolute;
+            top: 7px;
+            right: 7px;
+            border: 1px solid white;
+        }
+
+        .profile-chip {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            gap: 10px;
+            min-width: 0;
+            flex-shrink: 0;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            border-radius: 0 !important;
+        }
+
+        .profile-chip-info {
+            min-width: 0;
+            text-align: right;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .profile-chip-info strong {
+            display: block;
+            color: var(--wine);
+            font-size: 12px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .profile-chip-info span {
+            display: block;
+            color: var(--gold-dark);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-top: 3px;
+        }
+
+        .chip-avatar {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            border-radius: 50%;
+            background: var(--burgundy);
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 21px;
+            font-weight: 700;
+            border: none;
+        }
+
+        .mobile-toggle {
+            display: none;
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            border: 1px solid var(--border);
+            background: var(--white);
+            color: var(--wine);
+            border-radius: 8px;
+            font-size: 20px;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
         /* WELCOME BANNER */
+
         .welcome-banner {
             background: linear-gradient(135deg, #350017, #4A001F);
             border-radius: 18px;
             padding: 35px 38px;
             margin-bottom: 28px;
-            border: 1px solid rgba(214, 183, 122, 0.35);
-            box-shadow: 0 8px 25px rgba(74, 0, 31, 0.12);
+            border: 1px solid rgba(214, 183, 122, .35);
+            box-shadow: 0 8px 25px rgba(74, 0, 31, .12);
+            text-align: left;
+        }
+
+        .welcome-content {
+            text-align: left;
         }
 
         .welcome-content h2 {
-            color: #D6B77A;
+            color: var(--gold);
             font-family: 'Bodoni Moda', serif;
             font-size: 29px;
             font-weight: 700;
             margin-bottom: 10px;
+            text-align: left;
         }
 
         .welcome-content p {
-            color: #F7E7CE;
+            color: var(--cream);
             font-size: 13px;
             margin-bottom: 0;
-            opacity: 0.9;
+            opacity: .9;
+            text-align: left;
         }
 
         /* STATISTICS */
+
         .dashboard-stat {
-            background: #FFFFFF;
+            background: var(--white);
             border: 1px solid #E8E2E5;
             border-radius: 14px;
             padding: 22px;
             height: 100%;
-            box-shadow: 0 5px 18px rgba(74, 0, 31, 0.04);
+            box-shadow: 0 5px 18px rgba(74, 0, 31, .04);
         }
 
         .dashboard-stat .stat-icon {
@@ -309,93 +477,109 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #F7E7CE;
-            color: #800020;
+            background: var(--cream);
+            color: var(--burgundy-light);
             font-size: 20px;
             margin-bottom: 15px;
         }
 
         .dashboard-stat h3 {
-            color: #4A001F;
+            color: var(--burgundy);
             font-size: 27px;
             font-weight: 800;
             margin-bottom: 4px;
         }
 
         .dashboard-stat p {
-            color: #70666C;
+            color: var(--muted);
             font-size: 12px;
             margin: 0;
         }
 
         /* DASHBOARD CARD */
+
         .dashboard-card {
-            background: #FFFFFF;
+            background: var(--white);
             border: 1px solid #E8E2E5;
             border-radius: 14px;
             padding: 22px;
-            box-shadow: 0 5px 18px rgba(74, 0, 31, 0.04);
+            box-shadow: 0 5px 18px rgba(74, 0, 31, .04);
             height: 100%;
         }
 
         .dashboard-card h5 {
-            color: #4A001F;
+            color: var(--burgundy);
             font-weight: 800;
             font-size: 15px;
         }
 
+        /* SEARCH AND FILTER */
+
+        .form-control,
+        .form-select {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 13px;
+            font-size: 12px;
+            color: var(--burgundy);
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: var(--gold-dark);
+            box-shadow: 0 0 0 .2rem rgba(214, 183, 122, .15);
+        }
+
+        .input-group-text {
+            background: var(--white);
+            border: 1px solid var(--border);
+            color: var(--gold-dark);
+        }
+
         /* TABLE */
+
         .table thead th {
-            background: #4A001F !important;
-            color: #D6B77A !important;
+            background: var(--burgundy) !important;
+            color: var(--gold) !important;
             font-size: 11px;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 1px;
             padding: 16px 13px;
-            border-bottom: 2px solid #B89555;
+            border-bottom: 2px solid var(--gold-dark);
             white-space: nowrap;
         }
 
         .table tbody td {
-            background: #FFFFFF;
-            color: #70666C;
+            background: var(--white);
+            color: var(--muted);
             padding: 15px 13px;
             font-size: 12px;
+            vertical-align: middle;
         }
 
         .table tbody tr:nth-child(even) td {
-            background: #FAF8F5;
+            background: var(--ivory);
         }
 
         .table tbody tr:hover td {
-            background: #F7E7CE;
-            transition: 0.2s ease;
+            background: var(--cream);
+            transition: .2s ease;
         }
 
-        /* SEARCH AND FILTER */
-        .form-control,
-        .form-select {
-            border: 1px solid #E8E2E5;
-            border-radius: 8px;
-            padding: 10px 13px;
-            font-size: 12px;
-            color: #4A001F;
+        .appointment-id {
+            color: var(--burgundy);
+            font-weight: 800;
         }
 
-        .form-control:focus,
-        .form-select:focus {
-            border-color: #B89555;
-            box-shadow: 0 0 0 0.2rem rgba(214, 183, 122, 0.15);
+        .patient-name {
+            color: var(--burgundy);
+            font-weight: 700;
         }
 
-        .input-group-text {
-            background: #FFFFFF;
-            border: 1px solid #E8E2E5;
-            color: #B89555;
-        }
+        /* STATUS BADGES */
 
-        /* APPOINTMENT STATUS */
         .status-badge {
             display: inline-block;
             padding: 6px 11px;
@@ -425,28 +609,22 @@
             color: #A33D4B;
         }
 
-        .appointment-id {
-            color: #4A001F;
-            font-weight: 700;
-        }
-
-        .patient-name {
-            color: #4A001F;
-            font-weight: 700;
-        }
+        /* VIEW BUTTON */
 
         .view-btn {
-            background: #F7E7CE;
-            color: #800020;
-            border: 1px solid #D6B77A;
+            background: var(--cream);
+            color: var(--burgundy-light);
+            border: 1px solid var(--gold);
             border-radius: 7px;
             padding: 6px 10px;
             font-size: 12px;
+            font-weight: 700;
+            transition: .2s ease;
         }
 
         .view-btn:hover {
-            background: #4A001F;
-            color: #F7E7CE;
+            background: var(--burgundy);
+            color: var(--cream);
         }
 
         .empty-state {
@@ -458,21 +636,22 @@
         .empty-state i {
             display: block;
             font-size: 32px;
-            color: #D6B77A;
+            color: var(--gold-dark);
             margin-bottom: 10px;
         }
 
         /* MODAL */
+
         .modal-content {
-            border: 1px solid #E8E2E5;
+            border: 1px solid var(--border);
             border-radius: 14px;
             overflow: hidden;
         }
 
         .modal-header {
-            background: #4A001F;
-            color: #F7E7CE;
-            border-bottom: 2px solid #B89555;
+            background: var(--burgundy);
+            color: var(--cream);
+            border-bottom: 2px solid var(--gold-dark);
         }
 
         .modal-header .btn-close {
@@ -486,7 +665,7 @@
         }
 
         .detail-value {
-            color: #4A001F;
+            color: var(--burgundy);
             font-size: 13px;
             font-weight: 700;
             margin-bottom: 18px;
@@ -494,6 +673,7 @@
         }
 
         /* FOOTER */
+
         .dashboard-footer {
             text-align: center;
             padding: 25px 0 5px;
@@ -501,101 +681,101 @@
             font-size: 11px;
         }
 
-        /* MOBILE SIDEBAR */
+        /* TABLET AND MOBILE */
+
+        @media (max-width: 1100px) {
+            .main-content {
+                padding: 28px 25px 40px !important;
+            }
+        }
+
         @media (max-width: 900px) {
+
             .sidebar {
-                width: 260px;
-                height: 100dvh !important;
-                max-height: 100dvh !important;
-                overflow-y: auto !important;
-                overflow-x: hidden !important;
-                transform: translateX(-100%);
+                transform: translateX(-100%) !important;
                 visibility: hidden;
-                z-index: 1050;
-                padding-bottom: 12px;
             }
 
             .sidebar.open {
-                transform: translateX(0);
+                transform: translateX(0) !important;
                 visibility: visible;
             }
 
-            .sidebar-brand {
-                padding: 18px 12px;
-                margin-bottom: 5px;
-            }
-
-            .sidebar nav {
-                margin-top: 10px;
-            }
-
-            .sidebar a {
-                padding: 9px 12px;
-                font-size: 12px;
-                gap: 11px;
-                margin: 3px 10px;
-            }
-
-            .sidebar-footer {
-                margin-top: 15px;
-                padding: 10px 12px;
-                flex-shrink: 0;
+            .sidebar-overlay.show {
+                display: block !important;
+                position: fixed !important;
+                inset: 0;
+                background: rgba(25, 0, 12, .45);
+                z-index: 999 !important;
             }
 
             .main-content {
-                margin-left: 0;
-                padding: 20px;
+                margin-left: 0 !important;
+                padding: 22px 20px 35px !important;
+                width: 100% !important;
             }
 
-            .mobile-menu-btn {
-                display: flex;
+            .mobile-toggle {
+                display: flex !important;
             }
         }
 
         @media (max-width: 600px) {
+
             .main-content {
-                padding: 18px;
+                padding: 18px 15px 30px !important;
             }
 
-            .topbar {
-                gap: 8px;
-                margin-bottom: 24px;
+            .main-content .topbar {
+                margin-bottom: 22px !important;
+                flex-wrap: nowrap !important;
             }
 
-            .topbar-left {
-                gap: 10px;
+            .main-content .topbar-left {
+                gap: 10px !important;
+                flex: 1 1 auto !important;
             }
 
-            .page-heading {
-                font-size: 18px;
+            .main-content .page-heading small {
+                font-size: 9px;
             }
 
-            .topbar-right {
-                gap: 10px;
+            .main-content .page-heading h2 {
+                font-size: 19px;
             }
 
-            .mobile-menu-btn {
-                width: 36px;
-                height: 36px;
+            .main-content .topbar-right {
+                gap: 9px !important;
             }
 
             .notification-btn {
-                width: 34px;
-                height: 36px;
+                width: 38px;
+                height: 38px;
+                min-width: 38px;
             }
 
-            .topbar-avatar {
-                width: 36px;
-                height: 36px;
-                font-size: 22px;
+            .chip-avatar {
+                width: 38px;
+                height: 38px;
+                min-width: 38px;
+            }
+
+            .profile-chip-info {
+                display: none !important;
             }
 
             .welcome-banner {
-                padding: 25px;
+                padding: 25px 22px;
+                margin-bottom: 20px;
             }
 
             .welcome-content h2 {
-                font-size: 25px;
+                font-size: 24px;
+            }
+
+            .welcome-content p {
+                font-size: 11px;
+                line-height: 1.8;
             }
 
             .dashboard-stat {
@@ -607,16 +787,99 @@
             }
 
             .dashboard-card {
-                padding: 16px;
+                padding: 17px;
             }
         }
+
+        @media (max-width: 380px) {
+
+            .main-content .topbar {
+                gap: 8px !important;
+            }
+
+            .main-content .topbar-left {
+                gap: 7px !important;
+            }
+
+            .mobile-toggle {
+                width: 36px;
+                height: 36px;
+                min-width: 36px;
+            }
+
+            .main-content .page-heading h2 {
+                font-size: 17px;
+            }
+
+            .main-content .topbar-right {
+                gap: 7px !important;
+            }
+
+            .notification-btn,
+            .chip-avatar {
+                width: 35px;
+                height: 35px;
+                min-width: 35px;
+            }
+        }
+
+        /* MOBILE SIDEBAR HEIGHT FIX */
+
+        @media (max-width: 900px) {
+
+            .sidebar {
+                height: 100dvh !important;
+                max-height: 100dvh !important;
+                overflow-y: auto !important;
+                overflow-x: hidden !important;
+                padding-top: 0 !important;
+                padding-bottom: 12px !important;
+                scrollbar-width: thin;
+                scrollbar-color: rgba(214, 183, 122, .5) transparent;
+            }
+
+            .sidebar-brand {
+                padding: 18px 12px !important;
+                margin-bottom: 15px !important;
+            }
+
+            .sidebar-nav {
+                gap: 3px !important;
+            }
+
+            .sidebar-nav a {
+                padding: 9px 12px !important;
+                font-size: 12px !important;
+            }
+
+            .sidebar-nav a.active {
+                padding-left: 9px !important;
+            }
+
+            .sidebar-bottom {
+                margin-top: 15px !important;
+                padding-top: 10px !important;
+                flex-shrink: 0 !important;
+            }
+
+            .sidebar-profile {
+                padding: 10px 8px !important;
+                margin-bottom: 6px !important;
+            }
+
+            .logout-link {
+                padding: 10px 12px !important;
+                margin-bottom: 5px !important;
+            }
+        }
+
     </style>
 </head>
 
 <body data-requires-auth="admin">
 
     <!-- SIDEBAR -->
-    <aside class="sidebar" id="adminSidebar">
+    <aside class="sidebar" id="sidebar">
 
         <div class="sidebar-brand">
             <div class="brand-logo-light">
@@ -625,72 +888,76 @@
             <div class="brand-clinic">C L I N I C</div>
         </div>
 
-        <nav>
+        <div class="nav-label">ADMIN PORTAL</div>
+
+        <nav class="sidebar-nav">
+
             <a href="admin-dashboard.html">
                 <i class="bi bi-grid-1x2-fill"></i>
-                Dashboard
+                <span>Dashboard</span>
             </a>
 
             <a href="appointments.html">
                 <i class="bi bi-calendar-check"></i>
-                Appointments
+                <span>Appointments</span>
             </a>
 
             <a href="patients.html">
                 <i class="bi bi-people"></i>
-                Patients
+                <span>Patients</span>
             </a>
 
             <a href="doctors.html">
                 <i class="bi bi-person-badge"></i>
-                Doctors
+                <span>Doctors</span>
             </a>
 
             <a href="doctor-schedule.html">
                 <i class="bi bi-calendar-week"></i>
-                Doctor Schedule
+                <span>Doctor Schedule</span>
             </a>
 
             <a href="clinic-services.html">
                 <i class="bi bi-heart-pulse"></i>
-                Clinic Services
+                <span>Clinic Services</span>
             </a>
 
             <a href="appointment-history.html" class="active">
                 <i class="bi bi-clock-history"></i>
-                Appointment History
+                <span>Appointment History</span>
             </a>
 
             <a href="reports.html">
                 <i class="bi bi-bar-chart-line"></i>
-                Reports
+                <span>Reports</span>
             </a>
 
             <a href="profile.html">
                 <i class="bi bi-person-circle"></i>
-                My Profile
+                <span>My Profile</span>
             </a>
 
             <a href="help-support.html">
-                <i class="bi bi-question-circle"></i>
-                Help & Support
+                <i class="bi bi-headset"></i>
+                <span>Help &amp; Support</span>
             </a>
+
         </nav>
 
-        <div class="sidebar-footer">
+        <div class="sidebar-bottom">
 
             <div class="sidebar-profile">
-                <div class="admin-top-logo">H</div>
+                <div class="sidebar-profile-avatar">H</div>
 
-                <div>
-                    <div class="admin-top-name">Healora Administrator</div>
-                    <div class="admin-top-role">ADMIN</div>
+                <div class="sidebar-profile-info">
+                    <strong>Healora Administrator</strong>
+                    <span>ADMIN</span>
                 </div>
             </div>
 
-            <a href="#" data-logout>
+            <a href="#" class="logout-link" data-logout>
                 <i class="bi bi-box-arrow-left"></i>
-                Logout
+                <span>Logout</span>
             </a>
 
         </div>
@@ -702,37 +969,46 @@
     <!-- MAIN CONTENT -->
     <main class="main-content">
 
-        <!-- TOPBAR - SAME STRUCTURE AS ADMIN DASHBOARD -->
+        <!-- TOPBAR - SAME AS ADMIN DASHBOARD -->
         <header class="topbar">
 
             <div class="topbar-left">
 
                 <button
+                    class="mobile-toggle"
+                    id="mobileToggle"
                     type="button"
-                    class="mobile-menu-btn"
-                    id="sidebarToggle"
-                    aria-label="Open navigation menu"
-                    aria-expanded="false"
-                >
+                    aria-label="Open menu"
+                    aria-expanded="false">
+
                     <i class="bi bi-list"></i>
+
                 </button>
 
-                <h1 class="page-heading">Appointment History</h1>
+                <div class="page-heading">
+                    <small>ADMIN PORTAL</small>
+                    <h2>Appointment History</h2>
+                </div>
 
             </div>
 
             <div class="topbar-right">
 
-                <button
-                    type="button"
-                    class="notification-btn"
-                    aria-label="Notifications"
-                    title="Notifications"
-                >
+                <div class="notification-btn" aria-label="Notifications">
                     <i class="bi bi-bell"></i>
-                </button>
+                    <span class="notification-dot"></span>
+                </div>
 
-                <div class="topbar-avatar">H</div>
+                <div class="profile-chip">
+
+                    <div class="profile-chip-info">
+                        <strong>Healora Administrator</strong>
+                        <span>ADMIN</span>
+                    </div>
+
+                    <div class="chip-avatar">H</div>
+
+                </div>
 
             </div>
 
@@ -743,10 +1019,8 @@
 
             <div class="welcome-content">
                 <h2>Appointment History</h2>
-
                 <p>
-                    Access and review appointment records at Healora Clinic.
-                    Monitor appointment details and their current status.
+                    View all previous appointments and their details in one place.
                 </p>
             </div>
 
@@ -828,8 +1102,7 @@
                             type="text"
                             class="form-control"
                             id="searchInput"
-                            placeholder="Search appointment ID, patient or doctor..."
-                        >
+                            placeholder="Search appointment ID, patient or doctor...">
                     </div>
                 </div>
 
@@ -848,10 +1121,11 @@
                         type="button"
                         class="btn btn-outline-secondary w-100"
                         id="resetButton"
-                        style="font-size:12px;padding:10px;"
-                    >
+                        style="font-size:12px;padding:10px;">
+
                         <i class="bi bi-arrow-counterclockwise me-1"></i>
                         Reset
+
                     </button>
                 </div>
 
@@ -912,7 +1186,9 @@
                     <div>
                         <h5 class="modal-title"
                             style="font-family:'Bodoni Moda',serif;font-weight:700;">
+
                             Appointment Details
+
                         </h5>
 
                         <small style="color:#D6B77A;">
@@ -982,7 +1258,9 @@
                         type="button"
                         class="btn btn-secondary btn-sm"
                         data-bs-dismiss="modal">
+
                         Close
+
                     </button>
                 </div>
 
@@ -1007,53 +1285,84 @@
         );
 
         /* MOBILE SIDEBAR */
-        const sidebar = document.getElementById("adminSidebar");
-        const sidebarToggle = document.getElementById("sidebarToggle");
-        const sidebarOverlay = document.getElementById("sidebarOverlay");
 
-        function openSidebar() {
-            sidebar.classList.add("open");
-            sidebarOverlay.classList.add("show");
-            sidebarToggle.setAttribute("aria-expanded", "true");
-            document.body.style.overflow = "hidden";
-        }
+        document.addEventListener("DOMContentLoaded", function () {
 
-        function closeSidebar() {
-            sidebar.classList.remove("open");
-            sidebarOverlay.classList.remove("show");
-            sidebarToggle.setAttribute("aria-expanded", "false");
-            document.body.style.overflow = "";
-        }
+            const sidebar = document.getElementById("sidebar");
+            const mobileToggle = document.getElementById("mobileToggle");
+            const sidebarOverlay = document.getElementById("sidebarOverlay");
+            const toggleIcon = mobileToggle.querySelector("i");
 
-        sidebarToggle.addEventListener("click", function() {
-            if (sidebar.classList.contains("open")) {
-                closeSidebar();
-            } else {
-                openSidebar();
+            function openSidebar() {
+
+                sidebar.classList.add("open");
+                sidebarOverlay.classList.add("show");
+
+                document.body.style.overflow = "hidden";
+
+                mobileToggle.setAttribute("aria-expanded", "true");
+                mobileToggle.setAttribute("aria-label", "Close menu");
+
+                toggleIcon.className = "bi bi-x-lg";
+
             }
-        });
 
-        sidebarOverlay.addEventListener("click", closeSidebar);
+            function closeSidebar() {
 
-        document.addEventListener("keydown", function(event) {
-            if (event.key === "Escape") {
-                closeSidebar();
+                sidebar.classList.remove("open");
+                sidebarOverlay.classList.remove("show");
+
+                document.body.style.overflow = "";
+
+                mobileToggle.setAttribute("aria-expanded", "false");
+                mobileToggle.setAttribute("aria-label", "Open menu");
+
+                toggleIcon.className = "bi bi-list";
+
             }
-        });
 
-        window.addEventListener("resize", function() {
-            if (window.innerWidth > 900) {
-                closeSidebar();
-            }
-        });
+            mobileToggle.addEventListener("click", function () {
 
-        sidebar.querySelectorAll("a").forEach(function(link) {
-            link.addEventListener("click", function() {
-                closeSidebar();
+                if (sidebar.classList.contains("open")) {
+                    closeSidebar();
+                } else {
+                    openSidebar();
+                }
+
             });
+
+            sidebarOverlay.addEventListener("click", closeSidebar);
+
+            sidebar.querySelectorAll("a").forEach(function (link) {
+
+                link.addEventListener("click", function () {
+                    closeSidebar();
+                });
+
+            });
+
+            document.addEventListener("keydown", function (event) {
+
+                if (event.key === "Escape") {
+                    closeSidebar();
+                }
+
+            });
+
+            window.addEventListener("resize", function () {
+
+                if (window.innerWidth > 900) {
+                    closeSidebar();
+                }
+
+            });
+
+            loadAppointments();
+
         });
 
         /* LOAD APPOINTMENTS */
+
         function loadAppointments() {
 
             try {
@@ -1062,11 +1371,15 @@
                     window.HealoraStorage &&
                     typeof window.HealoraStorage.getAppointments === "function"
                 ) {
+
                     appointments = window.HealoraStorage.getAppointments() || [];
+
                 } else {
+
                     appointments = JSON.parse(
                         localStorage.getItem("healora_appointments") || "[]"
                     );
+
                 }
 
                 if (!Array.isArray(appointments)) {
@@ -1086,6 +1399,7 @@
         }
 
         /* ESCAPE HTML */
+
         function escapeHTML(value) {
 
             return String(value ?? "").replace(/[&<>"']/g, function(character) {
@@ -1105,6 +1419,7 @@
         }
 
         /* UPDATE STATISTICS */
+
         function updateStatistics() {
 
             document.getElementById("totalAppointments").textContent =
@@ -1122,6 +1437,7 @@
         }
 
         /* FORMAT DATE */
+
         function formatDate(dateValue) {
 
             if (!dateValue) {
@@ -1143,6 +1459,7 @@
         }
 
         /* STATUS BADGE */
+
         function getStatusBadge(status) {
 
             const statusClasses = {
@@ -1163,6 +1480,7 @@
         }
 
         /* DISPLAY APPOINTMENT HISTORY */
+
         function renderAppointmentHistory() {
 
             const table = document.getElementById("appointmentHistoryTable");
@@ -1231,6 +1549,7 @@
 
                 return `
                     <tr>
+
                         <td>
                             <span class="appointment-id">${id}</span>
                         </td>
@@ -1253,12 +1572,14 @@
                                 type="button"
                                 class="view-btn"
                                 onclick="viewAppointment('${encodeURIComponent(String(appointment.id))}')"
-                                title="View Appointment Details"
-                            >
+                                title="View Appointment Details">
+
                                 <i class="bi bi-eye"></i>
                                 View
+
                             </button>
                         </td>
+
                     </tr>
                 `;
 
@@ -1267,6 +1588,7 @@
         }
 
         /* VIEW APPOINTMENT DETAILS */
+
         function viewAppointment(encodedId) {
 
             const id = decodeURIComponent(encodedId);
@@ -1309,6 +1631,7 @@
         }
 
         /* RESET SEARCH AND FILTER */
+
         function resetFilters() {
 
             document.getElementById("searchInput").value = "";
@@ -1319,6 +1642,7 @@
         }
 
         /* EVENT LISTENERS */
+
         document.getElementById("searchInput").addEventListener(
             "input",
             renderAppointmentHistory
@@ -1333,9 +1657,6 @@
             "click",
             resetFilters
         );
-
-        /* INITIALIZE PAGE */
-        document.addEventListener("DOMContentLoaded", loadAppointments);
 
     </script>
 
