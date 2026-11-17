@@ -4,14 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reports | Healora Clinic</title>
+    <title>My Profile | Healora Clinic</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600;6..96,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600;6..96,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
         :root {
@@ -44,30 +42,31 @@
         /* SIDEBAR */
 
         .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            width: 260px;
-            height: 100vh;
-            padding: 0 19px 22px;
-            background: linear-gradient(180deg, #350017 0%, #4A001F 100%);
+            width: 260px !important;
+            height: 100vh !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            z-index: 1000 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            padding: 0 19px 22px !important;
+            background: linear-gradient(180deg, #350017 0%, #4A001F 100%) !important;
+            transform: translateX(0) !important;
+            transition: transform .3s ease !important;
             overflow-y: auto;
-            transition: transform 0.3s ease, visibility 0.3s ease;
         }
 
         .sidebar-brand {
             width: 100%;
-            padding: 25px 12px 23px;
-            margin-bottom: 22px;
-            border-bottom: 1px solid rgba(247, 231, 206, 0.15);
+            padding: 28px 15px;
+            border-bottom: 1px solid rgba(247, 231, 206, .15);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
+            margin-bottom: 27px;
         }
 
         .brand-logo-light {
@@ -83,21 +82,19 @@
         }
 
         .brand-heal {
-            color: var(--gold);
-            font-family: 'Manrope', sans-serif;
+            color: var(--gold) !important;
             font-weight: 800;
         }
 
         .brand-ora {
-            color: var(--cream);
+            color: var(--cream) !important;
             font-family: 'Bodoni Moda', serif;
             font-style: italic;
             font-weight: 700;
         }
 
         .brand-clinic {
-            color: var(--cream);
-            font-family: 'Manrope', sans-serif;
+            color: var(--cream) !important;
             font-size: 10px;
             font-weight: 600;
             letter-spacing: 4px;
@@ -107,116 +104,128 @@
         }
 
         .nav-label {
-            padding: 0 12px;
-            margin-bottom: 10px;
-            color: rgba(247, 231, 206, 0.55);
-            font-size: 9px;
+            color: rgba(247, 231, 206, .55);
+            font-size: 10px;
             font-weight: 800;
-            letter-spacing: 2px;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            padding: 0 13px;
+            margin-bottom: 13px;
         }
 
         .sidebar-nav {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 6px;
         }
 
         .sidebar-nav a {
             display: flex;
             align-items: center;
             gap: 13px;
-            padding: 12px 13px;
-            border-radius: 9px;
-            color: var(--cream);
+            padding: 12px 14px;
+            margin: 0 !important;
+            color: rgba(247, 231, 206, .82) !important;
             text-decoration: none;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 600;
-            transition: 0.3s;
+            border-radius: 8px;
+            transition: .2s ease;
         }
 
         .sidebar-nav a i {
             width: 19px;
+            font-size: 17px;
             color: var(--gold);
-            font-size: 16px;
-            text-align: center;
         }
 
-        .sidebar-nav a:hover,
+        .sidebar-nav a:hover {
+            background: rgba(255, 255, 255, .08);
+            color: var(--cream) !important;
+        }
+
         .sidebar-nav a.active {
             background: var(--burgundy-light);
-            color: var(--white);
-        }
-
-        .sidebar-nav a.active {
+            color: var(--cream) !important;
             border-left: 3px solid var(--gold);
-            padding-left: 10px;
+            padding-left: 11px;
         }
 
         .sidebar-bottom {
             margin-top: auto;
+            border-top: 1px solid rgba(247, 231, 206, .15);
             padding-top: 18px;
-            border-top: 1px solid rgba(247, 231, 206, 0.15);
         }
 
         .sidebar-profile {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 12px 8px;
-            margin-bottom: 10px;
+            gap: 12px;
+            padding: 15px 10px;
+            margin-bottom: 12px;
+            border-top: 1px solid rgba(247, 231, 206, .15);
+            border-bottom: 1px solid rgba(247, 231, 206, .15);
+            min-width: 0;
         }
 
         .sidebar-profile-avatar {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: var(--wine);
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 39px;
-            height: 39px;
-            flex-shrink: 0;
-            border: 2px solid var(--gold);
-            border-radius: 50%;
-            background: linear-gradient(145deg, var(--cream), var(--gold));
-            color: var(--burgundy);
             font-family: 'Bodoni Moda', serif;
-            font-size: 23px;
+            font-size: 22px;
             font-weight: 700;
+        }
+
+        .sidebar-profile-info {
+            min-width: 0;
+            flex: 1;
         }
 
         .sidebar-profile-info strong {
             display: block;
             color: var(--cream);
-            font-size: 11px;
-            font-weight: 700;
+            font-size: 13px;
+            font-weight: 800;
+            line-height: 1.5;
         }
 
         .sidebar-profile-info span {
+            display: block;
             color: var(--gold);
-            font-size: 9px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            margin-top: 3px;
         }
 
         .logout-link {
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 11px 12px;
-            border-radius: 8px;
-            color: var(--cream);
+            padding: 12px 13px;
+            margin: 0 !important;
+            color: rgba(247, 231, 206, .82) !important;
             text-decoration: none;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 600;
-            transition: 0.3s;
+            border-radius: 8px;
         }
 
         .logout-link i {
             color: var(--gold);
-            font-size: 16px;
+            font-size: 17px;
         }
 
         .logout-link:hover {
-            background: rgba(255,255,255,0.1);
-            color: var(--white);
+            background: rgba(255, 255, 255, .08);
+            color: var(--cream) !important;
         }
 
         .sidebar-overlay {
@@ -226,353 +235,377 @@
         /* MAIN CONTENT */
 
         .main-content {
-            width: auto;
+            margin-left: 260px !important;
+            padding: 32px 40px 45px !important;
             min-height: 100vh;
-            margin-left: 260px;
-            padding: 32px 40px 45px;
+            width: auto;
         }
 
         /* TOPBAR */
 
-        .topbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 28px;
+        .main-content .topbar {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            text-align: left !important;
+            margin-bottom: 29px !important;
+            padding: 0 !important;
+            gap: 15px !important;
+            width: 100% !important;
+            min-height: 50px;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
         }
 
-        .topbar-left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
+        .main-content .topbar::before,
+        .main-content .topbar::after {
+            display: none !important;
+            content: none !important;
         }
 
-        .page-heading small {
-            display: block;
-            margin-bottom: 4px;
+        .main-content .topbar-left {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            text-align: left !important;
+            gap: 13px !important;
+            flex: 1 1 auto !important;
+            min-width: 0;
+            width: auto !important;
+        }
+
+        .main-content .page-heading {
+            display: block !important;
+            text-align: left !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            min-width: 0;
+            width: auto !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .main-content .page-heading small {
+            display: block !important;
             color: var(--gold-dark);
-            font-size: 9px;
+            font-size: 10px;
             font-weight: 800;
             letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 0 0 5px 0 !important;
+            text-align: left !important;
         }
 
-        .page-heading h2 {
-            margin: 0;
-            color: var(--burgundy);
-            font-size: 23px;
+        .main-content .page-heading h2 {
+            display: block !important;
+            color: var(--wine);
+            font-family: 'Manrope', sans-serif;
+            font-size: 25px;
             font-weight: 800;
+            margin: 0 !important;
+            padding: 0 !important;
+            text-align: left !important;
+            line-height: 1.3;
         }
 
-        .topbar-right {
-            display: flex;
-            align-items: center;
-            gap: 18px;
+        .main-content .topbar-right {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: flex-end !important;
+            gap: 19px !important;
+            flex: 0 0 auto !important;
+            width: auto !important;
+            margin-left: auto !important;
+            padding: 0 !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
         }
 
         .notification-btn {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
             border: 1px solid var(--border);
             border-radius: 50%;
             background: var(--white);
-            color: var(--burgundy);
+            color: var(--wine);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 17px;
+            position: relative;
+            flex-shrink: 0;
         }
 
         .notification-dot {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            width: 7px;
-            height: 7px;
-            border: 1px solid var(--white);
+            width: 8px;
+            height: 8px;
+            background: #B65D56;
             border-radius: 50%;
-            background: var(--burgundy-light);
+            position: absolute;
+            top: 7px;
+            right: 7px;
+            border: 1px solid white;
         }
 
         .profile-chip {
-            display: flex;
-            align-items: center;
-            gap: 11px;
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            gap: 10px;
+            min-width: 0;
+            flex-shrink: 0;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            border-radius: 0 !important;
         }
 
         .profile-chip-info {
+            min-width: 0;
             text-align: right;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
         }
 
         .profile-chip-info strong {
             display: block;
-            color: var(--burgundy);
+            color: var(--wine);
             font-size: 12px;
             font-weight: 800;
+            white-space: nowrap;
         }
 
         .profile-chip-info span {
+            display: block;
             color: var(--gold-dark);
-            font-size: 9px;
-            font-weight: 800;
-            letter-spacing: 2px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-top: 3px;
         }
 
         .chip-avatar {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            border-radius: 50%;
+            background: var(--burgundy);
+            color: var(--gold);
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 42px;
-            height: 42px;
-            border: 2px solid var(--gold);
-            border-radius: 50%;
-            background: linear-gradient(145deg, var(--cream), var(--gold));
-            color: var(--burgundy);
             font-family: 'Bodoni Moda', serif;
-            font-size: 25px;
+            font-size: 21px;
             font-weight: 700;
         }
 
         .mobile-toggle {
             display: none;
-            align-items: center;
-            justify-content: center;
             width: 40px;
             height: 40px;
+            min-width: 40px;
             border: 1px solid var(--border);
-            border-radius: 9px;
             background: var(--white);
-            color: var(--burgundy);
-            font-size: 21px;
+            color: var(--wine);
+            border-radius: 8px;
+            font-size: 20px;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            cursor: pointer;
         }
 
         /* WELCOME BANNER */
 
         .welcome-banner {
-            position: relative;
+            background: linear-gradient(135deg, #350017, #4A001F);
+            border-radius: 18px;
             padding: 35px 38px;
             margin-bottom: 28px;
-            border: 1px solid rgba(214, 183, 122, 0.35);
-            border-radius: 18px;
-            background: linear-gradient(135deg, var(--wine), var(--burgundy));
-            box-shadow: 0 8px 25px rgba(74, 0, 31, 0.12);
+            border: 1px solid rgba(214, 183, 122, .35);
+            box-shadow: 0 8px 25px rgba(74, 0, 31, .12);
         }
 
         .welcome-content h2 {
-            margin-bottom: 10px;
             color: var(--gold);
             font-family: 'Bodoni Moda', serif;
             font-size: 29px;
             font-weight: 700;
+            margin-bottom: 10px;
         }
 
         .welcome-content p {
-            margin-bottom: 0;
             color: var(--cream);
             font-size: 13px;
-            line-height: 1.8;
-            opacity: 0.9;
+            margin-bottom: 0;
+            opacity: .9;
         }
 
-        /* FILTER CARD */
+        /* DASHBOARD CARDS */
 
         .dashboard-card {
-            height: 100%;
-            padding: 22px;
-            border: 1px solid var(--border);
-            border-radius: 14px;
             background: var(--white);
-            box-shadow: 0 5px 18px rgba(74, 0, 31, 0.04);
+            border: 1px solid #E8E2E5;
+            border-radius: 14px;
+            padding: 22px;
+            box-shadow: 0 5px 18px rgba(74, 0, 31, .04);
+            height: 100%;
         }
 
         .dashboard-card h5 {
             color: var(--burgundy);
+            font-weight: 800;
             font-size: 15px;
-            font-weight: 800;
         }
 
-        .report-note {
-            color: var(--muted);
-            font-size: 11px;
-        }
+        /* PROFILE SUMMARY */
 
-        .filter-label {
-            display: block;
-            margin-bottom: 7px;
+        .profile-avatar {
+            width: 85px;
+            height: 85px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            background: linear-gradient(145deg, var(--cream), var(--gold));
             color: var(--burgundy);
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .form-control,
-        .form-select {
-            min-height: 40px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            font-family: 'Manrope', sans-serif;
-            font-size: 12px;
-        }
-
-        .form-control:focus,
-        .form-select:focus {
-            border-color: var(--gold);
-            box-shadow: 0 0 0 0.15rem rgba(214, 183, 122, 0.2);
-        }
-
-        /* BUTTONS */
-
-        .btn-gold {
-            padding: 10px 17px;
-            border: none;
-            border-radius: 8px;
-            background: var(--gold);
-            color: var(--wine);
-            font-family: 'Manrope', sans-serif;
-            font-size: 11px;
-            font-weight: 800;
-            transition: 0.3s;
-        }
-
-        .btn-gold:hover {
-            background: var(--gold-dark);
-            color: var(--white);
-        }
-
-        .btn-outline-burgundy {
-            padding: 9px 17px;
-            border: 1px solid var(--burgundy-light);
-            border-radius: 8px;
-            background: var(--white);
-            color: var(--burgundy-light);
-            font-family: 'Manrope', sans-serif;
-            font-size: 11px;
-            font-weight: 800;
-            transition: 0.3s;
-        }
-
-        .btn-outline-burgundy:hover {
-            background: var(--burgundy-light);
-            color: var(--white);
-        }
-
-        /* STATISTICS */
-
-        .dashboard-stat {
-            height: 100%;
-            padding: 22px;
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            background: var(--white);
-            box-shadow: 0 5px 18px rgba(74, 0, 31, 0.04);
-        }
-
-        .dashboard-stat .stat-icon {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 45px;
-            height: 45px;
-            margin-bottom: 15px;
-            border-radius: 12px;
-            background: var(--cream);
-            color: var(--burgundy-light);
-            font-size: 20px;
-        }
-
-        .dashboard-stat h3 {
-            margin-bottom: 4px;
-            color: var(--burgundy);
-            font-size: 27px;
-            font-weight: 800;
-        }
-
-        .dashboard-stat p {
-            margin-bottom: 0;
-            color: var(--muted);
-            font-size: 12px;
-        }
-
-        /* CHARTS */
-
-        .chart-container {
-            position: relative;
-            width: 100%;
-            height: 280px;
-        }
-
-        /* TABLE */
-
-        .table {
-            margin-bottom: 0;
-            font-size: 12px;
-        }
-
-        .table thead th {
-            padding: 13px 12px;
-            border: none;
-            background: var(--burgundy);
-            color: var(--gold);
-            font-size: 10px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            white-space: nowrap;
-        }
-
-        .table tbody td {
-            padding: 13px 12px;
-            color: var(--muted);
-            vertical-align: middle;
-        }
-
-        .table tbody tr:nth-child(even) {
-            background: var(--ivory);
-        }
-
-        .table tbody tr:hover {
-            background: var(--cream);
-        }
-
-        /* STATUS BADGES */
-
-        .status-badge {
-            display: inline-block;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 10px;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 36px;
             font-weight: 700;
-            text-transform: capitalize;
         }
 
-        .status-completed {
-            background: #E3F2E8;
-            color: #267443;
+        .profile-name {
+            color: var(--burgundy);
+            font-family: 'Bodoni Moda', serif;
+            font-size: 22px;
+            font-weight: 700;
+            text-align: center;
+            overflow-wrap: anywhere;
         }
 
-        .status-pending {
-            background: #FFF2D8;
-            color: #946200;
+        .profile-role {
+            color: var(--gold-dark);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-align: center;
         }
 
-        .status-cancelled {
-            background: #FCE5E7;
-            color: #A52A38;
+        .profile-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 13px 0;
+            border-bottom: 1px solid #E8E2E5;
+            font-size: 12px;
         }
 
-        .status-confirmed {
-            background: #E5EDF9;
-            color: #315A91;
+        .profile-detail:last-child {
+            border-bottom: none;
+        }
+
+        .profile-detail i {
+            color: var(--gold-dark);
+            font-size: 17px;
+        }
+
+        .profile-detail small {
+            display: block;
+            color: var(--muted);
+            margin-bottom: 3px;
+        }
+
+        .profile-detail strong {
+            color: var(--text);
+            font-weight: 600;
+            overflow-wrap: anywhere;
+        }
+
+        /* FORMS */
+
+        .profile-page .form-label {
+            color: var(--burgundy);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .profile-page .form-control {
+            border: 1px solid #E8E2E5;
+            border-radius: 8px;
+            font-size: 12px;
+            min-height: 42px;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .profile-page .form-control:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 .2rem rgba(214, 183, 122, .15);
+        }
+
+        .profile-page .form-control:disabled {
+            background: #F5F1ED;
+            color: var(--muted);
+        }
+
+        .password-note {
+            background: var(--ivory);
+            border-radius: 8px;
+            padding: 12px 15px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .profile-page .btn-primary {
+            background: var(--burgundy);
+            border-color: var(--burgundy);
+            color: var(--cream);
+            font-weight: 700;
+            font-size: 12px;
+            padding: 9px 16px;
+            border-radius: 7px;
+        }
+
+        .profile-page .btn-primary:hover {
+            background: var(--burgundy-light);
+            border-color: var(--burgundy-light);
+        }
+
+        .profile-page .btn-outline-secondary {
+            border-color: #D8CDD2;
+            color: var(--muted);
+            font-weight: 700;
+            font-size: 12px;
+            padding: 9px 16px;
+            border-radius: 7px;
+        }
+
+        .profile-page .alert {
+            font-size: 12px;
+            border-radius: 8px;
         }
 
         /* FOOTER */
 
         .dashboard-footer {
+            text-align: center;
             padding: 25px 0 5px;
             color: #958A90;
             font-size: 11px;
-            text-align: center;
         }
 
-        /* RESPONSIVE */
+        /* TABLET AND MOBILE */
 
         @media (max-width: 1100px) {
             .main-content {
@@ -581,33 +614,144 @@
         }
 
         @media (max-width: 900px) {
+
             .sidebar {
+                transform: translateX(-100%) !important;
                 visibility: hidden;
-                transform: translateX(-100%);
             }
 
             .sidebar.open {
+                transform: translateX(0) !important;
                 visibility: visible;
-                transform: translateX(0);
             }
 
             .sidebar-overlay.show {
-                position: fixed;
+                display: block !important;
+                position: fixed !important;
                 inset: 0;
-                z-index: 999;
-                display: block;
-                background: rgba(25, 0, 12, 0.45);
+                background: rgba(25, 0, 12, .45);
+                z-index: 999 !important;
             }
 
             .main-content {
-                width: 100%;
-                margin-left: 0;
+                margin-left: 0 !important;
                 padding: 22px 20px 35px !important;
+                width: 100% !important;
             }
 
             .mobile-toggle {
-                display: flex;
+                display: flex !important;
             }
+        }
+
+        @media (max-width: 600px) {
+
+            .main-content {
+                padding: 18px 15px 30px !important;
+            }
+
+            .main-content .topbar {
+                margin-bottom: 22px !important;
+                flex-wrap: nowrap !important;
+            }
+
+            .main-content .topbar-left {
+                gap: 10px !important;
+                flex: 1 1 auto !important;
+            }
+
+            .main-content .page-heading small {
+                font-size: 9px;
+            }
+
+            .main-content .page-heading h2 {
+                font-size: 19px;
+            }
+
+            .main-content .topbar-right {
+                gap: 9px !important;
+            }
+
+            .notification-btn {
+                width: 38px;
+                height: 38px;
+                min-width: 38px;
+            }
+
+            .chip-avatar {
+                width: 38px;
+                height: 38px;
+                min-width: 38px;
+            }
+
+            .profile-chip-info {
+                display: none !important;
+            }
+
+            .welcome-banner {
+                padding: 25px 22px;
+                margin-bottom: 20px;
+            }
+
+            .welcome-content h2 {
+                font-size: 24px;
+            }
+
+            .welcome-content p {
+                font-size: 11px;
+                line-height: 1.8;
+            }
+
+            .dashboard-card {
+                padding: 17px;
+            }
+
+            .profile-avatar {
+                width: 75px;
+                height: 75px;
+                font-size: 32px;
+            }
+
+            .profile-name {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 380px) {
+
+            .main-content .topbar {
+                gap: 8px !important;
+            }
+
+            .main-content .topbar-left {
+                gap: 7px !important;
+            }
+
+            .mobile-toggle {
+                width: 36px;
+                height: 36px;
+                min-width: 36px;
+            }
+
+            .main-content .page-heading h2 {
+                font-size: 17px;
+            }
+
+            .main-content .topbar-right {
+                gap: 7px !important;
+            }
+
+            .notification-btn,
+            .chip-avatar {
+                width: 35px;
+                height: 35px;
+                min-width: 35px;
+            }
+        }
+
+        /* MOBILE SIDEBAR HEIGHT FIX */
+
+        @media (max-width: 900px) {
 
             .sidebar {
                 height: 100dvh !important;
@@ -617,7 +761,7 @@
                 padding-top: 0 !important;
                 padding-bottom: 12px !important;
                 scrollbar-width: thin;
-                scrollbar-color: rgba(214,183,122,.5) transparent;
+                scrollbar-color: rgba(214, 183, 122, .5) transparent;
             }
 
             .sidebar-brand {
@@ -652,160 +796,6 @@
             .logout-link {
                 padding: 10px 12px !important;
                 margin-bottom: 5px !important;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .main-content {
-                padding: 18px 15px 30px !important;
-            }
-
-            .topbar {
-                flex-wrap: nowrap;
-                margin-bottom: 22px;
-            }
-
-            .topbar-left {
-                gap: 10px;
-            }
-
-            .page-heading small {
-                font-size: 9px;
-            }
-
-            .page-heading h2 {
-                font-size: 19px;
-            }
-
-            .topbar-right {
-                gap: 9px;
-            }
-
-            .notification-btn,
-            .chip-avatar {
-                width: 38px;
-                height: 38px;
-            }
-
-            .profile-chip-info {
-                display: none;
-            }
-
-            .welcome-banner {
-                padding: 25px 22px;
-                margin-bottom: 20px;
-            }
-
-            .welcome-content h2 {
-                font-size: 24px;
-            }
-
-            .welcome-content p {
-                font-size: 11px;
-                line-height: 1.8;
-            }
-
-            .dashboard-stat {
-                padding: 16px;
-            }
-
-            .dashboard-stat h3 {
-                font-size: 23px;
-            }
-
-            .dashboard-card {
-                padding: 17px;
-            }
-
-            .chart-container {
-                height: 250px;
-            }
-
-            .filter-section .row {
-                row-gap: 12px !important;
-            }
-
-            .filter-section .d-flex.gap-2 {
-                width: 100%;
-            }
-
-            .filter-section button {
-                flex: 1;
-            }
-
-            .report-actions {
-                width: 100%;
-            }
-
-            .report-actions button {
-                flex: 1;
-                padding: 9px 10px;
-            }
-        }
-
-        @media (max-width: 380px) {
-            .topbar {
-                gap: 8px;
-            }
-
-            .topbar-left {
-                gap: 7px;
-            }
-
-            .mobile-toggle {
-                width: 36px;
-                height: 36px;
-            }
-
-            .page-heading h2 {
-                font-size: 17px;
-            }
-
-            .topbar-right {
-                gap: 7px;
-            }
-
-            .notification-btn,
-            .chip-avatar {
-                width: 35px;
-                height: 35px;
-            }
-        }
-
-        /* PRINT */
-
-        @media print {
-            .sidebar,
-            .topbar,
-            .welcome-banner,
-            .filter-section,
-            .no-print,
-            .dashboard-footer,
-            .sidebar-overlay {
-                display: none !important;
-            }
-
-            .main-content {
-                width: 100%;
-                margin: 0;
-                padding: 0 !important;
-            }
-
-            body {
-                background: #FFFFFF;
-            }
-
-            .dashboard-card,
-            .dashboard-stat {
-                box-shadow: none;
-                break-inside: avoid;
-            }
-
-            .table thead th {
-                background: #4A001F !important;
-                color: #D6B77A !important;
-                print-color-adjust: exact;
-                -webkit-print-color-adjust: exact;
             }
         }
     </style>
@@ -862,12 +852,12 @@
                 <span>Appointment History</span>
             </a>
 
-            <a href="reports.html" class="active">
+            <a href="reports.html">
                 <i class="bi bi-bar-chart-line"></i>
                 <span>Reports</span>
             </a>
 
-            <a href="profile.html">
+            <a href="profile.html" class="active">
                 <i class="bi bi-person-circle"></i>
                 <span>My Profile</span>
             </a>
@@ -902,24 +892,27 @@
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <!-- MAIN CONTENT -->
-    <main class="main-content">
+    <main class="main-content profile-page">
 
         <!-- TOPBAR -->
         <header class="topbar">
 
             <div class="topbar-left">
 
-                <button class="mobile-toggle"
-                        id="mobileToggle"
-                        type="button"
-                        aria-label="Open menu"
-                        aria-expanded="false">
+                <button
+                    class="mobile-toggle"
+                    id="mobileToggle"
+                    type="button"
+                    aria-label="Open menu"
+                    aria-expanded="false">
+
                     <i class="bi bi-list"></i>
+
                 </button>
 
                 <div class="page-heading">
                     <small>ADMIN PORTAL</small>
-                    <h2>Reports</h2>
+                    <h2>My Profile</h2>
                 </div>
 
             </div>
@@ -932,12 +925,14 @@
                 </div>
 
                 <div class="profile-chip">
+
                     <div class="profile-chip-info">
                         <strong>Healora Administrator</strong>
                         <span>ADMIN</span>
                     </div>
 
                     <div class="chip-avatar">H</div>
+
                 </div>
 
             </div>
@@ -948,216 +943,232 @@
         <section class="welcome-banner">
 
             <div class="welcome-content">
-                <h2>Clinic Reports &amp; Insights</h2>
-
+                <h2>Administrator Profile</h2>
                 <p>
-                    Review appointment activities and monitor the overall performance
-                    of Healora Clinic.
+                    Manage your personal information and account security.
                 </p>
             </div>
 
         </section>
 
-        <!-- REPORT FILTERS -->
-        <section class="dashboard-card filter-section mb-4">
+        <!-- PROFILE CONTENT -->
+        <section class="row g-3 mb-4 align-items-start">
 
-            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3">
+            <!-- PROFILE SUMMARY -->
+            <div class="col-lg-4">
 
-                <h5 class="mb-0">
-                    <i class="bi bi-funnel me-2"></i>
-                    Report Filters
-                </h5>
-
-                <span class="report-note">
-                    Select a date range to filter your report.
-                </span>
-
-            </div>
-
-            <div class="row g-3 align-items-end">
-
-                <div class="col-md-4">
-                    <label class="filter-label" for="startDate">Start Date</label>
-                    <input type="date" id="startDate" class="form-control">
-                </div>
-
-                <div class="col-md-4">
-                    <label class="filter-label" for="endDate">End Date</label>
-                    <input type="date" id="endDate" class="form-control">
-                </div>
-
-                <div class="col-md-4 d-flex gap-2">
-
-                    <button class="btn-gold flex-fill" id="applyFilter">
-                        <i class="bi bi-search me-1"></i>
-                        Apply Filter
-                    </button>
-
-                    <button class="btn-outline-burgundy flex-fill" id="resetFilter">
-                        Reset
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <!-- STATISTICS -->
-        <div class="row g-3 mb-4">
-
-            <div class="col-6 col-xl-3 col-md-6">
-                <div class="dashboard-stat">
-
-                    <div class="stat-icon">
-                        <i class="bi bi-calendar-check"></i>
-                    </div>
-
-                    <h3 id="totalAppointments">0</h3>
-                    <p>Total Appointments</p>
-
-                </div>
-            </div>
-
-            <div class="col-6 col-xl-3 col-md-6">
-                <div class="dashboard-stat">
-
-                    <div class="stat-icon">
-                        <i class="bi bi-check-circle"></i>
-                    </div>
-
-                    <h3 id="completedAppointments">0</h3>
-                    <p>Completed Appointments</p>
-
-                </div>
-            </div>
-
-            <div class="col-6 col-xl-3 col-md-6">
-                <div class="dashboard-stat">
-
-                    <div class="stat-icon">
-                        <i class="bi bi-hourglass-split"></i>
-                    </div>
-
-                    <h3 id="pendingAppointments">0</h3>
-                    <p>Pending Appointments</p>
-
-                </div>
-            </div>
-
-            <div class="col-6 col-xl-3 col-md-6">
-                <div class="dashboard-stat">
-
-                    <div class="stat-icon">
-                        <i class="bi bi-x-circle"></i>
-                    </div>
-
-                    <h3 id="cancelledAppointments">0</h3>
-                    <p>Cancelled Appointments</p>
-
-                </div>
-            </div>
-
-        </div>
-
-        <!-- CHARTS -->
-        <div class="row g-4 mb-4">
-
-            <div class="col-lg-7">
                 <div class="dashboard-card">
 
-                    <h5>
-                        <i class="bi bi-graph-up me-2"></i>
-                        Monthly Appointment Overview
-                    </h5>
+                    <div class="profile-avatar" id="profileAvatar">H</div>
 
-                    <div class="chart-container">
-                        <canvas id="monthlyChart"></canvas>
+                    <h3 class="profile-name" id="summaryName">
+                        Healora Administrator
+                    </h3>
+
+                    <p class="profile-role mb-4">ADMINISTRATOR</p>
+
+                    <div class="profile-detail">
+                        <i class="bi bi-envelope"></i>
+                        <div>
+                            <small>Email Address</small>
+                            <strong id="summaryEmail">Not available</strong>
+                        </div>
+                    </div>
+
+                    <div class="profile-detail">
+                        <i class="bi bi-telephone"></i>
+                        <div>
+                            <small>Phone Number</small>
+                            <strong id="summaryPhone">Not available</strong>
+                        </div>
+                    </div>
+
+                    <div class="profile-detail">
+                        <i class="bi bi-shield-check"></i>
+                        <div>
+                            <small>Account Role</small>
+                            <strong>Administrator</strong>
+                        </div>
                     </div>
 
                 </div>
+
             </div>
 
-            <div class="col-lg-5">
+            <!-- PROFILE FORMS -->
+            <div class="col-lg-8">
+
+                <!-- PERSONAL INFORMATION -->
+                <div class="dashboard-card mb-3">
+
+                    <h5 class="mb-3">
+                        <i class="bi bi-person-lines-fill me-2"></i>
+                        Personal Information
+                    </h5>
+
+                    <div id="profileMessage"
+                         class="alert d-none"
+                         role="alert">
+                    </div>
+
+                    <form id="profileForm">
+
+                        <div class="row g-3">
+
+                            <div class="col-md-6">
+                                <label for="profileName" class="form-label">
+                                    Full Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="profileName"
+                                    required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="profileEmail" class="form-label">
+                                    Email Address
+                                </label>
+
+                                <input
+                                    type="email"
+                                    class="form-control"
+                                    id="profileEmail"
+                                    required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="profilePhone" class="form-label">
+                                    Phone Number
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    class="form-control"
+                                    id="profilePhone"
+                                    required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="profileRole" class="form-label">
+                                    Account Role
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="profileRole"
+                                    value="Administrator"
+                                    disabled>
+                            </div>
+
+                        </div>
+
+                        <div class="d-flex justify-content-end gap-2 mt-4">
+
+                            <button
+                                type="reset"
+                                class="btn btn-outline-secondary btn-sm">
+
+                                Reset
+
+                            </button>
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary btn-sm">
+
+                                <i class="bi bi-check2-circle me-1"></i>
+                                Save Changes
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <!-- CHANGE PASSWORD -->
                 <div class="dashboard-card">
 
-                    <h5>
-                        <i class="bi bi-pie-chart me-2"></i>
-                        Appointment Status
+                    <h5 class="mb-3">
+                        <i class="bi bi-lock me-2"></i>
+                        Change Password
                     </h5>
 
-                    <div class="chart-container">
-                        <canvas id="statusChart"></canvas>
+                    <div id="passwordMessage"
+                         class="alert d-none"
+                         role="alert">
                     </div>
 
+                    <form id="passwordForm">
+
+                        <div class="row g-3">
+
+                            <div class="col-12">
+                                <label for="currentPassword" class="form-label">
+                                    Current Password
+                                </label>
+
+                                <input
+                                    type="password"
+                                    class="form-control"
+                                    id="currentPassword"
+                                    required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="newPassword" class="form-label">
+                                    New Password
+                                </label>
+
+                                <input
+                                    type="password"
+                                    class="form-control"
+                                    id="newPassword"
+                                    minlength="6"
+                                    required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="confirmPassword" class="form-label">
+                                    Confirm New Password
+                                </label>
+
+                                <input
+                                    type="password"
+                                    class="form-control"
+                                    id="confirmPassword"
+                                    minlength="6"
+                                    required>
+                            </div>
+
+                        </div>
+
+                        <div class="password-note mt-3">
+                            <i class="bi bi-info-circle me-1"></i>
+                            Use at least 6 characters for your new password.
+                        </div>
+
+                        <div class="d-flex justify-content-end mt-4">
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary btn-sm">
+
+                                <i class="bi bi-shield-lock me-1"></i>
+                                Update Password
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
                 </div>
-            </div>
-
-        </div>
-
-        <!-- APPOINTMENT REPORT TABLE -->
-        <section class="dashboard-card mb-4">
-
-            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3">
-
-                <div>
-                    <h5 class="mb-1">Appointment Report</h5>
-
-                    <p class="report-note mb-0">
-                        A summary of appointments within the selected date range.
-                    </p>
-                </div>
-
-                <div class="d-flex gap-2 no-print report-actions">
-
-                    <button class="btn-outline-burgundy" id="exportCSV">
-                        <i class="bi bi-file-earmark-spreadsheet me-1"></i>
-                        Export CSV
-                    </button>
-
-                    <button class="btn-gold" id="printReport">
-                        <i class="bi bi-printer me-1"></i>
-                        Print Report
-                    </button>
-
-                </div>
-
-            </div>
-
-            <div class="table-responsive">
-
-                <table class="table align-middle">
-
-                    <thead>
-                        <tr>
-                            <th>Appointment ID</th>
-                            <th>Patient</th>
-                            <th>Service</th>
-                            <th>Date</th>
-                            <th>Time</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-
-                    <tbody id="reportTableBody">
-                        <tr>
-                            <td colspan="6" class="text-center py-4">
-                                Loading report data...
-                            </td>
-                        </tr>
-                    </tbody>
-
-                </table>
-
-            </div>
-
-            <div class="d-flex justify-content-between align-items-center mt-3 flex-wrap gap-2">
-
-                <span class="report-note" id="recordCount">
-                    0 records found
-                </span>
-
-                <span class="report-note">Healora Clinic Report</span>
 
             </div>
 
@@ -1167,468 +1178,375 @@
         <footer class="dashboard-footer">
             © 2026 Healora Clinic. All Rights Reserved.
             <br>
-            <span class="fst-italic">Your Health, Our Priority.</span>
+            <span class="fst-italic">
+                Your Health, Our Priority.
+            </span>
         </footer>
 
     </main>
 
-    <!-- SCRIPTS -->
+    <!-- JAVASCRIPT -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/storage.js"></script>
     <script src="../js/data.js"></script>
     <script src="../js/auth.js"></script>
 
+    <!-- PROFILE FUNCTIONALITY -->
     <script>
-        let allAppointments = [];
-        let filteredAppointments = [];
-        let monthlyChart = null;
-        let statusChart = null;
+        document.addEventListener("DOMContentLoaded", function () {
 
-        /* GET APPOINTMENTS */
+            const storage = window.HealoraStorage;
 
-        function getAppointments() {
-            try {
-                if (
-                    window.HealoraStorage &&
-                    typeof HealoraStorage.getAppointments === "function"
-                ) {
-                    return HealoraStorage.getAppointments() || [];
+            const profileForm = document.getElementById("profileForm");
+            const passwordForm = document.getElementById("passwordForm");
+
+            const profileMessage = document.getElementById("profileMessage");
+            const passwordMessage = document.getElementById("passwordMessage");
+
+            const SESSION_KEY = "healora_current_user";
+            const USERS_KEY = "healora_users";
+
+            let currentSession = null;
+            let adminAccount = null;
+
+            // GET CURRENT ADMIN ACCOUNT
+
+            function getAdminAccount() {
+
+                if (!storage || typeof storage.getCurrentUser !== "function") {
+                    return null;
                 }
 
-                return JSON.parse(
-                    localStorage.getItem("healora_appointments") || "[]"
+                currentSession = storage.getCurrentUser();
+
+                if (!currentSession || currentSession.role !== "admin") {
+                    return null;
+                }
+
+                const users = JSON.parse(
+                    localStorage.getItem(USERS_KEY) || "[]"
                 );
 
-            } catch (error) {
-                console.error("Unable to load appointments:", error);
-                return [];
+                adminAccount = users.find(user =>
+                    String(user.id) === String(currentSession.id)
+                );
+
+                if (!adminAccount) {
+                    adminAccount = users.find(user =>
+                        user.email?.toLowerCase() ===
+                        currentSession.email?.toLowerCase()
+                    );
+                }
+
+                return adminAccount || null;
             }
-        }
 
-        /* APPOINTMENT INFORMATION */
+            // SAVE ADMIN ACCOUNT
 
-        function getAppointmentDate(appointment) {
-            return appointment.date || appointment.appointmentDate || "";
-        }
+            function saveAdminAccount(updatedAccount) {
 
-        function getAppointmentStatus(appointment) {
-            return String(appointment.status || "pending")
-                .trim()
-                .toLowerCase();
-        }
+                const users = JSON.parse(
+                    localStorage.getItem(USERS_KEY) || "[]"
+                );
 
-        function getPatientName(appointment) {
-            return appointment.patientName ||
-                   appointment.name ||
-                   "N/A";
-        }
+                const index = users.findIndex(user =>
+                    String(user.id) === String(adminAccount.id)
+                );
 
-        function getServiceName(appointment) {
-            return appointment.service ||
-                   appointment.serviceName ||
-                   "N/A";
-        }
+                if (index === -1) {
+                    return false;
+                }
 
-        function getAppointmentId(appointment) {
-            return appointment.id ||
-                   appointment.appointmentId ||
-                   "N/A";
-        }
+                users[index] = updatedAccount;
 
-        /* ESCAPE HTML */
+                localStorage.setItem(
+                    USERS_KEY,
+                    JSON.stringify(users)
+                );
 
-        function escapeHTML(value) {
-            return String(value ?? "").replace(/[&<>"']/g, function(char) {
-                const entities = {
-                    "&": "&amp;",
-                    "<": "&lt;",
-                    ">": "&gt;",
-                    '"': "&quot;",
-                    "'": "&#39;"
+                adminAccount = updatedAccount;
+
+                // UPDATE CURRENT LOGIN SESSION
+
+                currentSession = {
+                    ...currentSession,
+                    id: updatedAccount.id,
+                    name: updatedAccount.name || updatedAccount.fullName,
+                    email: updatedAccount.email,
+                    role: updatedAccount.role
                 };
 
-                return entities[char];
-            });
-        }
-
-        /* FORMAT DATE */
-
-        function formatDate(dateValue) {
-            if (!dateValue) return "N/A";
-
-            const date = new Date(dateValue + "T00:00:00");
-
-            if (isNaN(date.getTime())) {
-                return dateValue;
-            }
-
-            return date.toLocaleDateString("en-MY", {
-                day: "2-digit",
-                month: "short",
-                year: "numeric"
-            });
-        }
-
-        /* STATUS CLASS */
-
-        function getStatusClass(status) {
-            if (status.includes("complete")) return "status-completed";
-            if (status.includes("cancel")) return "status-cancelled";
-            if (status.includes("confirm")) return "status-confirmed";
-
-            return "status-pending";
-        }
-
-        /* UPDATE STATISTICS */
-
-        function updateStatistics(data) {
-            const total = data.length;
-
-            const completed = data.filter(item =>
-                getAppointmentStatus(item).includes("complete")
-            ).length;
-
-            const cancelled = data.filter(item =>
-                getAppointmentStatus(item).includes("cancel")
-            ).length;
-
-            const pending = data.filter(item => {
-                const status = getAppointmentStatus(item);
-
-                return !status.includes("complete") &&
-                       !status.includes("cancel") &&
-                       !status.includes("confirm");
-            }).length;
-
-            document.getElementById("totalAppointments").textContent = total;
-            document.getElementById("completedAppointments").textContent = completed;
-            document.getElementById("pendingAppointments").textContent = pending;
-            document.getElementById("cancelledAppointments").textContent = cancelled;
-        }
-
-        /* RENDER REPORT TABLE */
-
-        function renderTable(data) {
-            const tableBody = document.getElementById("reportTableBody");
-
-            if (data.length === 0) {
-                tableBody.innerHTML = `
-                    <tr>
-                        <td colspan="6" class="text-center py-4">
-                            No appointment records found.
-                        </td>
-                    </tr>
-                `;
-
-                document.getElementById("recordCount").textContent =
-                    "0 records found";
-
-                return;
-            }
-
-            tableBody.innerHTML = data.map(appointment => {
-                const status = getAppointmentStatus(appointment);
-
-                return `
-                    <tr>
-                        <td class="fw-semibold">
-                            ${escapeHTML(getAppointmentId(appointment))}
-                        </td>
-
-                        <td>
-                            ${escapeHTML(getPatientName(appointment))}
-                        </td>
-
-                        <td>
-                            ${escapeHTML(getServiceName(appointment))}
-                        </td>
-
-                        <td>
-                            ${escapeHTML(formatDate(getAppointmentDate(appointment)))}
-                        </td>
-
-                        <td>
-                            ${escapeHTML(appointment.time || "N/A")}
-                        </td>
-
-                        <td>
-                            <span class="status-badge ${getStatusClass(status)}">
-                                ${escapeHTML(status)}
-                            </span>
-                        </td>
-                    </tr>
-                `;
-            }).join("");
-
-            document.getElementById("recordCount").textContent =
-                `${data.length} record(s) found`;
-        }
-
-        /* MONTHLY APPOINTMENT CHART */
-
-        function updateMonthlyChart(data) {
-            const months = [
-                "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-            ];
-
-            const monthlyCounts = Array(12).fill(0);
-            const currentYear = new Date().getFullYear();
-
-            data.forEach(appointment => {
-                const dateValue = getAppointmentDate(appointment);
-
-                if (!dateValue) return;
-
-                const date = new Date(dateValue + "T00:00:00");
-
-                if (
-                    !isNaN(date.getTime()) &&
-                    date.getFullYear() === currentYear
-                ) {
-                    monthlyCounts[date.getMonth()]++;
-                }
-            });
-
-            const context = document.getElementById("monthlyChart");
-
-            if (monthlyChart) {
-                monthlyChart.destroy();
-            }
-
-            monthlyChart = new Chart(context, {
-                type: "bar",
-
-                data: {
-                    labels: months,
-
-                    datasets: [{
-                        label: "Appointments",
-                        data: monthlyCounts,
-                        backgroundColor: "#800020",
-                        borderColor: "#D6B77A",
-                        borderWidth: 1,
-                        borderRadius: 6
-                    }]
-                },
-
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    },
-
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-
-                            ticks: {
-                                precision: 0
-                            }
-                        }
-                    }
-                }
-            });
-        }
-
-        /* APPOINTMENT STATUS CHART */
-
-        function updateStatusChart(data) {
-            const completed = data.filter(item =>
-                getAppointmentStatus(item).includes("complete")
-            ).length;
-
-            const cancelled = data.filter(item =>
-                getAppointmentStatus(item).includes("cancel")
-            ).length;
-
-            const confirmed = data.filter(item =>
-                getAppointmentStatus(item).includes("confirm")
-            ).length;
-
-            const pending = data.filter(item => {
-                const status = getAppointmentStatus(item);
-
-                return !status.includes("complete") &&
-                       !status.includes("cancel") &&
-                       !status.includes("confirm");
-            }).length;
-
-            const context = document.getElementById("statusChart");
-
-            if (statusChart) {
-                statusChart.destroy();
-            }
-
-            statusChart = new Chart(context, {
-                type: "doughnut",
-
-                data: {
-                    labels: [
-                        "Completed",
-                        "Pending",
-                        "Confirmed",
-                        "Cancelled"
-                    ],
-
-                    datasets: [{
-                        data: [
-                            completed,
-                            pending,
-                            confirmed,
-                            cancelled
-                        ],
-
-                        backgroundColor: [
-                            "#6A9F78",
-                            "#D6B77A",
-                            "#6686B5",
-                            "#B75A68"
-                        ],
-
-                        borderWidth: 2,
-                        borderColor: "#FFFFFF"
-                    }]
-                },
-
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-
-                    plugins: {
-                        legend: {
-                            position: "bottom",
-
-                            labels: {
-                                padding: 18,
-                                usePointStyle: true,
-
-                                font: {
-                                    size: 11
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-        }
-
-        /* UPDATE REPORT */
-
-        function updateReport(data) {
-            filteredAppointments = data;
-
-            updateStatistics(data);
-            renderTable(data);
-            updateMonthlyChart(data);
-            updateStatusChart(data);
-        }
-
-        /* APPLY DATE FILTER */
-
-        function applyDateFilter() {
-            const startValue = document.getElementById("startDate").value;
-            const endValue = document.getElementById("endDate").value;
-
-            if (startValue && endValue && startValue > endValue) {
-                alert("End date must be later than or equal to start date.");
-                return;
-            }
-
-            const result = allAppointments.filter(appointment => {
-                const date = getAppointmentDate(appointment);
-
-                if (!date) return false;
-                if (startValue && date < startValue) return false;
-                if (endValue && date > endValue) return false;
+                localStorage.setItem(
+                    SESSION_KEY,
+                    JSON.stringify(currentSession)
+                );
 
                 return true;
-            });
-
-            updateReport(result);
-        }
-
-        /* RESET DATE FILTER */
-
-        function resetDateFilter() {
-            document.getElementById("startDate").value = "";
-            document.getElementById("endDate").value = "";
-
-            updateReport(allAppointments);
-        }
-
-        /* EXPORT CSV */
-
-        function exportCSV() {
-            if (filteredAppointments.length === 0) {
-                alert("There are no records to export.");
-                return;
             }
 
-            const headers = [
-                "Appointment ID",
-                "Patient",
-                "Service",
-                "Date",
-                "Time",
-                "Status"
-            ];
+            // DISPLAY MESSAGE
 
-            const rows = filteredAppointments.map(appointment => [
-                getAppointmentId(appointment),
-                getPatientName(appointment),
-                getServiceName(appointment),
-                getAppointmentDate(appointment),
-                appointment.time || "N/A",
-                getAppointmentStatus(appointment)
-            ]);
+            function showMessage(element, message, type) {
 
-            const csvContent = [headers, ...rows]
-                .map(row => row.map(value =>
-                    '"' + String(value ?? "").replace(/"/g, '""') + '"'
-                ).join(","))
-                .join("\n");
+                element.textContent = message;
+                element.className = "alert alert-" + type;
 
-            const blob = new Blob(["\uFEFF" + csvContent], {
-                type: "text/csv;charset=utf-8;"
-            });
+            }
 
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement("a");
+            // LOAD ADMIN PROFILE
 
-            link.href = url;
-            link.download = "Healora-Clinic-Report.csv";
+            function loadProfile() {
 
-            document.body.appendChild(link);
-            link.click();
-            link.remove();
+                adminAccount = getAdminAccount();
 
-            URL.revokeObjectURL(url);
-        }
+                if (!adminAccount) {
 
-        /* INITIALIZE REPORTS */
+                    showMessage(
+                        profileMessage,
+                        "Unable to load the Healora Administrator account. Please log in again.",
+                        "danger"
+                    );
 
-        function initializeReports() {
-            allAppointments = getAppointments();
+                    return;
+                }
 
-            allAppointments.sort((a, b) => {
-                return getAppointmentDate(b).localeCompare(
-                    getAppointmentDate(a)
+                const name =
+                    adminAccount.name ||
+                    adminAccount.fullName ||
+                    "Healora Administrator";
+
+                const email = adminAccount.email || "";
+
+                const phone =
+                    adminAccount.phone ||
+                    adminAccount.phoneNumber ||
+                    "";
+
+                document.getElementById("profileName").value = name;
+                document.getElementById("profileEmail").value = email;
+                document.getElementById("profilePhone").value = phone;
+
+                document.getElementById("summaryName").textContent = name;
+
+                document.getElementById("summaryEmail").textContent =
+                    email || "Not available";
+
+                document.getElementById("summaryPhone").textContent =
+                    phone || "Not available";
+
+                document.getElementById("profileAvatar").textContent =
+                    name.charAt(0).toUpperCase();
+
+            }
+
+            // SAVE PERSONAL INFORMATION
+
+            profileForm.addEventListener("submit", function (event) {
+
+                event.preventDefault();
+
+                if (!adminAccount) {
+                    loadProfile();
+                    return;
+                }
+
+                const name =
+                    document.getElementById("profileName").value.trim();
+
+                const email =
+                    document.getElementById("profileEmail").value.trim();
+
+                const phone =
+                    document.getElementById("profilePhone").value.trim();
+
+                if (!name || !email || !phone) {
+
+                    showMessage(
+                        profileMessage,
+                        "Please complete all required fields.",
+                        "danger"
+                    );
+
+                    return;
+                }
+
+                const users = JSON.parse(
+                    localStorage.getItem(USERS_KEY) || "[]"
                 );
+
+                const emailExists = users.some(user =>
+                    user.email?.toLowerCase() === email.toLowerCase() &&
+                    String(user.id) !== String(adminAccount.id)
+                );
+
+                if (emailExists) {
+
+                    showMessage(
+                        profileMessage,
+                        "This email address is already registered.",
+                        "danger"
+                    );
+
+                    return;
+                }
+
+                const updatedAccount = {
+                    ...adminAccount,
+                    name: name,
+                    fullName: name,
+                    email: email,
+                    phone: phone
+                };
+
+                const success = saveAdminAccount(updatedAccount);
+
+                if (!success) {
+
+                    showMessage(
+                        profileMessage,
+                        "Unable to update the administrator account.",
+                        "danger"
+                    );
+
+                    return;
+                }
+
+                loadProfile();
+
+                showMessage(
+                    profileMessage,
+                    "Healora Administrator account updated successfully.",
+                    "success"
+                );
+
             });
 
-            updateReport(allAppointments);
-        }
+            // RESET PROFILE FORM
 
-        /* MOBILE SIDEBAR */
+            profileForm.addEventListener("reset", function () {
 
-        document.addEventListener("DOMContentLoaded", function() {
+                setTimeout(function () {
 
-            initializeReports();
+                    loadProfile();
+                    profileMessage.className = "alert d-none";
+
+                }, 0);
+
+            });
+
+            // CHANGE ADMIN PASSWORD
+
+            passwordForm.addEventListener("submit", function (event) {
+
+                event.preventDefault();
+
+                if (!adminAccount) {
+                    loadProfile();
+                    return;
+                }
+
+                const currentPassword =
+                    document.getElementById("currentPassword").value;
+
+                const newPassword =
+                    document.getElementById("newPassword").value;
+
+                const confirmPassword =
+                    document.getElementById("confirmPassword").value;
+
+                if (!adminAccount.password) {
+
+                    showMessage(
+                        passwordMessage,
+                        "Administrator password information could not be found.",
+                        "danger"
+                    );
+
+                    return;
+                }
+
+                if (currentPassword !== adminAccount.password) {
+
+                    showMessage(
+                        passwordMessage,
+                        "Your current password is incorrect.",
+                        "danger"
+                    );
+
+                    return;
+                }
+
+                if (newPassword.length < 6) {
+
+                    showMessage(
+                        passwordMessage,
+                        "Your new password must contain at least 6 characters.",
+                        "danger"
+                    );
+
+                    return;
+                }
+
+                if (newPassword !== confirmPassword) {
+
+                    showMessage(
+                        passwordMessage,
+                        "The new passwords do not match.",
+                        "danger"
+                    );
+
+                    return;
+                }
+
+                if (newPassword === currentPassword) {
+
+                    showMessage(
+                        passwordMessage,
+                        "Please choose a different password.",
+                        "warning"
+                    );
+
+                    return;
+                }
+
+                const updatedAccount = {
+                    ...adminAccount,
+                    password: newPassword
+                };
+
+                const success = saveAdminAccount(updatedAccount);
+
+                if (!success) {
+
+                    showMessage(
+                        passwordMessage,
+                        "Unable to update your password.",
+                        "danger"
+                    );
+
+                    return;
+                }
+
+                passwordForm.reset();
+
+                showMessage(
+                    passwordMessage,
+                    "Healora Administrator password updated successfully.",
+                    "success"
+                );
+
+            });
+
+            // INITIALIZE PROFILE
+
+            loadProfile();
+
+        });
+    </script>
+
+    <!-- MOBILE SIDEBAR -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
 
             const sidebar = document.getElementById("sidebar");
             const mobileToggle = document.getElementById("mobileToggle");
@@ -1636,6 +1554,7 @@
             const toggleIcon = mobileToggle.querySelector("i");
 
             function openSidebar() {
+
                 sidebar.classList.add("open");
                 sidebarOverlay.classList.add("show");
 
@@ -1645,9 +1564,11 @@
                 mobileToggle.setAttribute("aria-label", "Close menu");
 
                 toggleIcon.className = "bi bi-x-lg";
+
             }
 
             function closeSidebar() {
+
                 sidebar.classList.remove("open");
                 sidebarOverlay.classList.remove("show");
 
@@ -1657,53 +1578,48 @@
                 mobileToggle.setAttribute("aria-label", "Open menu");
 
                 toggleIcon.className = "bi bi-list";
+
             }
 
-            mobileToggle.addEventListener("click", function() {
+            mobileToggle.addEventListener("click", function () {
+
                 if (sidebar.classList.contains("open")) {
                     closeSidebar();
                 } else {
                     openSidebar();
                 }
+
             });
 
-            sidebarOverlay.addEventListener("click", closeSidebar);
+            sidebarOverlay.addEventListener("click", function () {
+                closeSidebar();
+            });
 
-            sidebar.querySelectorAll(".sidebar-nav a, .logout-link")
-                .forEach(link => {
-                    link.addEventListener("click", closeSidebar);
+            sidebar.querySelectorAll("a").forEach(function (link) {
+
+                link.addEventListener("click", function () {
+                    closeSidebar();
                 });
 
-            document.addEventListener("keydown", function(event) {
+            });
+
+            document.addEventListener("keydown", function (event) {
+
                 if (event.key === "Escape") {
                     closeSidebar();
                 }
+
             });
 
-            window.addEventListener("resize", function() {
+            window.addEventListener("resize", function () {
+
                 if (window.innerWidth > 900) {
                     closeSidebar();
                 }
+
             });
 
         });
-
-        /* BUTTON EVENTS */
-
-        document.getElementById("applyFilter")
-            .addEventListener("click", applyDateFilter);
-
-        document.getElementById("resetFilter")
-            .addEventListener("click", resetDateFilter);
-
-        document.getElementById("exportCSV")
-            .addEventListener("click", exportCSV);
-
-        document.getElementById("printReport")
-            .addEventListener("click", function() {
-                window.print();
-            });
-
     </script>
 
 </body>
