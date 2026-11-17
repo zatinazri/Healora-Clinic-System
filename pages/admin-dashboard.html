@@ -26,7 +26,6 @@
             --text: #30252A;
             --muted: #70666C;
             --border: #EEE7E2;
-            --shadow: 0 8px 28px rgba(53, 0, 23, .055);
         }
 
         * {
@@ -246,7 +245,7 @@
             min-height: 100vh;
         }
 
-        /* HEADER - SAME STRUCTURE AS MY APPOINTMENTS */
+        /* HEADER */
 
         .topbar {
             display: flex !important;
@@ -284,12 +283,6 @@
             font-size: 25px;
             font-weight: 800;
             margin: 0;
-        }
-
-        .page-heading p {
-            color: var(--muted);
-            font-size: 12px;
-            margin: 5px 0 0;
         }
 
         .topbar-right {
@@ -601,10 +594,6 @@
                 font-size: 19px;
             }
 
-            .page-heading p {
-                font-size: 10px;
-            }
-
             .topbar-right {
                 gap: 9px;
             }
@@ -799,6 +788,13 @@
 
                 </button>
 
+                <div class="page-heading">
+                    <small>ADMIN PORTAL</small>
+                    <h2>Dashboard</h2>
+                </div>
+
+            </div>
+
             <div class="topbar-right">
 
                 <div class="notification-btn" aria-label="Notifications">
@@ -839,45 +835,53 @@
 
             <div class="col-6 col-xl-3">
                 <div class="dashboard-stat">
+
                     <div class="stat-icon">
                         <i class="bi bi-people-fill"></i>
                     </div>
 
                     <h3 id="totalPatients">0</h3>
                     <p>Total Patients</p>
+
                 </div>
             </div>
 
             <div class="col-6 col-xl-3">
                 <div class="dashboard-stat">
+
                     <div class="stat-icon">
                         <i class="bi bi-person-badge-fill"></i>
                     </div>
 
                     <h3 id="totalDoctors">0</h3>
                     <p>Total Doctors</p>
+
                 </div>
             </div>
 
             <div class="col-6 col-xl-3">
                 <div class="dashboard-stat">
+
                     <div class="stat-icon">
                         <i class="bi bi-calendar-check-fill"></i>
                     </div>
 
                     <h3 id="totalAppointments">0</h3>
                     <p>Total Appointments</p>
+
                 </div>
             </div>
 
             <div class="col-6 col-xl-3">
                 <div class="dashboard-stat">
+
                     <div class="stat-icon">
                         <i class="bi bi-hourglass-split"></i>
                     </div>
 
                     <h3 id="pendingAppointments">0</h3>
                     <p>Pending Appointments</p>
+
                 </div>
             </div>
 
@@ -887,14 +891,17 @@
         <section class="row g-3 mb-4">
 
             <div class="col-lg-8">
+
                 <div class="dashboard-card">
 
                     <div class="d-flex justify-content-between align-items-center mb-3">
+
                         <h5 class="mb-0">Appointment Overview</h5>
 
                         <span class="small text-muted">
                             Appointment Status
                         </span>
+
                     </div>
 
                     <div class="appointment-chart-container">
@@ -902,9 +909,11 @@
                     </div>
 
                 </div>
+
             </div>
 
             <div class="col-lg-4">
+
                 <div class="dashboard-card">
 
                     <h5 class="mb-3">Quick Actions</h5>
@@ -930,6 +939,7 @@
                     </a>
 
                 </div>
+
             </div>
 
         </section>
@@ -941,10 +951,12 @@
 
                 <div>
                     <div class="d-flex align-items-center gap-2 mb-2">
+
                         <i class="bi bi-bar-chart-fill"
                            style="color:#B89555;font-size:20px;"></i>
 
                         <h5 class="mb-0">Support Message Overview</h5>
+
                     </div>
 
                     <p class="small text-muted mb-0">
