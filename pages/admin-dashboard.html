@@ -47,14 +47,15 @@
             width: 260px !important;
             height: 100vh !important;
             position: fixed !important;
-            top: 0;
-            left: 0;
-            z-index: 1000;
+            top: 0 !important;
+            left: 0 !important;
+            z-index: 1000 !important;
             display: flex !important;
             flex-direction: column !important;
             padding: 0 19px 22px !important;
             background: linear-gradient(180deg, #350017 0%, #4A001F 100%) !important;
-            transition: transform .3s ease;
+            transform: translateX(0) !important;
+            transition: transform .3s ease !important;
             overflow-y: auto;
         }
 
@@ -242,17 +243,17 @@
             width: auto;
         }
 
-        /* HEADER */
+        /* HEADER - FOLLOW PATIENT MY APPOINTMENTS */
 
         .main-content .topbar {
             display: flex !important;
             flex-direction: row !important;
-            justify-content: space-between !important;
             align-items: center !important;
+            justify-content: space-between !important;
             text-align: left !important;
-            gap: 15px !important;
-            margin: 0 0 29px 0 !important;
+            margin-bottom: 29px !important;
             padding: 0 !important;
+            gap: 15px !important;
             width: 100% !important;
             min-height: 50px;
         }
@@ -309,7 +310,7 @@
             gap: 19px !important;
             flex: 0 0 auto !important;
             width: auto !important;
-            margin: 0 0 0 auto !important;
+            margin-left: auto !important;
             padding: 0 !important;
         }
 
@@ -347,6 +348,10 @@
             gap: 10px;
             min-width: 0;
             flex-shrink: 0;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
         }
 
         .profile-chip-info {
@@ -384,7 +389,7 @@
             font-family: 'Bodoni Moda', serif;
             font-size: 21px;
             font-weight: 700;
-            border: 1px solid var(--gold);
+            border: none;
         }
 
         .mobile-toggle {
@@ -400,6 +405,7 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            cursor: pointer;
         }
 
         /* WELCOME BANNER */
@@ -573,20 +579,23 @@
         }
 
         @media (max-width: 900px) {
+
             .sidebar {
-                transform: translateX(-100%);
+                transform: translateX(-100%) !important;
+                visibility: hidden;
             }
 
             .sidebar.open {
-                transform: translateX(0);
+                transform: translateX(0) !important;
+                visibility: visible;
             }
 
             .sidebar-overlay.show {
-                display: block;
-                position: fixed;
+                display: block !important;
+                position: fixed !important;
                 inset: 0;
                 background: rgba(25, 0, 12, .45);
-                z-index: 999;
+                z-index: 999 !important;
             }
 
             .main-content {
@@ -601,6 +610,7 @@
         }
 
         @media (max-width: 600px) {
+
             .main-content {
                 padding: 18px 15px 30px !important;
             }
@@ -675,6 +685,7 @@
         }
 
         @media (max-width: 380px) {
+
             .main-content .topbar {
                 gap: 8px !important;
             }
@@ -1058,45 +1069,63 @@
             function openSidebar() {
                 sidebar.classList.add("open");
                 sidebarOverlay.classList.add("show");
+
                 document.body.style.overflow = "hidden";
 
                 mobileToggle.setAttribute("aria-expanded", "true");
+                mobileToggle.setAttribute("aria-label", "Close menu");
+
                 toggleIcon.className = "bi bi-x-lg";
             }
 
             function closeSidebar() {
                 sidebar.classList.remove("open");
                 sidebarOverlay.classList.remove("show");
+
                 document.body.style.overflow = "";
 
                 mobileToggle.setAttribute("aria-expanded", "false");
+                mobileToggle.setAttribute("aria-label", "Open menu");
+
                 toggleIcon.className = "bi bi-list";
             }
 
             mobileToggle.addEventListener("click", function () {
+
                 if (sidebar.classList.contains("open")) {
                     closeSidebar();
                 } else {
                     openSidebar();
                 }
+
             });
 
-            sidebarOverlay.addEventListener("click", closeSidebar);
+            sidebarOverlay.addEventListener("click", function () {
+                closeSidebar();
+            });
 
             sidebar.querySelectorAll("a").forEach(function (link) {
-                link.addEventListener("click", closeSidebar);
+
+                link.addEventListener("click", function () {
+                    closeSidebar();
+                });
+
             });
 
             document.addEventListener("keydown", function (event) {
+
                 if (event.key === "Escape") {
                     closeSidebar();
                 }
+
             });
 
             window.addEventListener("resize", function () {
+
                 if (window.innerWidth > 900) {
                     closeSidebar();
                 }
+
             });
 
         });
