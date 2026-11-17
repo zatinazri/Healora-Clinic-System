@@ -1,6 +1,6 @@
 
 /* =====================================================
-   HEALORA CLINIC - MAIN STYLESHEET
+   HEALORA CLINIC
 ===================================================== */
 
 
@@ -10,25 +10,30 @@
 
 /* 2. OFFICIAL COLOUR PALETTE */
 :root {
+    /* Primary colours */
     --burgundy: #4A001F;
     --burgundy-dark: #350017;
     --maroon: #800020;
     --maroon-light: #9B2948;
 
+    /* Gold and champagne */
     --champagne: #F7E7CE;
     --gold: #D6B77A;
     --gold-dark: #B89555;
 
+    /* Background colours */
     --ivory: #FAF8F5;
     --white: #FFFFFF;
     --soft-grey: #E8E2E5;
     --light-grey: #F3F0F1;
 
+    /* Text colours */
     --text-primary: #292329;
     --text-secondary: #70666C;
     --text-muted: #958A90;
     --text-light: #FFFFFF;
 
+    /* Status colours */
     --success: #287A52;
     --success-bg: #E5F3EB;
 
@@ -41,6 +46,7 @@
     --info: #356A9A;
     --info-bg: #E8F1FA;
 
+    /* General design */
     --border-color: #E8E2E5;
     --shadow-sm: 0 2px 8px rgba(74, 0, 31, 0.05);
     --shadow-md: 0 6px 20px rgba(74, 0, 31, 0.08);
@@ -194,9 +200,8 @@ img {
         var(--burgundy-dark) 100%
     );
     color: var(--white);
-    z-index: 1050;
+    z-index: 1000;
     box-shadow: 4px 0 20px rgba(53, 0, 23, 0.12);
-    transition: transform 0.3s ease;
 }
 
 .sidebar-brand {
@@ -265,67 +270,26 @@ img {
 }
 
 
-/* 7. TOPBAR - STANDARD ADMIN HEADER */
+/* 7. TOPBAR */
 .topbar,
 .dashboard-topbar {
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
-    width: 100%;
-    padding: 0;
-    margin-bottom: 28px;
-    background: transparent;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-}
-
-.topbar-left {
-    display: flex;
-    align-items: center;
     gap: 15px;
-    min-width: 0;
-}
-
-.topbar-right {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 20px;
-    flex-shrink: 0;
-}
-
-.page-heading {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    color: var(--burgundy);
-}
-
-.page-heading small {
-    display: block;
-    margin-bottom: 3px;
-    color: var(--gold-dark);
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 2px;
-}
-
-.page-heading h1,
-.page-heading h2 {
-    margin: 0;
-    color: var(--burgundy);
-    font-size: 25px;
-    font-weight: 800;
-    line-height: 1.3;
+    padding: 16px 22px;
+    margin-bottom: 25px;
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
 }
 
 .topbar h1,
 .topbar h2,
 .dashboard-topbar h1,
 .dashboard-topbar h2 {
+    margin: 0;
     color: var(--burgundy);
 }
 
@@ -333,120 +297,6 @@ img {
 .dashboard-topbar p {
     margin: 4px 0 0;
     color: var(--text-secondary);
-}
-
-
-/* Mobile hamburger button */
-.mobile-toggle {
-    display: none;
-    width: 42px;
-    height: 42px;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    background: var(--white);
-    border: 1px solid var(--border-color);
-    border-radius: 11px;
-    color: var(--burgundy);
-    font-size: 23px;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.mobile-toggle:hover {
-    background: var(--champagne);
-    border-color: var(--gold);
-}
-
-
-/* Notification button */
-.notification-btn {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 42px;
-    height: 42px;
-    flex-shrink: 0;
-    padding: 0;
-    background: var(--white);
-    border: 1px solid var(--border-color);
-    border-radius: 50%;
-    color: var(--burgundy);
-    font-size: 18px;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.notification-btn:hover {
-    background: var(--champagne);
-    border-color: var(--gold);
-}
-
-.notification-dot {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    width: 8px;
-    height: 8px;
-    background: var(--maroon);
-    border: 1px solid var(--white);
-    border-radius: 50%;
-}
-
-
-/* Profile chip */
-.profile-chip {
-    display: flex;
-    align-items: center;
-    gap: 11px;
-    flex-shrink: 0;
-    padding: 0;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-}
-
-.profile-chip-info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    text-align: right;
-    line-height: 1.4;
-}
-
-.profile-chip-info strong {
-    color: var(--burgundy);
-    font-family: 'Bodoni Moda', serif;
-    font-size: 15px;
-    font-style: italic;
-    font-weight: 700;
-}
-
-.profile-chip-info span {
-    margin-top: 2px;
-    color: var(--gold-dark);
-    font-family: 'Manrope', sans-serif;
-    font-size: 9px;
-    font-weight: 800;
-    letter-spacing: 2px;
-}
-
-.chip-avatar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 45px;
-    height: 45px;
-    flex-shrink: 0;
-    border: 2px solid var(--gold);
-    border-radius: 50%;
-    background: linear-gradient(145deg, var(--champagne), var(--gold));
-    color: var(--burgundy);
-    font-family: 'Bodoni Moda', serif;
-    font-size: 25px;
-    font-weight: 700;
 }
 
 
@@ -865,6 +715,7 @@ footer a:hover,
     color: var(--white);
 }
 
+/* Dashboard footer: transparent style */
 .dashboard-footer {
     padding: 25px 0 5px;
     margin-top: 0;
@@ -927,9 +778,8 @@ footer a:hover,
 }
 
 
-/* 22. RESPONSIVE DESIGN - TABLET */
-@media (max-width: 991px) and (min-width: 768px) {
-
+/* 22. RESPONSIVE DESIGN */
+@media (max-width: 991px) {
     .sidebar {
         width: 220px;
     }
@@ -938,185 +788,38 @@ footer a:hover,
         margin-left: 220px;
         padding: 22px;
     }
-
-    .topbar {
-        gap: 12px;
-    }
-
-    .topbar-right {
-        gap: 12px;
-    }
-
 }
 
-
-/* 23. RESPONSIVE DESIGN - MOBILE */
 @media (max-width: 767px) {
-
-    /* Sidebar drawer */
     .sidebar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 270px;
-        max-width: 85vw;
-        height: 100vh;
-        height: 100dvh;
-        padding: 20px 16px;
-        overflow-y: auto;
-        transform: translateX(-105%);
-        z-index: 1050;
-        background: linear-gradient(
-            180deg,
-            var(--burgundy) 0%,
-            var(--burgundy-dark) 100%
-        );
-        transition: transform 0.3s ease;
-        visibility: visible;
-    }
-
-    /* Sidebar open state */
-    .sidebar.active,
-    .sidebar.show {
-        transform: translateX(0);
-    }
-
-
-    /* Mobile sidebar overlay */
-    .sidebar-overlay {
-        display: block;
-        position: fixed;
-        inset: 0;
+        position: relative;
         width: 100%;
-        height: 100%;
-        background: rgba(25, 0, 12, 0.55);
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-        z-index: 1040;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
+        height: auto;
+        min-height: auto;
+        padding: 15px;
     }
 
-    .sidebar-overlay.active {
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
+    .sidebar-brand {
+        padding-bottom: 15px;
+        margin-bottom: 15px;
     }
 
-
-    /* Main content */
     .main-content {
-        width: 100%;
-        min-height: 100vh;
         margin-left: 0;
-        padding: 18px;
+        padding: 16px;
     }
 
     .page-content {
         padding: 15px;
     }
 
-
-    /* Header stays in one horizontal row */
     .topbar,
     .dashboard-topbar {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: nowrap;
-        gap: 8px;
-        width: 100%;
-        padding: 0;
-        margin-bottom: 22px;
-        background: transparent;
-        border: none;
-        border-radius: 0;
-        box-shadow: none;
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 15px;
     }
 
-    .topbar-left {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        min-width: 0;
-        flex: 1 1 auto;
-    }
-
-    .topbar-right {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        gap: 10px;
-        flex: 0 0 auto;
-    }
-
-
-    /* Hamburger */
-    .mobile-toggle {
-        display: flex;
-        width: 38px;
-        height: 38px;
-        flex-shrink: 0;
-        font-size: 21px;
-    }
-
-
-    /* Page title */
-    .page-heading {
-        min-width: 0;
-        overflow: hidden;
-    }
-
-    .page-heading small {
-        font-size: 8px;
-        letter-spacing: 1.5px;
-    }
-
-    .page-heading h1,
-    .page-heading h2 {
-        font-size: 19px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-
-    /* Notification */
-    .notification-btn {
-        width: 38px;
-        height: 38px;
-        font-size: 16px;
-    }
-
-
-    /* Profile */
-    .profile-chip {
-        display: flex;
-        align-items: center;
-        gap: 0;
-        padding: 0;
-        background: transparent;
-        border: none;
-        box-shadow: none;
-    }
-
-    .profile-chip-info {
-        display: none;
-    }
-
-    .chip-avatar {
-        width: 38px;
-        height: 38px;
-        font-size: 21px;
-    }
-
-    .admin-top-name {
-        font-size: 14px;
-    }
-
-
-    /* Other mobile adjustments */
     .auth-container {
         padding: 25px 20px;
     }
@@ -1129,55 +832,19 @@ footer a:hover,
     .stat-card h4 {
         font-size: 23px;
     }
-
 }
 
-
-/* 24. SMALL MOBILE SCREENS */
 @media (max-width: 480px) {
-
     body {
         font-size: 13px;
     }
 
     .main-content {
-        padding: 14px;
+        padding: 12px;
     }
 
     .page-header h1 {
         font-size: 22px;
-    }
-
-    .page-heading h1,
-    .page-heading h2 {
-        font-size: 17px;
-    }
-
-    .topbar-left {
-        gap: 8px;
-    }
-
-    .topbar-right {
-        gap: 7px;
-    }
-
-    .mobile-toggle,
-    .notification-btn,
-    .chip-avatar {
-        width: 36px;
-        height: 36px;
-    }
-
-    .mobile-toggle {
-        font-size: 20px;
-    }
-
-    .notification-btn {
-        font-size: 15px;
-    }
-
-    .chip-avatar {
-        font-size: 20px;
     }
 
     .btn {
@@ -1187,292 +854,5 @@ footer a:hover,
 
     .table {
         font-size: 11px;
-    }
-
-}
-
-
-/* 25. EXTRA MOBILE SAFETY */
-@media (max-width: 767px) {
-
-    .table-responsive {
-        width: 100%;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .card,
-    .dashboard-card,
-    .content-card {
-        max-width: 100%;
-    }
-
-    .row {
-        --bs-gutter-x: 1rem;
-    }
-
-}
-
-
-/* =========================================
-   HEALORA CLINIC
-   GLOBAL ADMIN RESPONSIVE HEADER
-========================================= */
-
-/* Admin header layout */
-.topbar,
-.dashboard-topbar,
-.admin-topbar,
-.page-header {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    gap: 16px !important;
-}
-
-/* Mobile hamburger button */
-.healora-mobile-toggle {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    width: 42px;
-    height: 42px;
-    min-width: 42px;
-    border: 1px solid #eadbd7;
-    border-radius: 12px;
-    background: #fffaf8;
-    color: #702b3b;
-    font-size: 23px;
-    cursor: pointer;
-    flex-shrink: 0;
-}
-
-/* Notification icon */
-.healora-notification-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
-    border: 1px solid #eadbd7;
-    border-radius: 50%;
-    background: #fffaf8;
-    color: #702b3b;
-    font-size: 19px;
-    flex-shrink: 0;
-}
-
-/* Sidebar overlay */
-.sidebar-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(35, 20, 24, 0.48);
-    z-index: 9998;
-    opacity: 0;
-    transition: opacity 0.25s ease;
-}
-
-.sidebar-overlay.active {
-    display: block !important;
-    opacity: 1;
-}
-
-/* =========================================
-   MOBILE ADMIN LAYOUT
-========================================= */
-
-@media screen and (max-width: 767px) {
-
-    /* Header */
-    .topbar,
-    .dashboard-topbar,
-    .admin-topbar,
-    .page-header {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        gap: 10px !important;
-        width: 100% !important;
-        min-height: 58px;
-        padding: 10px 0 !important;
-        margin-bottom: 20px !important;
-        background: transparent !important;
-        box-shadow: none !important;
-    }
-
-    .healora-mobile-toggle {
-        display: inline-flex !important;
-        order: 0;
-    }
-
-    /* Keep header content in one row */
-    .topbar > div:first-of-type,
-    .dashboard-topbar > div:first-of-type,
-    .admin-topbar > div:first-of-type,
-    .page-header > div:first-of-type {
-        flex: 1 1 auto !important;
-        min-width: 0 !important;
-    }
-
-    /* Hide long profile text but keep avatar */
-    .admin-profile span,
-    .admin-profile p,
-    .admin-top-profile span,
-    .admin-top-profile p,
-    .profile-section .profile-info {
-        display: none !important;
-    }
-
-    .admin-profile,
-    .admin-top-profile,
-    .profile-section {
-        display: flex !important;
-        align-items: center !important;
-        flex-shrink: 0 !important;
-        gap: 0 !important;
-    }
-
-    .admin-top-logo {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        flex-shrink: 0 !important;
-    }
-
-    .healora-notification-icon {
-        order: 2;
-    }
-
-    /* Main content */
-    .main-content {
-        width: 100% !important;
-        max-width: 100% !important;
-        margin-left: 0 !important;
-        padding: 18px !important;
-        box-sizing: border-box !important;
-    }
-
-    /* Sidebar drawer */
-    .sidebar {
-        display: flex !important;
-        flex-direction: column !important;
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        bottom: 0 !important;
-        width: min(280px, 82vw) !important;
-        height: 100vh !important;
-        max-height: 100vh !important;
-        overflow-y: auto !important;
-        z-index: 9999 !important;
-        transform: translateX(-110%) !important;
-        transition: transform 0.3s ease !important;
-        visibility: visible !important;
-    }
-
-    .sidebar.active,
-    .sidebar.show {
-        transform: translateX(0) !important;
-    }
-
-    /* Prevent page from shifting */
-    body {
-        overflow-x: hidden !important;
-    }
-
-    /* Responsive content elements */
-    .main-content table {
-        display: block;
-        width: 100%;
-        overflow-x: auto;
-    }
-
-    .main-content img {
-        max-width: 100%;
-        height: auto;
-    }
-}
-
-
-/* =========================================
-   SMALL MOBILE SCREENS
-========================================= */
-
-@media screen and (max-width: 480px) {
-
-    .main-content {
-        padding: 14px !important;
-    }
-
-    .topbar,
-    .dashboard-topbar,
-    .admin-topbar,
-    .page-header {
-        gap: 7px !important;
-    }
-
-    .healora-mobile-toggle {
-        width: 38px;
-        height: 38px;
-        min-width: 38px;
-        font-size: 21px;
-    }
-
-    .healora-notification-icon {
-        width: 36px;
-        height: 36px;
-        min-width: 36px;
-        font-size: 17px;
-    }
-}
-
-
-/* HEALORA ADMIN SIDEBAR - FORCE MOBILE DRAWER */
-
-@media screen and (max-width: 767px) {
-
-    body[data-requires-auth="admin"] .sidebar {
-        display: flex !important;
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        bottom: 0 !important;
-        width: 280px !important;
-        height: 100vh !important;
-        max-height: 100vh !important;
-        z-index: 10000 !important;
-        overflow-y: auto !important;
-        transform: translateX(-110%) !important;
-        visibility: visible !important;
-        transition: transform 0.3s ease !important;
-    }
-
-    body[data-requires-auth="admin"] .sidebar.active {
-        transform: translateX(0) !important;
-    }
-
-    body[data-requires-auth="admin"] .sidebar.show {
-        transform: translateX(0) !important;
-    }
-
-    body[data-requires-auth="admin"] .main-content {
-        margin-left: 0 !important;
-        width: 100% !important;
-    }
-
-    #sidebarOverlay {
-        display: none;
-        position: fixed !important;
-        inset: 0 !important;
-        background: rgba(0, 0, 0, 0.5) !important;
-        z-index: 9999 !important;
-    }
-
-    #sidebarOverlay.active {
-        display: block !important;
     }
 }
