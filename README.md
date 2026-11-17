@@ -46,4 +46,4 @@ The following technologies and libraries are used to develop the system:
 - **Bootstrap 5** – Provides responsive layouts and interface components.
 - **Bootstrap Icons** – Provides icons for the website.
 - **Local Storage** – Stores selected system data in the browser.
-- Healora Clinic Appointment Management System
+Healora Clinic Appointment Management System
