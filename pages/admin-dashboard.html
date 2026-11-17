@@ -17,11 +17,7 @@
             background: #FAF8F5;
         }
 
-        /* SIDEBAR */
-        .sidebar {
-            background: linear-gradient(180deg, #350017, #4A001F);
-        }
-
+        /* SIDEBAR BRAND */
         .sidebar-brand {
             width: 100%;
             padding: 28px 15px;
@@ -106,13 +102,7 @@
             padding: 18px;
         }
 
-        /* MAIN CONTENT */
-        .main-content {
-            margin-left: 260px;
-            padding: 30px;
-        }
-
-        /* SIDEBAR ADMIN PROFILE */
+        /* ADMIN PROFILE */
         .admin-top-name {
             font-family: 'Bodoni Moda', serif;
             font-size: 17px;
@@ -303,17 +293,12 @@
 
         /* RESPONSIVE DASHBOARD CONTENT */
         @media (max-width: 991px) {
-            .main-content {
-                padding: 20px;
+            .welcome-banner {
+                padding: 28px;
             }
         }
 
         @media (max-width: 767px) {
-            .main-content {
-                margin-left: 0;
-                padding: 18px;
-            }
-
             .welcome-decoration {
                 display: none;
             }
@@ -328,6 +313,37 @@
 
             .welcome-content h2 {
                 font-size: 24px;
+            }
+
+            .dashboard-stat {
+                padding: 16px;
+            }
+
+            .dashboard-stat h3 {
+                font-size: 23px;
+            }
+
+            .dashboard-card {
+                padding: 17px;
+            }
+
+            .table-responsive {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .welcome-content h2 {
+                font-size: 21px;
+            }
+
+            .welcome-content p {
+                font-size: 12px;
+            }
+
+            .dashboard-stat p {
+                font-size: 11px;
             }
         }
     </style>
