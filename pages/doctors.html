@@ -6,39 +6,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doctors Management | Healora Clinic</title>
 
-    <!-- GOOGLE FONTS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
     <!-- BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- BOOTSTRAP ICONS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600;6..96,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <!-- GLOBAL CSS -->
     <link href="../css/style.css" rel="stylesheet">
 
     <style>
+        :root {
+            --wine: #350017;
+            --burgundy: #4A001F;
+            --burgundy-light: #800020;
+            --gold: #D6B77A;
+            --gold-dark: #B89552;
+            --ivory: #FAF8F4;
+            --cream: #F7E7CE;
+            --white: #FFFFFF;
+            --text: #30252A;
+            --muted: #70666C;
+            --border: #EEE7E2;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            background: #FAF8F5;
+            margin: 0;
+            background: var(--ivory);
+            color: var(--text);
+            font-family: 'Manrope', sans-serif;
+            font-size: 14px;
+            overflow-x: hidden;
         }
 
         /* SIDEBAR */
+
         .sidebar {
-            background: linear-gradient(180deg, #350017, #4A001F);
+            width: 260px !important;
+            height: 100vh !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            z-index: 1000 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            padding: 0 19px 22px !important;
+            background: linear-gradient(180deg, #350017 0%, #4A001F 100%) !important;
+            transform: translateX(0) !important;
+            transition: transform .3s ease !important;
+            overflow-y: auto;
         }
 
         .sidebar-brand {
             width: 100%;
             padding: 28px 15px;
-            border-bottom: 1px solid rgba(247, 231, 206, 0.15);
+            border-bottom: 1px solid rgba(247, 231, 206, .15);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
+            margin-bottom: 27px;
         }
 
         .brand-logo-light {
@@ -54,21 +89,19 @@
         }
 
         .brand-heal {
-            color: #D6B77A !important;
-            font-family: 'Manrope', sans-serif;
+            color: var(--gold) !important;
             font-weight: 800;
         }
 
         .brand-ora {
-            color: #F7E7CE !important;
+            color: var(--cream) !important;
             font-family: 'Bodoni Moda', serif;
             font-style: italic;
             font-weight: 700;
         }
 
         .brand-clinic {
-            color: #F7E7CE !important;
-            font-family: 'Manrope', sans-serif;
+            color: var(--cream) !important;
             font-size: 10px;
             font-weight: 600;
             letter-spacing: 4px;
@@ -77,116 +110,342 @@
             width: 100%;
         }
 
-        .sidebar nav {
-            margin-top: 25px;
-        }
-
-        .sidebar a {
-            color: #F7E7CE;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 13px;
-            padding: 12px 18px;
-            margin: 4px 12px;
-            border-radius: 9px;
-            font-size: 13px;
-            transition: 0.3s;
-        }
-
-        .sidebar a i {
-            color: #D6B77A;
-            font-size: 17px;
-        }
-
-        .sidebar a:hover,
-        .sidebar a.active {
-            background: #800020;
-            color: #FFFFFF;
-        }
-
-        .sidebar a.active {
-            border-left: 3px solid #D6B77A;
-        }
-
-        .sidebar-footer {
-            border-top: 1px solid rgba(247, 231, 206, 0.15);
-            padding: 18px;
-        }
-
-        /* MAIN CONTENT */
-        .main-content {
-            margin-left: 260px;
-            padding: 30px;
-            min-height: 100vh;
-        }
-
-        .topbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .page-heading {
-            font-family: 'Manrope', sans-serif;
-            font-weight: 800;
-            color: #4A001F;
-            font-size: 25px;
-        }
-
-        /* ADMIN PROFILE */
-        .admin-profile {
-            display: flex;
-            align-items: center;
-            gap: 13px;
-        }
-
-        .admin-top-name {
-            font-family: 'Bodoni Moda', serif;
-            font-size: 17px;
-            font-style: italic;
-            font-weight: 700;
-            color: #4A001F;
-        }
-
-        .admin-top-role {
-            font-family: 'Manrope', sans-serif;
+        .nav-label {
+            color: rgba(247, 231, 206, .55);
             font-size: 10px;
             font-weight: 800;
-            letter-spacing: 2px;
-            color: #B89555;
-            margin-top: 3px;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            padding: 0 13px;
+            margin-bottom: 13px;
         }
 
-        .admin-top-logo {
-            width: 48px;
-            height: 48px;
-            flex-shrink: 0;
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 12px 14px;
+            margin: 0 !important;
+            color: rgba(247, 231, 206, .82) !important;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: .2s ease;
+        }
+
+        .sidebar-nav a i {
+            width: 19px;
+            font-size: 17px;
+            color: var(--gold);
+        }
+
+        .sidebar-nav a:hover {
+            background: rgba(255, 255, 255, .08);
+            color: var(--cream) !important;
+        }
+
+        .sidebar-nav a.active {
+            background: var(--burgundy-light);
+            color: var(--cream) !important;
+            border-left: 3px solid var(--gold);
+            padding-left: 11px;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+            border-top: 1px solid rgba(247, 231, 206, .15);
+            padding-top: 18px;
+        }
+
+        .sidebar-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 10px;
+            margin-bottom: 12px;
+            border-top: 1px solid rgba(247, 231, 206, .15);
+            border-bottom: 1px solid rgba(247, 231, 206, .15);
+            min-width: 0;
+        }
+
+        .sidebar-profile-avatar {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
             border-radius: 50%;
-            border: 2px solid #D6B77A;
-            background: linear-gradient(145deg, #F7E7CE, #D6B77A);
-            color: #4A001F;
+            background: var(--gold);
+            color: var(--wine);
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'Bodoni Moda', serif;
-            font-size: 29px;
+            font-size: 22px;
             font-weight: 700;
         }
 
-        /* INTRO BANNER */
+        .sidebar-profile-info {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .sidebar-profile-info strong {
+            display: block;
+            color: var(--cream);
+            font-size: 13px;
+            font-weight: 800;
+            line-height: 1.5;
+        }
+
+        .sidebar-profile-info span {
+            display: block;
+            color: var(--gold);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            margin-top: 3px;
+        }
+
+        .logout-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 13px;
+            margin: 0 !important;
+            color: rgba(247, 231, 206, .82) !important;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+
+        .logout-link i {
+            color: var(--gold);
+            font-size: 17px;
+        }
+
+        .logout-link:hover {
+            background: rgba(255, 255, 255, .08);
+            color: var(--cream) !important;
+        }
+
+        .sidebar-overlay {
+            display: none;
+        }
+
+        /* MAIN CONTENT */
+
+        .main-content {
+            margin-left: 260px !important;
+            padding: 32px 40px 45px !important;
+            min-height: 100vh;
+            width: auto;
+        }
+
+        /* HEADER */
+
+        .main-content .topbar {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            text-align: left !important;
+            margin-bottom: 29px !important;
+            padding: 0 !important;
+            gap: 15px !important;
+            width: 100% !important;
+            min-height: 50px;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
+        }
+
+        .main-content .topbar::before,
+        .main-content .topbar::after {
+            display: none !important;
+            content: none !important;
+        }
+
+        .main-content .topbar-left {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            text-align: left !important;
+            gap: 13px !important;
+            flex: 1 1 auto !important;
+            min-width: 0;
+            width: auto !important;
+        }
+
+        .main-content .page-heading {
+            display: block !important;
+            text-align: left !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            min-width: 0;
+            width: auto !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .main-content .page-heading small {
+            display: block !important;
+            color: var(--gold-dark);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 0 0 5px 0 !important;
+            text-align: left !important;
+        }
+
+        .main-content .page-heading h2 {
+            display: block !important;
+            color: var(--wine);
+            font-family: 'Manrope', sans-serif;
+            font-size: 25px;
+            font-weight: 800;
+            margin: 0 !important;
+            padding: 0 !important;
+            text-align: left !important;
+            line-height: 1.3;
+        }
+
+        .main-content .topbar-right {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: flex-end !important;
+            gap: 19px !important;
+            flex: 0 0 auto !important;
+            width: auto !important;
+            margin-left: auto !important;
+            padding: 0 !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .notification-btn {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            background: var(--white);
+            color: var(--wine);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .notification-dot {
+            width: 8px;
+            height: 8px;
+            background: #B65D56;
+            border-radius: 50%;
+            position: absolute;
+            top: 7px;
+            right: 7px;
+            border: 1px solid white;
+        }
+
+        .profile-chip {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            gap: 10px;
+            min-width: 0;
+            flex-shrink: 0;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            border-radius: 0 !important;
+        }
+
+        .profile-chip-info {
+            min-width: 0;
+            text-align: right;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .profile-chip-info strong {
+            display: block;
+            color: var(--wine);
+            font-size: 12px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .profile-chip-info span {
+            display: block;
+            color: var(--gold-dark);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-top: 3px;
+        }
+
+        .chip-avatar {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            border-radius: 50%;
+            background: var(--burgundy);
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 21px;
+            font-weight: 700;
+            border: none;
+        }
+
+        .mobile-toggle {
+            display: none;
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            border: 1px solid var(--border);
+            background: var(--white);
+            color: var(--wine);
+            border-radius: 8px;
+            font-size: 20px;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        /* WELCOME BANNER */
+
         .welcome-banner {
             background: linear-gradient(135deg, #350017, #4A001F);
             border-radius: 18px;
             padding: 35px 38px;
             margin-bottom: 28px;
-            border: 1px solid rgba(214, 183, 122, 0.35);
-            box-shadow: 0 8px 25px rgba(74, 0, 31, 0.12);
+            border: 1px solid rgba(214, 183, 122, .35);
+            box-shadow: 0 8px 25px rgba(74, 0, 31, .12);
         }
 
         .welcome-content h2 {
-            color: #D6B77A;
+            color: var(--gold);
             font-family: 'Bodoni Moda', serif;
             font-size: 29px;
             font-weight: 700;
@@ -194,20 +453,21 @@
         }
 
         .welcome-content p {
-            color: #F7E7CE;
+            color: var(--cream);
             font-size: 13px;
             margin-bottom: 0;
-            opacity: 0.9;
+            opacity: .9;
         }
 
         /* STATISTICS */
+
         .dashboard-stat {
-            background: #FFFFFF;
+            background: var(--white);
             border: 1px solid #E8E2E5;
             border-radius: 14px;
             padding: 22px;
             height: 100%;
-            box-shadow: 0 5px 18px rgba(74, 0, 31, 0.04);
+            box-shadow: 0 5px 18px rgba(74, 0, 31, .04);
         }
 
         .dashboard-stat .stat-icon {
@@ -217,28 +477,29 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #F7E7CE;
-            color: #800020;
+            background: var(--cream);
+            color: var(--burgundy-light);
             font-size: 20px;
             margin-bottom: 15px;
         }
 
         .dashboard-stat h3 {
-            color: #4A001F;
+            color: var(--burgundy);
             font-size: 27px;
             font-weight: 800;
             margin-bottom: 4px;
         }
 
         .dashboard-stat p {
-            color: #70666C;
+            color: var(--muted);
             font-size: 12px;
             margin: 0;
         }
 
-        /* DIRECTORY */
+        /* DOCTOR DIRECTORY */
+
         .section-heading {
-            color: #4A001F;
+            color: var(--burgundy);
             font-size: 17px;
             font-weight: 800;
             margin-bottom: 5px;
@@ -251,35 +512,36 @@
         }
 
         .btn-add-doctor {
-            background: #4A001F;
-            border: 1px solid #4A001F;
-            color: #FFFFFF;
+            background: var(--burgundy);
+            border: 1px solid var(--burgundy);
+            color: var(--white);
             padding: 11px 17px;
             border-radius: 8px;
             font-size: 12px;
             font-weight: 700;
-            transition: 0.3s;
+            transition: .3s;
         }
 
         .btn-add-doctor:hover {
-            background: #800020;
-            border-color: #800020;
-            color: #FFFFFF;
+            background: var(--burgundy-light);
+            border-color: var(--burgundy-light);
+            color: var(--white);
         }
 
         /* FILTERS */
+
         .filter-panel {
-            background: #FFFFFF;
+            background: var(--white);
             border: 1px solid #E8E2E5;
             border-radius: 12px;
             padding: 17px;
             margin: 20px 0;
-            box-shadow: 0 5px 18px rgba(74, 0, 31, 0.03);
+            box-shadow: 0 5px 18px rgba(74, 0, 31, .03);
         }
 
         .filter-label {
             display: block;
-            color: #70666C;
+            color: var(--muted);
             font-size: 10px;
             font-weight: 800;
             margin-bottom: 7px;
@@ -298,13 +560,13 @@
 
         .form-control:focus,
         .form-select:focus {
-            border-color: #B89555;
+            border-color: var(--gold-dark);
         }
 
         .btn-reset {
-            background: #F7E7CE;
+            background: var(--cream);
             border: 1px solid #E8D7B8;
-            color: #4A001F;
+            color: var(--burgundy);
             border-radius: 8px;
             padding: 10px 15px;
             font-size: 11px;
@@ -313,22 +575,24 @@
 
         .btn-reset:hover {
             background: #EED9B5;
+            color: var(--burgundy);
         }
 
         /* DOCTOR CARDS */
+
         .doctor-card {
-            background: #FFFFFF;
+            background: var(--white);
             border: 1px solid #E8E2E5;
             border-radius: 14px;
             overflow: hidden;
             height: 100%;
-            box-shadow: 0 5px 18px rgba(74, 0, 31, 0.04);
-            transition: 0.3s ease;
+            box-shadow: 0 5px 18px rgba(74, 0, 31, .04);
+            transition: .3s ease;
         }
 
         .doctor-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(74, 0, 31, 0.10);
+            box-shadow: 0 10px 25px rgba(74, 0, 31, .10);
         }
 
         .doctor-photo {
@@ -343,10 +607,10 @@
             height: 115px;
             flex-shrink: 0;
             border-radius: 50%;
-            border: 4px solid #F7E7CE;
-            box-shadow: 0 5px 15px rgba(74, 0, 31, 0.12);
-            background: linear-gradient(145deg, #F7E7CE, #E8D7B8);
-            color: #800020;
+            border: 4px solid var(--cream);
+            box-shadow: 0 5px 15px rgba(74, 0, 31, .12);
+            background: linear-gradient(145deg, var(--cream), #E8D7B8);
+            color: var(--burgundy-light);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -361,15 +625,16 @@
         }
 
         .doctor-name {
-            color: #4A001F;
+            color: var(--burgundy);
             font-family: 'Bodoni Moda', serif;
             font-size: 16px;
             font-weight: 700;
             margin-bottom: 5px;
+            overflow-wrap: anywhere;
         }
 
         .doctor-specialty {
-            color: #B89555;
+            color: var(--gold-dark);
             font-size: 10px;
             font-weight: 800;
             min-height: 30px;
@@ -399,7 +664,7 @@
             display: flex;
             align-items: flex-start;
             gap: 7px;
-            color: #70666C;
+            color: var(--muted);
             font-size: 10px;
             margin-top: 8px;
             text-align: left;
@@ -407,7 +672,7 @@
         }
 
         .doctor-detail i {
-            color: #B89555;
+            color: var(--gold-dark);
             font-size: 12px;
             width: 14px;
             flex-shrink: 0;
@@ -425,18 +690,18 @@
         .doctor-actions button {
             flex: 1;
             border: 1px solid #E8E2E5;
-            background: #FFFFFF;
-            color: #4A001F;
+            background: var(--white);
+            color: var(--burgundy);
             border-radius: 7px;
             padding: 7px 4px;
             font-size: 10px;
             font-weight: 700;
-            transition: 0.2s ease;
+            transition: .2s ease;
         }
 
         .doctor-actions button:hover {
-            background: #F7E7CE;
-            border-color: #D6B77A;
+            background: var(--cream);
+            border-color: var(--gold);
         }
 
         .doctor-actions .delete-btn {
@@ -449,29 +714,31 @@
         }
 
         /* EMPTY STATE */
+
         .empty-state {
             text-align: center;
             padding: 45px 20px;
-            color: #70666C;
-            border: 1px dashed #D6B77A;
+            color: var(--muted);
+            border: 1px dashed var(--gold);
             border-radius: 12px;
-            background: #FFFFFF;
+            background: var(--white);
         }
 
         .empty-state i {
             font-size: 38px;
-            color: #B89555;
+            color: var(--gold-dark);
             display: block;
             margin-bottom: 12px;
         }
 
         .empty-state strong {
-            color: #4A001F;
+            color: var(--burgundy);
             display: block;
             margin-bottom: 5px;
         }
 
         /* MODAL */
+
         .modal-content {
             border: none;
             border-radius: 15px;
@@ -485,7 +752,7 @@
         }
 
         .modal-title {
-            color: #F7E7CE;
+            color: var(--cream);
             font-family: 'Bodoni Moda', serif;
             font-size: 22px;
             font-weight: 700;
@@ -505,16 +772,16 @@
         }
 
         .modal-label {
-            color: #4A001F;
+            color: var(--burgundy);
             font-size: 11px;
             font-weight: 800;
             margin-bottom: 7px;
         }
 
         .btn-save {
-            background: #4A001F;
-            color: #FFFFFF;
-            border: 1px solid #4A001F;
+            background: var(--burgundy);
+            color: var(--white);
+            border: 1px solid var(--burgundy);
             border-radius: 8px;
             padding: 10px 20px;
             font-size: 12px;
@@ -522,13 +789,13 @@
         }
 
         .btn-save:hover {
-            background: #800020;
-            color: #FFFFFF;
+            background: var(--burgundy-light);
+            color: var(--white);
         }
 
         .btn-cancel {
-            background: #F7E7CE;
-            color: #4A001F;
+            background: var(--cream);
+            color: var(--burgundy);
             border: 1px solid #E8D7B8;
             border-radius: 8px;
             padding: 10px 20px;
@@ -537,6 +804,7 @@
         }
 
         /* FOOTER */
+
         .dashboard-footer {
             text-align: center;
             padding: 25px 0 5px;
@@ -544,45 +812,109 @@
             font-size: 11px;
         }
 
-        /* RESPONSIVE */
-        @media (max-width: 991px) {
-            .sidebar {
-                width: 220px;
-            }
+        /* TABLET AND MOBILE */
 
+        @media (max-width: 1100px) {
             .main-content {
-                margin-left: 220px;
-                padding: 20px;
+                padding: 28px 25px 40px !important;
             }
         }
 
-        @media (max-width: 767px) {
+        @media (max-width: 900px) {
+
             .sidebar {
-                display: none;
+                transform: translateX(-100%) !important;
+                visibility: hidden;
+            }
+
+            .sidebar.open {
+                transform: translateX(0) !important;
+                visibility: visible;
+            }
+
+            .sidebar-overlay.show {
+                display: block !important;
+                position: fixed !important;
+                inset: 0;
+                background: rgba(25, 0, 12, .45);
+                z-index: 999 !important;
             }
 
             .main-content {
-                margin-left: 0;
-                padding: 18px;
+                margin-left: 0 !important;
+                padding: 22px 20px 35px !important;
+                width: 100% !important;
             }
 
-            .topbar {
-                gap: 15px;
-                flex-wrap: wrap;
+            .mobile-toggle {
+                display: flex !important;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .main-content {
+                padding: 18px 15px 30px !important;
             }
 
-            .admin-top-name {
-                font-size: 14px;
+            .main-content .topbar {
+                margin-bottom: 22px !important;
+                flex-wrap: nowrap !important;
             }
 
-            .admin-top-logo {
-                width: 42px;
-                height: 42px;
-                font-size: 25px;
+            .main-content .topbar-left {
+                gap: 10px !important;
+                flex: 1 1 auto !important;
+            }
+
+            .main-content .page-heading small {
+                font-size: 9px;
+            }
+
+            .main-content .page-heading h2 {
+                font-size: 19px;
+            }
+
+            .main-content .topbar-right {
+                gap: 9px !important;
+            }
+
+            .notification-btn {
+                width: 38px;
+                height: 38px;
+                min-width: 38px;
+            }
+
+            .chip-avatar {
+                width: 38px;
+                height: 38px;
+                min-width: 38px;
+            }
+
+            .profile-chip-info {
+                display: none !important;
             }
 
             .welcome-banner {
                 padding: 25px 22px;
+                margin-bottom: 20px;
+            }
+
+            .welcome-content h2 {
+                font-size: 24px;
+            }
+
+            .welcome-content p {
+                font-size: 11px;
+                line-height: 1.8;
+            }
+
+            .dashboard-stat {
+                padding: 16px;
+            }
+
+            .dashboard-stat h3 {
+                font-size: 23px;
             }
 
             .doctor-placeholder {
@@ -601,6 +933,92 @@
             .doctor-detail {
                 font-size: 11px;
             }
+
+            .filter-panel {
+                padding: 14px;
+            }
+        }
+
+        @media (max-width: 380px) {
+
+            .main-content .topbar {
+                gap: 8px !important;
+            }
+
+            .main-content .topbar-left {
+                gap: 7px !important;
+            }
+
+            .mobile-toggle {
+                width: 36px;
+                height: 36px;
+                min-width: 36px;
+            }
+
+            .main-content .page-heading h2 {
+                font-size: 17px;
+            }
+
+            .main-content .topbar-right {
+                gap: 7px !important;
+            }
+
+            .notification-btn,
+            .chip-avatar {
+                width: 35px;
+                height: 35px;
+                min-width: 35px;
+            }
+        }
+
+        /* MOBILE SIDEBAR HEIGHT FIX */
+
+        @media (max-width: 900px) {
+
+            .sidebar {
+                height: 100dvh !important;
+                max-height: 100dvh !important;
+                overflow-y: auto !important;
+                overflow-x: hidden !important;
+                padding-top: 0 !important;
+                padding-bottom: 12px !important;
+                scrollbar-width: thin;
+                scrollbar-color: rgba(214, 183, 122, .5) transparent;
+            }
+
+            .sidebar-brand {
+                padding: 18px 12px !important;
+                margin-bottom: 15px !important;
+            }
+
+            .sidebar-nav {
+                gap: 3px !important;
+            }
+
+            .sidebar-nav a {
+                padding: 9px 12px !important;
+                font-size: 12px !important;
+            }
+
+            .sidebar-nav a.active {
+                padding-left: 9px !important;
+            }
+
+            .sidebar-bottom {
+                margin-top: 15px !important;
+                padding-top: 10px !important;
+                flex-shrink: 0 !important;
+            }
+
+            .sidebar-profile {
+                padding: 10px 8px !important;
+                margin-bottom: 6px !important;
+            }
+
+            .logout-link {
+                padding: 10px 12px !important;
+                margin-bottom: 5px !important;
+            }
         }
     </style>
 </head>
@@ -608,7 +1026,7 @@
 <body data-requires-auth="admin">
 
     <!-- SIDEBAR -->
-    <aside class="sidebar">
+    <aside class="sidebar" id="sidebar">
 
         <div class="sidebar-brand">
             <div class="brand-logo-light">
@@ -618,120 +1036,131 @@
             <div class="brand-clinic">C L I N I C</div>
         </div>
 
-        <!-- NAVIGATION -->
-        <nav>
+        <div class="nav-label">ADMIN PORTAL</div>
+
+        <nav class="sidebar-nav">
 
             <a href="admin-dashboard.html">
                 <i class="bi bi-grid-1x2-fill"></i>
-                Dashboard
+                <span>Dashboard</span>
             </a>
 
             <a href="appointments.html">
                 <i class="bi bi-calendar-check"></i>
-                Appointments
+                <span>Appointments</span>
             </a>
 
             <a href="patients.html">
                 <i class="bi bi-people"></i>
-                Patients
+                <span>Patients</span>
             </a>
 
             <a href="doctors.html" class="active">
                 <i class="bi bi-person-badge"></i>
-                Doctors
+                <span>Doctors</span>
             </a>
 
             <a href="doctor-schedule.html">
                 <i class="bi bi-calendar-week"></i>
-                Doctor Schedule
+                <span>Doctor Schedule</span>
             </a>
 
             <a href="clinic-services.html">
                 <i class="bi bi-heart-pulse"></i>
-                Clinic Services
+                <span>Clinic Services</span>
             </a>
 
             <a href="appointment-history.html">
                 <i class="bi bi-clock-history"></i>
-                Appointment History
+                <span>Appointment History</span>
             </a>
 
             <a href="reports.html">
                 <i class="bi bi-bar-chart-line"></i>
-                Reports
+                <span>Reports</span>
             </a>
 
             <a href="profile.html">
                 <i class="bi bi-person-circle"></i>
-                My Profile
+                <span>My Profile</span>
             </a>
 
             <a href="help-support.html">
-                <i class="bi bi-question-circle"></i>
-                Help & Support
+                <i class="bi bi-headset"></i>
+                <span>Help &amp; Support</span>
             </a>
 
         </nav>
 
-        <!-- SIDEBAR ADMIN PROFILE -->
-        <div class="sidebar-footer mt-4">
+        <div class="sidebar-bottom">
 
-            <div class="d-flex align-items-center gap-2 mb-3">
+            <div class="sidebar-profile">
+                <div class="sidebar-profile-avatar">H</div>
 
-                <div class="admin-top-logo"
-                     style="width:40px;height:40px;font-size:24px;">
-                    H
+                <div class="sidebar-profile-info">
+                    <strong>Healora Administrator</strong>
+                    <span>ADMIN</span>
                 </div>
-
-                <div>
-                    <div class="admin-top-name"
-                         style="color:#F7E7CE;font-size:14px;">
-                        Healora Administrator
-                    </div>
-
-                    <div class="admin-top-role">ADMIN</div>
-                </div>
-
             </div>
 
-            <a href="#" data-logout>
+            <a href="#" class="logout-link" data-logout>
                 <i class="bi bi-box-arrow-left"></i>
-                Logout
+                <span>Logout</span>
             </a>
 
         </div>
 
     </aside>
 
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
     <!-- MAIN CONTENT -->
     <main class="main-content">
 
         <!-- TOPBAR -->
-        <div class="topbar">
+        <header class="topbar">
 
-            <div>
-                <h1 class="page-heading mb-1">Doctors Management</h1>
+            <div class="topbar-left">
 
-                <p class="text-muted small mb-0">
-                    Manage and organise your clinic's medical professionals.
-                </p>
-            </div>
+                <button
+                    class="mobile-toggle"
+                    id="mobileToggle"
+                    type="button"
+                    aria-label="Open menu"
+                    aria-expanded="false">
 
-            <div class="admin-profile">
+                    <i class="bi bi-list"></i>
 
-                <div class="text-end">
-                    <div class="admin-top-name">
-                        Healora Administrator
-                    </div>
+                </button>
 
-                    <div class="admin-top-role">ADMIN</div>
+                <div class="page-heading">
+                    <small>ADMIN PORTAL</small>
+                    <h2>Doctors Management</h2>
                 </div>
 
-                <div class="admin-top-logo">H</div>
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="notification-btn" aria-label="Notifications">
+                    <i class="bi bi-bell"></i>
+                    <span class="notification-dot"></span>
+                </div>
+
+                <div class="profile-chip">
+
+                    <div class="profile-chip-info">
+                        <strong>Healora Administrator</strong>
+                        <span>ADMIN</span>
+                    </div>
+
+                    <div class="chip-avatar">H</div>
+
+                </div>
 
             </div>
 
-        </div>
+        </header>
 
         <!-- WELCOME BANNER -->
         <section class="welcome-banner">
@@ -747,7 +1176,7 @@
 
         </section>
 
-        <!-- STATISTICS -->
+        <!-- DOCTOR STATISTICS -->
         <section class="row g-3 mb-4">
 
             <div class="col-6 col-xl-4">
@@ -802,9 +1231,14 @@
                 </p>
             </div>
 
-            <button class="btn-add-doctor" type="button" onclick="openAddDoctorModal()">
+            <button
+                class="btn-add-doctor"
+                type="button"
+                onclick="openAddDoctorModal()">
+
                 <i class="bi bi-plus-lg me-2"></i>
                 Add New Doctor
+
             </button>
 
         </div>
@@ -824,8 +1258,7 @@
                         type="text"
                         class="form-control"
                         id="searchDoctor"
-                        placeholder="Search by name, email or specialty..."
-                    >
+                        placeholder="Search by name, email or specialty...">
 
                 </div>
 
@@ -845,9 +1278,14 @@
 
                 <div class="col-md-3">
 
-                    <button class="btn-reset w-100" type="button" id="resetFilters">
+                    <button
+                        class="btn-reset w-100"
+                        type="button"
+                        id="resetFilters">
+
                         <i class="bi bi-arrow-counterclockwise me-2"></i>
                         Reset Filters
+
                     </button>
 
                 </div>
@@ -887,10 +1325,11 @@
                         Add New Doctor
                     </h5>
 
-                    <button type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close">
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close">
                     </button>
 
                 </div>
@@ -906,11 +1345,12 @@
                                 Doctor's Full Name
                             </label>
 
-                            <input type="text"
-                                   class="form-control"
-                                   id="doctorName"
-                                   placeholder="Enter doctor's name"
-                                   required>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="doctorName"
+                                placeholder="Enter doctor's name"
+                                required>
                         </div>
 
                         <div class="mb-3">
@@ -918,11 +1358,12 @@
                                 Specialty
                             </label>
 
-                            <input type="text"
-                                   class="form-control"
-                                   id="doctorSpecialty"
-                                   placeholder="e.g. General Practitioner"
-                                   required>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="doctorSpecialty"
+                                placeholder="e.g. General Practitioner"
+                                required>
                         </div>
 
                         <div class="mb-3">
@@ -930,11 +1371,12 @@
                                 Email Address
                             </label>
 
-                            <input type="email"
-                                   class="form-control"
-                                   id="doctorEmail"
-                                   placeholder="doctor@example.com"
-                                   required>
+                            <input
+                                type="email"
+                                class="form-control"
+                                id="doctorEmail"
+                                placeholder="doctor@example.com"
+                                required>
                         </div>
 
                         <div class="mb-3">
@@ -942,11 +1384,12 @@
                                 Phone Number
                             </label>
 
-                            <input type="tel"
-                                   class="form-control"
-                                   id="doctorPhone"
-                                   placeholder="Enter phone number"
-                                   required>
+                            <input
+                                type="tel"
+                                class="form-control"
+                                id="doctorPhone"
+                                placeholder="Enter phone number"
+                                required>
                         </div>
 
                         <div class="mb-3">
@@ -954,10 +1397,11 @@
                                 Doctor Image URL
                             </label>
 
-                            <input type="url"
-                                   class="form-control"
-                                   id="doctorImage"
-                                   placeholder="https://example.com/doctor.jpg">
+                            <input
+                                type="url"
+                                class="form-control"
+                                id="doctorImage"
+                                placeholder="https://example.com/doctor.jpg">
 
                             <small class="text-muted" style="font-size:10px;">
                                 Optional. Image URL can be saved for future use.
@@ -980,10 +1424,13 @@
 
                     <div class="modal-footer">
 
-                        <button type="button"
-                                class="btn-cancel"
-                                data-bs-dismiss="modal">
+                        <button
+                            type="button"
+                            class="btn-cancel"
+                            data-bs-dismiss="modal">
+
                             Cancel
+
                         </button>
 
                         <button type="submit" class="btn-save">
@@ -1008,13 +1455,21 @@
     <script src="../js/data.js"></script>
     <script src="../js/auth.js"></script>
 
+    <!-- DOCTOR MANAGEMENT -->
     <script>
         let doctorModal;
         let allDoctors = [];
 
         document.addEventListener('DOMContentLoaded', function () {
 
-            doctorModal = new bootstrap.Modal(
+            const storage = window.HealoraStorage;
+
+            if (!storage) {
+                console.error('HealoraStorage is not available.');
+                return;
+            }
+
+            doctorModal = bootstrap.Modal.getOrCreateInstance(
                 document.getElementById('doctorModal')
             );
 
@@ -1044,10 +1499,23 @@
         /* LOAD DOCTORS */
         function loadDoctors() {
 
-            allDoctors = HealoraStorage.getDoctors() || [];
+            try {
 
-            updateStatistics();
-            renderDoctors();
+                allDoctors = window.HealoraStorage.getDoctors() || [];
+
+                updateStatistics();
+                renderDoctors();
+
+            } catch (error) {
+
+                console.error('Error loading doctors:', error);
+
+                allDoctors = [];
+
+                updateStatistics();
+                renderDoctors();
+
+            }
 
         }
 
@@ -1125,7 +1593,6 @@
                     ? 'Inactive'
                     : 'Active';
 
-                /* ALL DOCTORS USE INITIALS INSTEAD OF PHOTOS */
                 const initials = getInitials(doctor.name || '');
 
                 const imageContent = `
@@ -1265,6 +1732,13 @@
 
             event.preventDefault();
 
+            const storage = window.HealoraStorage;
+
+            if (!storage) {
+                alert('HealoraStorage is not available.');
+                return;
+            }
+
             const id = document.getElementById('doctorId').value;
 
             const doctorData = {
@@ -1299,13 +1773,13 @@
 
                 if (id) {
 
-                    HealoraStorage.updateDoctor(id, doctorData);
+                    storage.updateDoctor(id, doctorData);
 
                     alert('Doctor information updated successfully.');
 
                 } else {
 
-                    HealoraStorage.addDoctor(doctorData);
+                    storage.addDoctor(doctorData);
 
                     alert('New doctor added successfully.');
 
@@ -1328,6 +1802,8 @@
         /* DELETE DOCTOR */
         function deleteDoctor(id) {
 
+            const storage = window.HealoraStorage;
+
             const doctor = allDoctors.find(
                 item => String(item.id) === String(id)
             );
@@ -1345,7 +1821,7 @@
 
             try {
 
-                HealoraStorage.deleteDoctor(id);
+                storage.deleteDoctor(id);
 
                 alert('Doctor deleted successfully.');
 
@@ -1395,7 +1871,7 @@
         /* ESCAPE HTML */
         function escapeHTML(value) {
 
-            return String(value).replace(/[&<>"']/g, function (character) {
+            return String(value ?? '').replace(/[&<>"']/g, function (character) {
 
                 const entities = {
                     '&': '&amp;',
@@ -1414,7 +1890,7 @@
         /* ESCAPE JAVASCRIPT */
         function escapeJS(value) {
 
-            return String(value)
+            return String(value ?? '')
                 .replace(/\\/g, '\\\\')
                 .replace(/'/g, "\\'")
                 .replace(/"/g, '\\"')
@@ -1423,6 +1899,84 @@
 
         }
 
+    </script>
+
+    <!-- MOBILE SIDEBAR -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const sidebar = document.getElementById("sidebar");
+            const mobileToggle = document.getElementById("mobileToggle");
+            const sidebarOverlay = document.getElementById("sidebarOverlay");
+            const toggleIcon = mobileToggle.querySelector("i");
+
+            function openSidebar() {
+
+                sidebar.classList.add("open");
+                sidebarOverlay.classList.add("show");
+
+                document.body.style.overflow = "hidden";
+
+                mobileToggle.setAttribute("aria-expanded", "true");
+                mobileToggle.setAttribute("aria-label", "Close menu");
+
+                toggleIcon.className = "bi bi-x-lg";
+
+            }
+
+            function closeSidebar() {
+
+                sidebar.classList.remove("open");
+                sidebarOverlay.classList.remove("show");
+
+                document.body.style.overflow = "";
+
+                mobileToggle.setAttribute("aria-expanded", "false");
+                mobileToggle.setAttribute("aria-label", "Open menu");
+
+                toggleIcon.className = "bi bi-list";
+
+            }
+
+            mobileToggle.addEventListener("click", function () {
+
+                if (sidebar.classList.contains("open")) {
+                    closeSidebar();
+                } else {
+                    openSidebar();
+                }
+
+            });
+
+            sidebarOverlay.addEventListener("click", function () {
+                closeSidebar();
+            });
+
+            sidebar.querySelectorAll("a").forEach(function (link) {
+
+                link.addEventListener("click", function () {
+                    closeSidebar();
+                });
+
+            });
+
+            document.addEventListener("keydown", function (event) {
+
+                if (event.key === "Escape") {
+                    closeSidebar();
+                }
+
+            });
+
+            window.addEventListener("resize", function () {
+
+                if (window.innerWidth > 900) {
+                    closeSidebar();
+                }
+
+            });
+
+        });
     </script>
 
 </body>
