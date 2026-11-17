@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reports | Healora Clinic</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600;6..96,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600;6..96,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -44,30 +44,31 @@
         /* SIDEBAR */
 
         .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            width: 260px;
-            height: 100vh;
-            padding: 0 19px 22px;
-            background: linear-gradient(180deg, #350017 0%, #4A001F 100%);
+            width: 260px !important;
+            height: 100vh !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            z-index: 1000 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            padding: 0 19px 22px !important;
+            background: linear-gradient(180deg, #350017 0%, #4A001F 100%) !important;
+            transform: translateX(0) !important;
+            transition: transform .3s ease !important;
             overflow-y: auto;
-            transition: transform 0.3s ease, visibility 0.3s ease;
         }
 
         .sidebar-brand {
             width: 100%;
-            padding: 25px 12px 23px;
-            margin-bottom: 22px;
-            border-bottom: 1px solid rgba(247, 231, 206, 0.15);
+            padding: 28px 15px;
+            border-bottom: 1px solid rgba(247, 231, 206, .15);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
+            margin-bottom: 27px;
         }
 
         .brand-logo-light {
@@ -83,19 +84,19 @@
         }
 
         .brand-heal {
-            color: var(--gold);
+            color: var(--gold) !important;
             font-weight: 800;
         }
 
         .brand-ora {
-            color: var(--cream);
+            color: var(--cream) !important;
             font-family: 'Bodoni Moda', serif;
             font-style: italic;
             font-weight: 700;
         }
 
         .brand-clinic {
-            color: var(--cream);
+            color: var(--cream) !important;
             font-size: 10px;
             font-weight: 600;
             letter-spacing: 4px;
@@ -105,116 +106,128 @@
         }
 
         .nav-label {
-            padding: 0 12px;
-            margin-bottom: 10px;
-            color: rgba(247, 231, 206, 0.55);
-            font-size: 9px;
+            color: rgba(247, 231, 206, .55);
+            font-size: 10px;
             font-weight: 800;
-            letter-spacing: 2px;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            padding: 0 13px;
+            margin-bottom: 13px;
         }
 
         .sidebar-nav {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 6px;
         }
 
         .sidebar-nav a {
             display: flex;
             align-items: center;
             gap: 13px;
-            padding: 12px 13px;
-            border-radius: 9px;
-            color: var(--cream);
+            padding: 12px 14px;
+            margin: 0 !important;
+            color: rgba(247, 231, 206, .82) !important;
             text-decoration: none;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 600;
-            transition: 0.3s;
+            border-radius: 8px;
+            transition: .2s ease;
         }
 
         .sidebar-nav a i {
             width: 19px;
+            font-size: 17px;
             color: var(--gold);
-            font-size: 16px;
-            text-align: center;
         }
 
-        .sidebar-nav a:hover,
+        .sidebar-nav a:hover {
+            background: rgba(255, 255, 255, .08);
+            color: var(--cream) !important;
+        }
+
         .sidebar-nav a.active {
             background: var(--burgundy-light);
-            color: var(--white);
-        }
-
-        .sidebar-nav a.active {
+            color: var(--cream) !important;
             border-left: 3px solid var(--gold);
-            padding-left: 10px;
+            padding-left: 11px;
         }
 
         .sidebar-bottom {
             margin-top: auto;
+            border-top: 1px solid rgba(247, 231, 206, .15);
             padding-top: 18px;
-            border-top: 1px solid rgba(247, 231, 206, 0.15);
         }
 
         .sidebar-profile {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 12px 8px;
-            margin-bottom: 10px;
+            gap: 12px;
+            padding: 15px 10px;
+            margin-bottom: 12px;
+            border-top: 1px solid rgba(247, 231, 206, .15);
+            border-bottom: 1px solid rgba(247, 231, 206, .15);
+            min-width: 0;
         }
 
         .sidebar-profile-avatar {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: var(--wine);
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 39px;
-            height: 39px;
-            flex-shrink: 0;
-            border: 2px solid var(--gold);
-            border-radius: 50%;
-            background: linear-gradient(145deg, var(--cream), var(--gold));
-            color: var(--burgundy);
             font-family: 'Bodoni Moda', serif;
-            font-size: 23px;
+            font-size: 22px;
             font-weight: 700;
+        }
+
+        .sidebar-profile-info {
+            min-width: 0;
+            flex: 1;
         }
 
         .sidebar-profile-info strong {
             display: block;
             color: var(--cream);
-            font-size: 11px;
-            font-weight: 700;
+            font-size: 13px;
+            font-weight: 800;
+            line-height: 1.5;
         }
 
         .sidebar-profile-info span {
+            display: block;
             color: var(--gold);
-            font-size: 9px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            margin-top: 3px;
         }
 
         .logout-link {
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 11px 12px;
-            border-radius: 8px;
-            color: var(--cream);
+            padding: 12px 13px;
+            margin: 0 !important;
+            color: rgba(247, 231, 206, .82) !important;
             text-decoration: none;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 600;
-            transition: 0.3s;
+            border-radius: 8px;
         }
 
         .logout-link i {
             color: var(--gold);
-            font-size: 16px;
+            font-size: 17px;
         }
 
         .logout-link:hover {
-            background: rgba(255,255,255,0.1);
-            color: var(--white);
+            background: rgba(255, 255, 255, .08);
+            color: var(--cream) !important;
         }
 
         .sidebar-overlay {
@@ -224,203 +237,239 @@
         /* MAIN CONTENT */
 
         .main-content {
-            display: block;
-            width: auto;
+            margin-left: 260px !important;
+            padding: 32px 40px 45px !important;
             min-height: 100vh;
-            margin-left: 260px;
-            padding: 32px 40px 45px;
-            text-align: left;
-        }
-
-        /* TOPBAR - SAME ALIGNMENT AS ADMIN DASHBOARD */
-
-        .main-content > .topbar {
-            position: relative;
-            display: flex !important;
-            flex-direction: row !important;
-            justify-content: space-between !important;
-            align-items: center !important;
-            width: 100%;
-            min-height: 45px;
-            margin: 0 0 28px 0 !important;
-            padding: 0 !important;
-            text-align: left !important;
-        }
-
-        .main-content > .topbar .topbar-left {
-            display: flex !important;
-            flex-direction: row !important;
-            justify-content: flex-start !important;
-            align-items: center !important;
-            gap: 15px;
             width: auto;
-            margin: 0 auto 0 0 !important;
-            text-align: left !important;
         }
 
-        .main-content > .topbar .page-heading {
-            display: block;
+        /* HEADER - SAME AS ADMIN DASHBOARD */
+
+        .main-content .topbar {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            text-align: left !important;
+            margin-bottom: 29px !important;
+            padding: 0 !important;
+            gap: 15px !important;
+            width: 100% !important;
+            min-height: 50px;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
+        }
+
+        .main-content .topbar::before,
+        .main-content .topbar::after {
+            display: none !important;
+            content: none !important;
+        }
+
+        .main-content .topbar-left {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            text-align: left !important;
+            gap: 13px !important;
+            flex: 1 1 auto !important;
+            min-width: 0;
+            width: auto !important;
+        }
+
+        .main-content .page-heading {
+            display: block !important;
+            text-align: left !important;
             margin: 0 !important;
-            text-align: left !important;
+            padding: 0 !important;
+            min-width: 0;
+            width: auto !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
         }
 
-        .page-heading small {
-            display: block;
-            margin-bottom: 4px;
+        .main-content .page-heading small {
+            display: block !important;
             color: var(--gold-dark);
-            font-size: 9px;
+            font-size: 10px;
             font-weight: 800;
             letter-spacing: 2px;
-            text-align: left;
+            text-transform: uppercase;
+            margin: 0 0 5px 0 !important;
+            text-align: left !important;
         }
 
-        .page-heading h2 {
-            margin: 0;
-            color: var(--burgundy);
-            font-size: 23px;
+        .main-content .page-heading h2 {
+            display: block !important;
+            color: var(--wine);
+            font-family: 'Manrope', sans-serif;
+            font-size: 25px;
             font-weight: 800;
-            text-align: left;
+            margin: 0 !important;
+            padding: 0 !important;
+            text-align: left !important;
+            line-height: 1.3;
         }
 
-        .main-content > .topbar .topbar-right {
+        .main-content .topbar-right {
             display: flex !important;
             flex-direction: row !important;
-            justify-content: flex-end !important;
             align-items: center !important;
-            gap: 18px;
-            width: auto;
-            margin: 0 0 0 auto !important;
-            text-align: right !important;
+            justify-content: flex-end !important;
+            gap: 19px !important;
+            flex: 0 0 auto !important;
+            width: auto !important;
+            margin-left: auto !important;
+            padding: 0 !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
         }
 
         .notification-btn {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            flex-shrink: 0;
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
             border: 1px solid var(--border);
             border-radius: 50%;
             background: var(--white);
-            color: var(--burgundy);
+            color: var(--wine);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 17px;
+            position: relative;
+            flex-shrink: 0;
         }
 
         .notification-dot {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            width: 7px;
-            height: 7px;
-            border: 1px solid var(--white);
+            width: 8px;
+            height: 8px;
+            background: #B65D56;
             border-radius: 50%;
-            background: var(--burgundy-light);
+            position: absolute;
+            top: 7px;
+            right: 7px;
+            border: 1px solid white;
         }
 
         .profile-chip {
             display: flex !important;
             flex-direction: row !important;
             align-items: center !important;
-            justify-content: flex-end !important;
-            gap: 11px;
-            width: auto;
+            gap: 10px;
+            min-width: 0;
+            flex-shrink: 0;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            border-radius: 0 !important;
         }
 
         .profile-chip-info {
-            display: block;
+            min-width: 0;
             text-align: right;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
         }
 
         .profile-chip-info strong {
             display: block;
-            color: var(--burgundy);
+            color: var(--wine);
             font-size: 12px;
             font-weight: 800;
+            white-space: nowrap;
         }
 
         .profile-chip-info span {
+            display: block;
             color: var(--gold-dark);
-            font-size: 9px;
-            font-weight: 800;
-            letter-spacing: 2px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-top: 3px;
         }
 
         .chip-avatar {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            border-radius: 50%;
+            background: var(--burgundy);
+            color: var(--gold);
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 42px;
-            height: 42px;
-            flex-shrink: 0;
-            border: 2px solid var(--gold);
-            border-radius: 50%;
-            background: linear-gradient(145deg, var(--cream), var(--gold));
-            color: var(--burgundy);
             font-family: 'Bodoni Moda', serif;
-            font-size: 25px;
+            font-size: 21px;
             font-weight: 700;
+            border: none;
         }
 
         .mobile-toggle {
             display: none;
-            align-items: center;
-            justify-content: center;
             width: 40px;
             height: 40px;
-            flex-shrink: 0;
+            min-width: 40px;
             border: 1px solid var(--border);
-            border-radius: 9px;
             background: var(--white);
-            color: var(--burgundy);
-            font-size: 21px;
+            color: var(--wine);
+            border-radius: 8px;
+            font-size: 20px;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            cursor: pointer;
         }
 
         /* WELCOME BANNER */
 
         .welcome-banner {
-            position: relative;
+            background: linear-gradient(135deg, #350017, #4A001F);
+            border-radius: 18px;
             padding: 35px 38px;
             margin-bottom: 28px;
-            border: 1px solid rgba(214, 183, 122, 0.35);
-            border-radius: 18px;
-            background: linear-gradient(135deg, var(--wine), var(--burgundy));
-            box-shadow: 0 8px 25px rgba(74, 0, 31, 0.12);
+            border: 1px solid rgba(214, 183, 122, .35);
+            box-shadow: 0 8px 25px rgba(74, 0, 31, .12);
         }
 
         .welcome-content h2 {
-            margin-bottom: 10px;
             color: var(--gold);
             font-family: 'Bodoni Moda', serif;
             font-size: 29px;
             font-weight: 700;
+            margin-bottom: 10px;
         }
 
         .welcome-content p {
-            margin-bottom: 0;
             color: var(--cream);
             font-size: 13px;
+            margin-bottom: 0;
+            opacity: .9;
             line-height: 1.8;
-            opacity: 0.9;
         }
 
-        /* CARDS */
+        /* REPORT FILTERS */
 
-        .dashboard-card,
-        .dashboard-stat {
-            height: 100%;
-            padding: 22px;
-            border: 1px solid var(--border);
-            border-radius: 14px;
+        .dashboard-card {
             background: var(--white);
-            box-shadow: 0 5px 18px rgba(74, 0, 31, 0.04);
+            border: 1px solid #E8E2E5;
+            border-radius: 14px;
+            padding: 22px;
+            box-shadow: 0 5px 18px rgba(74, 0, 31, .04);
+            height: 100%;
         }
 
         .dashboard-card h5 {
             color: var(--burgundy);
-            font-size: 15px;
             font-weight: 800;
+            font-size: 15px;
         }
 
         .report-note {
@@ -489,30 +538,39 @@
 
         /* STATISTICS */
 
+        .dashboard-stat {
+            background: var(--white);
+            border: 1px solid #E8E2E5;
+            border-radius: 14px;
+            padding: 22px;
+            height: 100%;
+            box-shadow: 0 5px 18px rgba(74, 0, 31, .04);
+        }
+
         .dashboard-stat .stat-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
             width: 45px;
             height: 45px;
-            margin-bottom: 15px;
             border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             background: var(--cream);
             color: var(--burgundy-light);
             font-size: 20px;
+            margin-bottom: 15px;
         }
 
         .dashboard-stat h3 {
-            margin-bottom: 4px;
             color: var(--burgundy);
             font-size: 27px;
             font-weight: 800;
+            margin-bottom: 4px;
         }
 
         .dashboard-stat p {
-            margin-bottom: 0;
             color: var(--muted);
             font-size: 12px;
+            margin: 0;
         }
 
         /* CHARTS */
@@ -531,28 +589,32 @@
         }
 
         .table thead th {
-            padding: 13px 12px;
-            border: none;
-            background: var(--burgundy);
-            color: var(--gold);
-            font-size: 10px;
-            letter-spacing: 0.5px;
+            background: var(--burgundy) !important;
+            color: var(--gold) !important;
+            font-size: 11px;
+            font-weight: 800;
             text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 16px 13px;
+            border-bottom: 2px solid var(--gold-dark);
             white-space: nowrap;
         }
 
         .table tbody td {
-            padding: 13px 12px;
+            background: var(--white);
             color: var(--muted);
+            padding: 15px 13px;
+            font-size: 12px;
             vertical-align: middle;
         }
 
-        .table tbody tr:nth-child(even) {
+        .table tbody tr:nth-child(even) td {
             background: var(--ivory);
         }
 
-        .table tbody tr:hover {
+        .table tbody tr:hover td {
             background: var(--cream);
+            transition: .2s ease;
         }
 
         /* STATUS BADGES */
@@ -589,13 +651,13 @@
         /* FOOTER */
 
         .dashboard-footer {
+            text-align: center;
             padding: 25px 0 5px;
             color: #958A90;
             font-size: 11px;
-            text-align: center;
         }
 
-        /* RESPONSIVE */
+        /* TABLET AND MOBILE */
 
         @media (max-width: 1100px) {
             .main-content {
@@ -604,9 +666,36 @@
         }
 
         @media (max-width: 900px) {
+
             .sidebar {
+                transform: translateX(-100%) !important;
                 visibility: hidden;
-                transform: translateX(-100%);
+            }
+
+            .sidebar.open {
+                transform: translateX(0) !important;
+                visibility: visible;
+            }
+
+            .sidebar-overlay.show {
+                display: block !important;
+                position: fixed !important;
+                inset: 0;
+                background: rgba(25, 0, 12, .45);
+                z-index: 999 !important;
+            }
+
+            .main-content {
+                margin-left: 0 !important;
+                padding: 22px 20px 35px !important;
+                width: 100% !important;
+            }
+
+            .mobile-toggle {
+                display: flex !important;
+            }
+
+            .sidebar {
                 height: 100dvh !important;
                 max-height: 100dvh !important;
                 overflow-y: auto !important;
@@ -614,30 +703,7 @@
                 padding-top: 0 !important;
                 padding-bottom: 12px !important;
                 scrollbar-width: thin;
-                scrollbar-color: rgba(214,183,122,.5) transparent;
-            }
-
-            .sidebar.open {
-                visibility: visible;
-                transform: translateX(0);
-            }
-
-            .sidebar-overlay.show {
-                position: fixed;
-                inset: 0;
-                z-index: 999;
-                display: block;
-                background: rgba(25, 0, 12, 0.45);
-            }
-
-            .main-content {
-                width: 100%;
-                margin-left: 0;
-                padding: 22px 20px 35px !important;
-            }
-
-            .mobile-toggle {
-                display: flex;
+                scrollbar-color: rgba(214, 183, 122, .5) transparent;
             }
 
             .sidebar-brand {
@@ -676,39 +742,47 @@
         }
 
         @media (max-width: 600px) {
+
             .main-content {
                 padding: 18px 15px 30px !important;
             }
 
-            .main-content > .topbar {
-                flex-wrap: nowrap !important;
+            .main-content .topbar {
                 margin-bottom: 22px !important;
+                flex-wrap: nowrap !important;
             }
 
-            .main-content > .topbar .topbar-left {
-                gap: 10px;
+            .main-content .topbar-left {
+                gap: 10px !important;
+                flex: 1 1 auto !important;
             }
 
-            .page-heading small {
+            .main-content .page-heading small {
                 font-size: 9px;
             }
 
-            .page-heading h2 {
+            .main-content .page-heading h2 {
                 font-size: 19px;
             }
 
-            .main-content > .topbar .topbar-right {
-                gap: 9px;
+            .main-content .topbar-right {
+                gap: 9px !important;
             }
 
-            .notification-btn,
+            .notification-btn {
+                width: 38px;
+                height: 38px;
+                min-width: 38px;
+            }
+
             .chip-avatar {
                 width: 38px;
                 height: 38px;
+                min-width: 38px;
             }
 
             .profile-chip-info {
-                display: none;
+                display: none !important;
             }
 
             .welcome-banner {
@@ -764,37 +838,41 @@
         }
 
         @media (max-width: 380px) {
-            .main-content > .topbar {
-                gap: 8px;
+
+            .main-content .topbar {
+                gap: 8px !important;
             }
 
-            .main-content > .topbar .topbar-left {
-                gap: 7px;
+            .main-content .topbar-left {
+                gap: 7px !important;
             }
 
             .mobile-toggle {
                 width: 36px;
                 height: 36px;
+                min-width: 36px;
             }
 
-            .page-heading h2 {
+            .main-content .page-heading h2 {
                 font-size: 17px;
             }
 
-            .main-content > .topbar .topbar-right {
-                gap: 7px;
+            .main-content .topbar-right {
+                gap: 7px !important;
             }
 
             .notification-btn,
             .chip-avatar {
                 width: 35px;
                 height: 35px;
+                min-width: 35px;
             }
         }
 
         /* PRINT */
 
         @media print {
+
             .sidebar,
             .topbar,
             .welcome-banner,
@@ -806,8 +884,8 @@
             }
 
             .main-content {
-                width: 100%;
-                margin: 0;
+                width: 100% !important;
+                margin: 0 !important;
                 padding: 0 !important;
             }
 
@@ -828,6 +906,7 @@
                 -webkit-print-color-adjust: exact;
             }
         }
+
     </style>
 </head>
 
@@ -929,12 +1008,15 @@
 
             <div class="topbar-left">
 
-                <button class="mobile-toggle"
-                        id="mobileToggle"
-                        type="button"
-                        aria-label="Open menu"
-                        aria-expanded="false">
+                <button
+                    class="mobile-toggle"
+                    id="mobileToggle"
+                    type="button"
+                    aria-label="Open menu"
+                    aria-expanded="false">
+
                     <i class="bi bi-list"></i>
+
                 </button>
 
                 <div class="page-heading">
@@ -952,12 +1034,14 @@
                 </div>
 
                 <div class="profile-chip">
+
                     <div class="profile-chip-info">
                         <strong>Healora Administrator</strong>
                         <span>ADMIN</span>
                     </div>
 
                     <div class="chip-avatar">H</div>
+
                 </div>
 
             </div>
@@ -966,19 +1050,23 @@
 
         <!-- WELCOME BANNER -->
         <section class="welcome-banner">
+
             <div class="welcome-content">
                 <h2>Clinic Reports &amp; Insights</h2>
+
                 <p>
                     Review appointment activities and monitor the overall performance
                     of Healora Clinic.
                 </p>
             </div>
+
         </section>
 
         <!-- REPORT FILTERS -->
         <section class="dashboard-card filter-section mb-4">
 
             <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3">
+
                 <h5 class="mb-0">
                     <i class="bi bi-funnel me-2"></i>
                     Report Filters
@@ -987,6 +1075,7 @@
                 <span class="report-note">
                     Select a date range to filter your report.
                 </span>
+
             </div>
 
             <div class="row g-3 align-items-end">
@@ -1002,69 +1091,85 @@
                 </div>
 
                 <div class="col-md-4 d-flex gap-2">
-                    <button class="btn-gold flex-fill" id="applyFilter" type="button">
+
+                    <button class="btn-gold flex-fill" id="applyFilter">
                         <i class="bi bi-search me-1"></i>
                         Apply Filter
                     </button>
 
-                    <button class="btn-outline-burgundy flex-fill" id="resetFilter" type="button">
+                    <button class="btn-outline-burgundy flex-fill" id="resetFilter">
                         Reset
                     </button>
+
                 </div>
 
             </div>
+
         </section>
 
         <!-- STATISTICS -->
-        <div class="row g-3 mb-4">
+        <section class="row g-3 mb-4">
 
-            <div class="col-6 col-xl-3 col-md-6">
+            <div class="col-6 col-xl-3">
                 <div class="dashboard-stat">
+
                     <div class="stat-icon">
                         <i class="bi bi-calendar-check"></i>
                     </div>
+
                     <h3 id="totalAppointments">0</h3>
                     <p>Total Appointments</p>
+
                 </div>
             </div>
 
-            <div class="col-6 col-xl-3 col-md-6">
+            <div class="col-6 col-xl-3">
                 <div class="dashboard-stat">
+
                     <div class="stat-icon">
                         <i class="bi bi-check-circle"></i>
                     </div>
+
                     <h3 id="completedAppointments">0</h3>
                     <p>Completed Appointments</p>
+
                 </div>
             </div>
 
-            <div class="col-6 col-xl-3 col-md-6">
+            <div class="col-6 col-xl-3">
                 <div class="dashboard-stat">
+
                     <div class="stat-icon">
                         <i class="bi bi-hourglass-split"></i>
                     </div>
+
                     <h3 id="pendingAppointments">0</h3>
                     <p>Pending Appointments</p>
+
                 </div>
             </div>
 
-            <div class="col-6 col-xl-3 col-md-6">
+            <div class="col-6 col-xl-3">
                 <div class="dashboard-stat">
+
                     <div class="stat-icon">
                         <i class="bi bi-x-circle"></i>
                     </div>
+
                     <h3 id="cancelledAppointments">0</h3>
                     <p>Cancelled Appointments</p>
+
                 </div>
             </div>
 
-        </div>
+        </section>
 
         <!-- CHARTS -->
-        <div class="row g-4 mb-4">
+        <section class="row g-4 mb-4">
 
             <div class="col-lg-7">
                 <div class="dashboard-card">
+
                     <h5>
                         <i class="bi bi-graph-up me-2"></i>
                         Monthly Appointment Overview
@@ -1073,11 +1178,13 @@
                     <div class="chart-container">
                         <canvas id="monthlyChart"></canvas>
                     </div>
+
                 </div>
             </div>
 
             <div class="col-lg-5">
                 <div class="dashboard-card">
+
                     <h5>
                         <i class="bi bi-pie-chart me-2"></i>
                         Appointment Status
@@ -1086,10 +1193,11 @@
                     <div class="chart-container">
                         <canvas id="statusChart"></canvas>
                     </div>
+
                 </div>
             </div>
 
-        </div>
+        </section>
 
         <!-- APPOINTMENT REPORT TABLE -->
         <section class="dashboard-card mb-4">
@@ -1098,26 +1206,30 @@
 
                 <div>
                     <h5 class="mb-1">Appointment Report</h5>
+
                     <p class="report-note mb-0">
                         A summary of appointments within the selected date range.
                     </p>
                 </div>
 
                 <div class="d-flex gap-2 no-print report-actions">
-                    <button class="btn-outline-burgundy" id="exportCSV" type="button">
+
+                    <button class="btn-outline-burgundy" id="exportCSV">
                         <i class="bi bi-file-earmark-spreadsheet me-1"></i>
                         Export CSV
                     </button>
 
-                    <button class="btn-gold" id="printReport" type="button">
+                    <button class="btn-gold" id="printReport">
                         <i class="bi bi-printer me-1"></i>
                         Print Report
                     </button>
+
                 </div>
 
             </div>
 
             <div class="table-responsive">
+
                 <table class="table align-middle">
 
                     <thead>
@@ -1140,14 +1252,17 @@
                     </tbody>
 
                 </table>
+
             </div>
 
             <div class="d-flex justify-content-between align-items-center mt-3 flex-wrap gap-2">
+
                 <span class="report-note" id="recordCount">
                     0 records found
                 </span>
 
                 <span class="report-note">Healora Clinic Report</span>
+
             </div>
 
         </section>
@@ -1156,12 +1271,14 @@
         <footer class="dashboard-footer">
             © 2026 Healora Clinic. All Rights Reserved.
             <br>
-            <span class="fst-italic">Your Health, Our Priority.</span>
+            <span class="fst-italic">
+                Your Health, Our Priority.
+            </span>
         </footer>
 
     </main>
 
-    <!-- SCRIPTS -->
+    <!-- JAVASCRIPT -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/storage.js"></script>
     <script src="../js/data.js"></script>
@@ -1414,6 +1531,7 @@
                     scales: {
                         y: {
                             beginAtZero: true,
+
                             ticks: {
                                 precision: 0
                             }
@@ -1612,9 +1730,25 @@
             updateReport(allAppointments);
         }
 
+        /* BUTTON EVENTS */
+
+        document.getElementById("applyFilter")
+            .addEventListener("click", applyDateFilter);
+
+        document.getElementById("resetFilter")
+            .addEventListener("click", resetDateFilter);
+
+        document.getElementById("exportCSV")
+            .addEventListener("click", exportCSV);
+
+        document.getElementById("printReport")
+            .addEventListener("click", function() {
+                window.print();
+            });
+
         /* MOBILE SIDEBAR */
 
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
 
             initializeReports();
 
@@ -1647,50 +1781,45 @@
                 toggleIcon.className = "bi bi-list";
             }
 
-            mobileToggle.addEventListener("click", function() {
+            mobileToggle.addEventListener("click", function () {
+
                 if (sidebar.classList.contains("open")) {
                     closeSidebar();
                 } else {
                     openSidebar();
                 }
+
             });
 
-            sidebarOverlay.addEventListener("click", closeSidebar);
+            sidebarOverlay.addEventListener("click", function () {
+                closeSidebar();
+            });
 
-            sidebar.querySelectorAll(".sidebar-nav a, .logout-link")
-                .forEach(link => {
-                    link.addEventListener("click", closeSidebar);
+            sidebar.querySelectorAll("a").forEach(function (link) {
+
+                link.addEventListener("click", function () {
+                    closeSidebar();
                 });
 
-            document.addEventListener("keydown", function(event) {
+            });
+
+            document.addEventListener("keydown", function (event) {
+
                 if (event.key === "Escape") {
                     closeSidebar();
                 }
+
             });
 
-            window.addEventListener("resize", function() {
+            window.addEventListener("resize", function () {
+
                 if (window.innerWidth > 900) {
                     closeSidebar();
                 }
+
             });
 
         });
-
-        /* BUTTON EVENTS */
-
-        document.getElementById("applyFilter")
-            .addEventListener("click", applyDateFilter);
-
-        document.getElementById("resetFilter")
-            .addEventListener("click", resetDateFilter);
-
-        document.getElementById("exportCSV")
-            .addEventListener("click", exportCSV);
-
-        document.getElementById("printReport")
-            .addEventListener("click", function() {
-                window.print();
-            });
 
     </script>
 
