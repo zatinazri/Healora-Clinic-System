@@ -35,8 +35,19 @@
 
         /* SIDEBAR */
         .sidebar {
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            width: 260px !important;
+            height: 100vh;
+            min-height: 100vh;
             background: linear-gradient(180deg, var(--burgundy-dark), var(--burgundy));
             z-index: 1050;
+            overflow-y: auto;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
         }
 
         .sidebar-brand {
@@ -48,6 +59,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
+            flex-shrink: 0;
         }
 
         .brand-logo-light {
@@ -88,9 +100,12 @@
 
         .sidebar nav {
             margin-top: 25px;
+            width: 100%;
+            flex: 1;
         }
 
-        .sidebar a {
+        .sidebar nav a,
+        .sidebar-footer a {
             color: var(--champagne);
             text-decoration: none;
             display: flex;
@@ -103,33 +118,72 @@
             transition: 0.3s;
         }
 
-        .sidebar a i {
+        .sidebar nav a i,
+        .sidebar-footer a i {
             color: var(--gold);
             font-size: 17px;
             flex-shrink: 0;
         }
 
-        .sidebar a:hover,
-        .sidebar a.active {
+        .sidebar nav a:hover,
+        .sidebar nav a.active,
+        .sidebar-footer a:hover {
             background: var(--burgundy-light);
             color: #FFFFFF;
         }
 
-        .sidebar a.active {
+        .sidebar nav a.active {
             border-left: 3px solid var(--gold);
         }
 
         .sidebar-footer {
             border-top: 1px solid rgba(247, 231, 206, 0.15);
-            padding: 18px;
+            padding: 18px 8px;
+            margin-top: 20px;
+            flex-shrink: 0;
+        }
+
+        /* ADMIN PROFILE IN SIDEBAR */
+        .admin-top-name {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 14px;
+            font-style: italic;
+            font-weight: 700;
+            color: var(--champagne);
+        }
+
+        .admin-top-role {
+            font-family: 'Manrope', sans-serif;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #B89555;
+            margin-top: 3px;
+        }
+
+        .admin-top-logo {
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            background: linear-gradient(145deg, var(--champagne), var(--gold));
+            color: var(--burgundy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 24px;
+            font-weight: 700;
         }
 
         /* MAIN CONTENT */
         .main-content {
             margin-left: 260px;
-            padding: 30px;
-            min-width: 0;
             width: calc(100% - 260px);
+            min-height: 100vh;
+            padding: 30px;
+            transition: margin-left 0.3s ease, width 0.3s ease;
         }
 
         /* TOPBAR */
@@ -137,8 +191,9 @@
             display: flex;
             justify-content: flex-start;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
             margin-bottom: 30px;
+            min-width: 0;
         }
 
         .topbar-heading {
@@ -152,68 +207,40 @@
             font-size: 25px;
         }
 
-        .topbar-description {
-            color: #958A90;
-            font-size: 13px;
-            margin: 0;
-        }
-
         /* MOBILE MENU BUTTON */
         .mobile-menu-toggle {
             display: none;
-            border: none;
-            background: var(--burgundy);
-            color: var(--gold);
             width: 43px;
             height: 43px;
-            border-radius: 11px;
-            font-size: 24px;
+            flex-shrink: 0;
+            border: 1px solid var(--gold);
+            border-radius: 10px;
+            background: var(--burgundy);
+            color: var(--champagne);
+            font-size: 23px;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            flex-shrink: 0;
         }
 
         .mobile-menu-toggle:hover {
             background: var(--burgundy-light);
         }
 
+        /* SIDEBAR BACKDROP */
         .sidebar-backdrop {
             display: none;
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            background: rgba(20, 0, 10, 0.55);
+            z-index: 1040;
         }
 
-        /* SIDEBAR ADMIN PROFILE */
-        .admin-top-name {
-            font-family: 'Bodoni Moda', serif;
-            font-size: 17px;
-            font-style: italic;
-            font-weight: 700;
-            color: var(--burgundy);
-        }
-
-        .admin-top-role {
-            font-family: 'Manrope', sans-serif;
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: #B89555;
-            margin-top: 3px;
-        }
-
-        .admin-top-logo {
-            width: 48px;
-            height: 48px;
-            flex-shrink: 0;
-            border-radius: 50%;
-            border: 2px solid var(--gold);
-            background: linear-gradient(145deg, var(--champagne), var(--gold));
-            color: var(--burgundy);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Bodoni Moda', serif;
-            font-size: 29px;
-            font-weight: 700;
+        .sidebar-backdrop.show {
+            display: block;
         }
 
         /* WELCOME BANNER */
@@ -237,7 +264,6 @@
         .welcome-content p {
             color: var(--champagne);
             font-size: 13px;
-            line-height: 1.7;
             margin-bottom: 0;
             opacity: 0.9;
         }
@@ -297,9 +323,14 @@
 
         /* CHART CONTAINERS */
         .appointment-chart-container {
+            position: relative;
             width: 100%;
             max-width: 380px;
             margin: auto;
+        }
+
+        .appointment-chart-container canvas {
+            max-width: 100%;
         }
 
         .support-chart-container {
@@ -339,7 +370,29 @@
             font-weight: 700;
         }
 
+        .view-all {
+            color: var(--burgundy-light);
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .view-all:hover {
+            color: var(--burgundy);
+        }
+
         /* TABLE */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .table {
+            min-width: 650px;
+        }
+
         .table thead th {
             background: var(--burgundy) !important;
             color: var(--gold) !important;
@@ -369,296 +422,151 @@
             transition: 0.2s ease;
         }
 
-        .table-responsive {
-            width: 100%;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-
         /* FOOTER */
         .dashboard-footer {
             text-align: center;
             padding: 25px 0 5px;
             color: #958A90;
             font-size: 11px;
-            line-height: 1.8;
         }
 
-        /* TABLET */
-        @media (max-width: 991px) and (min-width: 768px) {
+        /* TABLET AND MOBILE SIDEBAR */
+        @media (max-width: 991px) {
             .sidebar {
-                width: 220px;
+                width: 260px !important;
+                transform: translateX(-100%);
+                visibility: hidden;
+            }
+
+            .sidebar.mobile-open {
+                transform: translateX(0);
+                visibility: visible;
             }
 
             .main-content {
-                margin-left: 220px;
-                width: calc(100% - 220px);
-                padding: 22px;
+                margin-left: 0;
+                width: 100%;
+                padding: 25px;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
             }
 
             .topbar {
-                gap: 12px;
-            }
-
-            .admin-top-name {
-                font-size: 14px;
-            }
-
-            .admin-top-logo {
-                width: 42px;
-                height: 42px;
-                font-size: 25px;
+                justify-content: flex-start;
+                align-items: center;
             }
         }
 
         /* MOBILE */
         @media (max-width: 767px) {
-
-            body {
-                overflow-x: hidden;
-            }
-
-            /* SIDEBAR DRAWER */
-            .sidebar {
-                display: block !important;
-                position: fixed !important;
-                top: 0 !important;
-                left: 0 !important;
-                width: 275px !important;
-                max-width: 85vw;
-                height: 100vh !important;
-                min-height: 100vh !important;
-                overflow-y: auto !important;
-                padding: 10px 5px;
-                z-index: 1050 !important;
-                transform: translateX(-105%);
-                transition: transform 0.3s ease;
-                box-shadow: 8px 0 30px rgba(0, 0, 0, 0.15);
-            }
-
-            .sidebar.mobile-open {
-                transform: translateX(0);
-            }
-
-            .sidebar-brand {
-                padding: 22px 10px;
-            }
-
-            .brand-logo-light {
-                font-size: 25px;
-            }
-
-            .sidebar nav {
-                margin-top: 15px;
-            }
-
-            .sidebar a {
-                font-size: 12px;
-                gap: 12px;
-                padding: 12px 14px;
-                margin: 4px 8px;
-            }
-
-            .sidebar a i {
-                font-size: 17px;
-            }
-
-            .sidebar-footer {
-                padding: 15px 10px;
-                margin-top: 15px !important;
-            }
-
-            .sidebar-footer .admin-top-name {
-                font-size: 12px !important;
-            }
-
-            .sidebar-footer .admin-top-logo {
-                width: 35px !important;
-                height: 35px !important;
-                font-size: 21px !important;
-            }
-
-            /* BACKDROP */
-            .sidebar-backdrop.show {
-                display: block;
-                position: fixed;
-                inset: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(30, 0, 15, 0.48);
-                border: none;
-                z-index: 1040;
-            }
-
-            /* MAIN CONTENT */
             .main-content {
-                margin-left: 0 !important;
                 padding: 18px 15px;
-                width: 100% !important;
-                max-width: 100%;
             }
 
-            /* MOBILE TOPBAR */
             .topbar {
-                display: grid;
-                grid-template-columns: 43px minmax(0, 1fr);
-                grid-template-rows: auto;
-                align-items: center;
-                column-gap: 12px;
+                gap: 12px;
                 margin-bottom: 22px;
             }
 
-            .mobile-menu-toggle {
-                display: flex;
-                grid-column: 1;
-                grid-row: 1;
-            }
-
-            .topbar-heading {
-                grid-column: 2;
-                grid-row: 1;
-            }
-
             .page-heading {
-                font-size: 21px;
-                margin-bottom: 3px !important;
+                font-size: 22px;
             }
 
-            .topbar-description {
+            .topbar-heading p {
                 font-size: 11px;
-                line-height: 1.5;
             }
 
-            /* WELCOME BANNER */
             .welcome-banner {
-                padding: 23px 18px;
+                padding: 25px 22px;
                 margin-bottom: 20px;
-                border-radius: 15px;
             }
 
             .welcome-content h2 {
-                font-size: 22px;
-                line-height: 1.35;
+                font-size: 24px;
             }
 
             .welcome-content p {
                 font-size: 12px;
-                line-height: 1.7;
+                line-height: 1.6;
             }
 
-            /* STATISTICS */
             .dashboard-stat {
-                padding: 15px;
-                border-radius: 12px;
+                padding: 16px;
             }
 
             .dashboard-stat .stat-icon {
-                width: 38px;
-                height: 38px;
-                font-size: 17px;
+                width: 39px;
+                height: 39px;
+                font-size: 18px;
                 margin-bottom: 12px;
             }
 
             .dashboard-stat h3 {
-                font-size: 22px;
+                font-size: 23px;
             }
 
             .dashboard-stat p {
                 font-size: 11px;
-                line-height: 1.5;
+                line-height: 1.4;
             }
 
-            /* DASHBOARD CARDS */
             .dashboard-card {
                 padding: 17px;
-                border-radius: 12px;
             }
 
             .dashboard-card h5 {
                 font-size: 14px;
             }
 
-            /* CHARTS */
             .appointment-chart-container {
-                width: 100%;
                 max-width: 100%;
             }
 
             .support-chart-container {
-                height: 220px;
+                height: 240px;
             }
 
-            /* QUICK ACTIONS */
             .quick-action {
                 padding: 12px;
-                gap: 10px;
             }
 
             .quick-action span {
                 font-size: 11px;
             }
 
-            /* TABLE */
-            .table thead th,
-            .table tbody td {
-                font-size: 10px;
-                padding: 11px 9px;
-            }
-
-            /* FOOTER */
             .dashboard-footer {
-                font-size: 10px;
+                padding-top: 22px;
             }
         }
 
         /* SMALL MOBILE */
-        @media (max-width: 400px) {
-
+        @media (max-width: 380px) {
             .main-content {
-                padding: 15px 11px;
-            }
-
-            .topbar {
-                column-gap: 9px;
-                margin-bottom: 20px;
-            }
-
-            .mobile-menu-toggle {
-                width: 39px;
-                height: 39px;
-                font-size: 22px;
+                padding: 15px 12px;
             }
 
             .page-heading {
                 font-size: 19px;
             }
 
-            .topbar-description {
-                font-size: 10px;
-            }
-
-            .welcome-banner {
-                padding: 20px 15px;
-            }
-
-            .welcome-content h2 {
-                font-size: 20px;
+            .mobile-menu-toggle {
+                width: 39px;
+                height: 39px;
+                font-size: 21px;
             }
 
             .dashboard-stat {
-                padding: 12px;
+                padding: 13px;
             }
 
             .dashboard-stat h3 {
-                font-size: 20px;
+                font-size: 21px;
             }
 
-            .dashboard-stat p {
-                font-size: 10px;
-            }
-
-            .dashboard-card {
-                padding: 14px;
+            .welcome-content h2 {
+                font-size: 21px;
             }
         }
     </style>
@@ -667,8 +575,9 @@
 <body data-requires-auth="admin">
 
     <!-- SIDEBAR -->
-    <aside class="sidebar">
+    <aside class="sidebar" id="adminSidebar">
 
+        <!-- HEALORA BRAND -->
         <div class="sidebar-brand">
             <div class="brand-logo-light">
                 <span class="brand-heal">HEAL</span><span class="brand-ora">ORA</span>
@@ -677,8 +586,8 @@
             <div class="brand-clinic">C L I N I C</div>
         </div>
 
+        <!-- NAVIGATION -->
         <nav>
-
             <a href="admin-dashboard.html" class="active">
                 <i class="bi bi-grid-1x2-fill"></i>
                 Dashboard
@@ -725,30 +634,24 @@
             </a>
 
             <a href="help-support.html">
-                <i class="bi bi-headset"></i>
+                <i class="bi bi-question-circle"></i>
                 Help &amp; Support
             </a>
-
         </nav>
 
-        <div class="sidebar-footer mt-4">
+        <!-- SIDEBAR ADMIN PROFILE -->
+        <div class="sidebar-footer">
 
             <div class="d-flex align-items-center gap-2 mb-3">
-
-                <div class="admin-top-logo"
-                     style="width:40px;height:40px;font-size:24px;">
-                    H
-                </div>
+                <div class="admin-top-logo">H</div>
 
                 <div>
-                    <div class="admin-top-name"
-                         style="color:#F7E7CE;font-size:14px;">
+                    <div class="admin-top-name">
                         Healora Administrator
                     </div>
 
                     <div class="admin-top-role">ADMIN</div>
                 </div>
-
             </div>
 
             <a href="#" data-logout>
@@ -757,14 +660,14 @@
             </a>
 
         </div>
-
     </aside>
 
-    <!-- MOBILE SIDEBAR BACKDROP -->
-    <button type="button"
-            class="sidebar-backdrop"
-            id="sidebarBackdrop"
-            aria-label="Close navigation menu">
+    <!-- SIDEBAR BACKDROP -->
+    <button
+        type="button"
+        class="sidebar-backdrop"
+        id="sidebarBackdrop"
+        aria-label="Close navigation menu">
     </button>
 
     <!-- MAIN CONTENT -->
@@ -773,18 +676,19 @@
         <!-- TOPBAR -->
         <div class="topbar">
 
-            <button type="button"
-                    class="mobile-menu-toggle"
-                    id="mobileMenuToggle"
-                    aria-label="Open navigation menu"
-                    aria-expanded="false">
+            <button
+                type="button"
+                class="mobile-menu-toggle"
+                id="mobileMenuToggle"
+                aria-label="Open navigation menu"
+                aria-expanded="false">
                 <i class="bi bi-list"></i>
             </button>
 
             <div class="topbar-heading">
                 <h1 class="page-heading mb-1">Dashboard</h1>
 
-                <p class="topbar-description">
+                <p class="text-muted small mb-0">
                     Welcome to your clinic management portal.
                 </p>
             </div>
@@ -793,7 +697,6 @@
 
         <!-- WELCOME BANNER -->
         <section class="welcome-banner">
-
             <div class="welcome-content">
                 <h2>Welcome Back, Administrator</h2>
 
@@ -801,7 +704,6 @@
                     Manage your clinic operations and keep everything running smoothly.
                 </p>
             </div>
-
         </section>
 
         <!-- DASHBOARD STATISTICS -->
@@ -809,53 +711,45 @@
 
             <div class="col-6 col-xl-3">
                 <div class="dashboard-stat">
-
                     <div class="stat-icon">
                         <i class="bi bi-people-fill"></i>
                     </div>
 
                     <h3 id="totalPatients">0</h3>
                     <p>Total Patients</p>
-
                 </div>
             </div>
 
             <div class="col-6 col-xl-3">
                 <div class="dashboard-stat">
-
                     <div class="stat-icon">
                         <i class="bi bi-person-badge-fill"></i>
                     </div>
 
                     <h3 id="totalDoctors">0</h3>
                     <p>Total Doctors</p>
-
                 </div>
             </div>
 
             <div class="col-6 col-xl-3">
                 <div class="dashboard-stat">
-
                     <div class="stat-icon">
                         <i class="bi bi-calendar-check-fill"></i>
                     </div>
 
                     <h3 id="totalAppointments">0</h3>
                     <p>Total Appointments</p>
-
                 </div>
             </div>
 
             <div class="col-6 col-xl-3">
                 <div class="dashboard-stat">
-
                     <div class="stat-icon">
                         <i class="bi bi-hourglass-split"></i>
                     </div>
 
                     <h3 id="pendingAppointments">0</h3>
                     <p>Pending Appointments</p>
-
                 </div>
             </div>
 
@@ -865,10 +759,9 @@
         <section class="row g-3 mb-4">
 
             <div class="col-lg-8">
-
                 <div class="dashboard-card">
 
-                    <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
                         <h5 class="mb-0">Appointment Overview</h5>
 
                         <span class="small text-muted">
@@ -881,11 +774,9 @@
                     </div>
 
                 </div>
-
             </div>
 
             <div class="col-lg-4">
-
                 <div class="dashboard-card">
 
                     <h5 class="mb-3">Quick Actions</h5>
@@ -911,7 +802,6 @@
                     </a>
 
                 </div>
-
             </div>
 
         </section>
@@ -952,18 +842,15 @@
         <!-- RECENT APPOINTMENTS -->
         <section class="dashboard-card">
 
-            <div class="d-flex justify-content-between align-items-center mb-3">
-
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
                 <h5 class="mb-0">Recent Appointments</h5>
 
                 <a href="appointments.html" class="view-all">
                     View All <i class="bi bi-arrow-right"></i>
                 </a>
-
             </div>
 
             <div class="table-responsive">
-
                 <table class="table align-middle mb-0">
 
                     <thead>
@@ -978,24 +865,20 @@
                     </thead>
 
                     <tbody id="recentAppointments">
-
                         <tr>
                             <td colspan="6" class="text-center text-muted py-4">
                                 Loading appointments...
                             </td>
                         </tr>
-
                     </tbody>
 
                 </table>
-
             </div>
 
         </section>
 
         <!-- FOOTER -->
         <footer class="dashboard-footer">
-
             © 2026 Healora Clinic. All Rights Reserved.
 
             <br>
@@ -1003,7 +886,6 @@
             <span class="fst-italic">
                 Your Health, Our Priority.
             </span>
-
         </footer>
 
     </main>
@@ -1017,66 +899,74 @@
 
     <!-- MOBILE SIDEBAR FUNCTION -->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener("DOMContentLoaded", function () {
 
-            const sidebar = document.querySelector('.sidebar');
-            const menuButton = document.getElementById('mobileMenuToggle');
-            const backdrop = document.getElementById('sidebarBackdrop');
+            const sidebar = document.getElementById("adminSidebar");
+            const menuButton = document.getElementById("mobileMenuToggle");
+            const backdrop = document.getElementById("sidebarBackdrop");
 
             if (!sidebar || !menuButton || !backdrop) {
                 return;
             }
 
             function openSidebar() {
-                sidebar.classList.add('mobile-open');
-                backdrop.classList.add('show');
-                menuButton.setAttribute('aria-expanded', 'true');
+                sidebar.classList.add("mobile-open");
+                backdrop.classList.add("show");
 
-                const icon = menuButton.querySelector('i');
+                menuButton.setAttribute("aria-expanded", "true");
+                menuButton.setAttribute("aria-label", "Close navigation menu");
+
+                const icon = menuButton.querySelector("i");
 
                 if (icon) {
-                    icon.className = 'bi bi-x-lg';
+                    icon.className = "bi bi-x-lg";
                 }
+
+                document.body.style.overflow = "hidden";
             }
 
             function closeSidebar() {
-                sidebar.classList.remove('mobile-open');
-                backdrop.classList.remove('show');
-                menuButton.setAttribute('aria-expanded', 'false');
+                sidebar.classList.remove("mobile-open");
+                backdrop.classList.remove("show");
 
-                const icon = menuButton.querySelector('i');
+                menuButton.setAttribute("aria-expanded", "false");
+                menuButton.setAttribute("aria-label", "Open navigation menu");
+
+                const icon = menuButton.querySelector("i");
 
                 if (icon) {
-                    icon.className = 'bi bi-list';
+                    icon.className = "bi bi-list";
                 }
+
+                document.body.style.overflow = "";
             }
 
-            menuButton.addEventListener('click', function () {
-                if (sidebar.classList.contains('mobile-open')) {
+            menuButton.addEventListener("click", function () {
+                if (sidebar.classList.contains("mobile-open")) {
                     closeSidebar();
                 } else {
                     openSidebar();
                 }
             });
 
-            backdrop.addEventListener('click', closeSidebar);
+            backdrop.addEventListener("click", closeSidebar);
 
-            document.addEventListener('keydown', function (event) {
-                if (event.key === 'Escape') {
+            document.addEventListener("keydown", function (event) {
+                if (event.key === "Escape") {
                     closeSidebar();
                 }
             });
 
-            sidebar.querySelectorAll('nav a').forEach(function (link) {
-                link.addEventListener('click', function () {
-                    if (window.innerWidth <= 767) {
+            sidebar.querySelectorAll("nav a").forEach(function (link) {
+                link.addEventListener("click", function () {
+                    if (window.innerWidth <= 991) {
                         closeSidebar();
                     }
                 });
             });
 
-            window.addEventListener('resize', function () {
-                if (window.innerWidth > 767) {
+            window.addEventListener("resize", function () {
+                if (window.innerWidth > 991) {
                     closeSidebar();
                 }
             });
