@@ -321,7 +321,7 @@
             font-size: 11px;
         }
 
-        /* RESPONSIVE */
+        /* TABLET RESPONSIVE */
         @media (max-width: 991px) {
             .sidebar {
                 width: 220px;
@@ -333,59 +333,161 @@
             }
         }
 
+        /* MOBILE RESPONSIVE */
         @media (max-width: 767px) {
+
             .sidebar {
-                display: block;
-                position: relative;
-                width: 100%;
-                height: auto;
-                min-height: auto;
-                padding: 15px;
-                overflow: visible;
+                display: block !important;
+                position: fixed !important;
+                top: 0;
+                left: 0;
+                width: 180px !important;
+                height: 100vh !important;
+                min-height: 100vh !important;
+                overflow-y: auto !important;
+                padding: 10px 5px;
+                z-index: 1000;
             }
 
             .sidebar-brand {
-                padding: 15px;
+                padding: 15px 5px;
+            }
+
+            .brand-logo-light {
+                font-size: 21px;
+            }
+
+            .brand-clinic {
+                font-size: 9px;
             }
 
             .sidebar nav {
                 margin-top: 15px;
             }
 
-            .sidebar nav a {
-                margin: 4px 0;
+            .sidebar a {
+                font-size: 11px;
+                gap: 8px;
+                padding: 11px 8px;
+                margin: 4px 3px;
+            }
+
+            .sidebar a i {
+                font-size: 15px;
             }
 
             .sidebar-footer {
+                padding: 10px 5px;
                 margin-top: 15px !important;
             }
 
+            .sidebar-footer .admin-top-name {
+                font-size: 10px !important;
+            }
+
+            .sidebar-footer .admin-top-logo {
+                width: 32px !important;
+                height: 32px !important;
+                font-size: 20px !important;
+            }
+
+            .sidebar-footer .admin-top-role {
+                font-size: 9px;
+            }
+
             .main-content {
-                margin-left: 0;
-                padding: 18px;
+                margin-left: 180px !important;
+                padding: 15px 10px;
+                width: calc(100% - 180px) !important;
             }
 
             .topbar {
-                gap: 15px;
+                gap: 10px;
                 flex-wrap: wrap;
+                margin-bottom: 20px;
+            }
+
+            .page-heading {
+                font-size: 20px;
+            }
+
+            .admin-profile {
+                gap: 7px;
             }
 
             .admin-top-name {
-                font-size: 14px;
+                font-size: 12px;
             }
 
-            .admin-top-logo {
-                width: 42px;
-                height: 42px;
-                font-size: 25px;
+            .admin-top-role {
+                font-size: 9px;
             }
 
-            .welcome-decoration {
-                display: none;
+            .admin-profile .admin-top-logo {
+                width: 35px;
+                height: 35px;
+                font-size: 21px;
+            }
+
+            .welcome-banner {
+                padding: 20px 15px;
+            }
+
+            .welcome-content h2 {
+                font-size: 21px;
+            }
+
+            .welcome-content p {
+                font-size: 11px;
+            }
+
+            .dashboard-stat {
+                padding: 12px;
+            }
+
+            .dashboard-stat .stat-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
+
+            .dashboard-stat h3 {
+                font-size: 21px;
+            }
+
+            .dashboard-stat p {
+                font-size: 10px;
+            }
+
+            .dashboard-card {
+                padding: 14px;
+            }
+
+            .dashboard-card h5 {
+                font-size: 13px;
             }
 
             .support-chart-container {
-                height: 240px;
+                height: 200px;
+            }
+
+            .quick-action {
+                padding: 10px;
+                gap: 8px;
+            }
+
+            .quick-action span {
+                font-size: 10px;
+            }
+
+            .table thead th,
+            .table tbody td {
+                font-size: 10px;
+                padding: 10px 8px;
+            }
+
+            .dashboard-footer {
+                font-size: 9px;
             }
         }
     </style>
@@ -405,6 +507,7 @@
         </div>
 
         <nav>
+
             <a href="admin-dashboard.html" class="active">
                 <i class="bi bi-grid-1x2-fill"></i>
                 Dashboard
@@ -454,27 +557,34 @@
                 <i class="bi bi-headset"></i>
                 Help &amp; Support
             </a>
+
         </nav>
 
         <div class="sidebar-footer mt-4">
+
             <div class="d-flex align-items-center gap-2 mb-3">
-                <div class="admin-top-logo" style="width:40px;height:40px;font-size:24px;">
+
+                <div class="admin-top-logo"
+                     style="width:40px;height:40px;font-size:24px;">
                     H
                 </div>
 
                 <div>
-                    <div class="admin-top-name" style="color:#F7E7CE;font-size:14px;">
+                    <div class="admin-top-name"
+                         style="color:#F7E7CE;font-size:14px;">
                         Healora Administrator
                     </div>
 
                     <div class="admin-top-role">ADMIN</div>
                 </div>
+
             </div>
 
             <a href="#" data-logout>
                 <i class="bi bi-box-arrow-left"></i>
                 Logout
             </a>
+
         </div>
 
     </aside>
@@ -484,6 +594,7 @@
 
         <!-- TOPBAR -->
         <div class="topbar">
+
             <div>
                 <h1 class="page-heading mb-1">Dashboard</h1>
 
@@ -493,6 +604,7 @@
             </div>
 
             <div class="admin-profile">
+
                 <div class="text-end">
                     <div class="admin-top-name">
                         Healora Administrator
@@ -502,11 +614,14 @@
                 </div>
 
                 <div class="admin-top-logo">H</div>
+
             </div>
+
         </div>
 
         <!-- WELCOME BANNER -->
         <section class="welcome-banner">
+
             <div class="welcome-content">
                 <h2>Welcome Back, Administrator</h2>
 
@@ -514,6 +629,7 @@
                     Manage your clinic operations and keep everything running smoothly.
                 </p>
             </div>
+
         </section>
 
         <!-- DASHBOARD STATISTICS -->
@@ -521,45 +637,53 @@
 
             <div class="col-6 col-xl-3">
                 <div class="dashboard-stat">
+
                     <div class="stat-icon">
                         <i class="bi bi-people-fill"></i>
                     </div>
 
                     <h3 id="totalPatients">0</h3>
                     <p>Total Patients</p>
+
                 </div>
             </div>
 
             <div class="col-6 col-xl-3">
                 <div class="dashboard-stat">
+
                     <div class="stat-icon">
                         <i class="bi bi-person-badge-fill"></i>
                     </div>
 
                     <h3 id="totalDoctors">0</h3>
                     <p>Total Doctors</p>
+
                 </div>
             </div>
 
             <div class="col-6 col-xl-3">
                 <div class="dashboard-stat">
+
                     <div class="stat-icon">
                         <i class="bi bi-calendar-check-fill"></i>
                     </div>
 
                     <h3 id="totalAppointments">0</h3>
                     <p>Total Appointments</p>
+
                 </div>
             </div>
 
             <div class="col-6 col-xl-3">
                 <div class="dashboard-stat">
+
                     <div class="stat-icon">
                         <i class="bi bi-hourglass-split"></i>
                     </div>
 
                     <h3 id="pendingAppointments">0</h3>
                     <p>Pending Appointments</p>
+
                 </div>
             </div>
 
@@ -569,7 +693,9 @@
         <section class="row g-3 mb-4">
 
             <div class="col-lg-8">
+
                 <div class="dashboard-card">
+
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5 class="mb-0">Appointment Overview</h5>
 
@@ -581,11 +707,15 @@
                     <div class="appointment-chart-container">
                         <canvas id="appointmentChart"></canvas>
                     </div>
+
                 </div>
+
             </div>
 
             <div class="col-lg-4">
+
                 <div class="dashboard-card">
+
                     <h5 class="mb-3">Quick Actions</h5>
 
                     <a href="appointments.html" class="quick-action">
@@ -607,7 +737,9 @@
                         <i class="bi bi-file-earmark-bar-graph"></i>
                         <span>View Reports</span>
                     </a>
+
                 </div>
+
             </div>
 
         </section>
@@ -616,6 +748,7 @@
         <section class="dashboard-card mb-4">
 
             <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-3">
+
                 <div>
                     <div class="d-flex align-items-center gap-2 mb-2">
                         <i class="bi bi-bar-chart-fill"
@@ -635,6 +768,7 @@
                     Manage Messages
                     <i class="bi bi-arrow-right"></i>
                 </a>
+
             </div>
 
             <div class="support-chart-container">
@@ -645,16 +779,21 @@
 
         <!-- RECENT APPOINTMENTS -->
         <section class="dashboard-card">
+
             <div class="d-flex justify-content-between align-items-center mb-3">
+
                 <h5 class="mb-0">Recent Appointments</h5>
 
                 <a href="appointments.html" class="view-all">
                     View All <i class="bi bi-arrow-right"></i>
                 </a>
+
             </div>
 
             <div class="table-responsive">
+
                 <table class="table align-middle mb-0">
+
                     <thead>
                         <tr>
                             <th>Patient</th>
@@ -667,23 +806,32 @@
                     </thead>
 
                     <tbody id="recentAppointments">
+
                         <tr>
                             <td colspan="6" class="text-center text-muted py-4">
                                 Loading appointments...
                             </td>
                         </tr>
+
                     </tbody>
+
                 </table>
+
             </div>
+
         </section>
 
         <!-- FOOTER -->
         <footer class="dashboard-footer">
+
             © 2026 Healora Clinic. All Rights Reserved.
+
             <br>
+
             <span class="fst-italic">
                 Your Health, Our Priority.
             </span>
+
         </footer>
 
     </main>
