@@ -1,6 +1,6 @@
 
 /* =====================================================
-   HEALORA CLINIC - MAIN CSS
+   HEALORA CLINIC
 ===================================================== */
 
 
@@ -10,25 +10,30 @@
 
 /* 2. OFFICIAL COLOUR PALETTE */
 :root {
+    /* Primary colours */
     --burgundy: #4A001F;
     --burgundy-dark: #350017;
     --maroon: #800020;
     --maroon-light: #9B2948;
 
+    /* Gold and champagne */
     --champagne: #F7E7CE;
     --gold: #D6B77A;
     --gold-dark: #B89555;
 
+    /* Background colours */
     --ivory: #FAF8F5;
     --white: #FFFFFF;
     --soft-grey: #E8E2E5;
     --light-grey: #F3F0F1;
 
+    /* Text colours */
     --text-primary: #292329;
     --text-secondary: #70666C;
     --text-muted: #958A90;
     --text-light: #FFFFFF;
 
+    /* Status colours */
     --success: #287A52;
     --success-bg: #E5F3EB;
 
@@ -41,6 +46,7 @@
     --info: #356A9A;
     --info-bg: #E8F1FA;
 
+    /* General design */
     --border-color: #E8E2E5;
     --shadow-sm: 0 2px 8px rgba(74, 0, 31, 0.05);
     --shadow-md: 0 6px 20px rgba(74, 0, 31, 0.08);
@@ -71,7 +77,6 @@ body {
     color: var(--text-primary);
     font-size: 14px;
     line-height: 1.6;
-    overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -158,7 +163,6 @@ img {
     margin-left: 260px;
     padding: 30px;
     background-color: var(--ivory);
-    transition: margin-left 0.25s ease;
 }
 
 .page-content {
@@ -198,7 +202,6 @@ img {
     color: var(--white);
     z-index: 1000;
     box-shadow: 4px 0 20px rgba(53, 0, 23, 0.12);
-    transition: transform 0.3s ease;
 }
 
 .sidebar-brand {
@@ -267,173 +270,8 @@ img {
 }
 
 
-/* MOBILE SIDEBAR OVERLAY */
-.sidebar-overlay {
-    display: none;
-}
-
-
 /* 7. TOPBAR */
-
-/* Standard header without background box */
-.topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    gap: 15px;
-    width: 100%;
-    padding: 0;
-    margin-bottom: 25px;
-    background: transparent;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-}
-
-/* Header left section */
-.topbar-left {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-direction: row;
-    gap: 13px;
-    flex: 1 1 auto;
-    min-width: 0;
-}
-
-/* Header title */
-.page-heading {
-    min-width: 0;
-    text-align: left;
-}
-
-.page-heading small {
-    display: block;
-    color: var(--gold-dark);
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 5px;
-}
-
-.page-heading h2 {
-    margin: 0;
-    color: var(--burgundy);
-    font-size: 25px;
-    font-weight: 800;
-}
-
-/* Header right section */
-.topbar-right {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    gap: 19px;
-    flex: 0 0 auto;
-}
-
-/* Notification button */
-.notification-btn {
-    width: 42px;
-    height: 42px;
-    min-width: 42px;
-    border: 1px solid var(--border-color);
-    border-radius: 50%;
-    background: var(--white);
-    color: var(--burgundy);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 17px;
-    position: relative;
-    cursor: pointer;
-    flex-shrink: 0;
-}
-
-.notification-dot {
-    width: 8px;
-    height: 8px;
-    background: #B65D56;
-    border-radius: 50%;
-    position: absolute;
-    top: 7px;
-    right: 7px;
-    border: 1px solid white;
-}
-
-/* Profile chip */
-.profile-chip {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    gap: 10px;
-    min-width: 0;
-    flex-shrink: 0;
-}
-
-.chip-avatar {
-    width: 42px;
-    height: 42px;
-    min-width: 42px;
-    border-radius: 50%;
-    background: var(--burgundy);
-    color: var(--gold);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    font-weight: 800;
-    flex-shrink: 0;
-}
-
-.profile-chip-info {
-    min-width: 0;
-}
-
-.profile-chip-info strong {
-    display: block;
-    color: var(--burgundy);
-    font-size: 12px;
-    font-weight: 800;
-    max-width: 160px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.profile-chip-info span {
-    display: block;
-    color: var(--gold-dark);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin-top: 3px;
-}
-
-/* Hamburger button */
-.mobile-toggle {
-    display: none;
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
-    border: 1px solid var(--border-color);
-    background: var(--white);
-    color: var(--burgundy);
-    border-radius: 8px;
-    font-size: 20px;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    flex-shrink: 0;
-}
-
-
-/* Dashboard topbar can retain its own layout */
+.topbar,
 .dashboard-topbar {
     display: flex;
     align-items: center;
@@ -447,12 +285,15 @@ img {
     box-shadow: var(--shadow-sm);
 }
 
+.topbar h1,
+.topbar h2,
 .dashboard-topbar h1,
 .dashboard-topbar h2 {
     margin: 0;
     color: var(--burgundy);
 }
 
+.topbar p,
 .dashboard-topbar p {
     margin: 4px 0 0;
     color: var(--text-secondary);
@@ -874,7 +715,7 @@ footer a:hover,
     color: var(--white);
 }
 
-/* Dashboard footer */
+/* Dashboard footer: transparent style */
 .dashboard-footer {
     padding: 25px 0 5px;
     margin-top: 0;
@@ -937,9 +778,8 @@ footer a:hover,
 }
 
 
-/* 22. TABLET RESPONSIVE */
+/* 22. RESPONSIVE DESIGN */
 @media (max-width: 991px) {
-
     .sidebar {
         width: 220px;
     }
@@ -950,116 +790,33 @@ footer a:hover,
     }
 }
 
-
-/* 23. MOBILE RESPONSIVE */
-@media (max-width: 900px) {
-
-    /* Sidebar becomes a slide-out drawer */
+@media (max-width: 767px) {
     .sidebar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 260px;
-        height: 100vh;
-        min-height: 100vh;
-        transform: translateX(-100%);
-        z-index: 1000;
+        position: relative;
+        width: 100%;
+        height: auto;
+        min-height: auto;
+        padding: 15px;
     }
 
-    .sidebar.open {
-        transform: translateX(0);
+    .sidebar-brand {
+        padding-bottom: 15px;
+        margin-bottom: 15px;
     }
 
-    /* Dark background behind opened sidebar */
-    .sidebar-overlay.show {
-        display: block;
-        position: fixed;
-        inset: 0;
-        background: rgba(25, 0, 12, 0.45);
-        z-index: 999;
-    }
-
-    /* Main content uses full screen */
     .main-content {
         margin-left: 0;
-        width: 100%;
-        padding: 22px;
+        padding: 16px;
     }
 
-    /* Show hamburger */
-    .mobile-toggle {
-        display: flex;
-    }
-}
-
-
-/* 24. MOBILE HEADER */
-@media (max-width: 767px) {
-
-    /* Keep header in one horizontal row */
-    .topbar {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-        padding: 0;
-        margin-bottom: 22px;
-        background: transparent;
-        border: none;
-        border-radius: 0;
-        box-shadow: none;
+    .page-content {
+        padding: 15px;
     }
 
-    .topbar-left {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: flex-start;
-        gap: 10px;
-        flex: 1 1 auto;
-        min-width: 0;
-    }
-
-    .topbar-right {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        align-items: center;
-        justify-content: flex-end;
-        gap: 10px;
-        flex: 0 0 auto;
-    }
-
-    .page-heading {
-        text-align: left;
-        min-width: 0;
-    }
-
-    .page-heading h2 {
-        font-size: 19px;
-        text-align: left;
-    }
-
-    .page-heading small {
-        font-size: 9px;
-    }
-
-    .profile-chip-info {
-        display: none;
-    }
-
-    .notification-btn,
-    .chip-avatar {
-        width: 38px;
-        height: 38px;
-        min-width: 38px;
-    }
-
+    .topbar,
     .dashboard-topbar {
-        align-items: center;
-        flex-direction: row;
+        align-items: flex-start;
+        flex-direction: column;
         padding: 15px;
     }
 
@@ -1075,22 +832,15 @@ footer a:hover,
     .stat-card h4 {
         font-size: 23px;
     }
-
-    .page-content {
-        padding: 15px;
-    }
 }
 
-
-/* 25. SMALL MOBILE */
 @media (max-width: 480px) {
-
     body {
         font-size: 13px;
     }
 
     .main-content {
-        padding: 16px;
+        padding: 12px;
     }
 
     .page-header h1 {
@@ -1104,78 +854,5 @@ footer a:hover,
 
     .table {
         font-size: 11px;
-    }
-
-    .topbar {
-        gap: 7px;
-    }
-
-    .topbar-left {
-        gap: 7px;
-    }
-
-    .topbar-right {
-        gap: 7px;
-    }
-
-    .mobile-toggle {
-        width: 36px;
-        height: 36px;
-        min-width: 36px;
-    }
-
-    .page-heading h2 {
-        font-size: 18px;
-    }
-
-    .notification-btn,
-    .chip-avatar {
-        width: 36px;
-        height: 36px;
-        min-width: 36px;
-    }
-}
-
-
-/* 26. EXTRA SMALL MOBILE */
-@media (max-width: 380px) {
-
-    .main-content {
-        padding: 12px;
-    }
-
-    .topbar {
-        gap: 5px;
-    }
-
-    .topbar-left {
-        gap: 6px;
-    }
-
-    .topbar-right {
-        gap: 6px;
-    }
-
-    .mobile-toggle {
-        width: 34px;
-        height: 34px;
-        min-width: 34px;
-        font-size: 18px;
-    }
-
-    .page-heading h2 {
-        font-size: 16px;
-    }
-
-    .page-heading small {
-        font-size: 8px;
-        letter-spacing: 1.5px;
-    }
-
-    .notification-btn,
-    .chip-avatar {
-        width: 34px;
-        height: 34px;
-        min-width: 34px;
     }
 }
