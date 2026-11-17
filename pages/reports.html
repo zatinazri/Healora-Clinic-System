@@ -1,151 +1,1698 @@
-<!-- SIDEBAR -->
-<aside class="sidebar" id="sidebar">
 
-    <div class="sidebar-brand">
-        <div class="brand-logo-light">
-            <span class="brand-heal">HEAL</span><span class="brand-ora">ORA</span>
-        </div>
-        <div class="brand-clinic">C L I N I C</div>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports | Healora Clinic</title>
 
-    <div class="nav-label">ADMIN PORTAL</div>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600;6..96,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
 
-    <nav class="sidebar-nav">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-        <a href="admin-dashboard.html">
-            <i class="bi bi-grid-1x2-fill"></i>
-            <span>Dashboard</span>
-        </a>
+    <style>
+        :root {
+            --wine: #350017;
+            --burgundy: #4A001F;
+            --burgundy-light: #800020;
+            --gold: #D6B77A;
+            --gold-dark: #B89552;
+            --ivory: #FAF8F4;
+            --cream: #F7E7CE;
+            --white: #FFFFFF;
+            --text: #30252A;
+            --muted: #70666C;
+            --border: #EEE7E2;
+        }
 
-        <a href="appointments.html">
-            <i class="bi bi-calendar-check"></i>
-            <span>Appointments</span>
-        </a>
+        * {
+            box-sizing: border-box;
+        }
 
-        <a href="patients.html">
-            <i class="bi bi-people"></i>
-            <span>Patients</span>
-        </a>
+        body {
+            margin: 0;
+            background: var(--ivory);
+            color: var(--text);
+            font-family: 'Manrope', sans-serif;
+            font-size: 14px;
+            overflow-x: hidden;
+        }
 
-        <a href="doctors.html">
-            <i class="bi bi-person-badge"></i>
-            <span>Doctors</span>
-        </a>
+        /* SIDEBAR */
 
-        <a href="doctor-schedule.html">
-            <i class="bi bi-calendar-week"></i>
-            <span>Doctor Schedule</span>
-        </a>
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            width: 260px;
+            height: 100vh;
+            padding: 0 19px 22px;
+            background: linear-gradient(180deg, #350017 0%, #4A001F 100%);
+            overflow-y: auto;
+            transition: transform 0.3s ease, visibility 0.3s ease;
+        }
 
-        <a href="clinic-services.html">
-            <i class="bi bi-heart-pulse"></i>
-            <span>Clinic Services</span>
-        </a>
+        .sidebar-brand {
+            width: 100%;
+            padding: 25px 12px 23px;
+            margin-bottom: 22px;
+            border-bottom: 1px solid rgba(247, 231, 206, 0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
 
-        <a href="appointment-history.html">
-            <i class="bi bi-clock-history"></i>
-            <span>Appointment History</span>
-        </a>
+        .brand-logo-light {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            width: 100%;
+            font-family: 'Manrope', sans-serif;
+            font-size: 27px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
 
-        <a href="reports.html" class="active">
-            <i class="bi bi-bar-chart-line"></i>
-            <span>Reports</span>
-        </a>
+        .brand-heal {
+            color: var(--gold);
+            font-weight: 800;
+        }
 
-        <a href="profile.html">
-            <i class="bi bi-person-circle"></i>
-            <span>My Profile</span>
-        </a>
+        .brand-ora {
+            color: var(--cream);
+            font-family: 'Bodoni Moda', serif;
+            font-style: italic;
+            font-weight: 700;
+        }
 
-        <a href="help-support.html">
-            <i class="bi bi-headset"></i>
-            <span>Help &amp; Support</span>
-        </a>
+        .brand-clinic {
+            color: var(--cream);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            margin-top: 7px;
+            text-align: center;
+            width: 100%;
+        }
 
-    </nav>
+        .nav-label {
+            padding: 0 12px;
+            margin-bottom: 10px;
+            color: rgba(247, 231, 206, 0.55);
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
 
-    <div class="sidebar-bottom">
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
 
-        <div class="sidebar-profile">
-            <div class="sidebar-profile-avatar">H</div>
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 12px 13px;
+            border-radius: 9px;
+            color: var(--cream);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
 
-            <div class="sidebar-profile-info">
-                <strong>Healora Administrator</strong>
-                <span>ADMIN</span>
+        .sidebar-nav a i {
+            width: 19px;
+            color: var(--gold);
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            background: var(--burgundy-light);
+            color: var(--white);
+        }
+
+        .sidebar-nav a.active {
+            border-left: 3px solid var(--gold);
+            padding-left: 10px;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+            padding-top: 18px;
+            border-top: 1px solid rgba(247, 231, 206, 0.15);
+        }
+
+        .sidebar-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 8px;
+            margin-bottom: 10px;
+        }
+
+        .sidebar-profile-avatar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 39px;
+            height: 39px;
+            flex-shrink: 0;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            background: linear-gradient(145deg, var(--cream), var(--gold));
+            color: var(--burgundy);
+            font-family: 'Bodoni Moda', serif;
+            font-size: 23px;
+            font-weight: 700;
+        }
+
+        .sidebar-profile-info strong {
+            display: block;
+            color: var(--cream);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .sidebar-profile-info span {
+            color: var(--gold);
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+        }
+
+        .logout-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 12px;
+            border-radius: 8px;
+            color: var(--cream);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .logout-link i {
+            color: var(--gold);
+            font-size: 16px;
+        }
+
+        .logout-link:hover {
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
+        }
+
+        .sidebar-overlay {
+            display: none;
+        }
+
+        /* MAIN CONTENT */
+
+        .main-content {
+            display: block;
+            width: auto;
+            min-height: 100vh;
+            margin-left: 260px;
+            padding: 32px 40px 45px;
+            text-align: left;
+        }
+
+        /* TOPBAR - SAME ALIGNMENT AS ADMIN DASHBOARD */
+
+        .main-content > .topbar {
+            position: relative;
+            display: flex !important;
+            flex-direction: row !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            width: 100%;
+            min-height: 45px;
+            margin: 0 0 28px 0 !important;
+            padding: 0 !important;
+            text-align: left !important;
+        }
+
+        .main-content > .topbar .topbar-left {
+            display: flex !important;
+            flex-direction: row !important;
+            justify-content: flex-start !important;
+            align-items: center !important;
+            gap: 15px;
+            width: auto;
+            margin: 0 auto 0 0 !important;
+            text-align: left !important;
+        }
+
+        .main-content > .topbar .page-heading {
+            display: block;
+            margin: 0 !important;
+            text-align: left !important;
+        }
+
+        .page-heading small {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--gold-dark);
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-align: left;
+        }
+
+        .page-heading h2 {
+            margin: 0;
+            color: var(--burgundy);
+            font-size: 23px;
+            font-weight: 800;
+            text-align: left;
+        }
+
+        .main-content > .topbar .topbar-right {
+            display: flex !important;
+            flex-direction: row !important;
+            justify-content: flex-end !important;
+            align-items: center !important;
+            gap: 18px;
+            width: auto;
+            margin: 0 0 0 auto !important;
+            text-align: right !important;
+        }
+
+        .notification-btn {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            background: var(--white);
+            color: var(--burgundy);
+            font-size: 17px;
+        }
+
+        .notification-dot {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 7px;
+            height: 7px;
+            border: 1px solid var(--white);
+            border-radius: 50%;
+            background: var(--burgundy-light);
+        }
+
+        .profile-chip {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: flex-end !important;
+            gap: 11px;
+            width: auto;
+        }
+
+        .profile-chip-info {
+            display: block;
+            text-align: right;
+        }
+
+        .profile-chip-info strong {
+            display: block;
+            color: var(--burgundy);
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .profile-chip-info span {
+            color: var(--gold-dark);
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .chip-avatar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            flex-shrink: 0;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            background: linear-gradient(145deg, var(--cream), var(--gold));
+            color: var(--burgundy);
+            font-family: 'Bodoni Moda', serif;
+            font-size: 25px;
+            font-weight: 700;
+        }
+
+        .mobile-toggle {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            background: var(--white);
+            color: var(--burgundy);
+            font-size: 21px;
+        }
+
+        /* WELCOME BANNER */
+
+        .welcome-banner {
+            position: relative;
+            padding: 35px 38px;
+            margin-bottom: 28px;
+            border: 1px solid rgba(214, 183, 122, 0.35);
+            border-radius: 18px;
+            background: linear-gradient(135deg, var(--wine), var(--burgundy));
+            box-shadow: 0 8px 25px rgba(74, 0, 31, 0.12);
+        }
+
+        .welcome-content h2 {
+            margin-bottom: 10px;
+            color: var(--gold);
+            font-family: 'Bodoni Moda', serif;
+            font-size: 29px;
+            font-weight: 700;
+        }
+
+        .welcome-content p {
+            margin-bottom: 0;
+            color: var(--cream);
+            font-size: 13px;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        /* CARDS */
+
+        .dashboard-card,
+        .dashboard-stat {
+            height: 100%;
+            padding: 22px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: var(--white);
+            box-shadow: 0 5px 18px rgba(74, 0, 31, 0.04);
+        }
+
+        .dashboard-card h5 {
+            color: var(--burgundy);
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .report-note {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .filter-label {
+            display: block;
+            margin-bottom: 7px;
+            color: var(--burgundy);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .form-control,
+        .form-select {
+            min-height: 40px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 12px;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 0.15rem rgba(214, 183, 122, 0.2);
+        }
+
+        /* BUTTONS */
+
+        .btn-gold {
+            padding: 10px 17px;
+            border: none;
+            border-radius: 8px;
+            background: var(--gold);
+            color: var(--wine);
+            font-family: 'Manrope', sans-serif;
+            font-size: 11px;
+            font-weight: 800;
+            transition: 0.3s;
+        }
+
+        .btn-gold:hover {
+            background: var(--gold-dark);
+            color: var(--white);
+        }
+
+        .btn-outline-burgundy {
+            padding: 9px 17px;
+            border: 1px solid var(--burgundy-light);
+            border-radius: 8px;
+            background: var(--white);
+            color: var(--burgundy-light);
+            font-family: 'Manrope', sans-serif;
+            font-size: 11px;
+            font-weight: 800;
+            transition: 0.3s;
+        }
+
+        .btn-outline-burgundy:hover {
+            background: var(--burgundy-light);
+            color: var(--white);
+        }
+
+        /* STATISTICS */
+
+        .dashboard-stat .stat-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            background: var(--cream);
+            color: var(--burgundy-light);
+            font-size: 20px;
+        }
+
+        .dashboard-stat h3 {
+            margin-bottom: 4px;
+            color: var(--burgundy);
+            font-size: 27px;
+            font-weight: 800;
+        }
+
+        .dashboard-stat p {
+            margin-bottom: 0;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        /* CHARTS */
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 280px;
+        }
+
+        /* TABLE */
+
+        .table {
+            margin-bottom: 0;
+            font-size: 12px;
+        }
+
+        .table thead th {
+            padding: 13px 12px;
+            border: none;
+            background: var(--burgundy);
+            color: var(--gold);
+            font-size: 10px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .table tbody td {
+            padding: 13px 12px;
+            color: var(--muted);
+            vertical-align: middle;
+        }
+
+        .table tbody tr:nth-child(even) {
+            background: var(--ivory);
+        }
+
+        .table tbody tr:hover {
+            background: var(--cream);
+        }
+
+        /* STATUS BADGES */
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: capitalize;
+        }
+
+        .status-completed {
+            background: #E3F2E8;
+            color: #267443;
+        }
+
+        .status-pending {
+            background: #FFF2D8;
+            color: #946200;
+        }
+
+        .status-cancelled {
+            background: #FCE5E7;
+            color: #A52A38;
+        }
+
+        .status-confirmed {
+            background: #E5EDF9;
+            color: #315A91;
+        }
+
+        /* FOOTER */
+
+        .dashboard-footer {
+            padding: 25px 0 5px;
+            color: #958A90;
+            font-size: 11px;
+            text-align: center;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 1100px) {
+            .main-content {
+                padding: 28px 25px 40px !important;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .sidebar {
+                visibility: hidden;
+                transform: translateX(-100%);
+                height: 100dvh !important;
+                max-height: 100dvh !important;
+                overflow-y: auto !important;
+                overflow-x: hidden !important;
+                padding-top: 0 !important;
+                padding-bottom: 12px !important;
+                scrollbar-width: thin;
+                scrollbar-color: rgba(214,183,122,.5) transparent;
+            }
+
+            .sidebar.open {
+                visibility: visible;
+                transform: translateX(0);
+            }
+
+            .sidebar-overlay.show {
+                position: fixed;
+                inset: 0;
+                z-index: 999;
+                display: block;
+                background: rgba(25, 0, 12, 0.45);
+            }
+
+            .main-content {
+                width: 100%;
+                margin-left: 0;
+                padding: 22px 20px 35px !important;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .sidebar-brand {
+                padding: 18px 12px !important;
+                margin-bottom: 15px !important;
+            }
+
+            .sidebar-nav {
+                gap: 3px !important;
+            }
+
+            .sidebar-nav a {
+                padding: 9px 12px !important;
+                font-size: 12px !important;
+            }
+
+            .sidebar-nav a.active {
+                padding-left: 9px !important;
+            }
+
+            .sidebar-bottom {
+                margin-top: 15px !important;
+                padding-top: 10px !important;
+                flex-shrink: 0 !important;
+            }
+
+            .sidebar-profile {
+                padding: 10px 8px !important;
+                margin-bottom: 6px !important;
+            }
+
+            .logout-link {
+                padding: 10px 12px !important;
+                margin-bottom: 5px !important;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .main-content {
+                padding: 18px 15px 30px !important;
+            }
+
+            .main-content > .topbar {
+                flex-wrap: nowrap !important;
+                margin-bottom: 22px !important;
+            }
+
+            .main-content > .topbar .topbar-left {
+                gap: 10px;
+            }
+
+            .page-heading small {
+                font-size: 9px;
+            }
+
+            .page-heading h2 {
+                font-size: 19px;
+            }
+
+            .main-content > .topbar .topbar-right {
+                gap: 9px;
+            }
+
+            .notification-btn,
+            .chip-avatar {
+                width: 38px;
+                height: 38px;
+            }
+
+            .profile-chip-info {
+                display: none;
+            }
+
+            .welcome-banner {
+                padding: 25px 22px;
+                margin-bottom: 20px;
+            }
+
+            .welcome-content h2 {
+                font-size: 24px;
+            }
+
+            .welcome-content p {
+                font-size: 11px;
+                line-height: 1.8;
+            }
+
+            .dashboard-stat {
+                padding: 16px;
+            }
+
+            .dashboard-stat h3 {
+                font-size: 23px;
+            }
+
+            .dashboard-card {
+                padding: 17px;
+            }
+
+            .chart-container {
+                height: 250px;
+            }
+
+            .filter-section .row {
+                row-gap: 12px !important;
+            }
+
+            .filter-section .d-flex.gap-2 {
+                width: 100%;
+            }
+
+            .filter-section button {
+                flex: 1;
+            }
+
+            .report-actions {
+                width: 100%;
+            }
+
+            .report-actions button {
+                flex: 1;
+                padding: 9px 10px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .main-content > .topbar {
+                gap: 8px;
+            }
+
+            .main-content > .topbar .topbar-left {
+                gap: 7px;
+            }
+
+            .mobile-toggle {
+                width: 36px;
+                height: 36px;
+            }
+
+            .page-heading h2 {
+                font-size: 17px;
+            }
+
+            .main-content > .topbar .topbar-right {
+                gap: 7px;
+            }
+
+            .notification-btn,
+            .chip-avatar {
+                width: 35px;
+                height: 35px;
+            }
+        }
+
+        /* PRINT */
+
+        @media print {
+            .sidebar,
+            .topbar,
+            .welcome-banner,
+            .filter-section,
+            .no-print,
+            .dashboard-footer,
+            .sidebar-overlay {
+                display: none !important;
+            }
+
+            .main-content {
+                width: 100%;
+                margin: 0;
+                padding: 0 !important;
+            }
+
+            body {
+                background: #FFFFFF;
+            }
+
+            .dashboard-card,
+            .dashboard-stat {
+                box-shadow: none;
+                break-inside: avoid;
+            }
+
+            .table thead th {
+                background: #4A001F !important;
+                color: #D6B77A !important;
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+
+<body data-requires-auth="admin">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-brand">
+            <div class="brand-logo-light">
+                <span class="brand-heal">HEAL</span><span class="brand-ora">ORA</span>
             </div>
+            <div class="brand-clinic">C L I N I C</div>
         </div>
 
-        <a href="#" class="logout-link" data-logout>
-            <i class="bi bi-box-arrow-left"></i>
-            <span>Logout</span>
-        </a>
+        <div class="nav-label">ADMIN PORTAL</div>
 
-    </div>
+        <nav class="sidebar-nav">
 
-</aside>
+            <a href="admin-dashboard.html">
+                <i class="bi bi-grid-1x2-fill"></i>
+                <span>Dashboard</span>
+            </a>
 
-<div class="sidebar-overlay" id="sidebarOverlay"></div>
+            <a href="appointments.html">
+                <i class="bi bi-calendar-check"></i>
+                <span>Appointments</span>
+            </a>
 
+            <a href="patients.html">
+                <i class="bi bi-people"></i>
+                <span>Patients</span>
+            </a>
 
-<!-- MAIN CONTENT -->
-<main class="main-content">
+            <a href="doctors.html">
+                <i class="bi bi-person-badge"></i>
+                <span>Doctors</span>
+            </a>
 
-    <!-- TOPBAR -->
-    <header class="topbar">
+            <a href="doctor-schedule.html">
+                <i class="bi bi-calendar-week"></i>
+                <span>Doctor Schedule</span>
+            </a>
 
-        <div class="topbar-left">
+            <a href="clinic-services.html">
+                <i class="bi bi-heart-pulse"></i>
+                <span>Clinic Services</span>
+            </a>
 
-            <button class="mobile-toggle"
-                    id="mobileToggle"
-                    type="button"
-                    aria-label="Open menu"
-                    aria-expanded="false">
-                <i class="bi bi-list"></i>
-            </button>
+            <a href="appointment-history.html">
+                <i class="bi bi-clock-history"></i>
+                <span>Appointment History</span>
+            </a>
 
-            <div class="page-heading">
-                <small>ADMIN PORTAL</small>
-                <h2>Reports</h2>
-            </div>
+            <a href="reports.html" class="active">
+                <i class="bi bi-bar-chart-line"></i>
+                <span>Reports</span>
+            </a>
 
-        </div>
+            <a href="profile.html">
+                <i class="bi bi-person-circle"></i>
+                <span>My Profile</span>
+            </a>
 
-        <div class="topbar-right">
+            <a href="help-support.html">
+                <i class="bi bi-headset"></i>
+                <span>Help &amp; Support</span>
+            </a>
 
-            <div class="notification-btn" aria-label="Notifications">
-                <i class="bi bi-bell"></i>
-                <span class="notification-dot"></span>
-            </div>
+        </nav>
 
-            <div class="profile-chip">
+        <div class="sidebar-bottom">
 
-                <div class="profile-chip-info">
+            <div class="sidebar-profile">
+                <div class="sidebar-profile-avatar">H</div>
+
+                <div class="sidebar-profile-info">
                     <strong>Healora Administrator</strong>
                     <span>ADMIN</span>
                 </div>
+            </div>
 
-                <div class="chip-avatar">H</div>
+            <a href="#" class="logout-link" data-logout>
+                <i class="bi bi-box-arrow-left"></i>
+                <span>Logout</span>
+            </a>
 
+        </div>
+
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button class="mobile-toggle"
+                        id="mobileToggle"
+                        type="button"
+                        aria-label="Open menu"
+                        aria-expanded="false">
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <div class="page-heading">
+                    <small>ADMIN PORTAL</small>
+                    <h2>Reports</h2>
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="notification-btn" aria-label="Notifications">
+                    <i class="bi bi-bell"></i>
+                    <span class="notification-dot"></span>
+                </div>
+
+                <div class="profile-chip">
+                    <div class="profile-chip-info">
+                        <strong>Healora Administrator</strong>
+                        <span>ADMIN</span>
+                    </div>
+
+                    <div class="chip-avatar">H</div>
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- WELCOME BANNER -->
+        <section class="welcome-banner">
+            <div class="welcome-content">
+                <h2>Clinic Reports &amp; Insights</h2>
+                <p>
+                    Review appointment activities and monitor the overall performance
+                    of Healora Clinic.
+                </p>
+            </div>
+        </section>
+
+        <!-- REPORT FILTERS -->
+        <section class="dashboard-card filter-section mb-4">
+
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3">
+                <h5 class="mb-0">
+                    <i class="bi bi-funnel me-2"></i>
+                    Report Filters
+                </h5>
+
+                <span class="report-note">
+                    Select a date range to filter your report.
+                </span>
+            </div>
+
+            <div class="row g-3 align-items-end">
+
+                <div class="col-md-4">
+                    <label class="filter-label" for="startDate">Start Date</label>
+                    <input type="date" id="startDate" class="form-control">
+                </div>
+
+                <div class="col-md-4">
+                    <label class="filter-label" for="endDate">End Date</label>
+                    <input type="date" id="endDate" class="form-control">
+                </div>
+
+                <div class="col-md-4 d-flex gap-2">
+                    <button class="btn-gold flex-fill" id="applyFilter" type="button">
+                        <i class="bi bi-search me-1"></i>
+                        Apply Filter
+                    </button>
+
+                    <button class="btn-outline-burgundy flex-fill" id="resetFilter" type="button">
+                        Reset
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- STATISTICS -->
+        <div class="row g-3 mb-4">
+
+            <div class="col-6 col-xl-3 col-md-6">
+                <div class="dashboard-stat">
+                    <div class="stat-icon">
+                        <i class="bi bi-calendar-check"></i>
+                    </div>
+                    <h3 id="totalAppointments">0</h3>
+                    <p>Total Appointments</p>
+                </div>
+            </div>
+
+            <div class="col-6 col-xl-3 col-md-6">
+                <div class="dashboard-stat">
+                    <div class="stat-icon">
+                        <i class="bi bi-check-circle"></i>
+                    </div>
+                    <h3 id="completedAppointments">0</h3>
+                    <p>Completed Appointments</p>
+                </div>
+            </div>
+
+            <div class="col-6 col-xl-3 col-md-6">
+                <div class="dashboard-stat">
+                    <div class="stat-icon">
+                        <i class="bi bi-hourglass-split"></i>
+                    </div>
+                    <h3 id="pendingAppointments">0</h3>
+                    <p>Pending Appointments</p>
+                </div>
+            </div>
+
+            <div class="col-6 col-xl-3 col-md-6">
+                <div class="dashboard-stat">
+                    <div class="stat-icon">
+                        <i class="bi bi-x-circle"></i>
+                    </div>
+                    <h3 id="cancelledAppointments">0</h3>
+                    <p>Cancelled Appointments</p>
+                </div>
             </div>
 
         </div>
 
-    </header>
+        <!-- CHARTS -->
+        <div class="row g-4 mb-4">
 
-    <!-- WELCOME BANNER -->
-    <section class="welcome-banner">
+            <div class="col-lg-7">
+                <div class="dashboard-card">
+                    <h5>
+                        <i class="bi bi-graph-up me-2"></i>
+                        Monthly Appointment Overview
+                    </h5>
 
-        <div class="welcome-content">
-            <h2>Clinic Reports &amp; Insights</h2>
+                    <div class="chart-container">
+                        <canvas id="monthlyChart"></canvas>
+                    </div>
+                </div>
+            </div>
 
-            <p>
-                Review appointment activities and monitor the overall performance
-                of Healora Clinic.
-            </p>
+            <div class="col-lg-5">
+                <div class="dashboard-card">
+                    <h5>
+                        <i class="bi bi-pie-chart me-2"></i>
+                        Appointment Status
+                    </h5>
+
+                    <div class="chart-container">
+                        <canvas id="statusChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
-    </section>
+        <!-- APPOINTMENT REPORT TABLE -->
+        <section class="dashboard-card mb-4">
 
-    <!-- KEKALKAN SEMUA BAHAGIAN REPORTS YANG SEDIA ADA DI SINI -->
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3">
 
-</main>
+                <div>
+                    <h5 class="mb-1">Appointment Report</h5>
+                    <p class="report-note mb-0">
+                        A summary of appointments within the selected date range.
+                    </p>
+                </div>
+
+                <div class="d-flex gap-2 no-print report-actions">
+                    <button class="btn-outline-burgundy" id="exportCSV" type="button">
+                        <i class="bi bi-file-earmark-spreadsheet me-1"></i>
+                        Export CSV
+                    </button>
+
+                    <button class="btn-gold" id="printReport" type="button">
+                        <i class="bi bi-printer me-1"></i>
+                        Print Report
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="table-responsive">
+                <table class="table align-middle">
+
+                    <thead>
+                        <tr>
+                            <th>Appointment ID</th>
+                            <th>Patient</th>
+                            <th>Service</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="reportTableBody">
+                        <tr>
+                            <td colspan="6" class="text-center py-4">
+                                Loading report data...
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mt-3 flex-wrap gap-2">
+                <span class="report-note" id="recordCount">
+                    0 records found
+                </span>
+
+                <span class="report-note">Healora Clinic Report</span>
+            </div>
+
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="dashboard-footer">
+            © 2026 Healora Clinic. All Rights Reserved.
+            <br>
+            <span class="fst-italic">Your Health, Our Priority.</span>
+        </footer>
+
+    </main>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/data.js"></script>
+    <script src="../js/auth.js"></script>
+
+    <script>
+        let allAppointments = [];
+        let filteredAppointments = [];
+        let monthlyChart = null;
+        let statusChart = null;
+
+        /* GET APPOINTMENTS */
+
+        function getAppointments() {
+            try {
+                if (
+                    window.HealoraStorage &&
+                    typeof HealoraStorage.getAppointments === "function"
+                ) {
+                    return HealoraStorage.getAppointments() || [];
+                }
+
+                return JSON.parse(
+                    localStorage.getItem("healora_appointments") || "[]"
+                );
+
+            } catch (error) {
+                console.error("Unable to load appointments:", error);
+                return [];
+            }
+        }
+
+        /* APPOINTMENT INFORMATION */
+
+        function getAppointmentDate(appointment) {
+            return appointment.date || appointment.appointmentDate || "";
+        }
+
+        function getAppointmentStatus(appointment) {
+            return String(appointment.status || "pending")
+                .trim()
+                .toLowerCase();
+        }
+
+        function getPatientName(appointment) {
+            return appointment.patientName ||
+                   appointment.name ||
+                   "N/A";
+        }
+
+        function getServiceName(appointment) {
+            return appointment.service ||
+                   appointment.serviceName ||
+                   "N/A";
+        }
+
+        function getAppointmentId(appointment) {
+            return appointment.id ||
+                   appointment.appointmentId ||
+                   "N/A";
+        }
+
+        /* ESCAPE HTML */
+
+        function escapeHTML(value) {
+            return String(value ?? "").replace(/[&<>"']/g, function(char) {
+                const entities = {
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    '"': "&quot;",
+                    "'": "&#39;"
+                };
+
+                return entities[char];
+            });
+        }
+
+        /* FORMAT DATE */
+
+        function formatDate(dateValue) {
+            if (!dateValue) return "N/A";
+
+            const date = new Date(dateValue + "T00:00:00");
+
+            if (isNaN(date.getTime())) {
+                return dateValue;
+            }
+
+            return date.toLocaleDateString("en-MY", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            });
+        }
+
+        /* STATUS CLASS */
+
+        function getStatusClass(status) {
+            if (status.includes("complete")) return "status-completed";
+            if (status.includes("cancel")) return "status-cancelled";
+            if (status.includes("confirm")) return "status-confirmed";
+
+            return "status-pending";
+        }
+
+        /* UPDATE STATISTICS */
+
+        function updateStatistics(data) {
+            const total = data.length;
+
+            const completed = data.filter(item =>
+                getAppointmentStatus(item).includes("complete")
+            ).length;
+
+            const cancelled = data.filter(item =>
+                getAppointmentStatus(item).includes("cancel")
+            ).length;
+
+            const pending = data.filter(item => {
+                const status = getAppointmentStatus(item);
+
+                return !status.includes("complete") &&
+                       !status.includes("cancel") &&
+                       !status.includes("confirm");
+            }).length;
+
+            document.getElementById("totalAppointments").textContent = total;
+            document.getElementById("completedAppointments").textContent = completed;
+            document.getElementById("pendingAppointments").textContent = pending;
+            document.getElementById("cancelledAppointments").textContent = cancelled;
+        }
+
+        /* RENDER REPORT TABLE */
+
+        function renderTable(data) {
+            const tableBody = document.getElementById("reportTableBody");
+
+            if (data.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="text-center py-4">
+                            No appointment records found.
+                        </td>
+                    </tr>
+                `;
+
+                document.getElementById("recordCount").textContent =
+                    "0 records found";
+
+                return;
+            }
+
+            tableBody.innerHTML = data.map(appointment => {
+                const status = getAppointmentStatus(appointment);
+
+                return `
+                    <tr>
+                        <td class="fw-semibold">
+                            ${escapeHTML(getAppointmentId(appointment))}
+                        </td>
+
+                        <td>
+                            ${escapeHTML(getPatientName(appointment))}
+                        </td>
+
+                        <td>
+                            ${escapeHTML(getServiceName(appointment))}
+                        </td>
+
+                        <td>
+                            ${escapeHTML(formatDate(getAppointmentDate(appointment)))}
+                        </td>
+
+                        <td>
+                            ${escapeHTML(appointment.time || "N/A")}
+                        </td>
+
+                        <td>
+                            <span class="status-badge ${getStatusClass(status)}">
+                                ${escapeHTML(status)}
+                            </span>
+                        </td>
+                    </tr>
+                `;
+            }).join("");
+
+            document.getElementById("recordCount").textContent =
+                `${data.length} record(s) found`;
+        }
+
+        /* MONTHLY APPOINTMENT CHART */
+
+        function updateMonthlyChart(data) {
+            const months = [
+                "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+            ];
+
+            const monthlyCounts = Array(12).fill(0);
+            const currentYear = new Date().getFullYear();
+
+            data.forEach(appointment => {
+                const dateValue = getAppointmentDate(appointment);
+
+                if (!dateValue) return;
+
+                const date = new Date(dateValue + "T00:00:00");
+
+                if (
+                    !isNaN(date.getTime()) &&
+                    date.getFullYear() === currentYear
+                ) {
+                    monthlyCounts[date.getMonth()]++;
+                }
+            });
+
+            const context = document.getElementById("monthlyChart");
+
+            if (monthlyChart) {
+                monthlyChart.destroy();
+            }
+
+            monthlyChart = new Chart(context, {
+                type: "bar",
+
+                data: {
+                    labels: months,
+
+                    datasets: [{
+                        label: "Appointments",
+                        data: monthlyCounts,
+                        backgroundColor: "#800020",
+                        borderColor: "#D6B77A",
+                        borderWidth: 1,
+                        borderRadius: 6
+                    }]
+                },
+
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                precision: 0
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        /* APPOINTMENT STATUS CHART */
+
+        function updateStatusChart(data) {
+            const completed = data.filter(item =>
+                getAppointmentStatus(item).includes("complete")
+            ).length;
+
+            const cancelled = data.filter(item =>
+                getAppointmentStatus(item).includes("cancel")
+            ).length;
+
+            const confirmed = data.filter(item =>
+                getAppointmentStatus(item).includes("confirm")
+            ).length;
+
+            const pending = data.filter(item => {
+                const status = getAppointmentStatus(item);
+
+                return !status.includes("complete") &&
+                       !status.includes("cancel") &&
+                       !status.includes("confirm");
+            }).length;
+
+            const context = document.getElementById("statusChart");
+
+            if (statusChart) {
+                statusChart.destroy();
+            }
+
+            statusChart = new Chart(context, {
+                type: "doughnut",
+
+                data: {
+                    labels: [
+                        "Completed",
+                        "Pending",
+                        "Confirmed",
+                        "Cancelled"
+                    ],
+
+                    datasets: [{
+                        data: [
+                            completed,
+                            pending,
+                            confirmed,
+                            cancelled
+                        ],
+
+                        backgroundColor: [
+                            "#6A9F78",
+                            "#D6B77A",
+                            "#6686B5",
+                            "#B75A68"
+                        ],
+
+                        borderWidth: 2,
+                        borderColor: "#FFFFFF"
+                    }]
+                },
+
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+
+                    plugins: {
+                        legend: {
+                            position: "bottom",
+
+                            labels: {
+                                padding: 18,
+                                usePointStyle: true,
+
+                                font: {
+                                    size: 11
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        /* UPDATE REPORT */
+
+        function updateReport(data) {
+            filteredAppointments = data;
+
+            updateStatistics(data);
+            renderTable(data);
+            updateMonthlyChart(data);
+            updateStatusChart(data);
+        }
+
+        /* APPLY DATE FILTER */
+
+        function applyDateFilter() {
+            const startValue = document.getElementById("startDate").value;
+            const endValue = document.getElementById("endDate").value;
+
+            if (startValue && endValue && startValue > endValue) {
+                alert("End date must be later than or equal to start date.");
+                return;
+            }
+
+            const result = allAppointments.filter(appointment => {
+                const date = getAppointmentDate(appointment);
+
+                if (!date) return false;
+                if (startValue && date < startValue) return false;
+                if (endValue && date > endValue) return false;
+
+                return true;
+            });
+
+            updateReport(result);
+        }
+
+        /* RESET DATE FILTER */
+
+        function resetDateFilter() {
+            document.getElementById("startDate").value = "";
+            document.getElementById("endDate").value = "";
+
+            updateReport(allAppointments);
+        }
+
+        /* EXPORT CSV */
+
+        function exportCSV() {
+            if (filteredAppointments.length === 0) {
+                alert("There are no records to export.");
+                return;
+            }
+
+            const headers = [
+                "Appointment ID",
+                "Patient",
+                "Service",
+                "Date",
+                "Time",
+                "Status"
+            ];
+
+            const rows = filteredAppointments.map(appointment => [
+                getAppointmentId(appointment),
+                getPatientName(appointment),
+                getServiceName(appointment),
+                getAppointmentDate(appointment),
+                appointment.time || "N/A",
+                getAppointmentStatus(appointment)
+            ]);
+
+            const csvContent = [headers, ...rows]
+                .map(row => row.map(value =>
+                    '"' + String(value ?? "").replace(/"/g, '""') + '"'
+                ).join(","))
+                .join("\n");
+
+            const blob = new Blob(["\uFEFF" + csvContent], {
+                type: "text/csv;charset=utf-8;"
+            });
+
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+
+            link.href = url;
+            link.download = "Healora-Clinic-Report.csv";
+
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+
+            URL.revokeObjectURL(url);
+        }
+
+        /* INITIALIZE REPORTS */
+
+        function initializeReports() {
+            allAppointments = getAppointments();
+
+            allAppointments.sort((a, b) => {
+                return getAppointmentDate(b).localeCompare(
+                    getAppointmentDate(a)
+                );
+            });
+
+            updateReport(allAppointments);
+        }
+
+        /* MOBILE SIDEBAR */
+
+        document.addEventListener("DOMContentLoaded", function() {
+
+            initializeReports();
+
+            const sidebar = document.getElementById("sidebar");
+            const mobileToggle = document.getElementById("mobileToggle");
+            const sidebarOverlay = document.getElementById("sidebarOverlay");
+            const toggleIcon = mobileToggle.querySelector("i");
+
+            function openSidebar() {
+                sidebar.classList.add("open");
+                sidebarOverlay.classList.add("show");
+
+                document.body.style.overflow = "hidden";
+
+                mobileToggle.setAttribute("aria-expanded", "true");
+                mobileToggle.setAttribute("aria-label", "Close menu");
+
+                toggleIcon.className = "bi bi-x-lg";
+            }
+
+            function closeSidebar() {
+                sidebar.classList.remove("open");
+                sidebarOverlay.classList.remove("show");
+
+                document.body.style.overflow = "";
+
+                mobileToggle.setAttribute("aria-expanded", "false");
+                mobileToggle.setAttribute("aria-label", "Open menu");
+
+                toggleIcon.className = "bi bi-list";
+            }
+
+            mobileToggle.addEventListener("click", function() {
+                if (sidebar.classList.contains("open")) {
+                    closeSidebar();
+                } else {
+                    openSidebar();
+                }
+            });
+
+            sidebarOverlay.addEventListener("click", closeSidebar);
+
+            sidebar.querySelectorAll(".sidebar-nav a, .logout-link")
+                .forEach(link => {
+                    link.addEventListener("click", closeSidebar);
+                });
+
+            document.addEventListener("keydown", function(event) {
+                if (event.key === "Escape") {
+                    closeSidebar();
+                }
+            });
+
+            window.addEventListener("resize", function() {
+                if (window.innerWidth > 900) {
+                    closeSidebar();
+                }
+            });
+
+        });
+
+        /* BUTTON EVENTS */
+
+        document.getElementById("applyFilter")
+            .addEventListener("click", applyDateFilter);
+
+        document.getElementById("resetFilter")
+            .addEventListener("click", resetDateFilter);
+
+        document.getElementById("exportCSV")
+            .addEventListener("click", exportCSV);
+
+        document.getElementById("printReport")
+            .addEventListener("click", function() {
+                window.print();
+            });
+
+    </script>
+
+</body>
+</html>
