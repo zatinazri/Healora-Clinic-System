@@ -247,7 +247,6 @@
         .main-content .topbar {
             display: flex !important;
             flex-direction: row !important;
-            flex-wrap: nowrap !important;
             justify-content: space-between !important;
             align-items: center !important;
             text-align: left !important;
@@ -255,33 +254,27 @@
             margin: 0 0 29px 0 !important;
             padding: 0 !important;
             width: 100% !important;
-            min-height: 50px !important;
-            background: transparent !important;
-            border: none !important;
-            box-shadow: none !important;
-            border-radius: 0 !important;
+            min-height: 50px;
         }
 
         .main-content .topbar-left {
             display: flex !important;
             flex-direction: row !important;
-            flex-wrap: nowrap !important;
             align-items: center !important;
             justify-content: flex-start !important;
             text-align: left !important;
             gap: 13px !important;
             flex: 1 1 auto !important;
-            min-width: 0 !important;
+            min-width: 0;
             width: auto !important;
         }
 
         .main-content .page-heading {
             display: block !important;
-            flex: 0 0 auto !important;
             text-align: left !important;
             margin: 0 !important;
             padding: 0 !important;
-            min-width: 0 !important;
+            min-width: 0;
             width: auto !important;
         }
 
@@ -311,7 +304,6 @@
         .main-content .topbar-right {
             display: flex !important;
             flex-direction: row !important;
-            flex-wrap: nowrap !important;
             align-items: center !important;
             justify-content: flex-end !important;
             gap: 19px !important;
@@ -572,15 +564,13 @@
             font-size: 11px;
         }
 
-        /* TABLET */
+        /* TABLET AND MOBILE */
 
         @media (max-width: 1100px) {
             .main-content {
                 padding: 28px 25px 40px !important;
             }
         }
-
-        /* MOBILE SIDEBAR */
 
         @media (max-width: 900px) {
             .sidebar {
@@ -610,8 +600,6 @@
             }
         }
 
-        /* SMALL MOBILE */
-
         @media (max-width: 600px) {
             .main-content {
                 padding: 18px 15px 30px !important;
@@ -619,11 +607,12 @@
 
             .main-content .topbar {
                 margin-bottom: 22px !important;
-                gap: 8px !important;
+                flex-wrap: nowrap !important;
             }
 
             .main-content .topbar-left {
-                gap: 9px !important;
+                gap: 10px !important;
+                flex: 1 1 auto !important;
             }
 
             .main-content .page-heading small {
@@ -687,17 +676,17 @@
 
         @media (max-width: 380px) {
             .main-content .topbar {
-                gap: 6px !important;
+                gap: 8px !important;
             }
 
             .main-content .topbar-left {
-                gap: 6px !important;
+                gap: 7px !important;
             }
 
             .mobile-toggle {
-                width: 35px;
-                height: 35px;
-                min-width: 35px;
+                width: 36px;
+                height: 36px;
+                min-width: 36px;
             }
 
             .main-content .page-heading h2 {
@@ -705,7 +694,7 @@
             }
 
             .main-content .topbar-right {
-                gap: 6px !important;
+                gap: 7px !important;
             }
 
             .notification-btn,
@@ -713,78 +702,6 @@
                 width: 35px;
                 height: 35px;
                 min-width: 35px;
-            }
-        }
-
-        /* FINAL HEADER OVERRIDE */
-
-        .main-content > header.topbar {
-            display: flex !important;
-            flex-direction: row !important;
-            flex-wrap: nowrap !important;
-            justify-content: space-between !important;
-            align-items: center !important;
-            text-align: left !important;
-            width: 100% !important;
-            min-height: 50px !important;
-            margin: 0 0 29px 0 !important;
-            padding: 0 !important;
-            background: transparent !important;
-            border: 0 !important;
-            border-radius: 0 !important;
-            box-shadow: none !important;
-        }
-
-        .main-content > header.topbar > .topbar-left {
-            display: flex !important;
-            flex-direction: row !important;
-            flex-wrap: nowrap !important;
-            align-items: center !important;
-            justify-content: flex-start !important;
-            flex: 1 1 auto !important;
-            width: auto !important;
-            min-width: 0 !important;
-            text-align: left !important;
-        }
-
-        .main-content > header.topbar > .topbar-left > .page-heading {
-            display: block !important;
-            flex: 0 0 auto !important;
-            width: auto !important;
-            margin: 0 !important;
-            text-align: left !important;
-        }
-
-        .main-content > header.topbar > .topbar-right {
-            display: flex !important;
-            flex-direction: row !important;
-            flex-wrap: nowrap !important;
-            align-items: center !important;
-            justify-content: flex-end !important;
-            flex: 0 0 auto !important;
-            width: auto !important;
-            margin-left: auto !important;
-        }
-
-        .main-content > header.topbar .mobile-toggle,
-        .main-content > header.topbar .notification-btn,
-        .main-content > header.topbar .chip-avatar {
-            flex-shrink: 0 !important;
-        }
-
-        @media (max-width: 600px) {
-            .main-content > header.topbar {
-                flex-wrap: nowrap !important;
-                margin-bottom: 22px !important;
-            }
-
-            .main-content > header.topbar > .topbar-left,
-            .main-content > header.topbar > .topbar-right {
-                flex-wrap: nowrap !important;
-            }
-
-            .main-content > header.topbar > .topbar-right {
-                flex: 0 0 auto !important;
             }
         }
     </style>
