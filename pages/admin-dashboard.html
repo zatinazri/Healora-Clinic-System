@@ -51,7 +51,7 @@
             left: 0;
             z-index: 1000;
             display: flex !important;
-            flex-direction: column;
+            flex-direction: column !important;
             padding: 0 19px 22px !important;
             background: linear-gradient(180deg, #350017 0%, #4A001F 100%) !important;
             transition: transform .3s ease;
@@ -96,7 +96,6 @@
 
         .brand-clinic {
             color: var(--cream) !important;
-            font-family: 'Manrope', sans-serif;
             font-size: 10px;
             font-weight: 600;
             letter-spacing: 4px;
@@ -218,7 +217,6 @@
             font-size: 13px;
             font-weight: 600;
             border-radius: 8px;
-            cursor: pointer;
         }
 
         .logout-link i {
@@ -231,8 +229,6 @@
             color: var(--cream) !important;
         }
 
-        /* SIDEBAR OVERLAY */
-
         .sidebar-overlay {
             display: none;
         }
@@ -243,53 +239,78 @@
             margin-left: 260px !important;
             padding: 32px 40px 45px !important;
             min-height: 100vh;
+            width: auto;
         }
 
         /* HEADER */
 
-        .topbar {
+        .main-content .topbar {
             display: flex !important;
-            align-items: center !important;
+            flex-direction: row !important;
             justify-content: space-between !important;
-            gap: 15px;
-            margin-bottom: 29px;
-            width: 100%;
+            align-items: center !important;
+            text-align: left !important;
+            gap: 15px !important;
+            margin: 0 0 29px 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+            min-height: 50px;
         }
 
-        .topbar-left {
-            display: flex;
-            align-items: center;
-            gap: 13px;
+        .main-content .topbar-left {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            text-align: left !important;
+            gap: 13px !important;
+            flex: 1 1 auto !important;
             min-width: 0;
+            width: auto !important;
         }
 
-        .page-heading {
+        .main-content .page-heading {
+            display: block !important;
+            text-align: left !important;
+            margin: 0 !important;
+            padding: 0 !important;
             min-width: 0;
+            width: auto !important;
         }
 
-        .page-heading small {
-            display: block;
+        .main-content .page-heading small {
+            display: block !important;
             color: var(--gold-dark);
             font-size: 10px;
             font-weight: 800;
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 5px;
+            margin: 0 0 5px 0 !important;
+            text-align: left !important;
         }
 
-        .page-heading h2 {
+        .main-content .page-heading h2 {
+            display: block !important;
             color: var(--wine);
             font-family: 'Manrope', sans-serif;
             font-size: 25px;
             font-weight: 800;
-            margin: 0;
+            margin: 0 !important;
+            padding: 0 !important;
+            text-align: left !important;
+            line-height: 1.3;
         }
 
-        .topbar-right {
-            display: flex;
-            align-items: center;
-            gap: 19px;
-            flex-shrink: 0;
+        .main-content .topbar-right {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: flex-end !important;
+            gap: 19px !important;
+            flex: 0 0 auto !important;
+            width: auto !important;
+            margin: 0 0 0 auto !important;
+            padding: 0 !important;
         }
 
         .notification-btn {
@@ -305,6 +326,7 @@
             justify-content: center;
             font-size: 17px;
             position: relative;
+            flex-shrink: 0;
         }
 
         .notification-dot {
@@ -319,30 +341,17 @@
         }
 
         .profile-chip {
-            display: flex;
-            align-items: center;
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
             gap: 10px;
             min-width: 0;
-        }
-
-        .chip-avatar {
-            width: 42px;
-            height: 42px;
-            min-width: 42px;
-            border-radius: 50%;
-            background: var(--burgundy);
-            color: var(--gold);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Bodoni Moda', serif;
-            font-size: 21px;
-            font-weight: 700;
-            border: 1px solid var(--gold);
+            flex-shrink: 0;
         }
 
         .profile-chip-info {
             min-width: 0;
+            text-align: right;
         }
 
         .profile-chip-info strong {
@@ -362,6 +371,22 @@
             margin-top: 3px;
         }
 
+        .chip-avatar {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            border-radius: 50%;
+            background: var(--burgundy);
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 21px;
+            font-weight: 700;
+            border: 1px solid var(--gold);
+        }
+
         .mobile-toggle {
             display: none;
             width: 40px;
@@ -374,6 +399,7 @@
             font-size: 20px;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
 
         /* WELCOME BANNER */
@@ -538,7 +564,7 @@
             font-size: 11px;
         }
 
-        /* RESPONSIVE */
+        /* TABLET AND MOBILE */
 
         @media (max-width: 1100px) {
             .main-content {
@@ -566,10 +592,11 @@
             .main-content {
                 margin-left: 0 !important;
                 padding: 22px 20px 35px !important;
+                width: 100% !important;
             }
 
             .mobile-toggle {
-                display: flex;
+                display: flex !important;
             }
         }
 
@@ -578,24 +605,26 @@
                 padding: 18px 15px 30px !important;
             }
 
-            .topbar {
-                margin-bottom: 22px;
+            .main-content .topbar {
+                margin-bottom: 22px !important;
+                flex-wrap: nowrap !important;
             }
 
-            .topbar-left {
-                gap: 10px;
+            .main-content .topbar-left {
+                gap: 10px !important;
+                flex: 1 1 auto !important;
             }
 
-            .page-heading small {
+            .main-content .page-heading small {
                 font-size: 9px;
             }
 
-            .page-heading h2 {
+            .main-content .page-heading h2 {
                 font-size: 19px;
             }
 
-            .topbar-right {
-                gap: 9px;
+            .main-content .topbar-right {
+                gap: 9px !important;
             }
 
             .notification-btn {
@@ -611,7 +640,7 @@
             }
 
             .profile-chip-info {
-                display: none;
+                display: none !important;
             }
 
             .welcome-banner {
@@ -646,12 +675,12 @@
         }
 
         @media (max-width: 380px) {
-            .topbar {
-                gap: 8px;
+            .main-content .topbar {
+                gap: 8px !important;
             }
 
-            .topbar-left {
-                gap: 7px;
+            .main-content .topbar-left {
+                gap: 7px !important;
             }
 
             .mobile-toggle {
@@ -660,12 +689,12 @@
                 min-width: 36px;
             }
 
-            .page-heading h2 {
+            .main-content .page-heading h2 {
                 font-size: 17px;
             }
 
-            .topbar-right {
-                gap: 7px;
+            .main-content .topbar-right {
+                gap: 7px !important;
             }
 
             .notification-btn,
@@ -687,7 +716,6 @@
             <div class="brand-logo-light">
                 <span class="brand-heal">HEAL</span><span class="brand-ora">ORA</span>
             </div>
-
             <div class="brand-clinic">C L I N I C</div>
         </div>
 
@@ -822,7 +850,6 @@
 
             <div class="welcome-content">
                 <h2>Welcome Back, Administrator</h2>
-
                 <p>
                     Manage your clinic operations and keep everything running smoothly.
                 </p>
@@ -835,53 +862,41 @@
 
             <div class="col-6 col-xl-3">
                 <div class="dashboard-stat">
-
                     <div class="stat-icon">
                         <i class="bi bi-people-fill"></i>
                     </div>
-
                     <h3 id="totalPatients">0</h3>
                     <p>Total Patients</p>
-
                 </div>
             </div>
 
             <div class="col-6 col-xl-3">
                 <div class="dashboard-stat">
-
                     <div class="stat-icon">
                         <i class="bi bi-person-badge-fill"></i>
                     </div>
-
                     <h3 id="totalDoctors">0</h3>
                     <p>Total Doctors</p>
-
                 </div>
             </div>
 
             <div class="col-6 col-xl-3">
                 <div class="dashboard-stat">
-
                     <div class="stat-icon">
                         <i class="bi bi-calendar-check-fill"></i>
                     </div>
-
                     <h3 id="totalAppointments">0</h3>
                     <p>Total Appointments</p>
-
                 </div>
             </div>
 
             <div class="col-6 col-xl-3">
                 <div class="dashboard-stat">
-
                     <div class="stat-icon">
                         <i class="bi bi-hourglass-split"></i>
                     </div>
-
                     <h3 id="pendingAppointments">0</h3>
                     <p>Pending Appointments</p>
-
                 </div>
             </div>
 
@@ -891,17 +906,14 @@
         <section class="row g-3 mb-4">
 
             <div class="col-lg-8">
-
                 <div class="dashboard-card">
 
                     <div class="d-flex justify-content-between align-items-center mb-3">
-
                         <h5 class="mb-0">Appointment Overview</h5>
 
                         <span class="small text-muted">
                             Appointment Status
                         </span>
-
                     </div>
 
                     <div class="appointment-chart-container">
@@ -909,11 +921,9 @@
                     </div>
 
                 </div>
-
             </div>
 
             <div class="col-lg-4">
-
                 <div class="dashboard-card">
 
                     <h5 class="mb-3">Quick Actions</h5>
@@ -939,7 +949,6 @@
                     </a>
 
                 </div>
-
             </div>
 
         </section>
@@ -951,12 +960,10 @@
 
                 <div>
                     <div class="d-flex align-items-center gap-2 mb-2">
-
                         <i class="bi bi-bar-chart-fill"
                            style="color:#B89555;font-size:20px;"></i>
 
                         <h5 class="mb-0">Support Message Overview</h5>
-
                     </div>
 
                     <p class="small text-muted mb-0">
@@ -985,13 +992,11 @@
         <section class="dashboard-card">
 
             <div class="d-flex justify-content-between align-items-center mb-3">
-
                 <h5 class="mb-0">Recent Appointments</h5>
 
                 <a href="appointments.html" class="view-all">
                     View All <i class="bi bi-arrow-right"></i>
                 </a>
-
             </div>
 
             <div class="table-responsive">
@@ -1010,13 +1015,11 @@
                     </thead>
 
                     <tbody id="recentAppointments">
-
                         <tr>
                             <td colspan="6" class="text-center text-muted py-4">
                                 Loading appointments...
                             </td>
                         </tr>
-
                     </tbody>
 
                 </table>
@@ -1027,15 +1030,11 @@
 
         <!-- FOOTER -->
         <footer class="dashboard-footer">
-
             © 2026 Healora Clinic. All Rights Reserved.
-
             <br>
-
             <span class="fst-italic">
                 Your Health, Our Priority.
             </span>
-
         </footer>
 
     </main>
@@ -1075,13 +1074,11 @@
             }
 
             mobileToggle.addEventListener("click", function () {
-
                 if (sidebar.classList.contains("open")) {
                     closeSidebar();
                 } else {
                     openSidebar();
                 }
-
             });
 
             sidebarOverlay.addEventListener("click", closeSidebar);
