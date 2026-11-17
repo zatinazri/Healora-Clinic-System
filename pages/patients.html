@@ -10,28 +10,65 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600;6..96,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
 
     <style>
+        :root {
+            --wine: #350017;
+            --burgundy: #4A001F;
+            --burgundy-light: #800020;
+            --gold: #D6B77A;
+            --gold-dark: #B89552;
+            --ivory: #FAF8F4;
+            --cream: #F7E7CE;
+            --white: #FFFFFF;
+            --text: #30252A;
+            --muted: #70666C;
+            --border: #EEE7E2;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            background: #FAF8F5;
-            color: #292329;
+            margin: 0;
+            background: var(--ivory);
+            color: var(--text);
+            font-family: 'Manrope', sans-serif;
+            font-size: 14px;
+            overflow-x: hidden;
         }
 
         /* SIDEBAR */
+
         .sidebar {
-            background: linear-gradient(180deg, #350017, #4A001F);
+            width: 260px !important;
+            height: 100vh !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            z-index: 1000 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            padding: 0 19px 22px !important;
+            background: linear-gradient(180deg, #350017 0%, #4A001F 100%) !important;
+            transform: translateX(0) !important;
+            transition: transform .3s ease !important;
+            overflow-y: auto;
         }
 
         .sidebar-brand {
             width: 100%;
             padding: 28px 15px;
-            border-bottom: 1px solid rgba(247, 231, 206, 0.15);
+            border-bottom: 1px solid rgba(247, 231, 206, .15);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
+            margin-bottom: 27px;
         }
 
         .brand-logo-light {
@@ -47,21 +84,19 @@
         }
 
         .brand-heal {
-            color: #D6B77A !important;
-            font-family: 'Manrope', sans-serif;
+            color: var(--gold) !important;
             font-weight: 800;
         }
 
         .brand-ora {
-            color: #F7E7CE !important;
+            color: var(--cream) !important;
             font-family: 'Bodoni Moda', serif;
             font-style: italic;
             font-weight: 700;
         }
 
         .brand-clinic {
-            color: #F7E7CE !important;
-            font-family: 'Manrope', sans-serif;
+            color: var(--cream) !important;
             font-size: 10px;
             font-weight: 600;
             letter-spacing: 4px;
@@ -70,155 +105,378 @@
             width: 100%;
         }
 
-        .sidebar nav {
-            margin-top: 25px;
-        }
-
-        .sidebar a {
-            color: #F7E7CE;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 13px;
-            padding: 12px 18px;
-            margin: 4px 12px;
-            border-radius: 9px;
-            font-size: 13px;
-            transition: 0.3s;
-        }
-
-        .sidebar a i {
-            color: #D6B77A;
-            font-size: 17px;
-        }
-
-        .sidebar a:hover,
-        .sidebar a.active {
-            background: #800020;
-            color: #FFFFFF;
-        }
-
-        .sidebar a.active {
-            border-left: 3px solid #D6B77A;
-        }
-
-        .sidebar-footer {
-            border-top: 1px solid rgba(247, 231, 206, 0.15);
-            padding: 18px;
-        }
-
-        /* MAIN CONTENT */
-        .main-content {
-            margin-left: 260px;
-            padding: 30px;
-        }
-
-        .topbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .page-heading {
-            font-family: 'Manrope', sans-serif;
-            font-weight: 800;
-            color: #4A001F;
-            font-size: 25px;
-        }
-
-        .page-subtitle {
-            color: #958A90;
-            font-size: 12px;
-        }
-
-        /* ADMIN PROFILE */
-        .admin-profile {
-            display: flex;
-            align-items: center;
-            gap: 13px;
-        }
-
-        .admin-top-name {
-            font-family: 'Bodoni Moda', serif;
-            font-size: 17px;
-            font-style: italic;
-            font-weight: 700;
-            color: #4A001F;
-        }
-
-        .admin-top-role {
-            font-family: 'Manrope', sans-serif;
+        .nav-label {
+            color: rgba(247, 231, 206, .55);
             font-size: 10px;
             font-weight: 800;
-            letter-spacing: 2px;
-            color: #B89555;
-            margin-top: 3px;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            padding: 0 13px;
+            margin-bottom: 13px;
         }
 
-        .admin-top-logo {
-            width: 48px;
-            height: 48px;
-            flex-shrink: 0;
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 12px 14px;
+            margin: 0 !important;
+            color: rgba(247, 231, 206, .82) !important;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: .2s ease;
+        }
+
+        .sidebar-nav a i {
+            width: 19px;
+            font-size: 17px;
+            color: var(--gold);
+        }
+
+        .sidebar-nav a:hover {
+            background: rgba(255, 255, 255, .08);
+            color: var(--cream) !important;
+        }
+
+        .sidebar-nav a.active {
+            background: var(--burgundy-light);
+            color: var(--cream) !important;
+            border-left: 3px solid var(--gold);
+            padding-left: 11px;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+            border-top: 1px solid rgba(247, 231, 206, .15);
+            padding-top: 18px;
+        }
+
+        .sidebar-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 10px;
+            margin-bottom: 12px;
+            border-top: 1px solid rgba(247, 231, 206, .15);
+            border-bottom: 1px solid rgba(247, 231, 206, .15);
+            min-width: 0;
+        }
+
+        .sidebar-profile-avatar {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
             border-radius: 50%;
-            border: 2px solid #D6B77A;
-            background: linear-gradient(145deg, #F7E7CE, #D6B77A);
-            color: #4A001F;
+            background: var(--gold);
+            color: var(--wine);
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'Bodoni Moda', serif;
-            font-size: 29px;
+            font-size: 22px;
             font-weight: 700;
         }
 
-        /* PAGE INTRO - MAROON BANNER */
-        .page-intro {
+        .sidebar-profile-info {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .sidebar-profile-info strong {
+            display: block;
+            color: var(--cream);
+            font-size: 13px;
+            font-weight: 800;
+            line-height: 1.5;
+        }
+
+        .sidebar-profile-info span {
+            display: block;
+            color: var(--gold);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            margin-top: 3px;
+        }
+
+        .logout-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 13px;
+            margin: 0 !important;
+            color: rgba(247, 231, 206, .82) !important;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+
+        .logout-link i {
+            color: var(--gold);
+            font-size: 17px;
+        }
+
+        .logout-link:hover {
+            background: rgba(255, 255, 255, .08);
+            color: var(--cream) !important;
+        }
+
+        .sidebar-overlay {
+            display: none;
+        }
+
+        /* MAIN CONTENT */
+
+        .main-content {
+            margin-left: 260px !important;
+            padding: 32px 40px 45px !important;
+            min-height: 100vh;
+            width: auto;
+        }
+
+        /* HEADER */
+
+        .main-content .topbar {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            text-align: left !important;
+            margin-bottom: 29px !important;
+            padding: 0 !important;
+            gap: 15px !important;
+            width: 100% !important;
+            min-height: 50px;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
+        }
+
+        .main-content .topbar::before,
+        .main-content .topbar::after {
+            display: none !important;
+            content: none !important;
+        }
+
+        .main-content .topbar-left {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            text-align: left !important;
+            gap: 13px !important;
+            flex: 1 1 auto !important;
+            min-width: 0;
+            width: auto !important;
+        }
+
+        .main-content .page-heading {
+            display: block !important;
+            text-align: left !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            min-width: 0;
+            width: auto !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .main-content .page-heading small {
+            display: block !important;
+            color: var(--gold-dark);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 0 0 5px 0 !important;
+            text-align: left !important;
+        }
+
+        .main-content .page-heading h2 {
+            display: block !important;
+            color: var(--wine);
+            font-family: 'Manrope', sans-serif;
+            font-size: 25px;
+            font-weight: 800;
+            margin: 0 !important;
+            padding: 0 !important;
+            text-align: left !important;
+            line-height: 1.3;
+        }
+
+        .main-content .topbar-right {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: flex-end !important;
+            gap: 19px !important;
+            flex: 0 0 auto !important;
+            width: auto !important;
+            margin-left: auto !important;
+            padding: 0 !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .notification-btn {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            background: var(--white);
+            color: var(--wine);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .notification-dot {
+            width: 8px;
+            height: 8px;
+            background: #B65D56;
+            border-radius: 50%;
+            position: absolute;
+            top: 7px;
+            right: 7px;
+            border: 1px solid white;
+        }
+
+        .profile-chip {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            gap: 10px;
+            min-width: 0;
+            flex-shrink: 0;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            border-radius: 0 !important;
+        }
+
+        .profile-chip-info {
+            min-width: 0;
+            text-align: right;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .profile-chip-info strong {
+            display: block;
+            color: var(--wine);
+            font-size: 12px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .profile-chip-info span {
+            display: block;
+            color: var(--gold-dark);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-top: 3px;
+        }
+
+        .chip-avatar {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            border-radius: 50%;
+            background: var(--burgundy);
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 21px;
+            font-weight: 700;
+            border: none;
+        }
+
+        .mobile-toggle {
+            display: none;
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            border: 1px solid var(--border);
+            background: var(--white);
+            color: var(--wine);
+            border-radius: 8px;
+            font-size: 20px;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        /* WELCOME BANNER */
+
+        .welcome-banner {
             background: linear-gradient(135deg, #350017, #4A001F);
             border-radius: 18px;
             padding: 35px 38px;
             margin-bottom: 28px;
-            border: 1px solid rgba(214, 183, 122, 0.35);
-            box-shadow: 0 8px 25px rgba(74, 0, 31, 0.12);
+            border: 1px solid rgba(214, 183, 122, .35);
+            box-shadow: 0 8px 25px rgba(74, 0, 31, .12);
         }
 
-        .page-intro h2 {
-            color: #D6B77A;
+        .welcome-content h2 {
+            color: var(--gold);
             font-family: 'Bodoni Moda', serif;
             font-size: 29px;
             font-weight: 700;
             margin-bottom: 10px;
         }
 
-        .page-intro p {
-            color: #F7E7CE;
+        .welcome-content p {
+            color: var(--cream);
             font-size: 13px;
             margin-bottom: 0;
-            opacity: 0.9;
+            opacity: .9;
         }
 
         /* BUTTONS */
+
         .btn-luxury {
-            background: #4A001F;
-            color: #F7E7CE;
-            border: 1px solid #4A001F;
+            background: var(--burgundy);
+            color: var(--cream);
+            border: 1px solid var(--burgundy);
             border-radius: 8px;
             padding: 10px 17px;
             font-size: 12px;
             font-weight: 700;
-            transition: 0.3s;
+            transition: .3s;
         }
 
         .btn-luxury:hover {
-            background: #800020;
-            color: #FFFFFF;
-            border-color: #800020;
+            background: var(--burgundy-light);
+            color: var(--white);
+            border-color: var(--burgundy-light);
         }
 
         .btn-outline-luxury {
-            border: 1px solid #B89555;
-            color: #4A001F;
-            background: #FFFFFF;
+            border: 1px solid var(--gold-dark);
+            color: var(--burgundy);
+            background: var(--white);
             border-radius: 8px;
             font-size: 12px;
             font-weight: 700;
@@ -226,121 +484,130 @@
         }
 
         .btn-outline-luxury:hover {
-            background: #F7E7CE;
-            color: #4A001F;
+            background: var(--cream);
+            color: var(--burgundy);
         }
 
         /* STATISTICS */
-        .summary-card {
-            background: #FFFFFF;
+
+        .dashboard-stat {
+            background: var(--white);
             border: 1px solid #E8E2E5;
             border-radius: 14px;
-            padding: 20px;
+            padding: 22px;
             height: 100%;
-            box-shadow: 0 5px 18px rgba(74, 0, 31, 0.04);
+            box-shadow: 0 5px 18px rgba(74, 0, 31, .04);
         }
 
-        .summary-icon {
-            width: 43px;
-            height: 43px;
+        .dashboard-stat .stat-icon {
+            width: 45px;
+            height: 45px;
             border-radius: 12px;
-            background: #F7E7CE;
-            color: #800020;
             display: flex;
-            align-items: center;
             justify-content: center;
-            font-size: 19px;
-            margin-bottom: 13px;
+            align-items: center;
+            background: var(--cream);
+            color: var(--burgundy-light);
+            font-size: 20px;
+            margin-bottom: 15px;
         }
 
-        .summary-card h3 {
-            color: #4A001F;
-            font-size: 25px;
+        .dashboard-stat h3 {
+            color: var(--burgundy);
+            font-size: 27px;
             font-weight: 800;
             margin-bottom: 4px;
         }
 
-        .summary-card p {
-            color: #70666C;
+        .dashboard-stat p {
+            color: var(--muted);
             font-size: 12px;
             margin: 0;
         }
 
         /* CONTENT CARD */
-        .content-card {
-            background: #FFFFFF;
+
+        .dashboard-card {
+            background: var(--white);
             border: 1px solid #E8E2E5;
             border-radius: 14px;
-            padding: 23px;
-            box-shadow: 0 5px 18px rgba(74, 0, 31, 0.04);
+            padding: 22px;
+            box-shadow: 0 5px 18px rgba(74, 0, 31, .04);
             margin-bottom: 22px;
         }
 
-        .content-card h5 {
-            color: #4A001F;
-            font-size: 16px;
+        .dashboard-card h5 {
+            color: var(--burgundy);
             font-weight: 800;
+            font-size: 15px;
         }
 
         /* FORM */
+
         .form-control,
         .form-select {
             border: 1px solid #E8E2E5;
             border-radius: 8px;
             padding: 10px 12px;
             font-size: 12px;
-            color: #292329;
+            color: var(--text);
         }
 
         .form-control:focus,
         .form-select:focus {
-            border-color: #B89555;
-            box-shadow: 0 0 0 0.2rem rgba(214, 183, 122, 0.16);
+            border-color: var(--gold-dark);
+            box-shadow: 0 0 0 .2rem rgba(214, 183, 122, .16);
         }
 
         .form-label {
-            color: #4A001F;
+            color: var(--burgundy);
             font-size: 12px;
             font-weight: 700;
             margin-bottom: 7px;
         }
 
+        .input-group-text {
+            border: 1px solid #E8E2E5;
+            border-radius: 8px 0 0 8px;
+        }
+
         /* PATIENT TABLE */
+
         .table {
             min-width: 850px;
         }
 
         .table thead th {
-            background: #4A001F !important;
-            color: #D6B77A !important;
+            background: var(--burgundy) !important;
+            color: var(--gold) !important;
             font-size: 11px;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 1px;
             padding: 16px 13px;
-            border-bottom: 2px solid #B89555;
+            border-bottom: 2px solid var(--gold-dark);
             white-space: nowrap;
         }
 
         .table tbody td {
-            background: #FFFFFF;
-            color: #70666C;
+            background: var(--white);
+            color: var(--muted);
             padding: 15px 13px;
             font-size: 12px;
             vertical-align: middle;
         }
 
         .table tbody tr:nth-child(even) td {
-            background: #FAF8F5;
+            background: var(--ivory);
         }
 
         .table tbody tr:hover td {
-            background: #F7E7CE;
-            transition: 0.2s ease;
+            background: var(--cream);
+            transition: .2s ease;
         }
 
         .patient-name {
-            color: #4A001F;
+            color: var(--burgundy);
             font-weight: 700;
         }
 
@@ -348,8 +615,8 @@
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            background: #F7E7CE;
-            color: #800020;
+            background: var(--cream);
+            color: var(--burgundy-light);
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -358,23 +625,24 @@
         }
 
         /* ACTION BUTTONS */
+
         .action-btn {
             width: 30px;
             height: 30px;
             border: 1px solid #E8E2E5;
-            background: #FFFFFF;
-            color: #4A001F;
+            background: var(--white);
+            color: var(--burgundy);
             border-radius: 7px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             margin-right: 4px;
-            transition: 0.2s;
+            transition: .2s;
         }
 
         .action-btn:hover {
-            background: #F7E7CE;
-            border-color: #D6B77A;
+            background: var(--cream);
+            border-color: var(--gold);
         }
 
         .delete-btn:hover {
@@ -384,6 +652,7 @@
         }
 
         /* EMPTY STATE */
+
         .empty-state {
             text-align: center;
             padding: 38px 15px;
@@ -392,18 +661,19 @@
 
         .empty-state i {
             display: block;
-            color: #D6B77A;
+            color: var(--gold);
             font-size: 35px;
             margin-bottom: 12px;
         }
 
         .empty-state strong {
             display: block;
-            color: #4A001F;
+            color: var(--burgundy);
             margin-bottom: 5px;
         }
 
         /* MODAL */
+
         .modal-content {
             border: none;
             border-radius: 15px;
@@ -411,9 +681,9 @@
         }
 
         .modal-header {
-            background: #4A001F;
-            color: #F7E7CE;
-            border-bottom: 2px solid #B89555;
+            background: var(--burgundy);
+            color: var(--cream);
+            border-bottom: 2px solid var(--gold-dark);
             padding: 18px 22px;
         }
 
@@ -436,6 +706,7 @@
         }
 
         /* FOOTER */
+
         .dashboard-footer {
             text-align: center;
             padding: 25px 0 5px;
@@ -443,45 +714,190 @@
             font-size: 11px;
         }
 
-        /* RESPONSIVE */
-        @media (max-width: 991px) {
-            .sidebar {
-                width: 220px;
-            }
+        /* TABLET AND MOBILE */
 
+        @media (max-width: 1100px) {
             .main-content {
-                margin-left: 220px;
-                padding: 20px;
+                padding: 28px 25px 40px !important;
             }
         }
 
-        @media (max-width: 767px) {
+        @media (max-width: 900px) {
+
             .sidebar {
-                display: none;
+                transform: translateX(-100%) !important;
+                visibility: hidden;
+            }
+
+            .sidebar.open {
+                transform: translateX(0) !important;
+                visibility: visible;
+            }
+
+            .sidebar-overlay.show {
+                display: block !important;
+                position: fixed !important;
+                inset: 0;
+                background: rgba(25, 0, 12, .45);
+                z-index: 999 !important;
             }
 
             .main-content {
-                margin-left: 0;
-                padding: 18px;
+                margin-left: 0 !important;
+                padding: 22px 20px 35px !important;
+                width: 100% !important;
             }
 
-            .topbar {
-                gap: 15px;
-                flex-wrap: wrap;
+            .mobile-toggle {
+                display: flex !important;
             }
 
-            .admin-top-name {
-                font-size: 14px;
+            .sidebar {
+                height: 100dvh !important;
+                max-height: 100dvh !important;
+                overflow-y: auto !important;
+                overflow-x: hidden !important;
+                padding-top: 0 !important;
+                padding-bottom: 12px !important;
+                scrollbar-width: thin;
+                scrollbar-color: rgba(214, 183, 122, .5) transparent;
             }
 
-            .admin-top-logo {
-                width: 42px;
-                height: 42px;
-                font-size: 25px;
+            .sidebar-brand {
+                padding: 18px 12px !important;
+                margin-bottom: 15px !important;
             }
 
-            .content-card {
+            .sidebar-nav {
+                gap: 3px !important;
+            }
+
+            .sidebar-nav a {
+                padding: 9px 12px !important;
+                font-size: 12px !important;
+            }
+
+            .sidebar-nav a.active {
+                padding-left: 9px !important;
+            }
+
+            .sidebar-bottom {
+                margin-top: 15px !important;
+                padding-top: 10px !important;
+                flex-shrink: 0 !important;
+            }
+
+            .sidebar-profile {
+                padding: 10px 8px !important;
+                margin-bottom: 6px !important;
+            }
+
+            .logout-link {
+                padding: 10px 12px !important;
+                margin-bottom: 5px !important;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .main-content {
+                padding: 18px 15px 30px !important;
+            }
+
+            .main-content .topbar {
+                margin-bottom: 22px !important;
+                flex-wrap: nowrap !important;
+            }
+
+            .main-content .topbar-left {
+                gap: 10px !important;
+                flex: 1 1 auto !important;
+            }
+
+            .main-content .page-heading small {
+                font-size: 9px;
+            }
+
+            .main-content .page-heading h2 {
+                font-size: 19px;
+            }
+
+            .main-content .topbar-right {
+                gap: 9px !important;
+            }
+
+            .notification-btn {
+                width: 38px;
+                height: 38px;
+                min-width: 38px;
+            }
+
+            .chip-avatar {
+                width: 38px;
+                height: 38px;
+                min-width: 38px;
+            }
+
+            .profile-chip-info {
+                display: none !important;
+            }
+
+            .welcome-banner {
+                padding: 25px 22px;
+                margin-bottom: 20px;
+            }
+
+            .welcome-content h2 {
+                font-size: 24px;
+            }
+
+            .welcome-content p {
+                font-size: 11px;
+                line-height: 1.8;
+            }
+
+            .dashboard-stat {
                 padding: 16px;
+            }
+
+            .dashboard-stat h3 {
+                font-size: 23px;
+            }
+
+            .dashboard-card {
+                padding: 17px;
+            }
+        }
+
+        @media (max-width: 380px) {
+
+            .main-content .topbar {
+                gap: 8px !important;
+            }
+
+            .main-content .topbar-left {
+                gap: 7px !important;
+            }
+
+            .mobile-toggle {
+                width: 36px;
+                height: 36px;
+                min-width: 36px;
+            }
+
+            .main-content .page-heading h2 {
+                font-size: 17px;
+            }
+
+            .main-content .topbar-right {
+                gap: 7px !important;
+            }
+
+            .notification-btn,
+            .chip-avatar {
+                width: 35px;
+                height: 35px;
+                min-width: 35px;
             }
         }
     </style>
@@ -490,7 +906,7 @@
 <body data-requires-auth="admin">
 
     <!-- SIDEBAR -->
-    <aside class="sidebar">
+    <aside class="sidebar" id="sidebar">
 
         <div class="sidebar-brand">
             <div class="brand-logo-light">
@@ -499,142 +915,151 @@
             <div class="brand-clinic">C L I N I C</div>
         </div>
 
-        <nav>
+        <div class="nav-label">ADMIN PORTAL</div>
+
+        <nav class="sidebar-nav">
 
             <a href="admin-dashboard.html">
                 <i class="bi bi-grid-1x2-fill"></i>
-                Dashboard
+                <span>Dashboard</span>
             </a>
 
             <a href="appointments.html">
                 <i class="bi bi-calendar-check"></i>
-                Appointments
+                <span>Appointments</span>
             </a>
 
             <a href="patients.html" class="active">
                 <i class="bi bi-people"></i>
-                Patients
+                <span>Patients</span>
             </a>
 
             <a href="doctors.html">
                 <i class="bi bi-person-badge"></i>
-                Doctors
+                <span>Doctors</span>
             </a>
 
             <a href="doctor-schedule.html">
                 <i class="bi bi-calendar-week"></i>
-                Doctor Schedule
+                <span>Doctor Schedule</span>
             </a>
 
             <a href="clinic-services.html">
                 <i class="bi bi-heart-pulse"></i>
-                Clinic Services
+                <span>Clinic Services</span>
             </a>
 
             <a href="appointment-history.html">
                 <i class="bi bi-clock-history"></i>
-                Appointment History
+                <span>Appointment History</span>
             </a>
 
             <a href="reports.html">
                 <i class="bi bi-bar-chart-line"></i>
-                Reports
+                <span>Reports</span>
             </a>
 
             <a href="profile.html">
                 <i class="bi bi-person-circle"></i>
-                My Profile
+                <span>My Profile</span>
             </a>
 
             <a href="help-support.html">
-                <i class="bi bi-question-circle"></i>
-                Help & Support
+                <i class="bi bi-headset"></i>
+                <span>Help &amp; Support</span>
             </a>
 
         </nav>
 
-        <!-- SIDEBAR ADMIN PROFILE -->
-        <div class="sidebar-footer mt-4">
+        <div class="sidebar-bottom">
 
-            <div class="d-flex align-items-center gap-2 mb-3">
+            <div class="sidebar-profile">
+                <div class="sidebar-profile-avatar">H</div>
 
-                <div class="admin-top-logo"
-                     style="width:40px;height:40px;font-size:24px;">
-                    H
+                <div class="sidebar-profile-info">
+                    <strong>Healora Administrator</strong>
+                    <span>ADMIN</span>
                 </div>
-
-                <div>
-                    <div class="admin-top-name"
-                         style="color:#F7E7CE;font-size:14px;">
-                        Healora Administrator
-                    </div>
-
-                    <div class="admin-top-role">ADMIN</div>
-                </div>
-
             </div>
 
-            <a href="#" data-logout>
+            <a href="#" class="logout-link" data-logout>
                 <i class="bi bi-box-arrow-left"></i>
-                Logout
+                <span>Logout</span>
             </a>
 
         </div>
 
     </aside>
 
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <!-- MAIN CONTENT -->
     <main class="main-content">
 
         <!-- TOPBAR -->
-        <div class="topbar">
+        <header class="topbar">
 
-            <div>
-                <h1 class="page-heading mb-1">Patient Management</h1>
+            <div class="topbar-left">
 
-                <p class="page-subtitle mb-0">
-                    Manage and monitor registered patient records.
+                <button
+                    class="mobile-toggle"
+                    id="mobileToggle"
+                    type="button"
+                    aria-label="Open menu"
+                    aria-expanded="false">
+
+                    <i class="bi bi-list"></i>
+
+                </button>
+
+                <div class="page-heading">
+                    <small>ADMIN PORTAL</small>
+                    <h2>Patient Management</h2>
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="notification-btn" aria-label="Notifications">
+                    <i class="bi bi-bell"></i>
+                    <span class="notification-dot"></span>
+                </div>
+
+                <div class="profile-chip">
+
+                    <div class="profile-chip-info">
+                        <strong>Healora Administrator</strong>
+                        <span>ADMIN</span>
+                    </div>
+
+                    <div class="chip-avatar">H</div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- WELCOME BANNER -->
+        <section class="welcome-banner">
+
+            <div class="welcome-content">
+                <h2>Patient Records</h2>
+                <p>
+                    Maintain patient information and manage registered clinic members.
                 </p>
             </div>
 
-            <!-- ADMIN PROFILE -->
-            <div class="admin-profile">
-
-                <div class="text-end">
-                    <div class="admin-top-name">
-                        Healora Administrator
-                    </div>
-
-                    <div class="admin-top-role">ADMIN</div>
-                </div>
-
-                <div class="admin-top-logo">H</div>
-
-            </div>
-
-        </div>
-
-
-        <!-- PAGE INTRO -->
-        <section class="page-intro">
-
-            <h2>Patient Records</h2>
-
-            <p>
-                Maintain patient information and manage registered clinic members.
-            </p>
-
         </section>
 
-
-        <!-- STATISTICS -->
+        <!-- PATIENT STATISTICS -->
         <section class="row g-3 mb-4">
 
             <div class="col-12 col-md-4">
-                <div class="summary-card">
+                <div class="dashboard-stat">
 
-                    <div class="summary-icon">
+                    <div class="stat-icon">
                         <i class="bi bi-people-fill"></i>
                     </div>
 
@@ -645,9 +1070,9 @@
             </div>
 
             <div class="col-6 col-md-4">
-                <div class="summary-card">
+                <div class="dashboard-stat">
 
-                    <div class="summary-icon">
+                    <div class="stat-icon">
                         <i class="bi bi-gender-male"></i>
                     </div>
 
@@ -658,9 +1083,9 @@
             </div>
 
             <div class="col-6 col-md-4">
-                <div class="summary-card">
+                <div class="dashboard-stat">
 
-                    <div class="summary-icon">
+                    <div class="stat-icon">
                         <i class="bi bi-gender-female"></i>
                     </div>
 
@@ -672,11 +1097,9 @@
 
         </section>
 
-
         <!-- PATIENT DIRECTORY -->
-        <section class="content-card">
+        <section class="dashboard-card">
 
-            <!-- HEADER -->
             <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
 
                 <div>
@@ -687,7 +1110,9 @@
                     </p>
                 </div>
 
-                <button class="btn btn-luxury" type="button"
+                <button
+                    class="btn btn-luxury"
+                    type="button"
                     id="addPatientButton"
                     data-bs-toggle="modal"
                     data-bs-target="#patientModal">
@@ -699,7 +1124,6 @@
 
             </div>
 
-
             <!-- SEARCH AND FILTER -->
             <div class="row g-2 mb-4">
 
@@ -708,7 +1132,7 @@
                     <div class="input-group">
 
                         <span class="input-group-text bg-white border-end-0">
-                            <i class="bi bi-search" style="color:#B89555;"></i>
+                            <i class="bi bi-search" style="color:#B89552;"></i>
                         </span>
 
                         <input
@@ -735,7 +1159,8 @@
 
                 <div class="col-lg-1 col-md-6">
 
-                    <button class="btn btn-outline-luxury w-100"
+                    <button
+                        class="btn btn-outline-luxury w-100"
                         id="resetFilters"
                         type="button"
                         title="Reset filters">
@@ -748,14 +1173,12 @@
 
             </div>
 
-
             <!-- PATIENT TABLE -->
             <div class="table-responsive">
 
                 <table class="table align-middle mb-0">
 
                     <thead>
-
                         <tr>
                             <th>Patient</th>
                             <th>Patient ID</th>
@@ -764,7 +1187,6 @@
                             <th>Gender</th>
                             <th>Actions</th>
                         </tr>
-
                     </thead>
 
                     <tbody id="patientTableBody">
@@ -781,7 +1203,6 @@
 
             </div>
 
-
             <!-- RECORD COUNT -->
             <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mt-3">
 
@@ -792,7 +1213,6 @@
             </div>
 
         </section>
-
 
         <!-- FOOTER -->
         <footer class="dashboard-footer">
@@ -809,7 +1229,6 @@
 
     </main>
 
-
     <!-- ADD / EDIT PATIENT MODAL -->
     <div class="modal fade" id="patientModal" tabindex="-1" aria-hidden="true">
 
@@ -823,11 +1242,14 @@
                         Add New Patient
                     </h5>
 
-                    <button type="button" class="btn-close"
-                        data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close">
+                    </button>
 
                 </div>
-
 
                 <form id="patientForm">
 
@@ -850,7 +1272,6 @@
 
                         </div>
 
-
                         <div class="mb-3">
 
                             <label for="patientEmail" class="form-label">
@@ -866,7 +1287,6 @@
 
                         </div>
 
-
                         <div class="mb-3">
 
                             <label for="patientPhone" class="form-label">
@@ -881,7 +1301,6 @@
                                 required>
 
                         </div>
-
 
                         <div class="row g-3">
 
@@ -901,7 +1320,6 @@
 
                             </div>
 
-
                             <div class="col-6">
 
                                 <label for="patientDateOfBirth" class="form-label">
@@ -917,7 +1335,6 @@
 
                         </div>
 
-
                         <div class="mt-3">
 
                             <label for="patientAddress" class="form-label">
@@ -932,16 +1349,18 @@
 
                         </div>
 
-
-                        <div class="alert alert-warning small d-none mt-3"
-                            id="formMessage" role="alert"></div>
+                        <div
+                            class="alert alert-warning small d-none mt-3"
+                            id="formMessage"
+                            role="alert">
+                        </div>
 
                     </div>
 
-
                     <div class="modal-footer">
 
-                        <button type="button"
+                        <button
+                            type="button"
                             class="btn btn-outline-luxury"
                             data-bs-dismiss="modal">
 
@@ -963,7 +1382,6 @@
 
     </div>
 
-
     <!-- JAVASCRIPT -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -971,6 +1389,7 @@
     <script src="../js/data.js"></script>
     <script src="../js/auth.js"></script>
 
+    <!-- PATIENT MANAGEMENT -->
     <script>
 
         document.addEventListener("DOMContentLoaded", function () {
@@ -983,15 +1402,11 @@
             }
 
             const modalElement = document.getElementById("patientModal");
-
             const patientModal = bootstrap.Modal.getOrCreateInstance(modalElement);
-
             const form = document.getElementById("patientForm");
-
             const tableBody = document.getElementById("patientTableBody");
 
             let patients = [];
-
 
             /* ESCAPE HTML */
             function escapeHTML(value) {
@@ -1006,7 +1421,6 @@
 
             }
 
-
             /* GET PATIENT INFORMATION */
             function getName(patient) {
 
@@ -1017,13 +1431,11 @@
 
             }
 
-
             function getGender(patient) {
 
                 return patient.gender || "Not specified";
 
             }
-
 
             /* LOAD PATIENT DATA */
             function loadPatients() {
@@ -1031,7 +1443,6 @@
                 patients = storage.getPatients() || [];
 
             }
-
 
             /* UPDATE STATISTICS */
             function updateStatistics() {
@@ -1051,7 +1462,6 @@
 
             }
 
-
             /* RENDER PATIENT TABLE */
             function renderPatients() {
 
@@ -1063,12 +1473,10 @@
                 const filteredPatients = patients.filter(patient => {
 
                     const searchableText = [
-
                         getName(patient),
                         patient.id,
                         patient.email,
                         patient.phone
-
                     ].join(" ").toLowerCase();
 
                     const matchesSearch =
@@ -1082,14 +1490,12 @@
 
                 });
 
-
                 /* EMPTY STATE */
                 if (filteredPatients.length === 0) {
 
                     tableBody.innerHTML = `
 
                         <tr>
-
                             <td colspan="6">
 
                                 <div class="empty-state">
@@ -1105,7 +1511,6 @@
                                 </div>
 
                             </td>
-
                         </tr>
 
                     `;
@@ -1172,24 +1577,19 @@
 
                 }
 
-
                 document.getElementById("recordCount").textContent =
                     `Showing ${filteredPatients.length} of ${patients.length} patient records`;
 
             }
 
-
             /* REFRESH PAGE DATA */
             function refreshPage() {
 
                 loadPatients();
-
                 updateStatistics();
-
                 renderPatients();
 
             }
-
 
             /* RESET FORM */
             function resetForm() {
@@ -1205,7 +1605,6 @@
 
             }
 
-
             /* OPEN ADD PATIENT MODAL */
             document.getElementById("addPatientButton")
                 .addEventListener("click", function () {
@@ -1213,7 +1612,6 @@
                     resetForm();
 
                 });
-
 
             /* EDIT PATIENT */
             function editPatient(id) {
@@ -1254,7 +1652,6 @@
 
             }
 
-
             /* DELETE PATIENT */
             function deletePatient(id) {
 
@@ -1273,7 +1670,6 @@
 
                 }
 
-
                 const confirmed = confirm(
                     "Are you sure you want to delete this patient record?"
                 );
@@ -1286,51 +1682,40 @@
 
             }
 
-
             /* TABLE ACTION BUTTONS */
             tableBody.addEventListener("click", function (event) {
 
                 const editButton = event.target.closest(".edit-btn");
-
                 const deleteButton = event.target.closest(".delete-btn");
 
                 if (editButton) {
-
                     editPatient(editButton.dataset.id);
-
                 }
 
                 if (deleteButton) {
-
                     deletePatient(deleteButton.dataset.id);
-
                 }
 
             });
-
 
             /* SEARCH */
             document.getElementById("searchPatient")
                 .addEventListener("input", renderPatients);
 
-
             /* GENDER FILTER */
             document.getElementById("genderFilter")
                 .addEventListener("change", renderPatients);
-
 
             /* RESET FILTERS */
             document.getElementById("resetFilters")
                 .addEventListener("click", function () {
 
                     document.getElementById("searchPatient").value = "";
-
                     document.getElementById("genderFilter").value = "all";
 
                     renderPatients();
 
                 });
-
 
             /* SAVE / UPDATE PATIENT */
             form.addEventListener("submit", function (event) {
@@ -1344,7 +1729,6 @@
 
                 const message = document.getElementById("formMessage");
 
-
                 /* CHECK DUPLICATE EMAIL */
                 const duplicateEmail = patients.some(patient =>
 
@@ -1353,7 +1737,6 @@
                     String(patient.id) !== String(id)
 
                 );
-
 
                 if (duplicateEmail) {
 
@@ -1365,7 +1748,6 @@
                     return;
 
                 }
-
 
                 /* PATIENT INFORMATION */
                 const patientData = {
@@ -1389,7 +1771,6 @@
 
                 };
 
-
                 if (id) {
 
                     const existingPatient = patients.find(patient =>
@@ -1397,9 +1778,7 @@
                     );
 
                     if (existingPatient && existingPatient.userId) {
-
                         patientData.userId = existingPatient.userId;
-
                     }
 
                     storage.updatePatient(id, patientData);
@@ -1410,7 +1789,6 @@
 
                 }
 
-
                 patientModal.hide();
 
                 resetForm();
@@ -1419,13 +1797,87 @@
 
             });
 
-
             /* RESET FORM WHEN MODAL CLOSES */
             modalElement.addEventListener("hidden.bs.modal", resetForm);
 
-
             /* INITIAL PAGE SETUP */
             refreshPage();
+
+        });
+
+    </script>
+
+    <!-- MOBILE SIDEBAR -->
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const sidebar = document.getElementById("sidebar");
+            const mobileToggle = document.getElementById("mobileToggle");
+            const sidebarOverlay = document.getElementById("sidebarOverlay");
+            const toggleIcon = mobileToggle.querySelector("i");
+
+            function openSidebar() {
+
+                sidebar.classList.add("open");
+                sidebarOverlay.classList.add("show");
+
+                document.body.style.overflow = "hidden";
+
+                mobileToggle.setAttribute("aria-expanded", "true");
+                mobileToggle.setAttribute("aria-label", "Close menu");
+
+                toggleIcon.className = "bi bi-x-lg";
+
+            }
+
+            function closeSidebar() {
+
+                sidebar.classList.remove("open");
+                sidebarOverlay.classList.remove("show");
+
+                document.body.style.overflow = "";
+
+                mobileToggle.setAttribute("aria-expanded", "false");
+                mobileToggle.setAttribute("aria-label", "Open menu");
+
+                toggleIcon.className = "bi bi-list";
+
+            }
+
+            mobileToggle.addEventListener("click", function () {
+
+                if (sidebar.classList.contains("open")) {
+                    closeSidebar();
+                } else {
+                    openSidebar();
+                }
+
+            });
+
+            sidebarOverlay.addEventListener("click", closeSidebar);
+
+            sidebar.querySelectorAll("a").forEach(function (link) {
+
+                link.addEventListener("click", closeSidebar);
+
+            });
+
+            document.addEventListener("keydown", function (event) {
+
+                if (event.key === "Escape") {
+                    closeSidebar();
+                }
+
+            });
+
+            window.addEventListener("resize", function () {
+
+                if (window.innerWidth > 900) {
+                    closeSidebar();
+                }
+
+            });
 
         });
 
