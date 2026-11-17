@@ -243,7 +243,7 @@
             width: auto;
         }
 
-        /* HEADER - FOLLOW PATIENT MY APPOINTMENTS */
+        /* HEADER - TRANSPARENT LIKE PATIENT PAGE */
 
         .main-content .topbar {
             display: flex !important;
@@ -256,6 +256,16 @@
             gap: 15px !important;
             width: 100% !important;
             min-height: 50px;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
+        }
+
+        .main-content .topbar::before,
+        .main-content .topbar::after {
+            display: none !important;
+            content: none !important;
         }
 
         .main-content .topbar-left {
@@ -277,6 +287,9 @@
             padding: 0 !important;
             min-width: 0;
             width: auto !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
         }
 
         .main-content .page-heading small {
@@ -312,6 +325,9 @@
             width: auto !important;
             margin-left: auto !important;
             padding: 0 !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
         }
 
         .notification-btn {
@@ -352,11 +368,15 @@
             border: none !important;
             box-shadow: none !important;
             padding: 0 !important;
+            border-radius: 0 !important;
         }
 
         .profile-chip-info {
             min-width: 0;
             text-align: right;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
         }
 
         .profile-chip-info strong {
