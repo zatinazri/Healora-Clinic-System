@@ -335,6 +335,7 @@ img {
     color: var(--text-secondary);
 }
 
+
 /* Mobile hamburger button */
 .mobile-toggle {
     display: none;
@@ -357,6 +358,7 @@ img {
     background: var(--champagne);
     border-color: var(--gold);
 }
+
 
 /* Notification button */
 .notification-btn {
@@ -392,6 +394,7 @@ img {
     border: 1px solid var(--white);
     border-radius: 50%;
 }
+
 
 /* Profile chip */
 .profile-chip {
@@ -925,7 +928,8 @@ footer a:hover,
 
 
 /* 22. RESPONSIVE DESIGN - TABLET */
-@media (max-width: 991px) {
+@media (max-width: 991px) and (min-width: 768px) {
+
     .sidebar {
         width: 220px;
     }
@@ -942,6 +946,7 @@ footer a:hover,
     .topbar-right {
         gap: 12px;
     }
+
 }
 
 
@@ -956,6 +961,7 @@ footer a:hover,
         width: 270px;
         max-width: 85vw;
         height: 100vh;
+        height: 100dvh;
         padding: 20px 16px;
         overflow-y: auto;
         transform: translateX(-105%);
@@ -965,16 +971,43 @@ footer a:hover,
             var(--burgundy) 0%,
             var(--burgundy-dark) 100%
         );
+        transition: transform 0.3s ease;
+        visibility: visible;
     }
 
-    /* JavaScript can add this class when menu opens */
+    /* Sidebar open state */
     .sidebar.active,
     .sidebar.show {
         transform: translateX(0);
     }
 
+
+    /* Mobile sidebar overlay */
+    .sidebar-overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(25, 0, 12, 0.55);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        z-index: 1040;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .sidebar-overlay.active {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+
+    /* Main content */
     .main-content {
         width: 100%;
+        min-height: 100vh;
         margin-left: 0;
         padding: 18px;
     }
@@ -983,7 +1016,8 @@ footer a:hover,
         padding: 15px;
     }
 
-    /* Keep header in one horizontal row */
+
+    /* Header stays in one horizontal row */
     .topbar,
     .dashboard-topbar {
         display: flex;
@@ -1006,7 +1040,7 @@ footer a:hover,
         align-items: center;
         gap: 10px;
         min-width: 0;
-        flex: 1;
+        flex: 1 1 auto;
     }
 
     .topbar-right {
@@ -1014,18 +1048,24 @@ footer a:hover,
         align-items: center;
         justify-content: flex-end;
         gap: 10px;
-        flex-shrink: 0;
+        flex: 0 0 auto;
     }
 
+
+    /* Hamburger */
     .mobile-toggle {
         display: flex;
         width: 38px;
         height: 38px;
+        flex-shrink: 0;
         font-size: 21px;
     }
 
+
+    /* Page title */
     .page-heading {
         min-width: 0;
+        overflow: hidden;
     }
 
     .page-heading small {
@@ -1037,15 +1077,23 @@ footer a:hover,
     .page-heading h2 {
         font-size: 19px;
         white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
+
+    /* Notification */
     .notification-btn {
         width: 38px;
         height: 38px;
         font-size: 16px;
     }
 
+
+    /* Profile */
     .profile-chip {
+        display: flex;
+        align-items: center;
         gap: 0;
         padding: 0;
         background: transparent;
@@ -1067,6 +1115,8 @@ footer a:hover,
         font-size: 14px;
     }
 
+
+    /* Other mobile adjustments */
     .auth-container {
         padding: 25px 20px;
     }
@@ -1079,11 +1129,13 @@ footer a:hover,
     .stat-card h4 {
         font-size: 23px;
     }
+
 }
 
 
 /* 24. SMALL MOBILE SCREENS */
 @media (max-width: 480px) {
+
     body {
         font-size: 13px;
     }
@@ -1136,4 +1188,27 @@ footer a:hover,
     .table {
         font-size: 11px;
     }
+
+}
+
+
+/* 25. EXTRA MOBILE SAFETY */
+@media (max-width: 767px) {
+
+    .table-responsive {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .card,
+    .dashboard-card,
+    .content-card {
+        max-width: 100%;
+    }
+
+    .row {
+        --bs-gutter-x: 1rem;
+    }
+
 }
