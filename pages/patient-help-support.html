@@ -630,7 +630,7 @@
             margin-bottom: 20px;
         }
 
-        /* MY SUPPORT REQUESTS - COMPACT DESIGN */
+        /* MY SUPPORT REQUESTS */
 
         .requests-heading {
             display: flex;
@@ -988,10 +988,65 @@
         @media (max-width: 900px) {
             .sidebar {
                 transform: translateX(-100%);
+                visibility: hidden;
+                height: 100dvh !important;
+                max-height: 100dvh !important;
+                overflow-y: auto !important;
+                overflow-x: hidden !important;
+                padding-top: 0 !important;
+                padding-bottom: 12px !important;
+                scrollbar-width: thin;
+                scrollbar-color: rgba(214, 183, 122, .5) transparent;
             }
 
             .sidebar.open {
                 transform: translateX(0);
+                visibility: visible;
+            }
+
+            .sidebar-brand {
+                padding: 18px 12px !important;
+                margin-bottom: 15px !important;
+            }
+
+            .sidebar-nav {
+                gap: 3px !important;
+            }
+
+            .sidebar-nav a {
+                padding: 9px 12px !important;
+                font-size: 12px !important;
+            }
+
+            .sidebar-nav a.active {
+                padding-left: 9px !important;
+            }
+
+            .sidebar-bottom {
+                margin-top: 15px !important;
+                padding-top: 10px !important;
+                flex-shrink: 0 !important;
+            }
+
+            .sidebar-note {
+                padding: 10px !important;
+                margin-bottom: 8px !important;
+            }
+
+            .sidebar-note p {
+                font-size: 10px !important;
+                line-height: 1.5 !important;
+                margin-top: 5px !important;
+            }
+
+            .sidebar-profile {
+                padding: 10px 8px !important;
+                margin-bottom: 6px !important;
+            }
+
+            .logout-link {
+                padding: 10px 12px !important;
+                margin-bottom: 5px !important;
             }
 
             .sidebar-overlay.show {
@@ -1186,7 +1241,7 @@
 
             <div class="d-flex align-items-center gap-3">
 
-                <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Open menu">
+                <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Open menu" aria-expanded="false">
                     <i class="bi bi-list"></i>
                 </button>
 
@@ -2049,30 +2104,70 @@
             const sidebar = document.getElementById("sidebar");
             const mobileToggle = document.getElementById("mobileToggle");
             const sidebarOverlay = document.getElementById("sidebarOverlay");
+            const toggleIcon = mobileToggle.querySelector("i");
 
-            mobileToggle.addEventListener("click", function () {
+            function openSidebar() {
 
-                sidebar.classList.toggle("open");
-                sidebarOverlay.classList.toggle("show");
+                sidebar.classList.add("open");
+                sidebarOverlay.classList.add("show");
 
-            });
+                document.body.style.overflow = "hidden";
 
-            sidebarOverlay.addEventListener("click", function () {
+                mobileToggle.setAttribute("aria-expanded", "true");
+                mobileToggle.setAttribute("aria-label", "Close menu");
+
+                toggleIcon.className = "bi bi-x-lg";
+
+            }
+
+            function closeSidebar() {
 
                 sidebar.classList.remove("open");
                 sidebarOverlay.classList.remove("show");
 
+                document.body.style.overflow = "";
+
+                mobileToggle.setAttribute("aria-expanded", "false");
+                mobileToggle.setAttribute("aria-label", "Open menu");
+
+                toggleIcon.className = "bi bi-list";
+
+            }
+
+            mobileToggle.addEventListener("click", function () {
+
+                if (sidebar.classList.contains("open")) {
+                    closeSidebar();
+                } else {
+                    openSidebar();
+                }
+
             });
 
-            // Close mobile sidebar after selecting a page.
-            document.querySelectorAll(".sidebar-nav a").forEach(function (link) {
+            sidebarOverlay.addEventListener("click", closeSidebar);
 
-                link.addEventListener("click", function () {
+            // Close sidebar after selecting a navigation link.
+            sidebar.querySelectorAll("a").forEach(function (link) {
 
-                    sidebar.classList.remove("open");
-                    sidebarOverlay.classList.remove("show");
+                link.addEventListener("click", closeSidebar);
 
-                });
+            });
+
+            // Close sidebar using Escape key.
+            document.addEventListener("keydown", function (event) {
+
+                if (event.key === "Escape") {
+                    closeSidebar();
+                }
+
+            });
+
+            // Close sidebar when returning to desktop screen size.
+            window.addEventListener("resize", function () {
+
+                if (window.innerWidth > 900) {
+                    closeSidebar();
+                }
 
             });
 
