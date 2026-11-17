@@ -364,15 +364,87 @@ const HealoraAuth = (() => {
 
 
     // =====================================
-    // 9. MOBILE SIDEBAR
+    // 9. CREATE ADMIN HEADER CONTROLS
+    // =====================================
+
+    function initializeAdminHeader(sidebar) {
+
+        if (!sidebar) return;
+
+        const header = document.querySelector(
+            ".topbar, .dashboard-topbar, .admin-topbar, .page-header"
+        );
+
+        if (!header) return;
+
+        // Create hamburger menu if it does not exist
+        let mobileToggle = getElement("mobileToggle");
+
+        if (!mobileToggle) {
+
+            mobileToggle = document.createElement("button");
+
+            mobileToggle.id = "mobileToggle";
+            mobileToggle.className = "healora-mobile-toggle";
+            mobileToggle.type = "button";
+            mobileToggle.setAttribute(
+                "aria-label",
+                "Open navigation menu"
+            );
+            mobileToggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            mobileToggle.innerHTML = "&#9776;";
+
+            header.insertBefore(
+                mobileToggle,
+                header.firstChild
+            );
+        }
+
+        mobileToggle.classList.add("healora-mobile-toggle");
+
+        // Create a visual notification icon if missing
+        if (!header.querySelector(".healora-notification-icon")) {
+
+            const notification = document.createElement("span");
+
+            notification.className = "healora-notification-icon";
+            notification.setAttribute("aria-label", "Notifications");
+            notification.setAttribute("title", "Notifications");
+            notification.innerHTML = "&#128276;";
+
+            const profile = header.querySelector(
+                ".admin-profile, .admin-top-profile, .profile-section"
+            );
+
+            if (profile) {
+                header.insertBefore(notification, profile);
+            } else {
+                header.appendChild(notification);
+            }
+        }
+    }
+
+
+    // =====================================
+    // 10. MOBILE SIDEBAR
     // =====================================
 
     function initializeSidebar() {
 
-        const mobileToggle = getElement("mobileToggle");
         const sidebar = document.querySelector(".sidebar");
 
-        if (!mobileToggle || !sidebar) return;
+        if (!sidebar) return;
+
+        // Automatically create header controls
+        initializeAdminHeader(sidebar);
+
+        const mobileToggle = getElement("mobileToggle");
+
+        if (!mobileToggle) return;
 
         // Create overlay
         let overlay = getElement("sidebarOverlay");
@@ -385,19 +457,34 @@ const HealoraAuth = (() => {
         }
 
         function closeSidebar() {
+
             sidebar.classList.remove("active");
             sidebar.classList.remove("show");
             overlay.classList.remove("active");
 
-            mobileToggle.setAttribute("aria-expanded", "false");
+            mobileToggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
         }
 
         function openSidebar() {
+
             sidebar.classList.add("active");
             overlay.classList.add("active");
 
-            mobileToggle.setAttribute("aria-expanded", "true");
+            mobileToggle.setAttribute(
+                "aria-expanded",
+                "true"
+            );
         }
+
+        // Prevent duplicate event listeners
+        if (mobileToggle.dataset.sidebarInitialized === "true") {
+            return;
+        }
+
+        mobileToggle.dataset.sidebarInitialized = "true";
 
         mobileToggle.addEventListener("click", () => {
 
@@ -419,6 +506,13 @@ const HealoraAuth = (() => {
             link.addEventListener("click", closeSidebar);
         });
 
+        // Close sidebar when pressing Escape
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape") {
+                closeSidebar();
+            }
+        });
+
         // Close sidebar when screen becomes desktop size
         window.addEventListener("resize", () => {
             if (window.innerWidth > 767) {
@@ -429,7 +523,7 @@ const HealoraAuth = (() => {
 
 
     // =====================================
-    // 10. AUTOMATIC PAGE INITIALIZATION
+    // 11. AUTOMATIC PAGE INITIALIZATION
     // =====================================
 
     function initializeAuthentication() {
@@ -466,7 +560,7 @@ const HealoraAuth = (() => {
 
 
     // =====================================
-    // 11. PUBLIC FUNCTIONS
+    // 12. PUBLIC FUNCTIONS
     // =====================================
 
     return {
@@ -482,7 +576,8 @@ const HealoraAuth = (() => {
         redirectToDashboard,
 
         displayUserInformation,
-        initializeAuthentication
+        initializeAuthentication,
+        initializeSidebar
 
     };
 
@@ -490,7 +585,7 @@ const HealoraAuth = (() => {
 
 
 // =========================================
-// 12. INITIALIZE AUTHENTICATION
+// 13. INITIALIZE AUTHENTICATION
 // =========================================
 
 document.addEventListener("DOMContentLoaded", () => {
