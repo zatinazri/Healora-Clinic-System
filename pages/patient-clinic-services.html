@@ -711,10 +711,54 @@
         @media (max-width: 900px) {
             .sidebar {
                 transform: translateX(-100%);
+                visibility: hidden;
+                height: 100dvh !important;
+                max-height: 100dvh !important;
+                overflow-y: auto !important;
+                overflow-x: hidden !important;
+                padding-top: 0 !important;
+                padding-bottom: 12px !important;
+                scrollbar-width: thin;
+                scrollbar-color: rgba(214, 183, 122, .5) transparent;
             }
 
             .sidebar.open {
                 transform: translateX(0);
+                visibility: visible;
+            }
+
+            .sidebar-brand {
+                padding: 18px 12px !important;
+                margin-bottom: 15px !important;
+            }
+
+            .sidebar-nav {
+                gap: 3px !important;
+            }
+
+            .sidebar-nav a {
+                padding: 9px 12px !important;
+                font-size: 12px !important;
+            }
+
+            .sidebar-nav a.active {
+                padding-left: 9px !important;
+            }
+
+            .sidebar-bottom {
+                margin-top: 15px !important;
+                padding-top: 10px !important;
+                flex-shrink: 0 !important;
+            }
+
+            .sidebar-profile {
+                padding: 10px 8px !important;
+                margin-bottom: 6px !important;
+            }
+
+            .logout-link {
+                padding: 10px 12px !important;
+                margin-bottom: 5px !important;
             }
 
             .sidebar-overlay.show {
@@ -887,7 +931,7 @@
 
             <div class="d-flex align-items-center gap-3">
 
-                <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Open menu">
+                <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Open menu" aria-expanded="false">
                     <i class="bi bi-list"></i>
                 </button>
 
@@ -1364,22 +1408,50 @@
             const sidebar = document.getElementById("sidebar");
             const mobileToggle = document.getElementById("mobileToggle");
             const sidebarOverlay = document.getElementById("sidebarOverlay");
+            const toggleIcon = mobileToggle.querySelector("i");
 
-            mobileToggle.addEventListener("click", function () {
-                sidebar.classList.toggle("open");
-                sidebarOverlay.classList.toggle("show");
-            });
+            function openSidebar() {
+                sidebar.classList.add("open");
+                sidebarOverlay.classList.add("show");
+                document.body.style.overflow = "hidden";
+                mobileToggle.setAttribute("aria-expanded", "true");
+                mobileToggle.setAttribute("aria-label", "Close menu");
+                toggleIcon.className = "bi bi-x-lg";
+            }
 
-            sidebarOverlay.addEventListener("click", function () {
+            function closeSidebar() {
                 sidebar.classList.remove("open");
                 sidebarOverlay.classList.remove("show");
+                document.body.style.overflow = "";
+                mobileToggle.setAttribute("aria-expanded", "false");
+                mobileToggle.setAttribute("aria-label", "Open menu");
+                toggleIcon.className = "bi bi-list";
+            }
+
+            mobileToggle.addEventListener("click", function () {
+                if (sidebar.classList.contains("open")) {
+                    closeSidebar();
+                } else {
+                    openSidebar();
+                }
             });
 
-            document.querySelectorAll(".sidebar-nav a").forEach(function (link) {
-                link.addEventListener("click", function () {
-                    sidebar.classList.remove("open");
-                    sidebarOverlay.classList.remove("show");
-                });
+            sidebarOverlay.addEventListener("click", closeSidebar);
+
+            sidebar.querySelectorAll("a").forEach(function (link) {
+                link.addEventListener("click", closeSidebar);
+            });
+
+            document.addEventListener("keydown", function (event) {
+                if (event.key === "Escape") {
+                    closeSidebar();
+                }
+            });
+
+            window.addEventListener("resize", function () {
+                if (window.innerWidth > 900) {
+                    closeSidebar();
+                }
             });
 
             // =====================================
