@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,14 +44,21 @@
             overflow-x: hidden;
         }
 
-        a { text-decoration: none; }
-        button { font-family: inherit; }
+        a {
+            text-decoration: none;
+        }
 
-        /* SIDEBAR */
+        button {
+            font-family: inherit;
+        }
+
+        /* SIDEBAR - MATCH ADMIN DASHBOARD */
 
         .sidebar {
             width: 260px;
             height: 100vh;
+            height: 100dvh;
+            max-height: 100dvh;
             position: fixed;
             top: 0;
             left: 0;
@@ -62,7 +68,11 @@
             padding: 0 19px 22px;
             display: flex;
             flex-direction: column;
-            transition: 0.3s ease;
+            transition: transform 0.3s ease;
+            overflow-y: auto;
+            overflow-x: hidden;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(214,183,122,.5) transparent;
         }
 
         .sidebar-brand {
@@ -75,6 +85,7 @@
             justify-content: center;
             text-align: center;
             margin-bottom: 27px;
+            flex-shrink: 0;
         }
 
         .brand-logo-light {
@@ -120,12 +131,14 @@
             letter-spacing: 1.8px;
             padding: 0 13px;
             margin-bottom: 13px;
+            flex-shrink: 0;
         }
 
         .sidebar-nav {
             display: flex;
             flex-direction: column;
             gap: 6px;
+            flex-shrink: 0;
         }
 
         .sidebar-nav a {
@@ -138,11 +151,13 @@
             font-weight: 600;
             border-radius: 8px;
             transition: 0.25s ease;
+            min-height: 43px;
         }
 
         .sidebar-nav a i {
             font-size: 17px;
             width: 19px;
+            min-width: 19px;
             text-align: center;
             color: var(--gold);
         }
@@ -159,34 +174,38 @@
             padding-left: 11px;
         }
 
-        .sidebar-nav a.active i { color: var(--gold); }
+        .sidebar-nav a.active i {
+            color: var(--gold);
+        }
 
         .sidebar-bottom {
             margin-top: auto;
             border-top: 1px solid rgba(247,231,206,0.15);
             padding-top: 18px;
+            flex-shrink: 0;
         }
 
-      .sidebar-note {
-    background: rgba(255, 255, 255, .06);
-    border: 1px solid rgba(214, 183, 122, .2);
-    padding: 15px;
-    border-radius: 9px;
-    margin-bottom: 13px;
-}
+        .sidebar-note {
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(214, 183, 122, .2);
+            padding: 15px;
+            border-radius: 9px;
+            margin-bottom: 13px;
+        }
 
-.sidebar-note i {
-    color: var(--gold);
-    font-size: 18px;
-}
+        .sidebar-note i {
+            color: var(--gold);
+            font-size: 18px;
+        }
 
-.sidebar-note p {
-    color: var(--cream);
-    font-size: 11px;
-    line-height: 1.7;
-    margin: 8px 0 0;
-    max-width: 190px;
-}
+        .sidebar-note p {
+            color: var(--cream);
+            font-size: 11px;
+            line-height: 1.7;
+            margin: 8px 0 0;
+            max-width: 190px;
+        }
+
         /* SIDEBAR PROFILE */
 
         .sidebar-profile {
@@ -257,7 +276,9 @@
             background: rgba(255,255,255,0.06);
         }
 
-        .logout-link i { font-size: 17px; }
+        .logout-link i {
+            font-size: 17px;
+        }
 
         /* MAIN CONTENT */
 
@@ -272,6 +293,21 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 29px;
+            gap: 15px;
+        }
+
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 13px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .page-heading {
+            text-align: left;
+            min-width: 0;
         }
 
         .page-heading small {
@@ -281,6 +317,7 @@
             font-weight: 800;
             letter-spacing: 2px;
             margin-bottom: 5px;
+            text-align: left;
         }
 
         .page-heading h2 {
@@ -288,17 +325,21 @@
             font-size: 25px;
             font-weight: 800;
             margin: 0;
+            text-align: left;
         }
 
         .topbar-right {
             display: flex;
             align-items: center;
+            justify-content: flex-end;
             gap: 19px;
+            flex-shrink: 0;
         }
 
         .notification-button {
             width: 42px;
             height: 42px;
+            min-width: 42px;
             border: 1px solid var(--border);
             background: var(--white);
             color: var(--burgundy);
@@ -447,6 +488,7 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 17px;
+            gap: 12px;
         }
 
         .section-heading h3 {
@@ -468,10 +510,16 @@
             font-size: 12px;
             font-weight: 800;
             transition: 0.2s;
+            white-space: nowrap;
         }
 
-        .section-link:hover { color: var(--wine); }
-        .section-block { margin-bottom: 32px; }
+        .section-link:hover {
+            color: var(--wine);
+        }
+
+        .section-block {
+            margin-bottom: 32px;
+        }
 
         /* QUICK ACTIONS */
 
@@ -554,8 +602,13 @@
             background: var(--gold);
         }
 
-        .stat-card.pending::before { background: var(--orange); }
-        .stat-card.completed::before { background: var(--green); }
+        .stat-card.pending::before {
+            background: var(--orange);
+        }
+
+        .stat-card.completed::before {
+            background: var(--green);
+        }
 
         .stat-top {
             display: flex;
@@ -910,7 +963,9 @@
             font-weight: 800;
         }
 
-        .help-card a:hover { color: var(--wine); }
+        .help-card a:hover {
+            color: var(--wine);
+        }
 
         /* RECENT APPOINTMENTS TABLE */
 
@@ -938,7 +993,9 @@
             margin: 0;
         }
 
-        .appointment-table thead { background: var(--wine); }
+        .appointment-table thead {
+            background: var(--wine);
+        }
 
         .appointment-table th {
             text-align: left;
@@ -952,8 +1009,13 @@
             white-space: nowrap;
         }
 
-        .appointment-table th:first-child { border-top-left-radius: 8px; }
-        .appointment-table th:last-child { border-top-right-radius: 8px; }
+        .appointment-table th:first-child {
+            border-top-left-radius: 8px;
+        }
+
+        .appointment-table th:last-child {
+            border-top-right-radius: 8px;
+        }
 
         .appointment-table td {
             padding: 17px;
@@ -966,8 +1028,13 @@
             transition: background 0.2s ease;
         }
 
-        .appointment-table tbody tr:last-child td { border-bottom: none; }
-        .appointment-table tbody tr:hover td { background: #FCF9F5; }
+        .appointment-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .appointment-table tbody tr:hover td {
+            background: #FCF9F5;
+        }
 
         .table-service {
             color: var(--wine) !important;
@@ -1029,7 +1096,9 @@
             display: none;
         }
 
-        .notification-panel.show { display: block; }
+        .notification-panel.show {
+            display: block;
+        }
 
         .notification-panel h5 {
             font-family: 'Bodoni Moda', serif;
@@ -1064,7 +1133,7 @@
             padding: 10px 0;
         }
 
-        /* MOBILE */
+        /* MOBILE SIDEBAR */
 
         .mobile-toggle {
             display: none;
@@ -1074,7 +1143,11 @@
             border-radius: 7px;
             width: 40px;
             height: 40px;
+            min-width: 40px;
             font-size: 19px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
         }
 
         .sidebar-overlay {
@@ -1085,25 +1158,80 @@
             z-index: 999;
         }
 
-        .sidebar-overlay.show { display: block; }
+        .sidebar-overlay.show {
+            display: block;
+        }
 
         .dashboard-footer {
             text-align: center;
             padding-top: 27px;
             color: #8E8387;
             font-size: 11px;
+            line-height: 1.8;
         }
 
         /* RESPONSIVE */
 
         @media (max-width: 1100px) {
-            .main-content { padding: 28px 25px 40px; }
-            .quick-actions { grid-template-columns: repeat(2, 1fr); }
+            .main-content {
+                padding: 28px 25px 40px;
+            }
+
+            .quick-actions {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 900px) {
-            .sidebar { transform: translateX(-100%); }
-            .sidebar.open { transform: translateX(0); }
+            .sidebar {
+                transform: translateX(-100%);
+                visibility: hidden;
+                height: 100dvh !important;
+                max-height: 100dvh !important;
+                overflow-y: auto !important;
+                overflow-x: hidden !important;
+                padding-top: 0 !important;
+                padding-bottom: 12px !important;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+                visibility: visible;
+            }
+
+            .sidebar-brand {
+                padding: 18px 12px !important;
+                margin-bottom: 15px !important;
+            }
+
+            .sidebar-nav {
+                gap: 3px !important;
+            }
+
+            .sidebar-nav a {
+                padding: 9px 12px !important;
+                font-size: 12px !important;
+            }
+
+            .sidebar-nav a.active {
+                padding-left: 9px !important;
+            }
+
+            .sidebar-bottom {
+                margin-top: 15px !important;
+                padding-top: 10px !important;
+                flex-shrink: 0 !important;
+            }
+
+            .sidebar-profile {
+                padding: 10px 8px !important;
+                margin-bottom: 6px !important;
+            }
+
+            .logout-link {
+                padding: 10px 12px !important;
+                margin-bottom: 5px !important;
+            }
 
             .main-content {
                 margin-left: 0;
@@ -1112,27 +1240,58 @@
 
             .mobile-toggle {
                 display: flex;
-                align-items: center;
-                justify-content: center;
             }
 
-            .topbar { gap: 15px; }
-            .dashboard-grid { grid-template-columns: 1fr; }
+            .topbar {
+                gap: 15px;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 600px) {
-            .main-content { padding: 20px 15px 30px; }
-
-            .topbar {
-                flex-wrap: wrap;
-                margin-bottom: 23px;
+            .main-content {
+                padding: 20px 15px 30px;
             }
 
-            .page-heading { flex: 1; }
-            .page-heading h2 { font-size: 23px; }
-            .topbar-right { gap: 10px; }
+            .topbar {
+                flex-wrap: nowrap;
+                margin-bottom: 23px;
+                gap: 10px;
+            }
 
-            .profile-details { display: none; }
+            .topbar-left {
+                gap: 10px;
+            }
+
+            .page-heading {
+                flex: 1;
+            }
+
+            .page-heading small {
+                font-size: 9px;
+            }
+
+            .page-heading h2 {
+                font-size: 20px;
+            }
+
+            .topbar-right {
+                gap: 10px;
+            }
+
+            .notification-button,
+            .profile-avatar {
+                width: 38px;
+                height: 38px;
+                min-width: 38px;
+            }
+
+            .profile-details {
+                display: none;
+            }
 
             .welcome-banner {
                 padding: 26px 23px;
@@ -1140,9 +1299,18 @@
                 margin-bottom: 25px;
             }
 
-            .welcome-banner h1 { font-size: 28px; }
-            .welcome-banner p { max-width: 260px; font-size: 12px; }
-            .welcome-date { display: none; }
+            .welcome-banner h1 {
+                font-size: 28px;
+            }
+
+            .welcome-banner p {
+                max-width: 260px;
+                font-size: 12px;
+            }
+
+            .welcome-date {
+                display: none;
+            }
 
             .quick-actions {
                 grid-template-columns: 1fr;
@@ -1159,17 +1327,38 @@
                 gap: 11px;
             }
 
-            .stat-card { padding: 17px 18px; }
-            .stat-top { margin-bottom: 11px; }
-            .stat-number { font-size: 30px; }
-            .section-heading h3 { font-size: 21px; }
-            .section-heading p { font-size: 11px; }
+            .stat-card {
+                padding: 17px 18px;
+            }
+
+            .stat-top {
+                margin-bottom: 11px;
+            }
+
+            .stat-number {
+                font-size: 30px;
+            }
+
+            .section-heading h3 {
+                font-size: 21px;
+            }
+
+            .section-heading p {
+                font-size: 11px;
+            }
 
             .content-card,
-            .table-card { padding: 17px; }
+            .table-card {
+                padding: 17px;
+            }
 
-            .content-card-title h4 { font-size: 19px; }
-            .appointment-table { min-width: 650px; }
+            .content-card-title h4 {
+                font-size: 19px;
+            }
+
+            .appointment-table {
+                min-width: 650px;
+            }
 
             .appointment-table th {
                 padding: 14px;
@@ -1187,11 +1376,56 @@
                 width: calc(100% - 24px);
             }
         }
+
+        @media (max-width: 380px) {
+            .main-content {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+            .topbar {
+                gap: 8px;
+            }
+
+            .topbar-left {
+                gap: 7px;
+            }
+
+            .mobile-toggle {
+                width: 36px;
+                height: 36px;
+                min-width: 36px;
+            }
+
+            .page-heading h2 {
+                font-size: 17px;
+            }
+
+            .topbar-right {
+                gap: 7px;
+            }
+
+            .notification-button,
+            .profile-avatar {
+                width: 35px;
+                height: 35px;
+                min-width: 35px;
+            }
+
+            .welcome-banner {
+                padding: 23px 18px;
+            }
+
+            .welcome-banner h1 {
+                font-size: 25px;
+            }
+        }
     </style>
 </head>
 
 <body data-requires-auth="patient">
 
+    <!-- SIDEBAR OVERLAY -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <!-- SIDEBAR -->
@@ -1207,6 +1441,7 @@
         <div class="nav-label">PATIENT PORTAL</div>
 
         <nav class="sidebar-nav">
+
             <a href="patient-dashboard.html" class="active">
                 <i class="bi bi-grid-1x2"></i>
                 <span>Dashboard</span>
@@ -1223,16 +1458,17 @@
             </a>
 
             <a href="patient-appointment-history.html">
-    <i class="bi bi-clock-history"></i>
-    <span>Appointment History</span>
-</a>
+                <i class="bi bi-clock-history"></i>
+                <span>Appointment History</span>
+            </a>
+
             <a href="patient-clinic-services.html">
                 <i class="bi bi-hospital"></i>
                 <span>Clinic Services</span>
             </a>
 
             <a href="patient-profile.html">
-                <i class="bi bi-person"></i>
+                <i class="bi bi-person-circle"></i>
                 <span>My Profile</span>
             </a>
 
@@ -1240,6 +1476,7 @@
                 <i class="bi bi-question-circle"></i>
                 <span>Help &amp; Support</span>
             </a>
+
         </nav>
 
         <div class="sidebar-bottom">
@@ -1269,10 +1506,12 @@
     <!-- MAIN CONTENT -->
     <main class="main-content">
 
+        <!-- TOPBAR -->
         <header class="topbar">
 
-            <div class="d-flex align-items-center gap-3">
-                <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu">
+            <div class="topbar-left">
+
+                <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Open menu" aria-expanded="false">
                     <i class="bi bi-list"></i>
                 </button>
 
@@ -1280,22 +1519,25 @@
                     <small>PATIENT PORTAL</small>
                     <h2>Dashboard</h2>
                 </div>
+
             </div>
 
             <div class="topbar-right">
 
-                <button class="notification-button" id="notificationBtn" aria-label="Notifications">
+                <button class="notification-button" id="notificationBtn" type="button" aria-label="Notifications">
                     <i class="bi bi-bell"></i>
                     <span class="notification-dot" id="notificationDot"></span>
                 </button>
 
                 <div class="profile-chip">
+
                     <div class="profile-avatar" id="profileInitial">P</div>
 
                     <div class="profile-details">
                         <strong id="profileName">Patient</strong>
                         <span>PATIENT ACCOUNT</span>
                     </div>
+
                 </div>
 
             </div>
@@ -1304,6 +1546,7 @@
         <!-- NOTIFICATION PANEL -->
         <div class="notification-panel" id="notificationPanel">
             <h5>Notifications</h5>
+
             <div id="notificationContent">
                 <p class="notification-empty">You have no new notifications.</p>
             </div>
@@ -1311,7 +1554,9 @@
 
         <!-- WELCOME BANNER -->
         <section class="welcome-banner">
+
             <div class="welcome-content">
+
                 <div class="welcome-eyebrow">YOUR HEALTH, OUR PRIORITY</div>
 
                 <h1>
@@ -1320,16 +1565,19 @@
                 </h1>
 
                 <p>It's good to see you again. Here's your personal clinic overview.</p>
+
             </div>
 
             <div class="welcome-date">
                 <small>TODAY'S DATE</small>
                 <strong id="todayDate">Loading...</strong>
             </div>
+
         </section>
 
         <!-- QUICK ACTIONS -->
         <section class="section-block">
+
             <div class="section-heading">
                 <div>
                     <h3>Quick Actions</h3>
@@ -1343,6 +1591,7 @@
                     <div class="action-icon">
                         <i class="bi bi-calendar-plus"></i>
                     </div>
+
                     <div>
                         <strong>Book Appointment</strong>
                         <span>Schedule your next visit</span>
@@ -1353,16 +1602,18 @@
                     <div class="action-icon">
                         <i class="bi bi-calendar2-check"></i>
                     </div>
+
                     <div>
                         <strong>My Appointments</strong>
                         <span>View your upcoming visits</span>
                     </div>
                 </a>
 
-                <a href="profile.html" class="action-card">
+                <a href="patient-profile.html" class="action-card">
                     <div class="action-icon">
                         <i class="bi bi-person-gear"></i>
                     </div>
+
                     <div>
                         <strong>My Profile</strong>
                         <span>Manage personal information</span>
@@ -1374,6 +1625,7 @@
 
         <!-- OVERVIEW -->
         <section class="section-block">
+
             <div class="section-heading">
                 <div>
                     <h3>Your Overview</h3>
@@ -1386,10 +1638,12 @@
                 <div class="stat-card">
                     <div class="stat-top">
                         <span>Total Appointments</span>
+
                         <div class="stat-icon">
                             <i class="bi bi-calendar2-week"></i>
                         </div>
                     </div>
+
                     <div class="stat-number" id="totalAppointments">0</div>
                     <div class="stat-description">All appointments recorded</div>
                 </div>
@@ -1397,10 +1651,12 @@
                 <div class="stat-card pending">
                     <div class="stat-top">
                         <span>Pending Appointments</span>
+
                         <div class="stat-icon">
                             <i class="bi bi-hourglass-split"></i>
                         </div>
                     </div>
+
                     <div class="stat-number" id="pendingAppointments">0</div>
                     <div class="stat-description">Waiting for confirmation</div>
                 </div>
@@ -1408,10 +1664,12 @@
                 <div class="stat-card completed">
                     <div class="stat-top">
                         <span>Completed Appointments</span>
+
                         <div class="stat-icon">
                             <i class="bi bi-check2-circle"></i>
                         </div>
                     </div>
+
                     <div class="stat-number" id="completedAppointments">0</div>
                     <div class="stat-description">Successfully completed visits</div>
                 </div>
@@ -1421,32 +1679,41 @@
 
         <!-- APPOINTMENT AND HEALTH INFORMATION -->
         <section class="section-block">
+
             <div class="dashboard-grid">
 
                 <div class="content-card">
+
                     <div class="content-card-title">
                         <div>
                             <h4>Upcoming Appointment</h4>
                             <small>Your next scheduled clinic visit</small>
                         </div>
+
                         <a href="my-appointments.html" class="section-link">View All</a>
                     </div>
 
                     <div id="upcomingAppointment">
+
                         <div class="empty-state">
                             <i class="bi bi-calendar-heart"></i>
                             <h5>No Upcoming Appointment</h5>
                             <p>You don't have any upcoming appointments at the moment. Book a visit whenever you need us.</p>
+
                             <a href="book-appointment.html" class="primary-button">
                                 <i class="bi bi-plus-lg"></i>
                                 Book Appointment
                             </a>
                         </div>
+
                     </div>
+
                 </div>
 
                 <div>
+
                     <div class="health-tip">
+
                         <div class="health-tip-label">
                             <i class="bi bi-stars"></i> HEALTH TIP OF THE DAY
                         </div>
@@ -1460,23 +1727,28 @@
                         <div class="health-tip-footer">
                             A gentle reminder from Healora Clinic
                         </div>
+
                     </div>
 
                     <div class="help-card">
+
                         <div class="help-card-top">
                             <div class="help-icon">
                                 <i class="bi bi-chat-heart"></i>
                             </div>
+
                             <h5>Need Assistance?</h5>
                         </div>
 
                         <p>Have questions about your appointments or patient account? Visit our support section for assistance.</p>
 
-                        <a href="help-support.html">
+                        <a href="patient-help-support.html">
                             VISIT HELP &amp; SUPPORT
                             <i class="bi bi-arrow-right ms-1"></i>
                         </a>
+
                     </div>
+
                 </div>
 
             </div>
@@ -1484,21 +1756,26 @@
 
         <!-- RECENT APPOINTMENTS -->
         <section class="section-block">
+
             <div class="section-heading">
+
                 <div>
                     <h3>Recent Appointments</h3>
                     <p>Your latest appointment records.</p>
                 </div>
 
-                <!-- CORRECTED VIEW HISTORY LINK -->
                 <a href="patient-appointment-history.html" class="section-link">
                     View History <i class="bi bi-arrow-right"></i>
                 </a>
+
             </div>
 
             <div class="table-card">
+
                 <div class="table-responsive">
+
                     <table class="appointment-table">
+
                         <thead>
                             <tr>
                                 <th>Service</th>
@@ -1516,11 +1793,16 @@
                                 </td>
                             </tr>
                         </tbody>
+
                     </table>
+
                 </div>
+
             </div>
+
         </section>
 
+        <!-- FOOTER -->
         <footer class="dashboard-footer">
             © <span id="currentYear"></span> Healora Clinic. Your health, our priority.
         </footer>
@@ -1563,7 +1845,7 @@
                 .map(part => part.charAt(0).toUpperCase())
                 .join("") || "P";
 
-            /* UPDATE ALL PROFILE DISPLAYS */
+            /* UPDATE PROFILE DISPLAYS */
 
             document.getElementById("patientFirstName").textContent = firstName;
 
@@ -2053,26 +2335,59 @@
             });
 
 
-            /* MOBILE SIDEBAR */
+            /* MOBILE SIDEBAR - SAME AS ADMIN DASHBOARD */
 
             const sidebar = document.getElementById("sidebar");
             const mobileToggle = document.getElementById("mobileToggle");
             const sidebarOverlay = document.getElementById("sidebarOverlay");
+            const toggleIcon = mobileToggle.querySelector("i");
+
+            function openSidebar() {
+                sidebar.classList.add("open");
+                sidebarOverlay.classList.add("show");
+                document.body.style.overflow = "hidden";
+
+                mobileToggle.setAttribute("aria-expanded", "true");
+                mobileToggle.setAttribute("aria-label", "Close menu");
+
+                toggleIcon.className = "bi bi-x-lg";
+            }
 
             function closeSidebar() {
                 sidebar.classList.remove("open");
                 sidebarOverlay.classList.remove("show");
+                document.body.style.overflow = "";
+
+                mobileToggle.setAttribute("aria-expanded", "false");
+                mobileToggle.setAttribute("aria-label", "Open menu");
+
+                toggleIcon.className = "bi bi-list";
             }
 
             mobileToggle.addEventListener("click", function () {
-                sidebar.classList.toggle("open");
-                sidebarOverlay.classList.toggle("show");
+                if (sidebar.classList.contains("open")) {
+                    closeSidebar();
+                } else {
+                    openSidebar();
+                }
             });
 
             sidebarOverlay.addEventListener("click", closeSidebar);
 
-            sidebar.querySelectorAll("a").forEach(link => {
+            sidebar.querySelectorAll("a").forEach(function (link) {
                 link.addEventListener("click", closeSidebar);
+            });
+
+            document.addEventListener("keydown", function (event) {
+                if (event.key === "Escape") {
+                    closeSidebar();
+                }
+            });
+
+            window.addEventListener("resize", function () {
+                if (window.innerWidth > 900) {
+                    closeSidebar();
+                }
             });
 
 
