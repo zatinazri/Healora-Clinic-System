@@ -856,3 +856,63 @@ footer a:hover,
         font-size: 11px;
     }
 }
+
+
+/* =========================================
+   ADMIN DASHBOARD HEADER FIX
+   ========================================= */
+
+@media (max-width: 767px) {
+
+    body .main-content > header.topbar {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        padding: 0 !important;
+        margin-bottom: 22px !important;
+        background: transparent !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+    }
+
+    body .main-content > header.topbar .topbar-left {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 10px !important;
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+    }
+
+    body .main-content > header.topbar .topbar-right {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        gap: 10px !important;
+        flex: 0 0 auto !important;
+    }
+}
+
+body .main-content > header.topbar {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+@media (max-width: 600px) {
+
+    body .main-content > header.topbar .page-heading h2 {
+        font-size: 19px !important;
+        text-align: left !important;
+    }
+
+    body .main-content > header.topbar .profile-chip-info {
+        display: none !important;
+    }
+}
+
