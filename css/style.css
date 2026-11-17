@@ -1430,3 +1430,49 @@ footer a:hover,
     }
 }
 
+
+/* HEALORA ADMIN SIDEBAR - FORCE MOBILE DRAWER */
+
+@media screen and (max-width: 767px) {
+
+    body[data-requires-auth="admin"] .sidebar {
+        display: flex !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        bottom: 0 !important;
+        width: 280px !important;
+        height: 100vh !important;
+        max-height: 100vh !important;
+        z-index: 10000 !important;
+        overflow-y: auto !important;
+        transform: translateX(-110%) !important;
+        visibility: visible !important;
+        transition: transform 0.3s ease !important;
+    }
+
+    body[data-requires-auth="admin"] .sidebar.active {
+        transform: translateX(0) !important;
+    }
+
+    body[data-requires-auth="admin"] .sidebar.show {
+        transform: translateX(0) !important;
+    }
+
+    body[data-requires-auth="admin"] .main-content {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+
+    #sidebarOverlay {
+        display: none;
+        position: fixed !important;
+        inset: 0 !important;
+        background: rgba(0, 0, 0, 0.5) !important;
+        z-index: 9999 !important;
+    }
+
+    #sidebarOverlay.active {
+        display: block !important;
+    }
+}
