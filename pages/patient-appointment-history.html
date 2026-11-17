@@ -1,0 +1,1905 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment History | Healora Clinic</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600;6..96,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --wine: #350017;
+            --burgundy: #4A001F;
+            --burgundy-light: #800020;
+            --gold: #D6B77A;
+            --gold-dark: #B89552;
+            --ivory: #FAF8F4;
+            --cream: #F7E7CE;
+            --white: #FFFFFF;
+            --text: #30252A;
+            --muted: #70666C;
+            --border: #EEE7E2;
+            --shadow: 0 8px 28px rgba(53, 0, 23, .055);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Manrope', sans-serif;
+            background: var(--ivory);
+            color: var(--text);
+            font-size: 14px;
+            overflow-x: hidden;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            width: 260px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            padding: 0 19px 22px;
+            background: linear-gradient(180deg, #350017 0%, #4A001F 100%);
+            transition: transform .3s ease;
+            overflow-y: auto;
+        }
+
+        .sidebar-brand {
+            width: 100%;
+            padding: 28px 15px;
+            border-bottom: 1px solid rgba(247, 231, 206, .15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 27px;
+        }
+
+        .brand-logo-light {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            width: 100%;
+            font-family: 'Manrope', sans-serif;
+            font-size: 27px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .brand-heal {
+            color: var(--gold) !important;
+            font-weight: 800;
+        }
+
+        .brand-ora {
+            color: var(--cream) !important;
+            font-family: 'Bodoni Moda', serif;
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        .brand-clinic {
+            color: var(--cream) !important;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            margin-top: 7px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .nav-label {
+            color: rgba(247, 231, 206, .55);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            padding: 0 13px;
+            margin-bottom: 13px;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 12px 14px;
+            color: rgba(247, 231, 206, .82);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: .2s ease;
+        }
+
+        .sidebar-nav a i {
+            width: 19px;
+            font-size: 17px;
+            color: var(--gold);
+        }
+
+        .sidebar-nav a:hover {
+            background: rgba(255, 255, 255, .08);
+            color: var(--cream);
+        }
+
+        .sidebar-nav a.active {
+            background: var(--burgundy-light);
+            color: var(--cream);
+            border-left: 3px solid var(--gold);
+            padding-left: 11px;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+            border-top: 1px solid rgba(247, 231, 206, .15);
+            padding-top: 18px;
+        }
+
+        .sidebar-note {
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(214, 183, 122, .2);
+            padding: 15px;
+            border-radius: 9px;
+            margin-bottom: 13px;
+        }
+
+        .sidebar-note i {
+            color: var(--gold);
+            font-size: 18px;
+        }
+
+        .sidebar-note p {
+            color: var(--cream);
+            font-size: 11px;
+            line-height: 1.7;
+            margin: 8px 0 0;
+        }
+
+        .sidebar-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 10px;
+            margin-bottom: 12px;
+            border-top: 1px solid rgba(247, 231, 206, .15);
+            border-bottom: 1px solid rgba(247, 231, 206, .15);
+        }
+
+        .sidebar-profile-avatar {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: var(--wine);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 800;
+            border: 1px solid rgba(247, 231, 206, .5);
+        }
+
+        .sidebar-profile-info {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .sidebar-profile-info strong {
+            display: block;
+            color: var(--cream);
+            font-size: 13px;
+            font-weight: 800;
+            line-height: 1.5;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .sidebar-profile-info span {
+            display: block;
+            color: var(--gold);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            margin-top: 3px;
+        }
+
+        .logout-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 13px;
+            color: rgba(247, 231, 206, .82);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .logout-link i {
+            color: var(--gold);
+            font-size: 17px;
+        }
+
+        .logout-link:hover {
+            background: rgba(255, 255, 255, .08);
+            color: var(--cream);
+        }
+
+        /* MAIN CONTENT */
+
+        .main-content {
+            margin-left: 260px;
+            padding: 32px 40px 45px;
+            min-height: 100vh;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 29px;
+            gap: 15px;
+        }
+
+        .page-heading small {
+            display: block;
+            color: var(--gold-dark);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .page-heading h2 {
+            color: var(--wine);
+            font-size: 25px;
+            font-weight: 800;
+            margin: 0;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 19px;
+        }
+
+        .notification-btn {
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            background: var(--white);
+            color: var(--wine);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        .profile-chip {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .chip-avatar {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            border-radius: 50%;
+            background: var(--burgundy);
+            color: var(--gold);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 800;
+            border: 1px solid var(--gold);
+        }
+
+        .profile-chip-info {
+            min-width: 0;
+        }
+
+        .profile-chip-info strong {
+            display: block;
+            color: var(--wine);
+            font-size: 13px;
+            font-weight: 800;
+            max-width: 170px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .profile-chip-info span {
+            display: block;
+            color: var(--gold-dark);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            margin-top: 3px;
+        }
+
+        .mobile-toggle {
+            display: none;
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border);
+            background: var(--white);
+            color: var(--wine);
+            border-radius: 8px;
+            font-size: 20px;
+        }
+
+        /* INTRO BANNER */
+
+        .booking-banner {
+            background: var(--wine);
+            border-radius: 13px;
+            padding: 30px 35px;
+            margin-bottom: 27px;
+            color: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .booking-banner .eyebrow {
+            color: var(--gold);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 9px;
+        }
+
+        .booking-banner h1 {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 31px;
+            font-weight: 700;
+            margin: 0 0 8px;
+        }
+
+        .booking-banner p {
+            color: rgba(247, 231, 206, .8);
+            font-size: 13px;
+            line-height: 1.8;
+            margin: 0;
+            max-width: 570px;
+        }
+
+        .banner-icon {
+            width: 75px;
+            height: 75px;
+            border: 1px solid rgba(214, 183, 122, .4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 31px;
+            flex-shrink: 0;
+        }
+
+        /* HISTORY STATISTICS */
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-top: 3px solid var(--gold);
+            border-radius: 11px;
+            padding: 21px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .stat-info span {
+            display: block;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .stat-info h3 {
+            color: var(--wine);
+            font-size: 26px;
+            font-weight: 800;
+            margin: 0;
+        }
+
+        .stat-icon {
+            width: 45px;
+            height: 45px;
+            min-width: 45px;
+            border-radius: 10px;
+            background: #F8F0E4;
+            color: var(--burgundy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .stat-card.cancelled {
+            border-top-color: #C68A75;
+        }
+
+        .stat-card.cancelled .stat-icon {
+            background: #F9EFEC;
+            color: #A65D4B;
+        }
+
+        .stat-card.rejected {
+            border-top-color: #A76D78;
+        }
+
+        .stat-card.rejected .stat-icon {
+            background: #F6ECEE;
+            color: #934252;
+        }
+
+        /* HISTORY CONTENT */
+
+        .content-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .history-card {
+            padding: 25px;
+        }
+
+        .card-heading {
+            display: flex;
+            align-items: flex-start;
+            gap: 13px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 21px;
+        }
+
+        .heading-icon {
+            width: 43px;
+            height: 43px;
+            border-radius: 10px;
+            background: #F8F0E4;
+            color: var(--burgundy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+            flex-shrink: 0;
+        }
+
+        .card-heading h3 {
+            color: var(--wine);
+            font-size: 16px;
+            font-weight: 800;
+            margin: 1px 0 5px;
+        }
+
+        .card-heading p {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* FILTERS */
+
+        .filter-area {
+            display: grid;
+            grid-template-columns: minmax(200px, 1.5fr) minmax(150px, .8fr) minmax(150px, .8fr);
+            gap: 13px;
+            margin-bottom: 21px;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gold-dark);
+            font-size: 15px;
+        }
+
+        .search-box input {
+            padding-left: 40px;
+        }
+
+        .filter-control {
+            width: 100%;
+            min-height: 44px;
+            border: 1px solid #E8E0DA;
+            border-radius: 8px;
+            color: var(--text);
+            font-family: 'Manrope', sans-serif;
+            font-size: 12px;
+            padding: 10px 12px;
+            background-color: #FFFEFC;
+            outline: none;
+        }
+
+        .filter-control:focus {
+            border-color: var(--gold-dark);
+            box-shadow: 0 0 0 3px rgba(214, 183, 122, .15);
+        }
+
+        /* TABLE */
+
+        .table-responsive {
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            overflow-x: auto;
+        }
+
+        .history-table {
+            width: 100%;
+            min-width: 760px;
+            border-collapse: collapse;
+            margin: 0;
+        }
+
+        .history-table thead {
+            background: var(--burgundy);
+        }
+
+        .history-table thead th {
+            color: var(--cream);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: .7px;
+            text-transform: uppercase;
+            padding: 16px 14px;
+            white-space: nowrap;
+            border: none;
+        }
+
+        .history-table tbody td {
+            color: var(--text);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 16px 14px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+        }
+
+        .history-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .history-table tbody tr:hover {
+            background: #FFFCF8;
+        }
+
+        .appointment-reference {
+            color: var(--burgundy);
+            font-weight: 800;
+        }
+
+        .service-name {
+            color: var(--wine);
+            font-weight: 800;
+        }
+
+        .doctor-name {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .status-completed {
+            color: #47785E;
+            background: #EDF5EF;
+        }
+
+        .status-cancelled {
+            color: #A65D4B;
+            background: #F9EFEC;
+        }
+
+        .status-rejected {
+            color: #934252;
+            background: #F6ECEE;
+        }
+
+        .btn-view {
+            min-height: 32px;
+            padding: 0 12px;
+            border: 1px solid var(--gold-dark);
+            border-radius: 6px;
+            background: #FFFCF7;
+            color: var(--burgundy);
+            font-family: 'Manrope', sans-serif;
+            font-size: 10px;
+            font-weight: 800;
+            transition: .2s ease;
+        }
+
+        .btn-view:hover {
+            background: var(--burgundy);
+            color: var(--cream);
+            border-color: var(--burgundy);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 55px 20px !important;
+        }
+
+        .empty-state i {
+            display: block;
+            color: var(--gold-dark);
+            font-size: 36px;
+            margin-bottom: 13px;
+        }
+
+        .empty-state strong {
+            display: block;
+            color: var(--wine);
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .empty-state span {
+            display: block;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .results-note {
+            color: var(--muted);
+            font-size: 11px;
+            margin-top: 15px;
+        }
+
+        /* DETAILS MODAL */
+
+        .modal-backdrop-custom {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(25, 0, 12, .55);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-backdrop-custom.show {
+            display: flex;
+        }
+
+        .details-modal {
+            width: 100%;
+            max-width: 560px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: var(--white);
+            border-radius: 13px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, .18);
+        }
+
+        .modal-header-custom {
+            background: var(--wine);
+            padding: 23px 26px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            border-radius: 13px 13px 0 0;
+        }
+
+        .modal-header-custom small {
+            display: block;
+            color: var(--gold);
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.8px;
+            margin-bottom: 5px;
+        }
+
+        .modal-header-custom h3 {
+            color: var(--cream);
+            font-family: 'Bodoni Moda', serif;
+            font-size: 23px;
+            margin: 0;
+        }
+
+        .modal-close {
+            width: 33px;
+            height: 33px;
+            border: 1px solid rgba(214, 183, 122, .4);
+            border-radius: 50%;
+            background: transparent;
+            color: var(--cream);
+            font-size: 17px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .modal-body-custom {
+            padding: 25px 26px;
+        }
+
+        .detail-reference {
+            background: #FBF7EF;
+            border: 1px solid #EFE3CF;
+            border-radius: 8px;
+            padding: 13px 15px;
+            margin-bottom: 20px;
+        }
+
+        .detail-reference span {
+            display: block;
+            color: var(--muted);
+            font-size: 10px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .detail-reference strong {
+            color: var(--burgundy);
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 17px;
+        }
+
+        .detail-item {
+            padding-bottom: 13px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .detail-item.full {
+            grid-column: 1 / -1;
+        }
+
+        .detail-item span {
+            display: block;
+            color: var(--muted);
+            font-size: 10px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .detail-item strong {
+            display: block;
+            color: var(--wine);
+            font-size: 12px;
+            font-weight: 800;
+            line-height: 1.6;
+            overflow-wrap: anywhere;
+        }
+
+        .modal-footer-custom {
+            padding: 16px 26px 23px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .btn-close-modal {
+            min-height: 39px;
+            padding: 0 20px;
+            border: 0;
+            border-radius: 7px;
+            background: var(--burgundy);
+            color: var(--cream);
+            font-family: 'Manrope', sans-serif;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .btn-close-modal:hover {
+            background: var(--wine);
+            color: var(--gold);
+        }
+
+        /* FOOTER */
+
+        .footer-note {
+            text-align: center;
+            color: #91868A;
+            font-size: 11px;
+            margin-top: 30px;
+        }
+
+        .sidebar-overlay {
+            display: none;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 1100px) {
+            .main-content {
+                padding: 28px 25px 40px;
+            }
+
+            .stats-grid {
+                gap: 13px;
+            }
+
+            .stat-card {
+                padding: 17px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .sidebar-overlay.show {
+                display: block;
+                position: fixed;
+                inset: 0;
+                background: rgba(25, 0, 12, .45);
+                z-index: 999;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 22px 20px 35px;
+            }
+
+            .mobile-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .filter-area {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .search-box {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .main-content {
+                padding: 18px 15px 30px;
+            }
+
+            .topbar {
+                margin-bottom: 22px;
+            }
+
+            .page-heading h2 {
+                font-size: 19px;
+            }
+
+            .page-heading small {
+                font-size: 9px;
+            }
+
+            .profile-chip-info {
+                display: none;
+            }
+
+            .booking-banner {
+                padding: 25px 22px;
+                margin-bottom: 20px;
+            }
+
+            .booking-banner h1 {
+                font-size: 25px;
+            }
+
+            .booking-banner p {
+                font-size: 11px;
+            }
+
+            .banner-icon {
+                width: 52px;
+                height: 52px;
+                font-size: 22px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .stat-card {
+                padding: 17px 19px;
+            }
+
+            .history-card {
+                padding: 20px 15px;
+            }
+
+            .filter-area {
+                grid-template-columns: 1fr;
+            }
+
+            .search-box {
+                grid-column: auto;
+            }
+
+            .modal-header-custom {
+                padding: 20px;
+            }
+
+            .modal-body-custom {
+                padding: 20px;
+            }
+
+            .detail-grid {
+                grid-template-columns: 1fr;
+                gap: 13px;
+            }
+
+            .detail-item.full {
+                grid-column: auto;
+            }
+        }
+    </style>
+</head>
+
+<body data-requires-auth="patient">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-brand">
+            <div class="brand-logo-light">
+                <span class="brand-heal">HEAL</span><span class="brand-ora">ORA</span>
+            </div>
+            <div class="brand-clinic">C L I N I C</div>
+        </div>
+
+        <div class="nav-label">PATIENT PORTAL</div>
+
+        <nav class="sidebar-nav">
+
+            <a href="patient-dashboard.html">
+                <i class="bi bi-grid-1x2"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="book-appointment.html">
+                <i class="bi bi-calendar-plus"></i>
+                <span>Book Appointment</span>
+            </a>
+
+            <a href="my-appointments.html">
+                <i class="bi bi-calendar-check"></i>
+                <span>My Appointments</span>
+            </a>
+
+            <a href="patient-appointment-history.html" class="active">
+                <i class="bi bi-clock-history"></i>
+                <span>Appointment History</span>
+            </a>
+
+            <a href="patient-clinic-services.html">
+                <i class="bi bi-hospital"></i>
+                <span>Clinic Services</span>
+            </a>
+
+            <a href="patient-profile.html">
+                <i class="bi bi-person"></i>
+                <span>My Profile</span>
+            </a>
+
+            <a href="patient-help-support.html">
+                <i class="bi bi-question-circle"></i>
+                <span>Help &amp; Support</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="sidebar-note">
+                <i class="bi bi-heart-pulse"></i>
+                <p>Your health matters. We're here to make every visit comfortable.</p>
+            </div>
+
+            <div class="sidebar-profile">
+                <div class="sidebar-profile-avatar" id="sidebarProfileInitial">P</div>
+
+                <div class="sidebar-profile-info">
+                    <strong id="sidebarProfileName">Patient</strong>
+                    <span>PATIENT ACCOUNT</span>
+                </div>
+            </div>
+
+            <a class="logout-link" id="logoutBtn" href="#">
+                <i class="bi bi-box-arrow-left"></i>
+                <span>Logout</span>
+            </a>
+
+        </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div class="d-flex align-items-center gap-3">
+
+                <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Open menu">
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <div class="page-heading">
+                    <small>PATIENT PORTAL</small>
+                    <h2>Appointment History</h2>
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <button class="notification-btn" type="button" title="Notifications">
+                    <i class="bi bi-bell"></i>
+                </button>
+
+                <div class="profile-chip">
+                    <div class="chip-avatar" id="topbarAvatar">P</div>
+
+                    <div class="profile-chip-info">
+                        <strong id="topbarName">Patient</strong>
+                        <span>PATIENT ACCOUNT</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- INTRO BANNER -->
+        <section class="booking-banner">
+
+            <div>
+                <div class="eyebrow">YOUR HEALTH JOURNEY</div>
+
+                <h1>Your Appointment History</h1>
+
+                <p>
+                    Keep track of your previous clinic visits and review the
+                    details of your completed, cancelled and rejected appointments.
+                    Your health journey matters to us.
+                </p>
+            </div>
+
+            <div class="banner-icon">
+                <i class="bi bi-clock-history"></i>
+            </div>
+
+        </section>
+
+        <!-- APPOINTMENT STATISTICS -->
+        <section class="stats-grid">
+
+            <div class="stat-card">
+                <div class="stat-info">
+                    <span>Completed Appointments</span>
+                    <h3 id="completedCount">0</h3>
+                </div>
+
+                <div class="stat-icon">
+                    <i class="bi bi-calendar-check"></i>
+                </div>
+            </div>
+
+            <div class="stat-card cancelled">
+                <div class="stat-info">
+                    <span>Cancelled Appointments</span>
+                    <h3 id="cancelledCount">0</h3>
+                </div>
+
+                <div class="stat-icon">
+                    <i class="bi bi-calendar-x"></i>
+                </div>
+            </div>
+
+            <div class="stat-card rejected">
+                <div class="stat-info">
+                    <span>Rejected Appointments</span>
+                    <h3 id="rejectedCount">0</h3>
+                </div>
+
+                <div class="stat-icon">
+                    <i class="bi bi-calendar-minus"></i>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- HISTORY TABLE -->
+        <section class="content-card history-card">
+
+            <div class="card-heading">
+
+                <div class="heading-icon">
+                    <i class="bi bi-journal-medical"></i>
+                </div>
+
+                <div>
+                    <h3>Previous Appointments</h3>
+                    <p>View and manage the records of your previous clinic appointments.</p>
+                </div>
+
+            </div>
+
+            <!-- SEARCH AND FILTER -->
+            <div class="filter-area">
+
+                <div class="search-box">
+                    <i class="bi bi-search"></i>
+                    <input
+                        type="text"
+                        class="filter-control"
+                        id="searchInput"
+                        placeholder="Search appointment, service or doctor..."
+                    >
+                </div>
+
+                <select class="filter-control" id="statusFilter">
+                    <option value="all">All Statuses</option>
+                    <option value="completed">Completed</option>
+                    <option value="cancelled">Cancelled</option>
+                    <option value="rejected">Rejected</option>
+                </select>
+
+                <select class="filter-control" id="sortFilter">
+                    <option value="newest">Newest First</option>
+                    <option value="oldest">Oldest First</option>
+                </select>
+
+            </div>
+
+            <!-- APPOINTMENT TABLE -->
+            <div class="table-responsive">
+
+                <table class="history-table">
+
+                    <thead>
+                        <tr>
+                            <th>Appointment ID</th>
+                            <th>Service</th>
+                            <th>Doctor</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="historyTableBody">
+                        <tr>
+                            <td colspan="7" class="empty-state">
+                                <i class="bi bi-hourglass-split"></i>
+                                <strong>Loading appointment history...</strong>
+                                <span>Please wait while your records are being loaded.</span>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <div class="results-note" id="resultsNote">
+                Showing 0 appointments
+            </div>
+
+        </section>
+
+        <!-- FOOTER -->
+        <div class="footer-note">
+            © 2026 Healora Clinic. Your health, our priority.
+        </div>
+
+    </main>
+
+    <!-- APPOINTMENT DETAILS MODAL -->
+    <div class="modal-backdrop-custom" id="detailsModal">
+
+        <div class="details-modal">
+
+            <div class="modal-header-custom">
+
+                <div>
+                    <small>HEALORA CLINIC</small>
+                    <h3>Appointment Details</h3>
+                </div>
+
+                <button type="button" class="modal-close" id="modalClose" aria-label="Close">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+
+            </div>
+
+            <div class="modal-body-custom">
+
+                <div class="detail-reference">
+                    <span>Appointment Reference</span>
+                    <strong id="detailId">-</strong>
+                </div>
+
+                <div class="detail-grid">
+
+                    <div class="detail-item">
+                        <span>Patient Name</span>
+                        <strong id="detailPatient">-</strong>
+                    </div>
+
+                    <div class="detail-item">
+                        <span>Appointment Status</span>
+                        <strong id="detailStatus">-</strong>
+                    </div>
+
+                    <div class="detail-item">
+                        <span>Medical Service</span>
+                        <strong id="detailService">-</strong>
+                    </div>
+
+                    <div class="detail-item">
+                        <span>Doctor</span>
+                        <strong id="detailDoctor">-</strong>
+                    </div>
+
+                    <div class="detail-item">
+                        <span>Appointment Date</span>
+                        <strong id="detailDate">-</strong>
+                    </div>
+
+                    <div class="detail-item">
+                        <span>Appointment Time</span>
+                        <strong id="detailTime">-</strong>
+                    </div>
+
+                    <div class="detail-item full">
+                        <span>Reason for Visit</span>
+                        <strong id="detailReason">-</strong>
+                    </div>
+
+                    <div class="detail-item full">
+                        <span>Additional Notes</span>
+                        <strong id="detailNotes">-</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer-custom">
+                <button type="button" class="btn-close-modal" id="modalDone">
+                    Close
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/data.js"></script>
+    <script src="../js/auth.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // =====================================
+            // 1. GET CURRENT LOGGED-IN USER
+            // =====================================
+
+            const currentUser = window.HealoraStorage
+                ? window.HealoraStorage.getCurrentUser()
+                : null;
+
+            if (!currentUser) {
+                window.location.href = "../index.html";
+                return;
+            }
+
+            const patientName =
+                currentUser.fullName ||
+                currentUser.name ||
+                currentUser.username ||
+                "Patient";
+
+            const patientEmail = currentUser.email || "";
+
+            const nameParts = patientName.trim().split(/\s+/);
+
+            const initials = nameParts
+                .filter(Boolean)
+                .slice(0, 2)
+                .map(part => part.charAt(0).toUpperCase())
+                .join("") || "P";
+
+            // =====================================
+            // 2. DISPLAY USER INFORMATION
+            // =====================================
+
+            document.getElementById("sidebarProfileName").textContent = patientName;
+            document.getElementById("sidebarProfileInitial").textContent = initials;
+
+            document.getElementById("topbarName").textContent = patientName;
+            document.getElementById("topbarAvatar").textContent = initials;
+
+            // =====================================
+            // 3. LOCAL STORAGE FUNCTIONS
+            // =====================================
+
+            function readStorageArray(key) {
+                try {
+                    const stored = localStorage.getItem(key);
+                    const parsed = stored ? JSON.parse(stored) : [];
+
+                    return Array.isArray(parsed) ? parsed : [];
+
+                } catch (error) {
+                    console.error("Unable to read storage:", key, error);
+                    return [];
+                }
+            }
+
+            // =====================================
+            // 4. FIND CURRENT PATIENT
+            // =====================================
+
+            const patients = readStorageArray("healora_patients");
+
+            const currentUserId = currentUser.id || currentUser.userId || "";
+
+            const patient = patients.find(function (item) {
+
+                const sameUserId =
+                    (item.userId && currentUserId &&
+                    String(item.userId) === String(currentUserId)) ||
+                    (item.id && currentUserId &&
+                    String(item.id) === String(currentUserId));
+
+                const sameEmail =
+                    patientEmail &&
+                    String(item.email || "").trim().toLowerCase() ===
+                    String(patientEmail).trim().toLowerCase();
+
+                return sameUserId || sameEmail;
+            });
+
+            const patientId = patient
+                ? patient.id || currentUserId
+                : currentUser.patientId || "";
+
+            // =====================================
+            // 5. APPOINTMENT DATA HELPERS
+            // =====================================
+
+            function getAppointmentId(appointment) {
+                return appointment.appointmentId ||
+                       appointment.id ||
+                       "N/A";
+            }
+
+            function getService(appointment) {
+                return appointment.serviceName ||
+                       appointment.service ||
+                       "General Consultation";
+            }
+
+            function getDoctor(appointment) {
+                return appointment.doctorName ||
+                       appointment.doctor ||
+                       "Doctor not assigned";
+            }
+
+            function getDate(appointment) {
+                return appointment.appointmentDate ||
+                       appointment.date ||
+                       "";
+            }
+
+            function getTime(appointment) {
+                return appointment.appointmentTime ||
+                       appointment.time ||
+                       appointment.slot ||
+                       "Not specified";
+            }
+
+            function getReason(appointment) {
+                return appointment.reason ||
+                       appointment.visitReason ||
+                       "Not specified";
+            }
+
+            function getNotes(appointment) {
+                return appointment.notes ||
+                       appointment.note ||
+                       "No additional notes";
+            }
+
+            function normalizeStatus(status) {
+                const value = String(status || "").trim().toLowerCase();
+
+                if (value === "canceled" || value === "cancelled") {
+                    return "cancelled";
+                }
+
+                return value;
+            }
+
+            function formatStatus(status) {
+                const normalized = normalizeStatus(status);
+
+                if (normalized === "completed") return "Completed";
+                if (normalized === "cancelled") return "Cancelled";
+                if (normalized === "rejected") return "Rejected";
+
+                return status || "Unknown";
+            }
+
+            function formatDate(dateValue) {
+                if (!dateValue) return "Not specified";
+
+                const date = new Date(dateValue + "T00:00:00");
+
+                if (isNaN(date.getTime())) return dateValue;
+
+                return date.toLocaleDateString("en-GB", {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric"
+                });
+            }
+
+            function escapeHTML(value) {
+                return String(value ?? "").replace(/[&<>"']/g, function (character) {
+                    const entities = {
+                        "&": "&amp;",
+                        "<": "&lt;",
+                        ">": "&gt;",
+                        '"': "&quot;",
+                        "'": "&#39;"
+                    };
+
+                    return entities[character];
+                });
+            }
+
+            // =====================================
+            // 6. GET CURRENT PATIENT APPOINTMENTS
+            // =====================================
+
+            const allAppointments = readStorageArray("healora_appointments");
+
+            function belongsToCurrentPatient(appointment) {
+
+                const samePatientId =
+                    patientId &&
+                    appointment.patientId &&
+                    String(appointment.patientId) === String(patientId);
+
+                const sameUserId =
+                    currentUserId &&
+                    appointment.userId &&
+                    String(appointment.userId) === String(currentUserId);
+
+                const sameEmail =
+                    patientEmail &&
+                    String(appointment.patientEmail || appointment.email || "")
+                        .trim().toLowerCase() ===
+                    String(patientEmail).trim().toLowerCase();
+
+                const samePatientName =
+                    patientName &&
+                    String(appointment.patientName || "")
+                        .trim().toLowerCase() ===
+                    String(patientName).trim().toLowerCase();
+
+                return samePatientId ||
+                       sameUserId ||
+                       sameEmail ||
+                       samePatientName;
+            }
+
+            const patientAppointments = allAppointments.filter(
+                belongsToCurrentPatient
+            );
+
+            const historyStatuses = [
+                "completed",
+                "cancelled",
+                "rejected"
+            ];
+
+            const historyAppointments = patientAppointments.filter(function (appointment) {
+                return historyStatuses.includes(
+                    normalizeStatus(appointment.status)
+                );
+            });
+
+            // =====================================
+            // 7. UPDATE STATISTICS
+            // =====================================
+
+            function updateStatistics() {
+
+                const completed = historyAppointments.filter(function (appointment) {
+                    return normalizeStatus(appointment.status) === "completed";
+                }).length;
+
+                const cancelled = historyAppointments.filter(function (appointment) {
+                    return normalizeStatus(appointment.status) === "cancelled";
+                }).length;
+
+                const rejected = historyAppointments.filter(function (appointment) {
+                    return normalizeStatus(appointment.status) === "rejected";
+                }).length;
+
+                document.getElementById("completedCount").textContent = completed;
+                document.getElementById("cancelledCount").textContent = cancelled;
+                document.getElementById("rejectedCount").textContent = rejected;
+            }
+
+            // =====================================
+            // 8. SEARCH, FILTER AND SORT
+            // =====================================
+
+            const searchInput = document.getElementById("searchInput");
+            const statusFilter = document.getElementById("statusFilter");
+            const sortFilter = document.getElementById("sortFilter");
+            const tableBody = document.getElementById("historyTableBody");
+            const resultsNote = document.getElementById("resultsNote");
+
+            function getFilteredAppointments() {
+
+                let filtered = [...historyAppointments];
+
+                const searchValue = searchInput.value.trim().toLowerCase();
+                const selectedStatus = statusFilter.value;
+                const selectedSort = sortFilter.value;
+
+                // Search appointments
+
+                if (searchValue) {
+
+                    filtered = filtered.filter(function (appointment) {
+
+                        const searchableText = [
+                            getAppointmentId(appointment),
+                            getService(appointment),
+                            getDoctor(appointment),
+                            getDate(appointment),
+                            getTime(appointment),
+                            getReason(appointment),
+                            formatStatus(appointment.status)
+                        ].join(" ").toLowerCase();
+
+                        return searchableText.includes(searchValue);
+                    });
+                }
+
+                // Filter by status
+
+                if (selectedStatus !== "all") {
+
+                    filtered = filtered.filter(function (appointment) {
+                        return normalizeStatus(appointment.status) === selectedStatus;
+                    });
+                }
+
+                // Sort by appointment date
+
+                filtered.sort(function (a, b) {
+
+                    const dateA = new Date(getDate(a) + "T00:00:00").getTime() || 0;
+                    const dateB = new Date(getDate(b) + "T00:00:00").getTime() || 0;
+
+                    return selectedSort === "oldest"
+                        ? dateA - dateB
+                        : dateB - dateA;
+                });
+
+                return filtered;
+            }
+
+            // =====================================
+            // 9. DISPLAY APPOINTMENT HISTORY
+            // =====================================
+
+            function renderHistory() {
+
+                const filteredAppointments = getFilteredAppointments();
+
+                if (filteredAppointments.length === 0) {
+
+                    tableBody.innerHTML = `
+                        <tr>
+                            <td colspan="7" class="empty-state">
+                                <i class="bi bi-calendar2-x"></i>
+                                <strong>No appointment history found</strong>
+                                <span>There are no records matching your search or filter.</span>
+                            </td>
+                        </tr>
+                    `;
+
+                    resultsNote.textContent = "Showing 0 appointments";
+                    return;
+                }
+
+                tableBody.innerHTML = filteredAppointments.map(function (appointment) {
+
+                    const status = normalizeStatus(appointment.status);
+                    const statusLabel = formatStatus(appointment.status);
+
+                    let statusClass = "status-completed";
+                    let statusIcon = "bi-check-circle";
+
+                    if (status === "cancelled") {
+                        statusClass = "status-cancelled";
+                        statusIcon = "bi-x-circle";
+                    } else if (status === "rejected") {
+                        statusClass = "status-rejected";
+                        statusIcon = "bi-exclamation-circle";
+                    }
+
+                    const appointmentId = getAppointmentId(appointment);
+
+                    const originalIndex = historyAppointments.indexOf(appointment);
+
+                    return `
+                        <tr>
+                            <td>
+                                <span class="appointment-reference">
+                                    ${escapeHTML(appointmentId)}
+                                </span>
+                            </td>
+
+                            <td>
+                                <span class="service-name">
+                                    ${escapeHTML(getService(appointment))}
+                                </span>
+                            </td>
+
+                            <td>
+                                <span class="doctor-name">
+                                    ${escapeHTML(getDoctor(appointment))}
+                                </span>
+                            </td>
+
+                            <td>${escapeHTML(formatDate(getDate(appointment)))}</td>
+
+                            <td>${escapeHTML(getTime(appointment))}</td>
+
+                            <td>
+                                <span class="status-badge ${statusClass}">
+                                    <i class="bi ${statusIcon}"></i>
+                                    ${escapeHTML(statusLabel)}
+                                </span>
+                            </td>
+
+                            <td>
+                                <button
+                                    type="button"
+                                    class="btn-view"
+                                    data-index="${originalIndex}"
+                                >
+                                    <i class="bi bi-eye me-1"></i>
+                                    View Details
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+
+                }).join("");
+
+                resultsNote.textContent =
+                    `Showing ${filteredAppointments.length} of ${historyAppointments.length} appointments`;
+
+                // Attach View Details buttons
+
+                document.querySelectorAll(".btn-view").forEach(function (button) {
+
+                    button.addEventListener("click", function () {
+
+                        const index = Number(this.dataset.index);
+                        const appointment = historyAppointments[index];
+
+                        if (appointment) {
+                            showAppointmentDetails(appointment);
+                        }
+                    });
+                });
+            }
+
+            // =====================================
+            // 10. VIEW APPOINTMENT DETAILS
+            // =====================================
+
+            const detailsModal = document.getElementById("detailsModal");
+
+            function showAppointmentDetails(appointment) {
+
+                document.getElementById("detailId").textContent =
+                    getAppointmentId(appointment);
+
+                document.getElementById("detailPatient").textContent =
+                    appointment.patientName || patientName;
+
+                document.getElementById("detailStatus").textContent =
+                    formatStatus(appointment.status);
+
+                document.getElementById("detailService").textContent =
+                    getService(appointment);
+
+                document.getElementById("detailDoctor").textContent =
+                    getDoctor(appointment);
+
+                document.getElementById("detailDate").textContent =
+                    formatDate(getDate(appointment));
+
+                document.getElementById("detailTime").textContent =
+                    getTime(appointment);
+
+                document.getElementById("detailReason").textContent =
+                    getReason(appointment);
+
+                document.getElementById("detailNotes").textContent =
+                    getNotes(appointment);
+
+                detailsModal.classList.add("show");
+                document.body.style.overflow = "hidden";
+            }
+
+            function closeDetailsModal() {
+                detailsModal.classList.remove("show");
+                document.body.style.overflow = "";
+            }
+
+            document.getElementById("modalClose").addEventListener("click", closeDetailsModal);
+            document.getElementById("modalDone").addEventListener("click", closeDetailsModal);
+
+            detailsModal.addEventListener("click", function (event) {
+                if (event.target === detailsModal) {
+                    closeDetailsModal();
+                }
+            });
+
+            document.addEventListener("keydown", function (event) {
+                if (event.key === "Escape") {
+                    closeDetailsModal();
+                }
+            });
+
+            // =====================================
+            // 11. FILTER EVENT LISTENERS
+            // =====================================
+
+            searchInput.addEventListener("input", renderHistory);
+            statusFilter.addEventListener("change", renderHistory);
+            sortFilter.addEventListener("change", renderHistory);
+
+            // =====================================
+            // 12. INITIALIZE PAGE
+            // =====================================
+
+            updateStatistics();
+            renderHistory();
+
+            // =====================================
+            // 13. MOBILE SIDEBAR
+            // =====================================
+
+            const sidebar = document.getElementById("sidebar");
+            const mobileToggle = document.getElementById("mobileToggle");
+            const sidebarOverlay = document.getElementById("sidebarOverlay");
+
+            mobileToggle.addEventListener("click", function () {
+                sidebar.classList.toggle("open");
+                sidebarOverlay.classList.toggle("show");
+            });
+
+            sidebarOverlay.addEventListener("click", function () {
+                sidebar.classList.remove("open");
+                sidebarOverlay.classList.remove("show");
+            });
+
+            document.querySelectorAll(".sidebar-nav a").forEach(function (link) {
+                link.addEventListener("click", function () {
+                    sidebar.classList.remove("open");
+                    sidebarOverlay.classList.remove("show");
+                });
+            });
+
+            // =====================================
+            // 14. LOGOUT
+            // =====================================
+
+            document.getElementById("logoutBtn").addEventListener("click", function (event) {
+
+                event.preventDefault();
+
+                if (
+                    window.HealoraStorage &&
+                    typeof window.HealoraStorage.logout === "function"
+                ) {
+                    window.HealoraStorage.logout();
+                }
+
+                window.location.href = "../index.html";
+            });
+
+        });
+    </script>
+
+</body>
+</html>

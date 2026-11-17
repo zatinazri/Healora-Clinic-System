@@ -1,0 +1,1802 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | Healora Clinic</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600;6..96,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --wine: #350017;
+            --burgundy: #4A001F;
+            --burgundy-light: #800020;
+            --gold: #D6B77A;
+            --gold-dark: #B89552;
+            --ivory: #FAF8F4;
+            --cream: #F7E7CE;
+            --white: #FFFFFF;
+            --text: #30252A;
+            --muted: #70666C;
+            --border: #EEE7E2;
+            --shadow: 0 8px 28px rgba(53, 0, 23, .055);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Manrope', sans-serif;
+            background: var(--ivory);
+            color: var(--text);
+            font-size: 14px;
+            overflow-x: hidden;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            width: 260px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            padding: 0 19px 22px;
+            background: linear-gradient(180deg, #350017 0%, #4A001F 100%);
+            transition: transform .3s ease;
+            overflow-y: auto;
+        }
+
+        .sidebar-brand {
+            width: 100%;
+            padding: 28px 15px;
+            border-bottom: 1px solid rgba(247, 231, 206, .15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 27px;
+        }
+
+        .brand-logo-light {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            width: 100%;
+            font-family: 'Manrope', sans-serif;
+            font-size: 27px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .brand-heal {
+            color: var(--gold);
+            font-weight: 800;
+        }
+
+        .brand-ora {
+            color: var(--cream);
+            font-family: 'Bodoni Moda', serif;
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        .brand-clinic {
+            color: var(--cream);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            margin-top: 7px;
+        }
+
+        .nav-label {
+            color: rgba(247, 231, 206, .55);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            padding: 0 13px;
+            margin-bottom: 13px;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 12px 14px;
+            color: rgba(247, 231, 206, .82);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: .2s ease;
+        }
+
+        .sidebar-nav a i {
+            width: 19px;
+            font-size: 17px;
+            color: var(--gold);
+        }
+
+        .sidebar-nav a:hover {
+            background: rgba(255, 255, 255, .08);
+            color: var(--cream);
+        }
+
+        .sidebar-nav a.active {
+            background: var(--burgundy-light);
+            color: var(--cream);
+            border-left: 3px solid var(--gold);
+            padding-left: 11px;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+            border-top: 1px solid rgba(247, 231, 206, .15);
+            padding-top: 18px;
+        }
+
+        .sidebar-note {
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(214, 183, 122, .2);
+            padding: 15px;
+            border-radius: 9px;
+            margin-bottom: 13px;
+        }
+
+        .sidebar-note i {
+            color: var(--gold);
+            font-size: 18px;
+        }
+
+        .sidebar-note p {
+            color: var(--cream);
+            font-size: 11px;
+            line-height: 1.7;
+            margin: 8px 0 0;
+        }
+
+        .sidebar-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 10px;
+            margin-bottom: 12px;
+            border-top: 1px solid rgba(247, 231, 206, .15);
+            border-bottom: 1px solid rgba(247, 231, 206, .15);
+        }
+
+        .sidebar-profile-avatar {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: var(--wine);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .sidebar-profile-info {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .sidebar-profile-info strong {
+            display: block;
+            color: var(--cream);
+            font-size: 13px;
+            font-weight: 800;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .sidebar-profile-info span {
+            display: block;
+            color: var(--gold);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            margin-top: 3px;
+        }
+
+        .logout-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 13px;
+            color: rgba(247, 231, 206, .82);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .logout-link i {
+            color: var(--gold);
+            font-size: 17px;
+        }
+
+        .logout-link:hover {
+            background: rgba(255, 255, 255, .08);
+            color: var(--cream);
+        }
+
+        /* MAIN CONTENT */
+
+        .main-content {
+            margin-left: 260px;
+            padding: 32px 40px 45px;
+            min-height: 100vh;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 29px;
+            gap: 15px;
+        }
+
+        .page-heading small {
+            display: block;
+            color: var(--gold-dark);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .page-heading h2 {
+            color: var(--wine);
+            font-size: 25px;
+            font-weight: 800;
+            margin: 0;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 19px;
+        }
+
+        .notification-btn {
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            background: var(--white);
+            color: var(--wine);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+        }
+
+        .profile-chip {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .chip-avatar {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            border-radius: 50%;
+            background: var(--burgundy);
+            color: var(--gold);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 800;
+            border: 1px solid var(--gold);
+        }
+
+        .profile-chip-info strong {
+            display: block;
+            color: var(--wine);
+            font-size: 13px;
+            font-weight: 800;
+            max-width: 170px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .profile-chip-info span {
+            display: block;
+            color: var(--gold-dark);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            margin-top: 3px;
+        }
+
+        .mobile-toggle {
+            display: none;
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border);
+            background: var(--white);
+            color: var(--wine);
+            border-radius: 8px;
+            font-size: 20px;
+        }
+
+        /* PROFILE BANNER */
+
+        .profile-banner {
+            background: var(--wine);
+            border-radius: 13px;
+            padding: 30px 35px;
+            margin-bottom: 25px;
+            color: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .profile-banner .eyebrow {
+            color: var(--gold);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 9px;
+        }
+
+        .profile-banner h1 {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 31px;
+            font-weight: 700;
+            margin: 0 0 8px;
+        }
+
+        .profile-banner p {
+            color: rgba(247, 231, 206, .8);
+            font-size: 13px;
+            line-height: 1.8;
+            margin: 0;
+            max-width: 570px;
+        }
+
+        .banner-icon {
+            width: 75px;
+            height: 75px;
+            border: 1px solid rgba(214, 183, 122, .4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 31px;
+            flex-shrink: 0;
+        }
+
+        /* PROFILE SUMMARY */
+
+        .content-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .profile-summary {
+            padding: 25px 28px;
+            margin-bottom: 23px;
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .large-avatar {
+            width: 82px;
+            height: 82px;
+            min-width: 82px;
+            border-radius: 50%;
+            background: var(--burgundy);
+            color: var(--gold);
+            border: 3px solid #F0E2C9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .summary-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .summary-info h3 {
+            color: var(--wine);
+            font-size: 19px;
+            font-weight: 800;
+            margin: 0 0 6px;
+        }
+
+        .summary-info p {
+            color: var(--muted);
+            font-size: 12px;
+            margin: 0 0 10px;
+        }
+
+        .account-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 11px;
+            border-radius: 20px;
+            background: #EDF6EF;
+            color: #39744B;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .account-status i {
+            font-size: 11px;
+        }
+
+        .summary-member {
+            text-align: right;
+            padding-left: 20px;
+            border-left: 1px solid var(--border);
+        }
+
+        .summary-member span {
+            display: block;
+            color: var(--muted);
+            font-size: 10px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .summary-member strong {
+            color: var(--wine);
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        /* PROFILE LAYOUT */
+
+        .profile-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) minmax(260px, .85fr);
+            gap: 23px;
+            align-items: start;
+        }
+
+        .left-column,
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            min-width: 0;
+        }
+
+        .form-card {
+            padding: 27px;
+        }
+
+        .card-heading {
+            display: flex;
+            align-items: flex-start;
+            gap: 13px;
+            padding-bottom: 19px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 22px;
+        }
+
+        .heading-icon {
+            width: 43px;
+            height: 43px;
+            border-radius: 10px;
+            background: #F8F0E4;
+            color: var(--burgundy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+            flex-shrink: 0;
+        }
+
+        .card-heading h3 {
+            color: var(--wine);
+            font-size: 16px;
+            font-weight: 800;
+            margin: 1px 0 5px;
+        }
+
+        .card-heading p {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .form-label {
+            color: var(--text);
+            font-size: 12px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .form-control,
+        .form-select {
+            min-height: 45px;
+            border: 1px solid #E8E0DA;
+            border-radius: 8px;
+            color: var(--text);
+            font-family: 'Manrope', sans-serif;
+            font-size: 12px;
+            padding: 11px 13px;
+            background-color: #FFFEFC;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: var(--gold-dark);
+            box-shadow: 0 0 0 3px rgba(214, 183, 122, .15);
+        }
+
+        .form-control[readonly] {
+            background: #F8F5F1;
+            color: var(--muted);
+            cursor: default;
+        }
+
+        .form-text {
+            color: var(--muted);
+            font-size: 10px;
+            margin-top: 6px;
+        }
+
+        .form-divider {
+            border: 0;
+            border-top: 1px solid var(--border);
+            margin: 23px 0;
+            opacity: 1;
+        }
+
+        .form-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 11px;
+            margin-top: 23px;
+        }
+
+        .btn-reset {
+            min-height: 43px;
+            padding: 0 19px;
+            border: 1px solid #E8E0DA;
+            border-radius: 8px;
+            background: var(--white);
+            color: var(--muted);
+            font-family: 'Manrope', sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .btn-submit {
+            min-height: 43px;
+            padding: 0 21px;
+            border: 0;
+            border-radius: 8px;
+            background: var(--burgundy);
+            color: var(--cream);
+            font-family: 'Manrope', sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+            transition: .2s ease;
+        }
+
+        .btn-submit:hover {
+            background: var(--wine);
+            color: var(--gold);
+            transform: translateY(-1px);
+        }
+
+        .btn-reset:disabled,
+        .btn-submit:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* SIDE INFORMATION */
+
+        .info-card {
+            padding: 22px;
+        }
+
+        .info-card h4 {
+            color: var(--wine);
+            font-size: 14px;
+            font-weight: 800;
+            margin: 0 0 17px;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 13px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .detail-item:last-child {
+            border-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .detail-icon {
+            width: 34px;
+            height: 34px;
+            min-width: 34px;
+            border-radius: 9px;
+            background: #F8F0E4;
+            color: var(--burgundy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+        }
+
+        .detail-item span {
+            display: block;
+            color: var(--muted);
+            font-size: 10px;
+            margin-bottom: 4px;
+        }
+
+        .detail-item strong {
+            display: block;
+            color: var(--wine);
+            font-size: 12px;
+            font-weight: 800;
+            overflow-wrap: anywhere;
+        }
+
+        .security-card {
+            background: #FBF7EF;
+            border: 1px solid #EFE3CF;
+            border-radius: 12px;
+            padding: 21px;
+        }
+
+        .security-card > i {
+            color: var(--gold-dark);
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .security-card h4 {
+            color: var(--wine);
+            font-size: 13px;
+            font-weight: 800;
+            margin: 0 0 8px;
+        }
+
+        .security-card p {
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .help-card {
+            background: var(--burgundy);
+            border-radius: 12px;
+            padding: 21px;
+            color: var(--cream);
+        }
+
+        .help-card > i {
+            color: var(--gold);
+            font-size: 21px;
+            margin-bottom: 10px;
+        }
+
+        .help-card h4 {
+            font-size: 13px;
+            font-weight: 800;
+            margin: 0 0 8px;
+        }
+
+        .help-card p {
+            color: rgba(247, 231, 206, .8);
+            font-size: 11px;
+            line-height: 1.7;
+            margin: 0 0 13px;
+        }
+
+        .help-card a {
+            color: var(--gold);
+            font-size: 11px;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .help-card a:hover {
+            color: var(--cream);
+        }
+
+        .footer-note {
+            text-align: center;
+            color: #91868A;
+            font-size: 11px;
+            margin-top: 30px;
+        }
+
+        .sidebar-overlay {
+            display: none;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 1100px) {
+            .main-content {
+                padding: 28px 25px 40px;
+            }
+
+            .profile-layout {
+                grid-template-columns: minmax(0, 1.3fr) minmax(230px, .85fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .sidebar-overlay.show {
+                display: block;
+                position: fixed;
+                inset: 0;
+                background: rgba(25, 0, 12, .45);
+                z-index: 999;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 22px 20px 35px;
+            }
+
+            .mobile-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .profile-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .right-column {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .help-card {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .main-content {
+                padding: 18px 15px 30px;
+            }
+
+            .topbar {
+                margin-bottom: 22px;
+            }
+
+            .page-heading h2 {
+                font-size: 19px;
+            }
+
+            .page-heading small {
+                font-size: 9px;
+            }
+
+            .profile-chip-info {
+                display: none;
+            }
+
+            .profile-banner {
+                padding: 25px 22px;
+                margin-bottom: 20px;
+            }
+
+            .profile-banner h1 {
+                font-size: 25px;
+            }
+
+            .profile-banner p {
+                font-size: 11px;
+            }
+
+            .banner-icon {
+                width: 52px;
+                height: 52px;
+                font-size: 22px;
+            }
+
+            .profile-summary {
+                padding: 20px 17px;
+                gap: 14px;
+                flex-wrap: wrap;
+            }
+
+            .large-avatar {
+                width: 65px;
+                height: 65px;
+                min-width: 65px;
+                font-size: 19px;
+            }
+
+            .summary-info h3 {
+                font-size: 16px;
+            }
+
+            .summary-member {
+                width: 100%;
+                text-align: left;
+                padding: 13px 0 0;
+                border-left: 0;
+                border-top: 1px solid var(--border);
+            }
+
+            .form-card {
+                padding: 20px 17px;
+            }
+
+            .right-column {
+                display: flex;
+            }
+
+            .form-actions {
+                flex-direction: column-reverse;
+                align-items: stretch;
+            }
+
+            .btn-reset,
+            .btn-submit {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body data-requires-auth="patient">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-brand">
+            <div class="brand-logo-light">
+                <span class="brand-heal">HEAL</span><span class="brand-ora">ORA</span>
+            </div>
+            <div class="brand-clinic">C L I N I C</div>
+        </div>
+
+        <div class="nav-label">PATIENT PORTAL</div>
+
+        <nav class="sidebar-nav">
+
+            <a href="patient-dashboard.html">
+                <i class="bi bi-grid-1x2"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="book-appointment.html">
+                <i class="bi bi-calendar-plus"></i>
+                <span>Book Appointment</span>
+            </a>
+
+            <a href="my-appointments.html">
+                <i class="bi bi-calendar-check"></i>
+                <span>My Appointments</span>
+            </a>
+
+            <a href="patient-appointment-history.html">
+                <i class="bi bi-clock-history"></i>
+                <span>Appointment History</span>
+            </a>
+
+            <a href="patient-clinic-services.html">
+                <i class="bi bi-hospital"></i>
+                <span>Clinic Services</span>
+            </a>
+
+            <a href="patient-profile.html" class="active">
+                <i class="bi bi-person"></i>
+                <span>My Profile</span>
+            </a>
+
+            <a href="patient-help-support.html">
+                <i class="bi bi-question-circle"></i>
+                <span>Help &amp; Support</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="sidebar-note">
+                <i class="bi bi-heart-pulse"></i>
+                <p>Your health matters. We're here to make every visit comfortable.</p>
+            </div>
+
+            <div class="sidebar-profile">
+                <div class="sidebar-profile-avatar" id="sidebarProfileInitial">P</div>
+
+                <div class="sidebar-profile-info">
+                    <strong id="sidebarProfileName">Patient</strong>
+                    <span>PATIENT ACCOUNT</span>
+                </div>
+            </div>
+
+            <a class="logout-link" id="logoutBtn" href="#">
+                <i class="bi bi-box-arrow-left"></i>
+                <span>Logout</span>
+            </a>
+
+        </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div class="d-flex align-items-center gap-3">
+
+                <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Open menu">
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <div class="page-heading">
+                    <small>PATIENT PORTAL</small>
+                    <h2>My Profile</h2>
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <button class="notification-btn" type="button" title="Notifications">
+                    <i class="bi bi-bell"></i>
+                </button>
+
+                <div class="profile-chip">
+                    <div class="chip-avatar" id="topbarAvatar">P</div>
+
+                    <div class="profile-chip-info">
+                        <strong id="topbarName">Patient</strong>
+                        <span>PATIENT ACCOUNT</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- PROFILE BANNER -->
+        <section class="profile-banner">
+
+            <div>
+                <div class="eyebrow">YOUR PERSONAL ACCOUNT</div>
+
+                <h1>My Profile</h1>
+
+                <p>
+                    Manage your personal information and account details.
+                    Keep your profile updated to help us provide you
+                    with a better healthcare experience.
+                </p>
+            </div>
+
+            <div class="banner-icon">
+                <i class="bi bi-person-heart"></i>
+            </div>
+
+        </section>
+
+        <!-- PROFILE SUMMARY -->
+        <section class="content-card profile-summary">
+
+            <div class="large-avatar" id="profileAvatar">P</div>
+
+            <div class="summary-info">
+                <h3 id="summaryName">Patient Name</h3>
+                <p id="summaryEmail">patient@email.com</p>
+
+                <span class="account-status" id="accountStatus">
+                    <i class="bi bi-check-circle-fill"></i>
+                    Active Account
+                </span>
+            </div>
+
+            <div class="summary-member">
+                <span>MEMBER SINCE</span>
+                <strong id="memberSince">Not available</strong>
+            </div>
+
+        </section>
+
+        <!-- PROFILE CONTENT -->
+        <div class="profile-layout">
+
+            <div class="left-column">
+
+                <!-- PERSONAL INFORMATION -->
+                <section class="content-card form-card">
+
+                    <div class="card-heading">
+
+                        <div class="heading-icon">
+                            <i class="bi bi-person-vcard"></i>
+                        </div>
+
+                        <div>
+                            <h3>Personal Information</h3>
+                            <p>Update your personal details below.</p>
+                        </div>
+
+                    </div>
+
+                    <form id="profileForm">
+
+                        <div class="row g-3">
+
+                            <div class="col-12">
+                                <label class="form-label" for="fullName">
+                                    Full Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="fullName"
+                                    placeholder="Enter your full name"
+                                    required
+                                >
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label" for="email">
+                                    Email Address
+                                </label>
+
+                                <input
+                                    type="email"
+                                    class="form-control"
+                                    id="email"
+                                    readonly
+                                >
+
+                                <div class="form-text">
+                                    Your registered email address cannot be changed here.
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label" for="phone">
+                                    Phone Number
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    class="form-control"
+                                    id="phone"
+                                    placeholder="Enter your phone number"
+                                >
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label" for="gender">
+                                    Gender
+                                </label>
+
+                                <select class="form-select" id="gender">
+                                    <option value="">Select gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="form-actions">
+
+                            <button type="reset" class="btn-reset" id="resetProfileBtn">
+                                Reset Changes
+                            </button>
+
+                            <button type="submit" class="btn-submit" id="saveProfileBtn">
+                                <i class="bi bi-check2-circle me-2"></i>
+                                Save Changes
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </section>
+
+                <!-- CHANGE PASSWORD -->
+                <section class="content-card form-card">
+
+                    <div class="card-heading">
+
+                        <div class="heading-icon">
+                            <i class="bi bi-shield-lock"></i>
+                        </div>
+
+                        <div>
+                            <h3>Change Password</h3>
+                            <p>Update your password to keep your account secure.</p>
+                        </div>
+
+                    </div>
+
+                    <form id="passwordForm">
+
+                        <div class="mb-3">
+                            <label class="form-label" for="currentPassword">
+                                Current Password
+                            </label>
+
+                            <input
+                                type="password"
+                                class="form-control"
+                                id="currentPassword"
+                                placeholder="Enter your current password"
+                                required
+                            >
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="newPassword">
+                                New Password
+                            </label>
+
+                            <input
+                                type="password"
+                                class="form-control"
+                                id="newPassword"
+                                placeholder="Enter your new password"
+                                minlength="6"
+                                required
+                            >
+
+                            <div class="form-text">
+                                Your new password must contain at least 6 characters.
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="confirmPassword">
+                                Confirm New Password
+                            </label>
+
+                            <input
+                                type="password"
+                                class="form-control"
+                                id="confirmPassword"
+                                placeholder="Re-enter your new password"
+                                minlength="6"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-actions">
+
+                            <button type="reset" class="btn-reset">
+                                Clear
+                            </button>
+
+                            <button type="submit" class="btn-submit">
+                                <i class="bi bi-lock me-2"></i>
+                                Update Password
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </section>
+
+            </div>
+
+            <!-- RIGHT COLUMN -->
+            <aside class="right-column">
+
+                <section class="content-card info-card">
+
+                    <h4>Account Overview</h4>
+
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <i class="bi bi-person-badge"></i>
+                        </div>
+
+                        <div>
+                            <span>Patient ID</span>
+                            <strong id="patientIdDisplay">Not available</strong>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <i class="bi bi-envelope"></i>
+                        </div>
+
+                        <div>
+                            <span>Email Address</span>
+                            <strong id="emailDisplay">Not available</strong>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <i class="bi bi-telephone"></i>
+                        </div>
+
+                        <div>
+                            <span>Phone Number</span>
+                            <strong id="phoneDisplay">Not provided</strong>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <i class="bi bi-gender-ambiguous"></i>
+                        </div>
+
+                        <div>
+                            <span>Gender</span>
+                            <strong id="genderDisplay">Not specified</strong>
+                        </div>
+                    </div>
+
+                </section>
+
+                <section class="security-card">
+
+                    <i class="bi bi-shield-check"></i>
+
+                    <h4>Account Security</h4>
+
+                    <p>
+                        Keep your account information accurate and use a
+                        strong password. Never share your login details
+                        with anyone.
+                    </p>
+
+                </section>
+
+                <section class="help-card">
+
+                    <i class="bi bi-headset"></i>
+
+                    <h4>Need Assistance?</h4>
+
+                    <p>
+                        Contact our support section if you need help
+                        with your account or personal information.
+                    </p>
+
+                    <a href="help-support.html">
+                        Visit Help &amp; Support
+                        <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+
+                </section>
+
+            </aside>
+
+        </div>
+
+        <div class="footer-note">
+            © 2026 Healora Clinic. Your health, our priority.
+        </div>
+
+    </main>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/data.js"></script>
+    <script src="../js/auth.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // =====================================
+            // 1. GET CURRENT LOGGED-IN USER
+            // =====================================
+
+            const currentUser = window.HealoraStorage
+                ? window.HealoraStorage.getCurrentUser()
+                : null;
+
+            if (!currentUser) {
+                window.location.href = "../index.html";
+                return;
+            }
+
+            // =====================================
+            // 2. LOCAL STORAGE FUNCTIONS
+            // =====================================
+
+            function readStorageArray(key) {
+                try {
+                    const stored = localStorage.getItem(key);
+                    const parsed = stored ? JSON.parse(stored) : [];
+
+                    return Array.isArray(parsed) ? parsed : [];
+
+                } catch (error) {
+                    console.error("Unable to read storage:", key, error);
+                    return [];
+                }
+            }
+
+            function saveStorageArray(key, data) {
+                try {
+                    localStorage.setItem(key, JSON.stringify(data));
+                    return true;
+
+                } catch (error) {
+                    console.error("Unable to save storage:", key, error);
+                    return false;
+                }
+            }
+
+            function getInitials(name) {
+                return String(name || "Patient")
+                    .trim()
+                    .split(/\s+/)
+                    .filter(Boolean)
+                    .slice(0, 2)
+                    .map(part => part.charAt(0).toUpperCase())
+                    .join("") || "P";
+            }
+
+            function formatDate(dateValue) {
+                if (!dateValue) return "Not available";
+
+                const date = new Date(dateValue);
+
+                if (Number.isNaN(date.getTime())) {
+                    return "Not available";
+                }
+
+                return date.toLocaleDateString("en-MY", {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric"
+                });
+            }
+
+            // =====================================
+            // 3. FIND CURRENT PATIENT
+            // =====================================
+
+            let patients = readStorageArray("healora_patients");
+            let users = readStorageArray("healora_users");
+
+            const currentUserId = currentUser.id || currentUser.userId || "";
+            const currentEmail = String(currentUser.email || "")
+                .trim()
+                .toLowerCase();
+
+            let patientIndex = patients.findIndex(function (item) {
+
+                const sameUserId =
+                    item.userId &&
+                    currentUserId &&
+                    String(item.userId) === String(currentUserId);
+
+                const samePatientId =
+                    item.id &&
+                    currentUserId &&
+                    String(item.id) === String(currentUserId);
+
+                const sameEmail =
+                    String(item.email || "").trim().toLowerCase() === currentEmail;
+
+                return sameUserId || samePatientId || (currentEmail && sameEmail);
+            });
+
+            if (patientIndex === -1) {
+                alert(
+                    "Your patient profile could not be found. " +
+                    "Please contact the clinic administrator."
+                );
+                return;
+            }
+
+            let patient = patients[patientIndex];
+
+            const patientId = patient.id || currentUserId || "Not available";
+
+            // Find linked user account.
+
+            let userIndex = users.findIndex(function (user) {
+
+                const sameId =
+                    user.id &&
+                    currentUserId &&
+                    String(user.id) === String(currentUserId);
+
+                const sameEmail =
+                    String(user.email || "").trim().toLowerCase() === currentEmail;
+
+                return sameId || (currentEmail && sameEmail);
+            });
+
+            // =====================================
+            // 4. DISPLAY PROFILE INFORMATION
+            // =====================================
+
+            function getPatientName() {
+                return patient.fullName ||
+                    patient.name ||
+                    currentUser.fullName ||
+                    currentUser.name ||
+                    currentUser.username ||
+                    "Patient";
+            }
+
+            function getPatientEmail() {
+                return patient.email || currentUser.email || "";
+            }
+
+            function getPatientPhone() {
+                return patient.phone ||
+                    currentUser.phone ||
+                    "";
+            }
+
+            function getPatientGender() {
+                return patient.gender ||
+                    currentUser.gender ||
+                    "";
+            }
+
+            function updateProfileDisplay() {
+
+                const name = getPatientName();
+                const email = getPatientEmail();
+                const phone = getPatientPhone();
+                const gender = getPatientGender();
+                const initials = getInitials(name);
+
+                // Sidebar and topbar.
+
+                document.getElementById("sidebarProfileName").textContent = name;
+                document.getElementById("sidebarProfileInitial").textContent = initials;
+
+                document.getElementById("topbarName").textContent = name;
+                document.getElementById("topbarAvatar").textContent = initials;
+
+                // Profile summary.
+
+                document.getElementById("profileAvatar").textContent = initials;
+                document.getElementById("summaryName").textContent = name;
+                document.getElementById("summaryEmail").textContent = email || "No email available";
+
+                // Form fields.
+
+                document.getElementById("fullName").value = name;
+                document.getElementById("email").value = email;
+                document.getElementById("phone").value = phone;
+                document.getElementById("gender").value = gender;
+
+                // Account overview.
+
+                document.getElementById("patientIdDisplay").textContent = patientId;
+                document.getElementById("emailDisplay").textContent = email || "Not available";
+                document.getElementById("phoneDisplay").textContent = phone || "Not provided";
+                document.getElementById("genderDisplay").textContent = gender || "Not specified";
+
+                // Registration date.
+
+                document.getElementById("memberSince").textContent =
+                    formatDate(patient.createdAt || currentUser.createdAt);
+
+                // Account status.
+
+                const status = String(patient.status || "Active").trim();
+
+                document.getElementById("accountStatus").innerHTML =
+                    '<i class="bi bi-check-circle-fill"></i> ' +
+                    (status.charAt(0).toUpperCase() + status.slice(1));
+            }
+
+            updateProfileDisplay();
+
+            // =====================================
+            // 5. SAVE PERSONAL INFORMATION
+            // =====================================
+
+            const profileForm = document.getElementById("profileForm");
+
+            profileForm.addEventListener("submit", function (event) {
+
+                event.preventDefault();
+
+                if (!profileForm.checkValidity()) {
+                    profileForm.reportValidity();
+                    return;
+                }
+
+                const updatedName = document.getElementById("fullName").value.trim();
+                const updatedPhone = document.getElementById("phone").value.trim();
+                const updatedGender = document.getElementById("gender").value;
+
+                if (!updatedName) {
+                    alert("Please enter your full name.");
+                    return;
+                }
+
+                // Update patient record.
+
+                patients = readStorageArray("healora_patients");
+
+                patientIndex = patients.findIndex(function (item) {
+                    return String(item.id || "") === String(patient.id || "") ||
+                        (
+                            item.userId &&
+                            currentUserId &&
+                            String(item.userId) === String(currentUserId)
+                        );
+                });
+
+                if (patientIndex === -1) {
+                    alert("Unable to locate your patient record. Please try again.");
+                    return;
+                }
+
+                patient = patients[patientIndex];
+
+                patient.name = updatedName;
+                patient.fullName = updatedName;
+                patient.phone = updatedPhone;
+                patient.gender = updatedGender;
+
+                patients[patientIndex] = patient;
+
+                if (!saveStorageArray("healora_patients", patients)) {
+                    alert("Unable to save your profile. Please try again.");
+                    return;
+                }
+
+                // Update linked user account.
+
+                users = readStorageArray("healora_users");
+
+                userIndex = users.findIndex(function (user) {
+                    return (
+                        (user.id && currentUserId &&
+                        String(user.id) === String(currentUserId)) ||
+                        String(user.email || "").trim().toLowerCase() === currentEmail
+                    );
+                });
+
+                if (userIndex !== -1) {
+                    users[userIndex].name = updatedName;
+                    users[userIndex].fullName = updatedName;
+                    users[userIndex].phone = updatedPhone;
+
+                    if (!saveStorageArray("healora_users", users)) {
+                        alert(
+                            "Your patient information was saved, but the account " +
+                            "information could not be updated. Please contact the administrator."
+                        );
+                        return;
+                    }
+                }
+
+                // Update current login session.
+
+                const updatedCurrentUser = {
+                    ...currentUser,
+                    name: updatedName,
+                    fullName: updatedName,
+                    phone: updatedPhone,
+                    gender: updatedGender
+                };
+
+                try {
+                    localStorage.setItem(
+                        "healora_current_user",
+                        JSON.stringify(updatedCurrentUser)
+                    );
+                } catch (error) {
+                    console.error("Unable to update login session:", error);
+                }
+
+                alert("Your profile has been updated successfully!");
+
+                updateProfileDisplay();
+            });
+
+            // =====================================
+            // 6. RESET PROFILE FORM
+            // =====================================
+
+            profileForm.addEventListener("reset", function () {
+
+                setTimeout(function () {
+                    updateProfileDisplay();
+                }, 0);
+
+            });
+
+            // =====================================
+            // 7. CHANGE PASSWORD
+            // =====================================
+
+            const passwordForm = document.getElementById("passwordForm");
+
+            passwordForm.addEventListener("submit", function (event) {
+
+                event.preventDefault();
+
+                if (!passwordForm.checkValidity()) {
+                    passwordForm.reportValidity();
+                    return;
+                }
+
+                const currentPassword =
+                    document.getElementById("currentPassword").value;
+
+                const newPassword =
+                    document.getElementById("newPassword").value;
+
+                const confirmPassword =
+                    document.getElementById("confirmPassword").value;
+
+                if (newPassword.length < 6) {
+                    alert("Your new password must contain at least 6 characters.");
+                    return;
+                }
+
+                if (newPassword !== confirmPassword) {
+                    alert("The new password and confirmation password do not match.");
+                    return;
+                }
+
+                if (newPassword === currentPassword) {
+                    alert("Your new password must be different from your current password.");
+                    return;
+                }
+
+                users = readStorageArray("healora_users");
+
+                userIndex = users.findIndex(function (user) {
+
+                    const sameId =
+                        user.id &&
+                        currentUserId &&
+                        String(user.id) === String(currentUserId);
+
+                    const sameEmail =
+                        String(user.email || "").trim().toLowerCase() === currentEmail;
+
+                    return sameId || (currentEmail && sameEmail);
+                });
+
+                if (userIndex === -1) {
+                    alert("Your account could not be found. Please contact the administrator.");
+                    return;
+                }
+
+                const user = users[userIndex];
+
+                if (String(user.password || "") !== currentPassword) {
+                    alert("Your current password is incorrect.");
+                    return;
+                }
+
+                users[userIndex].password = newPassword;
+
+                if (!saveStorageArray("healora_users", users)) {
+                    alert("Unable to update your password. Please try again.");
+                    return;
+                }
+
+                alert("Your password has been changed successfully!");
+
+                passwordForm.reset();
+
+            });
+
+            // =====================================
+            // 8. MOBILE SIDEBAR
+            // =====================================
+
+            const sidebar = document.getElementById("sidebar");
+            const mobileToggle = document.getElementById("mobileToggle");
+            const sidebarOverlay = document.getElementById("sidebarOverlay");
+
+            mobileToggle.addEventListener("click", function () {
+                sidebar.classList.toggle("open");
+                sidebarOverlay.classList.toggle("show");
+            });
+
+            sidebarOverlay.addEventListener("click", function () {
+                sidebar.classList.remove("open");
+                sidebarOverlay.classList.remove("show");
+            });
+
+            document.querySelectorAll(".sidebar-nav a").forEach(function (link) {
+                link.addEventListener("click", function () {
+                    sidebar.classList.remove("open");
+                    sidebarOverlay.classList.remove("show");
+                });
+            });
+
+            // =====================================
+            // 9. LOGOUT
+            // =====================================
+
+            document.getElementById("logoutBtn").addEventListener("click", function (event) {
+
+                event.preventDefault();
+
+                if (
+                    window.HealoraStorage &&
+                    typeof window.HealoraStorage.logout === "function"
+                ) {
+                    window.HealoraStorage.logout();
+                }
+
+                window.location.href = "../index.html";
+
+            });
+
+        });
+    </script>
+
+</body>
+</html>

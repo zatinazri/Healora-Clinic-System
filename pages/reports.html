@@ -1,0 +1,1167 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports | Healora Clinic</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            background: #FAF8F5;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            background: linear-gradient(180deg, #350017, #4A001F);
+        }
+
+        /* CENTERED BRANDING - SAME AS ADMIN DASHBOARD */
+        .sidebar-brand {
+            width: 100%;
+            padding: 28px 15px;
+            border-bottom: 1px solid rgba(247, 231, 206, 0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .brand-logo-light {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            width: 100%;
+            font-family: 'Manrope', sans-serif;
+            font-size: 27px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .brand-heal {
+            color: #D6B77A !important;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 800;
+        }
+
+        .brand-ora {
+            color: #F7E7CE !important;
+            font-family: 'Bodoni Moda', serif;
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        .brand-clinic {
+            color: #F7E7CE !important;
+            font-family: 'Manrope', sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            margin-top: 7px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .sidebar nav {
+            margin-top: 25px;
+        }
+
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 12px 18px;
+            margin: 4px 12px;
+            border-radius: 9px;
+            color: #F7E7CE;
+            text-decoration: none;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .sidebar a i {
+            color: #D6B77A;
+            font-size: 17px;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: #800020;
+            color: #FFFFFF;
+        }
+
+        .sidebar a.active {
+            border-left: 3px solid #D6B77A;
+        }
+
+        .sidebar-footer {
+            padding: 18px;
+            border-top: 1px solid rgba(247, 231, 206, 0.15);
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            margin-left: 260px;
+            padding: 30px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .page-heading {
+            color: #4A001F;
+            font-family: 'Manrope', sans-serif;
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        /* ADMIN PROFILE */
+        .admin-profile {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .admin-top-name {
+            color: #4A001F;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 17px;
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        .admin-top-role {
+            color: #B89555;
+            font-family: 'Manrope', sans-serif;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-top: 3px;
+        }
+
+        .admin-top-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            border: 2px solid #D6B77A;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #F7E7CE, #D6B77A);
+            color: #4A001F;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 29px;
+            font-weight: 700;
+        }
+
+        /* WELCOME BANNER */
+        .welcome-banner {
+            background: linear-gradient(135deg, #350017, #4A001F);
+            border-radius: 18px;
+            padding: 35px 38px;
+            margin-bottom: 28px;
+            border: 1px solid rgba(214, 183, 122, 0.35);
+            box-shadow: 0 8px 25px rgba(74, 0, 31, 0.12);
+        }
+
+        .welcome-content h2 {
+            color: #D6B77A;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 29px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .welcome-content p {
+            color: #F7E7CE;
+            font-size: 13px;
+            margin-bottom: 0;
+            opacity: 0.9;
+        }
+
+        /* STATISTICS */
+        .dashboard-stat {
+            height: 100%;
+            padding: 22px;
+            border: 1px solid #E8E2E5;
+            border-radius: 14px;
+            background: #FFFFFF;
+            box-shadow: 0 5px 18px rgba(74, 0, 31, 0.04);
+        }
+
+        .dashboard-stat .stat-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            background: #F7E7CE;
+            color: #800020;
+            font-size: 20px;
+        }
+
+        .dashboard-stat h3 {
+            margin-bottom: 4px;
+            color: #4A001F;
+            font-size: 27px;
+            font-weight: 800;
+        }
+
+        .dashboard-stat p {
+            margin-bottom: 0;
+            color: #70666C;
+            font-size: 12px;
+        }
+
+        /* DASHBOARD CARDS */
+        .dashboard-card {
+            height: 100%;
+            padding: 22px;
+            border: 1px solid #E8E2E5;
+            border-radius: 14px;
+            background: #FFFFFF;
+            box-shadow: 0 5px 18px rgba(74, 0, 31, 0.04);
+        }
+
+        .dashboard-card h5 {
+            color: #4A001F;
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        /* FILTER */
+        .filter-label {
+            display: block;
+            margin-bottom: 7px;
+            color: #4A001F;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .form-control,
+        .form-select {
+            border: 1px solid #E8E2E5;
+            border-radius: 8px;
+            font-size: 13px;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #D6B77A;
+            box-shadow: 0 0 0 0.15rem rgba(214, 183, 122, 0.2);
+        }
+
+        /* BUTTONS */
+        .btn-gold {
+            padding: 9px 17px;
+            border: none;
+            border-radius: 8px;
+            background: #D6B77A;
+            color: #350017;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .btn-gold:hover {
+            background: #B89555;
+            color: #FFFFFF;
+        }
+
+        .btn-outline-burgundy {
+            padding: 9px 17px;
+            border: 1px solid #800020;
+            border-radius: 8px;
+            background: #FFFFFF;
+            color: #800020;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .btn-outline-burgundy:hover {
+            background: #800020;
+            color: #FFFFFF;
+        }
+
+        /* TABLE */
+        .table {
+            margin-bottom: 0;
+            font-size: 12px;
+        }
+
+        .table thead th {
+            padding: 13px 12px;
+            border: none;
+            background: #4A001F;
+            color: #D6B77A;
+            font-size: 10px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .table tbody td {
+            padding: 13px 12px;
+            color: #70666C;
+            vertical-align: middle;
+        }
+
+        .table tbody tr:nth-child(even) {
+            background: #FAF8F5;
+        }
+
+        .table tbody tr:hover {
+            background: #F7E7CE;
+        }
+
+        /* STATUS BADGES */
+        .status-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: capitalize;
+        }
+
+        .status-completed {
+            background: #E3F2E8;
+            color: #267443;
+        }
+
+        .status-pending {
+            background: #FFF2D8;
+            color: #946200;
+        }
+
+        .status-cancelled {
+            background: #FCE5E7;
+            color: #A52A38;
+        }
+
+        .status-confirmed {
+            background: #E5EDF9;
+            color: #315A91;
+        }
+
+        /* CHARTS */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 280px;
+        }
+
+        .report-note {
+            color: #70666C;
+            font-size: 11px;
+        }
+
+        /* FOOTER */
+        .dashboard-footer {
+            text-align: center;
+            padding: 25px 0 5px;
+            color: #958A90;
+            font-size: 11px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 991px) {
+            .sidebar {
+                width: 220px;
+            }
+
+            .main-content {
+                margin-left: 220px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 18px;
+            }
+
+            .topbar {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .admin-profile {
+                gap: 8px;
+            }
+
+            .admin-top-logo {
+                width: 42px;
+                height: 42px;
+                font-size: 25px;
+            }
+
+            .admin-top-name {
+                font-size: 14px;
+            }
+
+            .welcome-decoration {
+                display: none;
+            }
+        }
+
+        /* PRINT */
+        @media print {
+            .sidebar,
+            .topbar,
+            .welcome-banner,
+            .filter-section,
+            .no-print,
+            .dashboard-footer {
+                display: none !important;
+            }
+
+            .main-content {
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                background: #FFFFFF;
+            }
+
+            .dashboard-card,
+            .dashboard-stat {
+                box-shadow: none;
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body data-requires-auth="admin">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            <div class="brand-logo-light">
+                <span class="brand-heal">HEAL</span><span class="brand-ora">ORA</span>
+            </div>
+
+            <div class="brand-clinic">C L I N I C</div>
+        </div>
+
+        <nav>
+            <a href="admin-dashboard.html">
+                <i class="bi bi-grid-1x2-fill"></i> Dashboard
+            </a>
+
+            <a href="appointments.html">
+                <i class="bi bi-calendar-check"></i> Appointments
+            </a>
+
+            <a href="patients.html">
+                <i class="bi bi-people"></i> Patients
+            </a>
+
+            <a href="doctors.html">
+                <i class="bi bi-person-badge"></i> Doctors
+            </a>
+
+            <a href="doctor-schedule.html">
+                <i class="bi bi-calendar-week"></i> Doctor Schedule
+            </a>
+
+            <a href="clinic-services.html">
+                <i class="bi bi-heart-pulse"></i> Clinic Services
+            </a>
+
+            <a href="appointment-history.html">
+                <i class="bi bi-clock-history"></i> Appointment History
+            </a>
+
+            <a href="reports.html" class="active">
+                <i class="bi bi-bar-chart-line"></i> Reports
+            </a>
+
+            <a href="profile.html">
+                <i class="bi bi-person-circle"></i> My Profile
+            </a>
+
+            <a href="help-support.html">
+                <i class="bi bi-question-circle"></i> Help &amp; Support
+            </a>
+        </nav>
+
+        <div class="sidebar-footer mt-4">
+            <div class="d-flex align-items-center gap-2 mb-3">
+                <div class="admin-top-logo"
+                     style="width:40px;height:40px;font-size:24px;">
+                    H
+                </div>
+
+                <div>
+                    <div class="admin-top-name"
+                         style="color:#F7E7CE;font-size:14px;">
+                        Healora Administrator
+                    </div>
+
+                    <div class="admin-top-role">ADMIN</div>
+                </div>
+            </div>
+
+            <a href="#" data-logout>
+                <i class="bi bi-box-arrow-left"></i> Logout
+            </a>
+        </div>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <div>
+                <h1 class="page-heading mb-1">Reports</h1>
+                <p class="text-muted small mb-0">
+                    Clinic performance and appointment reports.
+                </p>
+            </div>
+
+            <div class="admin-profile">
+                <div class="text-end">
+                    <div class="admin-top-name">Healora Administrator</div>
+                    <div class="admin-top-role">ADMIN</div>
+                </div>
+
+                <div class="admin-top-logo">H</div>
+            </div>
+        </div>
+
+        <!-- WELCOME BANNER -->
+        <section class="welcome-banner">
+            <div class="welcome-content">
+                <h2>Clinic Reports &amp; Insights</h2>
+                <p>
+                    Review appointment activities and monitor the overall performance
+                    of Healora Clinic.
+                </p>
+            </div>
+        </section>
+
+        <!-- REPORT FILTERS -->
+        <section class="dashboard-card filter-section mb-4">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3">
+                <h5 class="mb-0">
+                    <i class="bi bi-funnel me-2"></i>Report Filters
+                </h5>
+
+                <span class="report-note">
+                    Select a date range to filter your report.
+                </span>
+            </div>
+
+            <div class="row g-3 align-items-end">
+                <div class="col-md-4">
+                    <label class="filter-label" for="startDate">Start Date</label>
+                    <input type="date" id="startDate" class="form-control">
+                </div>
+
+                <div class="col-md-4">
+                    <label class="filter-label" for="endDate">End Date</label>
+                    <input type="date" id="endDate" class="form-control">
+                </div>
+
+                <div class="col-md-4 d-flex gap-2">
+                    <button class="btn-gold flex-fill" id="applyFilter">
+                        <i class="bi bi-search me-1"></i> Apply Filter
+                    </button>
+
+                    <button class="btn-outline-burgundy flex-fill" id="resetFilter">
+                        Reset
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATISTICS -->
+        <div class="row g-3 mb-4">
+
+            <div class="col-xl-3 col-md-6">
+                <div class="dashboard-stat">
+                    <div class="stat-icon">
+                        <i class="bi bi-calendar-check"></i>
+                    </div>
+
+                    <h3 id="totalAppointments">0</h3>
+                    <p>Total Appointments</p>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+                <div class="dashboard-stat">
+                    <div class="stat-icon">
+                        <i class="bi bi-check-circle"></i>
+                    </div>
+
+                    <h3 id="completedAppointments">0</h3>
+                    <p>Completed Appointments</p>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+                <div class="dashboard-stat">
+                    <div class="stat-icon">
+                        <i class="bi bi-hourglass-split"></i>
+                    </div>
+
+                    <h3 id="pendingAppointments">0</h3>
+                    <p>Pending Appointments</p>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+                <div class="dashboard-stat">
+                    <div class="stat-icon">
+                        <i class="bi bi-x-circle"></i>
+                    </div>
+
+                    <h3 id="cancelledAppointments">0</h3>
+                    <p>Cancelled Appointments</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- CHARTS -->
+        <div class="row g-4 mb-4">
+
+            <div class="col-lg-7">
+                <div class="dashboard-card">
+                    <h5>
+                        <i class="bi bi-graph-up me-2"></i>
+                        Monthly Appointment Overview
+                    </h5>
+
+                    <div class="chart-container">
+                        <canvas id="monthlyChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="dashboard-card">
+                    <h5>
+                        <i class="bi bi-pie-chart me-2"></i>
+                        Appointment Status
+                    </h5>
+
+                    <div class="chart-container">
+                        <canvas id="statusChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- APPOINTMENT REPORT TABLE -->
+        <section class="dashboard-card mb-4">
+
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3">
+                <div>
+                    <h5 class="mb-1">Appointment Report</h5>
+
+                    <p class="report-note mb-0">
+                        A summary of appointments within the selected date range.
+                    </p>
+                </div>
+
+                <div class="d-flex gap-2 no-print">
+                    <button class="btn-outline-burgundy" id="exportCSV">
+                        <i class="bi bi-file-earmark-spreadsheet me-1"></i>
+                        Export CSV
+                    </button>
+
+                    <button class="btn-gold" id="printReport">
+                        <i class="bi bi-printer me-1"></i>
+                        Print Report
+                    </button>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <thead>
+                        <tr>
+                            <th>Appointment ID</th>
+                            <th>Patient</th>
+                            <th>Service</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="reportTableBody">
+                        <tr>
+                            <td colspan="6" class="text-center py-4">
+                                Loading report data...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <span class="report-note" id="recordCount">
+                    0 records found
+                </span>
+
+                <span class="report-note">Healora Clinic Report</span>
+            </div>
+
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="dashboard-footer">
+            © 2026 Healora Clinic. All Rights Reserved.
+            <br>
+            <span class="fst-italic">Your Health, Our Priority.</span>
+        </footer>
+
+    </main>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/data.js"></script>
+    <script src="../js/auth.js"></script>
+
+    <script>
+        let allAppointments = [];
+        let filteredAppointments = [];
+        let monthlyChart = null;
+        let statusChart = null;
+
+        function getAppointments() {
+            try {
+                if (window.HealoraStorage &&
+                    typeof HealoraStorage.getAppointments === "function") {
+                    return HealoraStorage.getAppointments() || [];
+                }
+
+                return JSON.parse(
+                    localStorage.getItem("healora_appointments") || "[]"
+                );
+            } catch (error) {
+                console.error("Unable to load appointments:", error);
+                return [];
+            }
+        }
+
+        function getAppointmentDate(appointment) {
+            return appointment.date || appointment.appointmentDate || "";
+        }
+
+        function getAppointmentStatus(appointment) {
+            return String(appointment.status || "pending")
+                .trim()
+                .toLowerCase();
+        }
+
+        function getPatientName(appointment) {
+            return appointment.patientName ||
+                   appointment.name ||
+                   "N/A";
+        }
+
+        function getServiceName(appointment) {
+            return appointment.service ||
+                   appointment.serviceName ||
+                   "N/A";
+        }
+
+        function getAppointmentId(appointment) {
+            return appointment.id ||
+                   appointment.appointmentId ||
+                   "N/A";
+        }
+
+        function escapeHTML(value) {
+            return String(value ?? "").replace(/[&<>"']/g, function(char) {
+                const entities = {
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    '"': "&quot;",
+                    "'": "&#39;"
+                };
+
+                return entities[char];
+            });
+        }
+
+        function formatDate(dateValue) {
+            if (!dateValue) return "N/A";
+
+            const date = new Date(dateValue + "T00:00:00");
+
+            if (isNaN(date.getTime())) {
+                return dateValue;
+            }
+
+            return date.toLocaleDateString("en-MY", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            });
+        }
+
+        function getStatusClass(status) {
+            if (status.includes("complete")) return "status-completed";
+            if (status.includes("cancel")) return "status-cancelled";
+            if (status.includes("confirm")) return "status-confirmed";
+
+            return "status-pending";
+        }
+
+        function updateStatistics(data) {
+            const total = data.length;
+
+            const completed = data.filter(item =>
+                getAppointmentStatus(item).includes("complete")
+            ).length;
+
+            const cancelled = data.filter(item =>
+                getAppointmentStatus(item).includes("cancel")
+            ).length;
+
+            const pending = data.filter(item => {
+                const status = getAppointmentStatus(item);
+
+                return !status.includes("complete") &&
+                       !status.includes("cancel") &&
+                       !status.includes("confirm");
+            }).length;
+
+            document.getElementById("totalAppointments").textContent = total;
+            document.getElementById("completedAppointments").textContent = completed;
+            document.getElementById("pendingAppointments").textContent = pending;
+            document.getElementById("cancelledAppointments").textContent = cancelled;
+        }
+
+        function renderTable(data) {
+            const tableBody = document.getElementById("reportTableBody");
+
+            if (data.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="text-center py-4">
+                            No appointment records found.
+                        </td>
+                    </tr>
+                `;
+
+                document.getElementById("recordCount").textContent = "0 records found";
+                return;
+            }
+
+            tableBody.innerHTML = data.map(appointment => {
+                const status = getAppointmentStatus(appointment);
+
+                return `
+                    <tr>
+                        <td class="fw-semibold">
+                            ${escapeHTML(getAppointmentId(appointment))}
+                        </td>
+
+                        <td>${escapeHTML(getPatientName(appointment))}</td>
+
+                        <td>${escapeHTML(getServiceName(appointment))}</td>
+
+                        <td>${escapeHTML(formatDate(getAppointmentDate(appointment)))}</td>
+
+                        <td>${escapeHTML(appointment.time || "N/A")}</td>
+
+                        <td>
+                            <span class="status-badge ${getStatusClass(status)}">
+                                ${escapeHTML(status)}
+                            </span>
+                        </td>
+                    </tr>
+                `;
+            }).join("");
+
+            document.getElementById("recordCount").textContent =
+                `${data.length} record(s) found`;
+        }
+
+        function updateMonthlyChart(data) {
+            const months = [
+                "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+            ];
+
+            const monthlyCounts = Array(12).fill(0);
+            const currentYear = new Date().getFullYear();
+
+            data.forEach(appointment => {
+                const dateValue = getAppointmentDate(appointment);
+
+                if (!dateValue) return;
+
+                const date = new Date(dateValue + "T00:00:00");
+
+                if (!isNaN(date.getTime()) &&
+                    date.getFullYear() === currentYear) {
+                    monthlyCounts[date.getMonth()]++;
+                }
+            });
+
+            const context = document.getElementById("monthlyChart");
+
+            if (monthlyChart) monthlyChart.destroy();
+
+            monthlyChart = new Chart(context, {
+                type: "bar",
+
+                data: {
+                    labels: months,
+
+                    datasets: [{
+                        label: "Appointments",
+                        data: monthlyCounts,
+                        backgroundColor: "#800020",
+                        borderColor: "#D6B77A",
+                        borderWidth: 1,
+                        borderRadius: 6
+                    }]
+                },
+
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+
+                            ticks: {
+                                precision: 0
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateStatusChart(data) {
+            const completed = data.filter(item =>
+                getAppointmentStatus(item).includes("complete")
+            ).length;
+
+            const cancelled = data.filter(item =>
+                getAppointmentStatus(item).includes("cancel")
+            ).length;
+
+            const confirmed = data.filter(item =>
+                getAppointmentStatus(item).includes("confirm")
+            ).length;
+
+            const pending = data.filter(item => {
+                const status = getAppointmentStatus(item);
+
+                return !status.includes("complete") &&
+                       !status.includes("cancel") &&
+                       !status.includes("confirm");
+            }).length;
+
+            const context = document.getElementById("statusChart");
+
+            if (statusChart) statusChart.destroy();
+
+            statusChart = new Chart(context, {
+                type: "doughnut",
+
+                data: {
+                    labels: [
+                        "Completed",
+                        "Pending",
+                        "Confirmed",
+                        "Cancelled"
+                    ],
+
+                    datasets: [{
+                        data: [
+                            completed,
+                            pending,
+                            confirmed,
+                            cancelled
+                        ],
+
+                        backgroundColor: [
+                            "#6A9F78",
+                            "#D6B77A",
+                            "#6686B5",
+                            "#B75A68"
+                        ],
+
+                        borderWidth: 2,
+                        borderColor: "#FFFFFF"
+                    }]
+                },
+
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+
+                    plugins: {
+                        legend: {
+                            position: "bottom",
+
+                            labels: {
+                                padding: 18,
+                                usePointStyle: true,
+
+                                font: {
+                                    size: 11
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateReport(data) {
+            filteredAppointments = data;
+
+            updateStatistics(data);
+            renderTable(data);
+            updateMonthlyChart(data);
+            updateStatusChart(data);
+        }
+
+        function applyDateFilter() {
+            const startValue = document.getElementById("startDate").value;
+            const endValue = document.getElementById("endDate").value;
+
+            if (startValue && endValue && startValue > endValue) {
+                alert("End date must be later than or equal to start date.");
+                return;
+            }
+
+            const result = allAppointments.filter(appointment => {
+                const date = getAppointmentDate(appointment);
+
+                if (!date) return false;
+                if (startValue && date < startValue) return false;
+                if (endValue && date > endValue) return false;
+
+                return true;
+            });
+
+            updateReport(result);
+        }
+
+        function resetDateFilter() {
+            document.getElementById("startDate").value = "";
+            document.getElementById("endDate").value = "";
+
+            updateReport(allAppointments);
+        }
+
+        function exportCSV() {
+            if (filteredAppointments.length === 0) {
+                alert("There are no records to export.");
+                return;
+            }
+
+            const headers = [
+                "Appointment ID",
+                "Patient",
+                "Service",
+                "Date",
+                "Time",
+                "Status"
+            ];
+
+            const rows = filteredAppointments.map(appointment => [
+                getAppointmentId(appointment),
+                getPatientName(appointment),
+                getServiceName(appointment),
+                getAppointmentDate(appointment),
+                appointment.time || "N/A",
+                getAppointmentStatus(appointment)
+            ]);
+
+            const csvContent = [headers, ...rows]
+                .map(row => row.map(value =>
+                    '"' + String(value ?? "").replace(/"/g, '""') + '"'
+                ).join(","))
+                .join("\n");
+
+            const blob = new Blob(["\uFEFF" + csvContent], {
+                type: "text/csv;charset=utf-8;"
+            });
+
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+
+            link.href = url;
+            link.download = "Healora-Clinic-Report.csv";
+            link.click();
+
+            URL.revokeObjectURL(url);
+        }
+
+        function initializeReports() {
+            allAppointments = getAppointments();
+
+            allAppointments.sort((a, b) => {
+                return getAppointmentDate(b).localeCompare(
+                    getAppointmentDate(a)
+                );
+            });
+
+            updateReport(allAppointments);
+        }
+
+        document.getElementById("applyFilter")
+            .addEventListener("click", applyDateFilter);
+
+        document.getElementById("resetFilter")
+            .addEventListener("click", resetDateFilter);
+
+        document.getElementById("exportCSV")
+            .addEventListener("click", exportCSV);
+
+        document.getElementById("printReport")
+            .addEventListener("click", () => window.print());
+
+        document.addEventListener("DOMContentLoaded", initializeReports);
+    </script>
+
+</body>
+</html>

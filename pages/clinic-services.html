@@ -1,0 +1,1403 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinic Services | Healora Clinic</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #FAF8F5;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            background: linear-gradient(180deg, #350017, #4A001F);
+        }
+
+        .sidebar-brand {
+            width: 100%;
+            padding: 28px 15px;
+            border-bottom: 1px solid rgba(247, 231, 206, 0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .brand-logo-light {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            width: 100%;
+            font-family: 'Manrope', sans-serif;
+            font-size: 27px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .brand-heal {
+            color: #D6B77A !important;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 800;
+        }
+
+        .brand-ora {
+            color: #F7E7CE !important;
+            font-family: 'Bodoni Moda', serif;
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        .brand-clinic {
+            color: #F7E7CE !important;
+            font-family: 'Manrope', sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            margin-top: 7px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .sidebar nav {
+            margin-top: 25px;
+        }
+
+        .sidebar a {
+            color: #F7E7CE;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 12px 18px;
+            margin: 4px 12px;
+            border-radius: 9px;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .sidebar a i {
+            color: #D6B77A;
+            font-size: 17px;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: #800020;
+            color: #FFFFFF;
+        }
+
+        .sidebar a.active {
+            border-left: 3px solid #D6B77A;
+        }
+
+        .sidebar-footer {
+            border-top: 1px solid rgba(247, 231, 206, 0.15);
+            padding: 18px;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            margin-left: 260px;
+            padding: 30px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .page-heading {
+            font-family: 'Manrope', sans-serif;
+            font-weight: 800;
+            color: #4A001F;
+            font-size: 25px;
+        }
+
+        /* ADMIN PROFILE */
+        .admin-profile {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .admin-top-name {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 17px;
+            font-style: italic;
+            font-weight: 700;
+            color: #4A001F;
+        }
+
+        .admin-top-role {
+            font-family: 'Manrope', sans-serif;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #B89555;
+            margin-top: 3px;
+        }
+
+        .admin-top-logo {
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            border: 2px solid #D6B77A;
+            background: linear-gradient(145deg, #F7E7CE, #D6B77A);
+            color: #4A001F;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 29px;
+            font-weight: 700;
+        }
+
+        /* WELCOME BANNER */
+        .welcome-banner {
+            background: linear-gradient(135deg, #350017, #4A001F);
+            border-radius: 18px;
+            padding: 35px 38px;
+            margin-bottom: 28px;
+            border: 1px solid rgba(214, 183, 122, 0.35);
+            box-shadow: 0 8px 25px rgba(74, 0, 31, 0.12);
+        }
+
+        .welcome-content h2 {
+            color: #D6B77A;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 29px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .welcome-content p {
+            color: #F7E7CE;
+            font-size: 13px;
+            margin-bottom: 0;
+            opacity: 0.9;
+        }
+
+        /* STATISTICS */
+        .dashboard-stat {
+            background: #FFFFFF;
+            border: 1px solid #E8E2E5;
+            border-radius: 14px;
+            padding: 22px;
+            height: 100%;
+            box-shadow: 0 5px 18px rgba(74, 0, 31, 0.04);
+        }
+
+        .dashboard-stat .stat-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #F7E7CE;
+            color: #800020;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .dashboard-stat h3 {
+            color: #4A001F;
+            font-size: 27px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .dashboard-stat p {
+            color: #70666C;
+            font-size: 12px;
+            margin: 0;
+        }
+
+        /* DASHBOARD CARD */
+        .dashboard-card {
+            background: #FFFFFF;
+            border: 1px solid #E8E2E5;
+            border-radius: 14px;
+            padding: 22px;
+            box-shadow: 0 5px 18px rgba(74, 0, 31, 0.04);
+            height: 100%;
+        }
+
+        .dashboard-card h5 {
+            color: #4A001F;
+            font-weight: 800;
+            font-size: 15px;
+        }
+
+        .section-description {
+            color: #958A90;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+
+        /* SERVICES TOOLBAR */
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 22px;
+        }
+
+        .search-box {
+            position: relative;
+            min-width: 230px;
+            flex: 1;
+            max-width: 380px;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #958A90;
+            font-size: 13px;
+        }
+
+        .search-box input {
+            width: 100%;
+            border: 1px solid #E8E2E5;
+            border-radius: 9px;
+            padding: 11px 14px 11px 38px;
+            font-size: 12px;
+            outline: none;
+        }
+
+        .search-box input:focus,
+        .filter-select:focus,
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #B89555;
+            box-shadow: 0 0 0 3px rgba(214, 183, 122, 0.15);
+        }
+
+        .filter-select {
+            border: 1px solid #E8E2E5;
+            border-radius: 9px;
+            padding: 11px 14px;
+            font-size: 12px;
+            color: #70666C;
+            background: #FFFFFF;
+            outline: none;
+            min-width: 145px;
+        }
+
+        .btn-gold {
+            background: #D6B77A;
+            color: #350017;
+            border: none;
+            border-radius: 9px;
+            padding: 11px 18px;
+            font-size: 12px;
+            font-weight: 800;
+            transition: 0.3s;
+        }
+
+        .btn-gold:hover {
+            background: #B89555;
+            color: #FFFFFF;
+        }
+
+        /* SERVICE CARDS */
+        .service-card {
+            background: #FFFFFF;
+            border: 1px solid #E8E2E5;
+            border-radius: 15px;
+            padding: 23px;
+            height: 100%;
+            box-shadow: 0 5px 18px rgba(74, 0, 31, 0.04);
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(74, 0, 31, 0.09);
+            border-color: #D6B77A;
+        }
+
+        .service-icon {
+            width: 49px;
+            height: 49px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 13px;
+            background: #F7E7CE;
+            color: #800020;
+            font-size: 21px;
+            margin-bottom: 17px;
+        }
+
+        .service-id {
+            color: #B89555;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .service-name {
+            color: #4A001F;
+            font-size: 16px;
+            font-weight: 800;
+            margin: 8px 0;
+        }
+
+        .service-description {
+            color: #70666C;
+            font-size: 12px;
+            line-height: 1.7;
+            min-height: 42px;
+            margin-bottom: 18px;
+        }
+
+        .service-detail {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #F0EBED;
+            padding-top: 14px;
+            margin-top: 12px;
+        }
+
+        .service-price {
+            color: #4A001F;
+            font-size: 19px;
+            font-weight: 800;
+        }
+
+        .service-duration {
+            color: #958A90;
+            font-size: 11px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .status-active {
+            background: #E8F4EA;
+            color: #347A45;
+        }
+
+        .status-inactive {
+            background: #F8E8EA;
+            color: #A52A45;
+        }
+
+        .service-actions {
+            display: flex;
+            gap: 7px;
+            margin-top: 17px;
+        }
+
+        .action-btn {
+            width: 34px;
+            height: 34px;
+            border: 1px solid #E8E2E5;
+            border-radius: 8px;
+            background: #FFFFFF;
+            color: #800020;
+            transition: 0.2s;
+        }
+
+        .action-btn:hover {
+            background: #F7E7CE;
+            border-color: #D6B77A;
+        }
+
+        .action-btn.delete:hover {
+            background: #F8E8EA;
+            color: #A52A45;
+            border-color: #E9C2CA;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 55px 20px;
+            color: #958A90;
+            grid-column: 1 / -1;
+        }
+
+        .empty-state i {
+            font-size: 35px;
+            color: #D6B77A;
+            margin-bottom: 15px;
+        }
+
+        .empty-state h5 {
+            color: #4A001F;
+            font-weight: 800;
+            font-size: 15px;
+        }
+
+        /* MODAL */
+        .modal-content {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #350017, #4A001F);
+            color: #F7E7CE;
+            padding: 20px 24px;
+            border: none;
+        }
+
+        .modal-title {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 21px;
+            font-weight: 700;
+        }
+
+        .modal-header .btn-close {
+            filter: brightness(0) invert(1);
+        }
+
+        .modal-body {
+            padding: 25px;
+        }
+
+        .form-label {
+            color: #4A001F;
+            font-size: 12px;
+            font-weight: 800;
+            margin-bottom: 7px;
+        }
+
+        .form-control,
+        .form-select {
+            border: 1px solid #E8E2E5;
+            border-radius: 8px;
+            padding: 11px 12px;
+            font-size: 12px;
+        }
+
+        textarea.form-control {
+            resize: vertical;
+        }
+
+        .modal-footer {
+            border-top: 1px solid #F0EBED;
+            padding: 16px 25px;
+        }
+
+        .btn-outline-custom {
+            border: 1px solid #D8CDD2;
+            color: #70666C;
+            border-radius: 8px;
+            padding: 10px 17px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .btn-outline-custom:hover {
+            background: #F7E7CE;
+            color: #4A001F;
+        }
+
+        /* FOOTER */
+        .dashboard-footer {
+            text-align: center;
+            padding: 25px 0 5px;
+            color: #958A90;
+            font-size: 11px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 991px) {
+            .sidebar {
+                width: 220px;
+            }
+
+            .main-content {
+                margin-left: 220px;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 18px;
+            }
+
+            .topbar {
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            .admin-top-name {
+                font-size: 14px;
+            }
+
+            .admin-top-logo {
+                width: 42px;
+                height: 42px;
+                font-size: 25px;
+            }
+
+            .welcome-banner {
+                padding: 25px;
+            }
+
+            .welcome-content h2 {
+                font-size: 24px;
+            }
+
+            .toolbar {
+                align-items: stretch;
+            }
+
+            .search-box {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body data-requires-auth="admin">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            <div class="brand-logo-light">
+                <span class="brand-heal">HEAL</span><span class="brand-ora">ORA</span>
+            </div>
+
+            <div class="brand-clinic">C L I N I C</div>
+        </div>
+
+        <!-- NAVIGATION -->
+        <nav>
+            <a href="admin-dashboard.html">
+                <i class="bi bi-grid-1x2-fill"></i>
+                Dashboard
+            </a>
+
+            <a href="appointments.html">
+                <i class="bi bi-calendar-check"></i>
+                Appointments
+            </a>
+
+            <a href="patients.html">
+                <i class="bi bi-people"></i>
+                Patients
+            </a>
+
+            <a href="doctors.html">
+                <i class="bi bi-person-badge"></i>
+                Doctors
+            </a>
+
+            <a href="doctor-schedule.html">
+                <i class="bi bi-calendar-week"></i>
+                Doctor Schedule
+            </a>
+
+            <a href="clinic-services.html" class="active">
+                <i class="bi bi-heart-pulse"></i>
+                Clinic Services
+            </a>
+
+            <a href="appointment-history.html">
+                <i class="bi bi-clock-history"></i>
+                Appointment History
+            </a>
+
+            <a href="reports.html">
+                <i class="bi bi-bar-chart-line"></i>
+                Reports
+            </a>
+
+            <a href="profile.html">
+                <i class="bi bi-person-circle"></i>
+                My Profile
+            </a>
+
+            <a href="help-support.html">
+                <i class="bi bi-question-circle"></i>
+                Help & Support
+            </a>
+        </nav>
+
+        <!-- SIDEBAR ADMIN PROFILE -->
+        <div class="sidebar-footer mt-4">
+
+            <div class="d-flex align-items-center gap-2 mb-3">
+
+                <div class="admin-top-logo"
+                     style="width:40px;height:40px;font-size:24px;">
+                    H
+                </div>
+
+                <div>
+                    <div class="admin-top-name"
+                         style="color:#F7E7CE;font-size:14px;">
+                        Healora Administrator
+                    </div>
+
+                    <div class="admin-top-role">ADMIN</div>
+                </div>
+
+            </div>
+
+            <a href="#" data-logout>
+                <i class="bi bi-box-arrow-left"></i>
+                Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+
+            <div>
+                <h1 class="page-heading mb-1">Clinic Services</h1>
+
+                <p class="text-muted small mb-0">
+                    Manage the healthcare services offered by your clinic.
+                </p>
+            </div>
+
+            <div class="admin-profile">
+
+                <div class="text-end">
+                    <div class="admin-top-name">
+                        Healora Administrator
+                    </div>
+
+                    <div class="admin-top-role">ADMIN</div>
+                </div>
+
+                <div class="admin-top-logo">H</div>
+
+            </div>
+
+        </div>
+
+        <!-- WELCOME BANNER -->
+        <section class="welcome-banner">
+
+            <div class="welcome-content">
+                <h2>Our Clinical Services</h2>
+
+                <p>
+                    Manage and maintain the healthcare services available at Healora Clinic.
+                </p>
+            </div>
+
+        </section>
+
+        <!-- SERVICE STATISTICS -->
+        <section class="row g-3 mb-4">
+
+            <div class="col-6 col-xl-4">
+                <div class="dashboard-stat">
+
+                    <div class="stat-icon">
+                        <i class="bi bi-heart-pulse-fill"></i>
+                    </div>
+
+                    <h3 id="totalServices">0</h3>
+                    <p>Total Services</p>
+
+                </div>
+            </div>
+
+            <div class="col-6 col-xl-4">
+                <div class="dashboard-stat">
+
+                    <div class="stat-icon">
+                        <i class="bi bi-check-circle-fill"></i>
+                    </div>
+
+                    <h3 id="activeServices">0</h3>
+                    <p>Active Services</p>
+
+                </div>
+            </div>
+
+            <div class="col-6 col-xl-4">
+                <div class="dashboard-stat">
+
+                    <div class="stat-icon">
+                        <i class="bi bi-pause-circle-fill"></i>
+                    </div>
+
+                    <h3 id="inactiveServices">0</h3>
+                    <p>Inactive Services</p>
+
+                </div>
+            </div>
+
+        </section>
+
+        <!-- MANAGE SERVICES -->
+        <section class="dashboard-card">
+
+            <div class="toolbar">
+
+                <div>
+                    <h5 class="mb-1">Manage Services</h5>
+
+                    <p class="section-description mb-0">
+                        View and maintain the clinic's service information.
+                    </p>
+                </div>
+
+                <button class="btn-gold" onclick="openAddModal()">
+                    <i class="bi bi-plus-lg me-2"></i>
+                    Add New Service
+                </button>
+
+            </div>
+
+            <!-- SEARCH AND FILTER -->
+            <div class="toolbar">
+
+                <div class="search-box">
+                    <i class="bi bi-search"></i>
+
+                    <input type="text"
+                           id="searchInput"
+                           placeholder="Search service name or ID...">
+                </div>
+
+                <select class="filter-select" id="statusFilter">
+                    <option value="all">All Status</option>
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                </select>
+
+            </div>
+
+            <!-- SERVICES CONTAINER -->
+            <div class="row g-3" id="servicesContainer">
+
+                <div class="empty-state">
+                    <i class="bi bi-hourglass-split"></i>
+                    <h5>Loading services...</h5>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="dashboard-footer">
+
+            © 2026 Healora Clinic. All Rights Reserved.
+
+            <br>
+
+            <span class="fst-italic">
+                Your Health, Our Priority.
+            </span>
+
+        </footer>
+
+    </main>
+
+    <!-- ADD / EDIT SERVICE MODAL -->
+    <div class="modal fade" id="serviceModal" tabindex="-1" aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="modalTitle">
+                        Add New Service
+                    </h5>
+
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+                <form id="serviceForm">
+
+                    <div class="modal-body">
+
+                        <input type="hidden" id="serviceId">
+
+                        <div class="mb-3">
+                            <label class="form-label" for="serviceName">
+                                Service Name *
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   id="serviceName"
+                                   placeholder="e.g. General Consultation"
+                                   required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="serviceDescription">
+                                Description *
+                            </label>
+
+                            <textarea class="form-control"
+                                      id="serviceDescription"
+                                      rows="3"
+                                      placeholder="Describe the service..."
+                                      required></textarea>
+                        </div>
+
+                        <div class="row g-3">
+
+                            <div class="col-md-6">
+                                <label class="form-label" for="serviceDuration">
+                                    Duration (minutes) *
+                                </label>
+
+                                <input type="number"
+                                       class="form-control"
+                                       id="serviceDuration"
+                                       min="1"
+                                       placeholder="30"
+                                       required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label" for="servicePrice">
+                                    Price (RM) *
+                                </label>
+
+                                <input type="number"
+                                       class="form-control"
+                                       id="servicePrice"
+                                       min="0"
+                                       step="0.01"
+                                       placeholder="50.00"
+                                       required>
+                            </div>
+
+                        </div>
+
+                        <div class="mt-3">
+                            <label class="form-label" for="serviceStatus">
+                                Service Status *
+                            </label>
+
+                            <select class="form-select"
+                                    id="serviceStatus"
+                                    required>
+
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+
+                        <button type="button"
+                                class="btn-outline-custom"
+                                data-bs-dismiss="modal">
+                            Cancel
+                        </button>
+
+                        <button type="submit" class="btn-gold">
+                            <i class="bi bi-floppy me-1"></i>
+                            Save Service
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/data.js"></script>
+    <script src="../js/auth.js"></script>
+
+    <script>
+        const SERVICE_STORAGE_KEY = "healora_services";
+
+        let services = [];
+        let serviceModal;
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            serviceModal = new bootstrap.Modal(
+                document.getElementById("serviceModal")
+            );
+
+            loadServices();
+
+            document.getElementById("searchInput")
+                .addEventListener("input", renderServices);
+
+            document.getElementById("statusFilter")
+                .addEventListener("change", renderServices);
+
+            document.getElementById("serviceForm")
+                .addEventListener("submit", saveService);
+
+        });
+
+        function loadServices() {
+
+            try {
+
+                if (
+                    window.HealoraStorage &&
+                    typeof HealoraStorage.getServices === "function"
+                ) {
+                    services = HealoraStorage.getServices() || [];
+                } else {
+                    services = JSON.parse(
+                        localStorage.getItem(SERVICE_STORAGE_KEY)
+                    ) || [];
+                }
+
+            } catch (error) {
+
+                console.error("Unable to load services:", error);
+                services = [];
+
+            }
+
+            updateStatistics();
+            renderServices();
+
+        }
+
+        function saveServicesToStorage() {
+
+            localStorage.setItem(
+                SERVICE_STORAGE_KEY,
+                JSON.stringify(services)
+            );
+
+        }
+
+        function updateStatistics() {
+
+            document.getElementById("totalServices").textContent =
+                services.length;
+
+            document.getElementById("activeServices").textContent =
+                services.filter(service => service.status === "Active").length;
+
+            document.getElementById("inactiveServices").textContent =
+                services.filter(service => service.status === "Inactive").length;
+
+        }
+
+        function getServiceIcon(name) {
+
+            const value = (name || "").toLowerCase();
+
+            if (value.includes("consult")) return "bi-person-heart";
+            if (value.includes("dental")) return "bi-emoji-smile";
+            if (value.includes("vaccin")) return "bi-shield-plus";
+            if (value.includes("screen")) return "bi-heart-pulse";
+            if (value.includes("laboratory") || value.includes("lab")) return "bi-droplet";
+            if (value.includes("check")) return "bi-clipboard2-pulse";
+            if (value.includes("skin")) return "bi-stars";
+            if (value.includes("eye")) return "bi-eye";
+
+            return "bi-heart-pulse";
+        }
+
+        function escapeHTML(value) {
+
+            return String(value ?? "").replace(/[&<>"']/g, function (character) {
+
+                return {
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    '"': "&quot;",
+                    "'": "&#39;"
+                }[character];
+
+            });
+
+        }
+
+        function renderServices() {
+
+            const container = document.getElementById("servicesContainer");
+
+            const search = document.getElementById("searchInput")
+                .value.toLowerCase().trim();
+
+            const status = document.getElementById("statusFilter").value;
+
+            const filteredServices = services.filter(service => {
+
+                const matchesSearch =
+                    String(service.name || "").toLowerCase().includes(search) ||
+                    String(service.id || "").toLowerCase().includes(search);
+
+                const matchesStatus =
+                    status === "all" || service.status === status;
+
+                return matchesSearch && matchesStatus;
+
+            });
+
+            if (filteredServices.length === 0) {
+
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="bi bi-folder2-open"></i>
+                        <h5>No Services Found</h5>
+                        <p class="mb-0">
+                            Try another search or add a new clinic service.
+                        </p>
+                    </div>
+                `;
+
+                return;
+
+            }
+
+            container.innerHTML = filteredServices.map(service => {
+
+                const serviceStatus =
+                    service.status === "Inactive" ? "Inactive" : "Active";
+
+                const statusClass =
+                    serviceStatus === "Active"
+                        ? "status-active"
+                        : "status-inactive";
+
+                return `
+                    <div class="col-xl-4 col-md-6 col-12">
+
+                        <div class="service-card">
+
+                            <div class="d-flex justify-content-between align-items-start">
+
+                                <div class="service-icon">
+                                    <i class="bi ${getServiceIcon(service.name)}"></i>
+                                </div>
+
+                                <span class="status-badge ${statusClass}">
+                                    ${escapeHTML(serviceStatus)}
+                                </span>
+
+                            </div>
+
+                            <div class="service-id">
+                                ${escapeHTML(service.id || "SERVICE")}
+                            </div>
+
+                            <h5 class="service-name">
+                                ${escapeHTML(service.name)}
+                            </h5>
+
+                            <p class="service-description">
+                                ${escapeHTML(service.description)}
+                            </p>
+
+                            <div class="service-detail">
+
+                                <div>
+                                    <div class="service-price">
+                                        RM ${Number(service.price || 0).toFixed(2)}
+                                    </div>
+
+                                    <div class="service-duration">
+                                        <i class="bi bi-clock me-1"></i>
+                                        ${escapeHTML(service.duration)} minutes
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="service-actions">
+
+                                <button class="action-btn"
+                                        title="Edit Service"
+                                        onclick="editService('${escapeHTML(service.id)}')">
+
+                                    <i class="bi bi-pencil-square"></i>
+
+                                </button>
+
+                                <button class="action-btn delete"
+                                        title="Delete Service"
+                                        onclick="deleteService('${escapeHTML(service.id)}')">
+
+                                    <i class="bi bi-trash3"></i>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                `;
+
+            }).join("");
+
+        }
+
+        function openAddModal() {
+
+            document.getElementById("serviceForm").reset();
+
+            document.getElementById("serviceId").value = "";
+
+            document.getElementById("modalTitle").textContent =
+                "Add New Service";
+
+            document.getElementById("serviceStatus").value = "Active";
+
+            serviceModal.show();
+
+        }
+
+        function editService(id) {
+
+            const service = services.find(
+                item => String(item.id) === String(id)
+            );
+
+            if (!service) {
+
+                alert("Service could not be found.");
+                return;
+
+            }
+
+            document.getElementById("serviceId").value = service.id;
+            document.getElementById("serviceName").value = service.name || "";
+            document.getElementById("serviceDescription").value =
+                service.description || "";
+
+            document.getElementById("serviceDuration").value =
+                service.duration || "";
+
+            document.getElementById("servicePrice").value =
+                service.price ?? "";
+
+            document.getElementById("serviceStatus").value =
+                service.status || "Active";
+
+            document.getElementById("modalTitle").textContent =
+                "Edit Service";
+
+            serviceModal.show();
+
+        }
+
+        function saveService(event) {
+
+            event.preventDefault();
+
+            const id = document.getElementById("serviceId").value;
+
+            const name = document.getElementById("serviceName")
+                .value.trim();
+
+            const description = document.getElementById("serviceDescription")
+                .value.trim();
+
+            const duration = Number(
+                document.getElementById("serviceDuration").value
+            );
+
+            const price = Number(
+                document.getElementById("servicePrice").value
+            );
+
+            const status = document.getElementById("serviceStatus").value;
+
+            if (
+                !name ||
+                !description ||
+                !Number.isFinite(duration) ||
+                duration <= 0 ||
+                !Number.isFinite(price) ||
+                price < 0
+            ) {
+
+                alert("Please enter valid information for all required fields.");
+                return;
+
+            }
+
+            const duplicate = services.some(service =>
+
+                String(service.name || "").toLowerCase() === name.toLowerCase() &&
+                String(service.id) !== String(id)
+
+            );
+
+            if (duplicate) {
+
+                alert("A service with this name already exists.");
+                return;
+
+            }
+
+            const serviceData = {
+                name,
+                description,
+                duration,
+                price,
+                status
+            };
+
+            try {
+
+                if (id) {
+
+                    if (
+                        window.HealoraStorage &&
+                        typeof HealoraStorage.updateService === "function"
+                    ) {
+
+                        HealoraStorage.updateService(id, serviceData);
+                        services = HealoraStorage.getServices() || [];
+
+                    } else {
+
+                        services = services.map(service =>
+
+                            String(service.id) === String(id)
+                                ? { ...service, ...serviceData }
+                                : service
+
+                        );
+
+                        saveServicesToStorage();
+
+                    }
+
+                } else {
+
+                    if (
+                        window.HealoraStorage &&
+                        typeof HealoraStorage.addService === "function"
+                    ) {
+
+                        HealoraStorage.addService(serviceData);
+                        services = HealoraStorage.getServices() || [];
+
+                    } else {
+
+                        const newId = "SRV-" + Date.now();
+
+                        services.push({
+                            id: newId,
+                            ...serviceData
+                        });
+
+                        saveServicesToStorage();
+
+                    }
+
+                }
+
+                serviceModal.hide();
+
+                updateStatistics();
+                renderServices();
+
+                alert(
+                    id
+                        ? "Service updated successfully."
+                        : "New service added successfully."
+                );
+
+            } catch (error) {
+
+                console.error("Unable to save service:", error);
+
+                alert("Unable to save the service. Please try again.");
+
+            }
+
+        }
+
+        function deleteService(id) {
+
+            const service = services.find(
+                item => String(item.id) === String(id)
+            );
+
+            if (!service) {
+
+                alert("Service could not be found.");
+                return;
+
+            }
+
+            const confirmed = confirm(
+                `Are you sure you want to delete "${service.name}"?`
+            );
+
+            if (!confirmed) return;
+
+            services = services.filter(
+                item => String(item.id) !== String(id)
+            );
+
+            saveServicesToStorage();
+
+            updateStatistics();
+            renderServices();
+
+            alert("Service deleted successfully.");
+
+        }
+    </script>
+
+</body>
+</html>

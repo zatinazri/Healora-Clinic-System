@@ -1,0 +1,1429 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctors Management | Healora Clinic</title>
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- BOOTSTRAP ICONS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- GLOBAL CSS -->
+    <link href="../css/style.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #FAF8F5;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            background: linear-gradient(180deg, #350017, #4A001F);
+        }
+
+        .sidebar-brand {
+            width: 100%;
+            padding: 28px 15px;
+            border-bottom: 1px solid rgba(247, 231, 206, 0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .brand-logo-light {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            width: 100%;
+            font-family: 'Manrope', sans-serif;
+            font-size: 27px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .brand-heal {
+            color: #D6B77A !important;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 800;
+        }
+
+        .brand-ora {
+            color: #F7E7CE !important;
+            font-family: 'Bodoni Moda', serif;
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        .brand-clinic {
+            color: #F7E7CE !important;
+            font-family: 'Manrope', sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            margin-top: 7px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .sidebar nav {
+            margin-top: 25px;
+        }
+
+        .sidebar a {
+            color: #F7E7CE;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 12px 18px;
+            margin: 4px 12px;
+            border-radius: 9px;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .sidebar a i {
+            color: #D6B77A;
+            font-size: 17px;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: #800020;
+            color: #FFFFFF;
+        }
+
+        .sidebar a.active {
+            border-left: 3px solid #D6B77A;
+        }
+
+        .sidebar-footer {
+            border-top: 1px solid rgba(247, 231, 206, 0.15);
+            padding: 18px;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            margin-left: 260px;
+            padding: 30px;
+            min-height: 100vh;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .page-heading {
+            font-family: 'Manrope', sans-serif;
+            font-weight: 800;
+            color: #4A001F;
+            font-size: 25px;
+        }
+
+        /* ADMIN PROFILE */
+        .admin-profile {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .admin-top-name {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 17px;
+            font-style: italic;
+            font-weight: 700;
+            color: #4A001F;
+        }
+
+        .admin-top-role {
+            font-family: 'Manrope', sans-serif;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #B89555;
+            margin-top: 3px;
+        }
+
+        .admin-top-logo {
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            border: 2px solid #D6B77A;
+            background: linear-gradient(145deg, #F7E7CE, #D6B77A);
+            color: #4A001F;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 29px;
+            font-weight: 700;
+        }
+
+        /* INTRO BANNER */
+        .welcome-banner {
+            background: linear-gradient(135deg, #350017, #4A001F);
+            border-radius: 18px;
+            padding: 35px 38px;
+            margin-bottom: 28px;
+            border: 1px solid rgba(214, 183, 122, 0.35);
+            box-shadow: 0 8px 25px rgba(74, 0, 31, 0.12);
+        }
+
+        .welcome-content h2 {
+            color: #D6B77A;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 29px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .welcome-content p {
+            color: #F7E7CE;
+            font-size: 13px;
+            margin-bottom: 0;
+            opacity: 0.9;
+        }
+
+        /* STATISTICS */
+        .dashboard-stat {
+            background: #FFFFFF;
+            border: 1px solid #E8E2E5;
+            border-radius: 14px;
+            padding: 22px;
+            height: 100%;
+            box-shadow: 0 5px 18px rgba(74, 0, 31, 0.04);
+        }
+
+        .dashboard-stat .stat-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #F7E7CE;
+            color: #800020;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .dashboard-stat h3 {
+            color: #4A001F;
+            font-size: 27px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .dashboard-stat p {
+            color: #70666C;
+            font-size: 12px;
+            margin: 0;
+        }
+
+        /* DIRECTORY */
+        .section-heading {
+            color: #4A001F;
+            font-size: 17px;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .section-description {
+            color: #958A90;
+            font-size: 11px;
+            margin-bottom: 0;
+        }
+
+        .btn-add-doctor {
+            background: #4A001F;
+            border: 1px solid #4A001F;
+            color: #FFFFFF;
+            padding: 11px 17px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .btn-add-doctor:hover {
+            background: #800020;
+            border-color: #800020;
+            color: #FFFFFF;
+        }
+
+        /* FILTERS */
+        .filter-panel {
+            background: #FFFFFF;
+            border: 1px solid #E8E2E5;
+            border-radius: 12px;
+            padding: 17px;
+            margin: 20px 0;
+            box-shadow: 0 5px 18px rgba(74, 0, 31, 0.03);
+        }
+
+        .filter-label {
+            display: block;
+            color: #70666C;
+            font-size: 10px;
+            font-weight: 800;
+            margin-bottom: 7px;
+        }
+
+        .form-control,
+        .form-select {
+            border: 1px solid #E8E2E5;
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 12px;
+            color: #292329;
+            box-shadow: none !important;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #B89555;
+        }
+
+        .btn-reset {
+            background: #F7E7CE;
+            border: 1px solid #E8D7B8;
+            color: #4A001F;
+            border-radius: 8px;
+            padding: 10px 15px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .btn-reset:hover {
+            background: #EED9B5;
+        }
+
+        /* DOCTOR CARDS */
+        .doctor-card {
+            background: #FFFFFF;
+            border: 1px solid #E8E2E5;
+            border-radius: 14px;
+            overflow: hidden;
+            height: 100%;
+            box-shadow: 0 5px 18px rgba(74, 0, 31, 0.04);
+            transition: 0.3s ease;
+        }
+
+        .doctor-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(74, 0, 31, 0.10);
+        }
+
+        .doctor-photo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 22px 10px 8px;
+        }
+
+        .doctor-placeholder {
+            width: 115px;
+            height: 115px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            border: 4px solid #F7E7CE;
+            box-shadow: 0 5px 15px rgba(74, 0, 31, 0.12);
+            background: linear-gradient(145deg, #F7E7CE, #E8D7B8);
+            color: #800020;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 35px;
+            font-weight: 700;
+        }
+
+        .doctor-info {
+            padding: 12px 13px 15px;
+            text-align: center;
+        }
+
+        .doctor-name {
+            color: #4A001F;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .doctor-specialty {
+            color: #B89555;
+            font-size: 10px;
+            font-weight: 800;
+            min-height: 30px;
+            margin-bottom: 8px;
+        }
+
+        .doctor-status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 9px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .status-active {
+            color: #326B4B;
+            background: #E6F2EA;
+        }
+
+        .status-inactive {
+            color: #98505A;
+            background: #F8E8EA;
+        }
+
+        .doctor-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 7px;
+            color: #70666C;
+            font-size: 10px;
+            margin-top: 8px;
+            text-align: left;
+            overflow-wrap: anywhere;
+        }
+
+        .doctor-detail i {
+            color: #B89555;
+            font-size: 12px;
+            width: 14px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .doctor-actions {
+            display: flex;
+            gap: 6px;
+            border-top: 1px solid #E8E2E5;
+            padding-top: 11px;
+            margin-top: 12px;
+        }
+
+        .doctor-actions button {
+            flex: 1;
+            border: 1px solid #E8E2E5;
+            background: #FFFFFF;
+            color: #4A001F;
+            border-radius: 7px;
+            padding: 7px 4px;
+            font-size: 10px;
+            font-weight: 700;
+            transition: 0.2s ease;
+        }
+
+        .doctor-actions button:hover {
+            background: #F7E7CE;
+            border-color: #D6B77A;
+        }
+
+        .doctor-actions .delete-btn {
+            color: #A13C4A;
+        }
+
+        .doctor-actions .delete-btn:hover {
+            background: #F8E8EA;
+            border-color: #E8BFC5;
+        }
+
+        /* EMPTY STATE */
+        .empty-state {
+            text-align: center;
+            padding: 45px 20px;
+            color: #70666C;
+            border: 1px dashed #D6B77A;
+            border-radius: 12px;
+            background: #FFFFFF;
+        }
+
+        .empty-state i {
+            font-size: 38px;
+            color: #B89555;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .empty-state strong {
+            color: #4A001F;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* MODAL */
+        .modal-content {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #350017, #4A001F);
+            padding: 20px 24px;
+            border: none;
+        }
+
+        .modal-title {
+            color: #F7E7CE;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .modal-header .btn-close {
+            filter: invert(1);
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        .modal-footer {
+            border-top: 1px solid #E8E2E5;
+            padding: 15px 24px;
+        }
+
+        .modal-label {
+            color: #4A001F;
+            font-size: 11px;
+            font-weight: 800;
+            margin-bottom: 7px;
+        }
+
+        .btn-save {
+            background: #4A001F;
+            color: #FFFFFF;
+            border: 1px solid #4A001F;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .btn-save:hover {
+            background: #800020;
+            color: #FFFFFF;
+        }
+
+        .btn-cancel {
+            background: #F7E7CE;
+            color: #4A001F;
+            border: 1px solid #E8D7B8;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* FOOTER */
+        .dashboard-footer {
+            text-align: center;
+            padding: 25px 0 5px;
+            color: #958A90;
+            font-size: 11px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 991px) {
+            .sidebar {
+                width: 220px;
+            }
+
+            .main-content {
+                margin-left: 220px;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 18px;
+            }
+
+            .topbar {
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            .admin-top-name {
+                font-size: 14px;
+            }
+
+            .admin-top-logo {
+                width: 42px;
+                height: 42px;
+                font-size: 25px;
+            }
+
+            .welcome-banner {
+                padding: 25px 22px;
+            }
+
+            .doctor-placeholder {
+                width: 125px;
+                height: 125px;
+            }
+
+            .doctor-info {
+                padding: 15px 18px 18px;
+            }
+
+            .doctor-name {
+                font-size: 18px;
+            }
+
+            .doctor-detail {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+
+<body data-requires-auth="admin">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            <div class="brand-logo-light">
+                <span class="brand-heal">HEAL</span><span class="brand-ora">ORA</span>
+            </div>
+
+            <div class="brand-clinic">C L I N I C</div>
+        </div>
+
+        <!-- NAVIGATION -->
+        <nav>
+
+            <a href="admin-dashboard.html">
+                <i class="bi bi-grid-1x2-fill"></i>
+                Dashboard
+            </a>
+
+            <a href="appointments.html">
+                <i class="bi bi-calendar-check"></i>
+                Appointments
+            </a>
+
+            <a href="patients.html">
+                <i class="bi bi-people"></i>
+                Patients
+            </a>
+
+            <a href="doctors.html" class="active">
+                <i class="bi bi-person-badge"></i>
+                Doctors
+            </a>
+
+            <a href="doctor-schedule.html">
+                <i class="bi bi-calendar-week"></i>
+                Doctor Schedule
+            </a>
+
+            <a href="clinic-services.html">
+                <i class="bi bi-heart-pulse"></i>
+                Clinic Services
+            </a>
+
+            <a href="appointment-history.html">
+                <i class="bi bi-clock-history"></i>
+                Appointment History
+            </a>
+
+            <a href="reports.html">
+                <i class="bi bi-bar-chart-line"></i>
+                Reports
+            </a>
+
+            <a href="profile.html">
+                <i class="bi bi-person-circle"></i>
+                My Profile
+            </a>
+
+            <a href="help-support.html">
+                <i class="bi bi-question-circle"></i>
+                Help & Support
+            </a>
+
+        </nav>
+
+        <!-- SIDEBAR ADMIN PROFILE -->
+        <div class="sidebar-footer mt-4">
+
+            <div class="d-flex align-items-center gap-2 mb-3">
+
+                <div class="admin-top-logo"
+                     style="width:40px;height:40px;font-size:24px;">
+                    H
+                </div>
+
+                <div>
+                    <div class="admin-top-name"
+                         style="color:#F7E7CE;font-size:14px;">
+                        Healora Administrator
+                    </div>
+
+                    <div class="admin-top-role">ADMIN</div>
+                </div>
+
+            </div>
+
+            <a href="#" data-logout>
+                <i class="bi bi-box-arrow-left"></i>
+                Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+
+            <div>
+                <h1 class="page-heading mb-1">Doctors Management</h1>
+
+                <p class="text-muted small mb-0">
+                    Manage and organise your clinic's medical professionals.
+                </p>
+            </div>
+
+            <div class="admin-profile">
+
+                <div class="text-end">
+                    <div class="admin-top-name">
+                        Healora Administrator
+                    </div>
+
+                    <div class="admin-top-role">ADMIN</div>
+                </div>
+
+                <div class="admin-top-logo">H</div>
+
+            </div>
+
+        </div>
+
+        <!-- WELCOME BANNER -->
+        <section class="welcome-banner">
+
+            <div class="welcome-content">
+                <h2>Our Medical Professionals</h2>
+
+                <p>
+                    Manage your doctors' information, specialisations and availability
+                    through one centralised directory.
+                </p>
+            </div>
+
+        </section>
+
+        <!-- STATISTICS -->
+        <section class="row g-3 mb-4">
+
+            <div class="col-6 col-xl-4">
+                <div class="dashboard-stat">
+
+                    <div class="stat-icon">
+                        <i class="bi bi-person-badge-fill"></i>
+                    </div>
+
+                    <h3 id="totalDoctors">0</h3>
+                    <p>Total Doctors</p>
+
+                </div>
+            </div>
+
+            <div class="col-6 col-xl-4">
+                <div class="dashboard-stat">
+
+                    <div class="stat-icon">
+                        <i class="bi bi-person-check-fill"></i>
+                    </div>
+
+                    <h3 id="activeDoctors">0</h3>
+                    <p>Active Doctors</p>
+
+                </div>
+            </div>
+
+            <div class="col-6 col-xl-4">
+                <div class="dashboard-stat">
+
+                    <div class="stat-icon">
+                        <i class="bi bi-person-x-fill"></i>
+                    </div>
+
+                    <h3 id="inactiveDoctors">0</h3>
+                    <p>Inactive Doctors</p>
+
+                </div>
+            </div>
+
+        </section>
+
+        <!-- DOCTOR DIRECTORY HEADING -->
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+
+            <div>
+                <h4 class="section-heading">Doctor Directory</h4>
+
+                <p class="section-description">
+                    View and manage all registered doctors.
+                </p>
+            </div>
+
+            <button class="btn-add-doctor" type="button" onclick="openAddDoctorModal()">
+                <i class="bi bi-plus-lg me-2"></i>
+                Add New Doctor
+            </button>
+
+        </div>
+
+        <!-- SEARCH AND FILTER -->
+        <section class="filter-panel">
+
+            <div class="row g-3 align-items-end">
+
+                <div class="col-md-6">
+
+                    <label class="filter-label" for="searchDoctor">
+                        SEARCH DOCTOR
+                    </label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="searchDoctor"
+                        placeholder="Search by name, email or specialty..."
+                    >
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <label class="filter-label" for="statusFilter">
+                        STATUS
+                    </label>
+
+                    <select class="form-select" id="statusFilter">
+                        <option value="">All Status</option>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <button class="btn-reset w-100" type="button" id="resetFilters">
+                        <i class="bi bi-arrow-counterclockwise me-2"></i>
+                        Reset Filters
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- DOCTOR CARDS -->
+        <div class="row g-3" id="doctorList"></div>
+
+        <!-- FOOTER -->
+        <footer class="dashboard-footer">
+
+            © 2026 Healora Clinic. All Rights Reserved.
+
+            <br>
+
+            <span class="fst-italic">
+                Your Health, Our Priority.
+            </span>
+
+        </footer>
+
+    </main>
+
+    <!-- ADD / EDIT DOCTOR MODAL -->
+    <div class="modal fade" id="doctorModal" tabindex="-1" aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="doctorModalTitle">
+                        Add New Doctor
+                    </h5>
+
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close">
+                    </button>
+
+                </div>
+
+                <form id="doctorForm">
+
+                    <div class="modal-body">
+
+                        <input type="hidden" id="doctorId">
+
+                        <div class="mb-3">
+                            <label class="modal-label" for="doctorName">
+                                Doctor's Full Name
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   id="doctorName"
+                                   placeholder="Enter doctor's name"
+                                   required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="modal-label" for="doctorSpecialty">
+                                Specialty
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   id="doctorSpecialty"
+                                   placeholder="e.g. General Practitioner"
+                                   required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="modal-label" for="doctorEmail">
+                                Email Address
+                            </label>
+
+                            <input type="email"
+                                   class="form-control"
+                                   id="doctorEmail"
+                                   placeholder="doctor@example.com"
+                                   required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="modal-label" for="doctorPhone">
+                                Phone Number
+                            </label>
+
+                            <input type="tel"
+                                   class="form-control"
+                                   id="doctorPhone"
+                                   placeholder="Enter phone number"
+                                   required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="modal-label" for="doctorImage">
+                                Doctor Image URL
+                            </label>
+
+                            <input type="url"
+                                   class="form-control"
+                                   id="doctorImage"
+                                   placeholder="https://example.com/doctor.jpg">
+
+                            <small class="text-muted" style="font-size:10px;">
+                                Optional. Image URL can be saved for future use.
+                                Doctor profiles currently display initials.
+                            </small>
+                        </div>
+
+                        <div class="mb-2">
+                            <label class="modal-label" for="doctorStatus">
+                                Status
+                            </label>
+
+                            <select class="form-select" id="doctorStatus" required>
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+
+                        <button type="button"
+                                class="btn-cancel"
+                                data-bs-dismiss="modal">
+                            Cancel
+                        </button>
+
+                        <button type="submit" class="btn-save">
+                            <i class="bi bi-floppy me-2"></i>
+                            Save Doctor
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="../js/storage.js"></script>
+    <script src="../js/data.js"></script>
+    <script src="../js/auth.js"></script>
+
+    <script>
+        let doctorModal;
+        let allDoctors = [];
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            doctorModal = new bootstrap.Modal(
+                document.getElementById('doctorModal')
+            );
+
+            loadDoctors();
+
+            document.getElementById('searchDoctor')
+                .addEventListener('input', renderDoctors);
+
+            document.getElementById('statusFilter')
+                .addEventListener('change', renderDoctors);
+
+            document.getElementById('resetFilters')
+                .addEventListener('click', function () {
+
+                    document.getElementById('searchDoctor').value = '';
+                    document.getElementById('statusFilter').value = '';
+
+                    renderDoctors();
+
+                });
+
+            document.getElementById('doctorForm')
+                .addEventListener('submit', saveDoctor);
+
+        });
+
+        /* LOAD DOCTORS */
+        function loadDoctors() {
+
+            allDoctors = HealoraStorage.getDoctors() || [];
+
+            updateStatistics();
+            renderDoctors();
+
+        }
+
+        /* UPDATE STATISTICS */
+        function updateStatistics() {
+
+            const total = allDoctors.length;
+
+            const active = allDoctors.filter(
+                doctor => doctor.status === 'Active'
+            ).length;
+
+            const inactive = allDoctors.filter(
+                doctor => doctor.status === 'Inactive'
+            ).length;
+
+            document.getElementById('totalDoctors').textContent = total;
+            document.getElementById('activeDoctors').textContent = active;
+            document.getElementById('inactiveDoctors').textContent = inactive;
+
+        }
+
+        /* DISPLAY DOCTORS */
+        function renderDoctors() {
+
+            const container = document.getElementById('doctorList');
+
+            const searchValue = document.getElementById('searchDoctor')
+                .value.toLowerCase().trim();
+
+            const selectedStatus = document.getElementById('statusFilter').value;
+
+            const filteredDoctors = allDoctors.filter(doctor => {
+
+                const name = (doctor.name || '').toLowerCase();
+                const specialty = (doctor.specialty || '').toLowerCase();
+                const email = (doctor.email || '').toLowerCase();
+
+                const matchesSearch =
+                    name.includes(searchValue) ||
+                    specialty.includes(searchValue) ||
+                    email.includes(searchValue);
+
+                const matchesStatus =
+                    !selectedStatus || doctor.status === selectedStatus;
+
+                return matchesSearch && matchesStatus;
+
+            });
+
+            if (filteredDoctors.length === 0) {
+
+                container.innerHTML = `
+                    <div class="col-12">
+                        <div class="empty-state">
+                            <i class="bi bi-person-badge"></i>
+                            <strong>No Doctors Found</strong>
+                            <span>No matching doctor records are available.</span>
+                        </div>
+                    </div>
+                `;
+
+                return;
+
+            }
+
+            container.innerHTML = filteredDoctors.map(doctor => {
+
+                const name = escapeHTML(doctor.name || 'Unnamed Doctor');
+                const specialty = escapeHTML(doctor.specialty || 'Not specified');
+                const email = escapeHTML(doctor.email || 'Not provided');
+                const phone = escapeHTML(doctor.phone || 'Not provided');
+
+                const status = doctor.status === 'Inactive'
+                    ? 'Inactive'
+                    : 'Active';
+
+                /* ALL DOCTORS USE INITIALS INSTEAD OF PHOTOS */
+                const initials = getInitials(doctor.name || '');
+
+                const imageContent = `
+                    <div class="doctor-placeholder">
+                        ${initials}
+                    </div>
+                `;
+
+                return `
+                    <div class="col-xxl-3 col-xl-3 col-md-6 col-12">
+
+                        <div class="doctor-card">
+
+                            <div class="doctor-photo">
+                                ${imageContent}
+                            </div>
+
+                            <div class="doctor-info">
+
+                                <h5 class="doctor-name">${name}</h5>
+
+                                <div class="doctor-specialty">
+                                    ${specialty}
+                                </div>
+
+                                <span class="doctor-status ${
+                                    status === 'Active'
+                                        ? 'status-active'
+                                        : 'status-inactive'
+                                }">
+
+                                    <i class="bi ${
+                                        status === 'Active'
+                                            ? 'bi-check-circle-fill'
+                                            : 'bi-dash-circle-fill'
+                                    } me-1"></i>
+
+                                    ${status}
+
+                                </span>
+
+                                <div class="doctor-detail">
+                                    <i class="bi bi-envelope"></i>
+                                    <span>${email}</span>
+                                </div>
+
+                                <div class="doctor-detail">
+                                    <i class="bi bi-telephone"></i>
+                                    <span>${phone}</span>
+                                </div>
+
+                                <div class="doctor-actions">
+
+                                    <button
+                                        type="button"
+                                        onclick="editDoctor('${escapeJS(doctor.id)}')">
+
+                                        <i class="bi bi-pencil-square me-1"></i>
+                                        Edit
+
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="delete-btn"
+                                        onclick="deleteDoctor('${escapeJS(doctor.id)}')">
+
+                                        <i class="bi bi-trash me-1"></i>
+                                        Delete
+
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                `;
+
+            }).join('');
+
+        }
+
+        /* OPEN ADD DOCTOR MODAL */
+        function openAddDoctorModal() {
+
+            document.getElementById('doctorForm').reset();
+
+            document.getElementById('doctorId').value = '';
+
+            document.getElementById('doctorStatus').value = 'Active';
+
+            document.getElementById('doctorModalTitle').textContent =
+                'Add New Doctor';
+
+            doctorModal.show();
+
+        }
+
+        /* EDIT DOCTOR */
+        function editDoctor(id) {
+
+            const doctor = allDoctors.find(
+                item => String(item.id) === String(id)
+            );
+
+            if (!doctor) {
+
+                alert('Doctor record could not be found.');
+                return;
+
+            }
+
+            document.getElementById('doctorId').value = doctor.id;
+            document.getElementById('doctorName').value = doctor.name || '';
+            document.getElementById('doctorSpecialty').value = doctor.specialty || '';
+            document.getElementById('doctorEmail').value = doctor.email || '';
+            document.getElementById('doctorPhone').value = doctor.phone || '';
+
+            document.getElementById('doctorImage').value =
+                doctor.image || doctor.photo || doctor.photoUrl || '';
+
+            document.getElementById('doctorStatus').value =
+                doctor.status || 'Active';
+
+            document.getElementById('doctorModalTitle').textContent =
+                'Edit Doctor';
+
+            doctorModal.show();
+
+        }
+
+        /* SAVE DOCTOR */
+        function saveDoctor(event) {
+
+            event.preventDefault();
+
+            const id = document.getElementById('doctorId').value;
+
+            const doctorData = {
+
+                name: document.getElementById('doctorName').value.trim(),
+
+                specialty: document.getElementById('doctorSpecialty').value.trim(),
+
+                email: document.getElementById('doctorEmail').value.trim(),
+
+                phone: document.getElementById('doctorPhone').value.trim(),
+
+                image: document.getElementById('doctorImage').value.trim(),
+
+                status: document.getElementById('doctorStatus').value
+
+            };
+
+            if (
+                !doctorData.name ||
+                !doctorData.specialty ||
+                !doctorData.email ||
+                !doctorData.phone
+            ) {
+
+                alert('Please complete all required fields.');
+                return;
+
+            }
+
+            try {
+
+                if (id) {
+
+                    HealoraStorage.updateDoctor(id, doctorData);
+
+                    alert('Doctor information updated successfully.');
+
+                } else {
+
+                    HealoraStorage.addDoctor(doctorData);
+
+                    alert('New doctor added successfully.');
+
+                }
+
+                doctorModal.hide();
+
+                loadDoctors();
+
+            } catch (error) {
+
+                console.error('Error saving doctor:', error);
+
+                alert('Unable to save doctor information. Please try again.');
+
+            }
+
+        }
+
+        /* DELETE DOCTOR */
+        function deleteDoctor(id) {
+
+            const doctor = allDoctors.find(
+                item => String(item.id) === String(id)
+            );
+
+            if (!doctor) {
+
+                alert('Doctor record could not be found.');
+                return;
+
+            }
+
+            if (!confirm(`Are you sure you want to delete Dr. ${doctor.name}?`)) {
+                return;
+            }
+
+            try {
+
+                HealoraStorage.deleteDoctor(id);
+
+                alert('Doctor deleted successfully.');
+
+                loadDoctors();
+
+            } catch (error) {
+
+                console.error('Error deleting doctor:', error);
+
+                alert('Unable to delete doctor. Please try again.');
+
+            }
+
+        }
+
+        /* GET INITIALS - IGNORE PROFESSIONAL TITLES */
+        function getInitials(name) {
+
+            const titles = [
+                'dr',
+                'prof',
+                'professor',
+                'doctor',
+                'mr',
+                'mrs',
+                'ms',
+                'miss'
+            ];
+
+            const nameParts = String(name)
+                .trim()
+                .replace(/[.,]/g, '')
+                .split(/\s+/)
+                .filter(Boolean);
+
+            const filteredNames = nameParts.filter(
+                part => !titles.includes(part.toLowerCase())
+            );
+
+            return filteredNames
+                .slice(0, 2)
+                .map(part => part.charAt(0).toUpperCase())
+                .join('');
+
+        }
+
+        /* ESCAPE HTML */
+        function escapeHTML(value) {
+
+            return String(value).replace(/[&<>"']/g, function (character) {
+
+                const entities = {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#039;'
+                };
+
+                return entities[character];
+
+            });
+
+        }
+
+        /* ESCAPE JAVASCRIPT */
+        function escapeJS(value) {
+
+            return String(value)
+                .replace(/\\/g, '\\\\')
+                .replace(/'/g, "\\'")
+                .replace(/"/g, '\\"')
+                .replace(/\n/g, '\\n')
+                .replace(/\r/g, '\\r');
+
+        }
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,1769 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment | Healora Clinic</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600;6..96,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --wine: #350017;
+            --burgundy: #4A001F;
+            --burgundy-light: #800020;
+            --gold: #D6B77A;
+            --gold-dark: #B89552;
+            --ivory: #FAF8F4;
+            --cream: #F7E7CE;
+            --white: #FFFFFF;
+            --text: #30252A;
+            --muted: #70666C;
+            --border: #EEE7E2;
+            --shadow: 0 8px 28px rgba(53, 0, 23, .055);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Manrope', sans-serif;
+            background: var(--ivory);
+            color: var(--text);
+            font-size: 14px;
+            overflow-x: hidden;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            width: 260px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            padding: 0 19px 22px;
+            background: linear-gradient(180deg, #350017 0%, #4A001F 100%);
+            transition: transform .3s ease;
+            overflow-y: auto;
+        }
+
+        .sidebar-brand {
+            width: 100%;
+            padding: 28px 15px;
+            border-bottom: 1px solid rgba(247, 231, 206, .15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 27px;
+        }
+
+        .brand-logo-light {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            width: 100%;
+            font-family: 'Manrope', sans-serif;
+            font-size: 27px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .brand-heal {
+            color: var(--gold) !important;
+            font-weight: 800;
+        }
+
+        .brand-ora {
+            color: var(--cream) !important;
+            font-family: 'Bodoni Moda', serif;
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        .brand-clinic {
+            color: var(--cream) !important;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            margin-top: 7px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .nav-label {
+            color: rgba(247, 231, 206, .55);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            padding: 0 13px;
+            margin-bottom: 13px;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 12px 14px;
+            color: rgba(247, 231, 206, .82);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: .2s ease;
+        }
+
+        .sidebar-nav a i {
+            width: 19px;
+            font-size: 17px;
+            color: var(--gold);
+        }
+
+        .sidebar-nav a:hover {
+            background: rgba(255, 255, 255, .08);
+            color: var(--cream);
+        }
+
+        .sidebar-nav a.active {
+            background: var(--burgundy-light);
+            color: var(--cream);
+            border-left: 3px solid var(--gold);
+            padding-left: 11px;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+            border-top: 1px solid rgba(247, 231, 206, .15);
+            padding-top: 18px;
+        }
+
+        .sidebar-note {
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(214, 183, 122, .2);
+            padding: 15px;
+            border-radius: 9px;
+            margin-bottom: 13px;
+        }
+
+        .sidebar-note i {
+            color: var(--gold);
+            font-size: 18px;
+        }
+
+        .sidebar-note p {
+            color: var(--cream);
+            font-size: 11px;
+            line-height: 1.7;
+            margin: 8px 0 0;
+        }
+
+        .sidebar-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 10px;
+            margin-bottom: 12px;
+            border-top: 1px solid rgba(247, 231, 206, .15);
+            border-bottom: 1px solid rgba(247, 231, 206, .15);
+        }
+
+        .sidebar-profile-avatar {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: var(--wine);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 800;
+            border: 1px solid rgba(247, 231, 206, .5);
+        }
+
+        .sidebar-profile-info {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .sidebar-profile-info strong {
+            display: block;
+            color: var(--cream);
+            font-size: 13px;
+            font-weight: 800;
+            line-height: 1.5;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .sidebar-profile-info span {
+            display: block;
+            color: var(--gold);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            margin-top: 3px;
+        }
+
+        .logout-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 13px;
+            color: rgba(247, 231, 206, .82);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .logout-link i {
+            color: var(--gold);
+            font-size: 17px;
+        }
+
+        .logout-link:hover {
+            background: rgba(255, 255, 255, .08);
+            color: var(--cream);
+        }
+
+        /* MAIN CONTENT */
+
+        .main-content {
+            margin-left: 260px;
+            padding: 32px 40px 45px;
+            min-height: 100vh;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 29px;
+            gap: 15px;
+        }
+
+        .page-heading small {
+            display: block;
+            color: var(--gold-dark);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .page-heading h2 {
+            color: var(--wine);
+            font-size: 25px;
+            font-weight: 800;
+            margin: 0;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 19px;
+        }
+
+        .notification-btn {
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            background: var(--white);
+            color: var(--wine);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+        }
+
+        .profile-chip {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .chip-avatar {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            border-radius: 50%;
+            background: var(--burgundy);
+            color: var(--gold);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 800;
+            border: 1px solid var(--gold);
+        }
+
+        .profile-chip-info {
+            min-width: 0;
+        }
+
+        .profile-chip-info strong {
+            display: block;
+            color: var(--wine);
+            font-size: 13px;
+            font-weight: 800;
+            max-width: 170px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .profile-chip-info span {
+            display: block;
+            color: var(--gold-dark);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            margin-top: 3px;
+        }
+
+        .mobile-toggle {
+            display: none;
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border);
+            background: var(--white);
+            color: var(--wine);
+            border-radius: 8px;
+            font-size: 20px;
+        }
+
+        /* INTRO BANNER */
+
+        .booking-banner {
+            background: var(--wine);
+            border-radius: 13px;
+            padding: 30px 35px;
+            margin-bottom: 27px;
+            color: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .booking-banner .eyebrow {
+            color: var(--gold);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 9px;
+        }
+
+        .booking-banner h1 {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 31px;
+            font-weight: 700;
+            margin: 0 0 8px;
+        }
+
+        .booking-banner p {
+            color: rgba(247, 231, 206, .8);
+            font-size: 13px;
+            line-height: 1.8;
+            margin: 0;
+            max-width: 570px;
+        }
+
+        .banner-icon {
+            width: 75px;
+            height: 75px;
+            border: 1px solid rgba(214, 183, 122, .4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 31px;
+            flex-shrink: 0;
+        }
+
+        /* BOOKING LAYOUT */
+
+        .booking-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.7fr) minmax(260px, .85fr);
+            gap: 23px;
+            align-items: start;
+        }
+
+        .content-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-card {
+            padding: 27px;
+        }
+
+        .card-heading {
+            display: flex;
+            align-items: flex-start;
+            gap: 13px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 22px;
+        }
+
+        .heading-icon {
+            width: 43px;
+            height: 43px;
+            border-radius: 10px;
+            background: #F8F0E4;
+            color: var(--burgundy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+            flex-shrink: 0;
+        }
+
+        .card-heading h3 {
+            color: var(--wine);
+            font-size: 16px;
+            font-weight: 800;
+            margin: 1px 0 5px;
+        }
+
+        .card-heading p {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .form-section-title {
+            color: var(--wine);
+            font-size: 13px;
+            font-weight: 800;
+            margin: 24px 0 15px;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .form-section-title i {
+            color: var(--gold-dark);
+            font-size: 16px;
+        }
+
+        .form-label {
+            color: var(--text);
+            font-size: 12px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .form-control,
+        .form-select {
+            min-height: 45px;
+            border: 1px solid #E8E0DA;
+            border-radius: 8px;
+            color: var(--text);
+            font-family: 'Manrope', sans-serif;
+            font-size: 12px;
+            padding: 11px 13px;
+            background-color: #FFFEFC;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: var(--gold-dark);
+            box-shadow: 0 0 0 3px rgba(214, 183, 122, .15);
+        }
+
+        textarea.form-control {
+            min-height: 105px;
+            resize: vertical;
+        }
+
+        .form-text {
+            color: var(--muted);
+            font-size: 10px;
+            margin-top: 6px;
+        }
+
+        .required-mark {
+            color: #A52A3A;
+        }
+
+        .form-divider {
+            border: 0;
+            border-top: 1px solid var(--border);
+            margin: 23px 0;
+            opacity: 1;
+        }
+
+        .form-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 11px;
+            margin-top: 25px;
+        }
+
+        .btn-reset {
+            min-height: 43px;
+            padding: 0 19px;
+            border: 1px solid #E8E0DA;
+            border-radius: 8px;
+            background: var(--white);
+            color: var(--muted);
+            font-family: 'Manrope', sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .btn-submit {
+            min-height: 43px;
+            padding: 0 21px;
+            border: 0;
+            border-radius: 8px;
+            background: var(--burgundy);
+            color: var(--cream);
+            font-family: 'Manrope', sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+            transition: .2s ease;
+        }
+
+        .btn-submit:hover {
+            background: var(--wine);
+            color: var(--gold);
+            transform: translateY(-1px);
+        }
+
+        /* INFORMATION COLUMN */
+
+        .info-column {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .info-card {
+            padding: 22px;
+        }
+
+        .info-card h4 {
+            color: var(--wine);
+            font-size: 14px;
+            font-weight: 800;
+            margin: 0 0 17px;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .step-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-number {
+            width: 27px;
+            height: 27px;
+            border-radius: 50%;
+            background: #F8F0E4;
+            color: var(--burgundy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .step-item strong {
+            display: block;
+            color: var(--text);
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        .step-item p {
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .reminder-card {
+            background: #FBF7EF;
+            border: 1px solid #EFE3CF;
+            border-radius: 12px;
+            padding: 21px;
+        }
+
+        .reminder-card .reminder-icon {
+            color: var(--gold-dark);
+            font-size: 21px;
+            margin-bottom: 10px;
+        }
+
+        .reminder-card h4 {
+            color: var(--wine);
+            font-size: 13px;
+            font-weight: 800;
+            margin: 0 0 9px;
+        }
+
+        .reminder-card p {
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .help-card {
+            background: var(--burgundy);
+            border-radius: 12px;
+            padding: 21px;
+            color: var(--cream);
+        }
+
+        .help-card i {
+            color: var(--gold);
+            font-size: 21px;
+            margin-bottom: 10px;
+        }
+
+        .help-card h4 {
+            font-size: 13px;
+            font-weight: 800;
+            margin: 0 0 8px;
+        }
+
+        .help-card p {
+            color: rgba(247, 231, 206, .8);
+            font-size: 11px;
+            line-height: 1.7;
+            margin: 0 0 13px;
+        }
+
+        .help-card a {
+            color: var(--gold);
+            font-size: 11px;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .help-card a:hover {
+            color: var(--cream);
+        }
+
+        .footer-note {
+            text-align: center;
+            color: #91868A;
+            font-size: 11px;
+            margin-top: 30px;
+        }
+
+        .sidebar-overlay {
+            display: none;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 1100px) {
+            .main-content {
+                padding: 28px 25px 40px;
+            }
+
+            .booking-layout {
+                grid-template-columns: minmax(0, 1.5fr) minmax(230px, .85fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .sidebar-overlay.show {
+                display: block;
+                position: fixed;
+                inset: 0;
+                background: rgba(25, 0, 12, .45);
+                z-index: 999;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 22px 20px 35px;
+            }
+
+            .mobile-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .booking-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .info-column {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .help-card {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .main-content {
+                padding: 18px 15px 30px;
+            }
+
+            .topbar {
+                margin-bottom: 22px;
+            }
+
+            .page-heading h2 {
+                font-size: 19px;
+            }
+
+            .page-heading small {
+                font-size: 9px;
+            }
+
+            .profile-chip-info {
+                display: none;
+            }
+
+            .booking-banner {
+                padding: 25px 22px;
+                margin-bottom: 20px;
+            }
+
+            .booking-banner h1 {
+                font-size: 25px;
+            }
+
+            .booking-banner p {
+                font-size: 11px;
+            }
+
+            .banner-icon {
+                width: 52px;
+                height: 52px;
+                font-size: 22px;
+            }
+
+            .form-card {
+                padding: 20px 17px;
+            }
+
+            .info-column {
+                display: flex;
+            }
+
+            .form-actions {
+                flex-direction: column-reverse;
+                align-items: stretch;
+            }
+
+            .btn-reset,
+            .btn-submit {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body data-requires-auth="patient">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-brand">
+            <div class="brand-logo-light">
+                <span class="brand-heal">HEAL</span><span class="brand-ora">ORA</span>
+            </div>
+            <div class="brand-clinic">C L I N I C</div>
+        </div>
+
+        <div class="nav-label">PATIENT PORTAL</div>
+
+        <nav class="sidebar-nav">
+
+            <a href="patient-dashboard.html">
+                <i class="bi bi-grid-1x2"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="book-appointment.html" class="active">
+                <i class="bi bi-calendar-plus"></i>
+                <span>Book Appointment</span>
+            </a>
+
+            <a href="my-appointments.html">
+                <i class="bi bi-calendar-check"></i>
+                <span>My Appointments</span>
+            </a>
+
+            <a href="appointment-history.html">
+                <i class="bi bi-clock-history"></i>
+                <span>Appointment History</span>
+            </a>
+
+            <a href="patient-clinic-services.html">
+                <i class="bi bi-hospital"></i>
+                <span>Clinic Services</span>
+            </a>
+
+            <a href="patient-profile.html">
+                <i class="bi bi-person"></i>
+                <span>My Profile</span>
+            </a>
+
+            <a href="patient-help-support.html">
+                <i class="bi bi-question-circle"></i>
+                <span>Help &amp; Support</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="sidebar-note">
+                <i class="bi bi-heart-pulse"></i>
+                <p>Your health matters. We're here to make every visit comfortable.</p>
+            </div>
+
+            <div class="sidebar-profile">
+                <div class="sidebar-profile-avatar" id="sidebarProfileInitial">P</div>
+
+                <div class="sidebar-profile-info">
+                    <strong id="sidebarProfileName">Patient</strong>
+                    <span>PATIENT ACCOUNT</span>
+                </div>
+            </div>
+
+            <a class="logout-link" id="logoutBtn" href="#">
+                <i class="bi bi-box-arrow-left"></i>
+                <span>Logout</span>
+            </a>
+
+        </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div class="d-flex align-items-center gap-3">
+
+                <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Open menu">
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <div class="page-heading">
+                    <small>PATIENT PORTAL</small>
+                    <h2>Book Appointment</h2>
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <button class="notification-btn" type="button" title="Notifications">
+                    <i class="bi bi-bell"></i>
+                </button>
+
+                <div class="profile-chip">
+                    <div class="chip-avatar" id="topbarAvatar">P</div>
+
+                    <div class="profile-chip-info">
+                        <strong id="topbarName">Patient</strong>
+                        <span>PATIENT ACCOUNT</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- INTRO BANNER -->
+        <section class="booking-banner">
+
+            <div>
+                <div class="eyebrow">YOUR WELLNESS JOURNEY</div>
+
+                <h1>Schedule Your Visit</h1>
+
+                <p>
+                    Book your next clinic visit with ease. Choose your preferred
+                    service, doctor and appointment time, and let us take care
+                    of the rest.
+                </p>
+            </div>
+
+            <div class="banner-icon">
+                <i class="bi bi-calendar2-heart"></i>
+            </div>
+
+        </section>
+
+        <!-- BOOKING CONTENT -->
+        <div class="booking-layout">
+
+            <!-- APPOINTMENT FORM -->
+            <section class="content-card form-card">
+
+                <div class="card-heading">
+
+                    <div class="heading-icon">
+                        <i class="bi bi-calendar2-plus"></i>
+                    </div>
+
+                    <div>
+                        <h3>Appointment Details</h3>
+                        <p>Complete the information below to request your appointment.</p>
+                    </div>
+
+                </div>
+
+                <form id="bookingForm">
+
+                    <!-- PATIENT INFORMATION -->
+                    <div class="form-section-title">
+                        <i class="bi bi-person-circle"></i>
+                        Patient Information
+                    </div>
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+                            <label class="form-label" for="patientName">
+                                Full Name <span class="required-mark">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="patientName"
+                                placeholder="Enter your full name"
+                                required
+                            >
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label" for="patientEmail">
+                                Email Address <span class="required-mark">*</span>
+                            </label>
+
+                            <input
+                                type="email"
+                                class="form-control"
+                                id="patientEmail"
+                                placeholder="Enter your email address"
+                                required
+                            >
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label" for="patientGender">
+                                Gender <span class="required-mark">*</span>
+                            </label>
+
+                            <select class="form-select" id="patientGender" required>
+                                <option value="">Select gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <hr class="form-divider">
+
+                    <!-- MEDICAL SERVICE -->
+                    <div class="form-section-title">
+                        <i class="bi bi-clipboard2-pulse"></i>
+                        Medical Service
+                    </div>
+
+                    <div class="row g-3">
+
+                        <div class="col-12">
+                            <label class="form-label" for="service">
+                                Select Clinic Service <span class="required-mark">*</span>
+                            </label>
+
+                            <select class="form-select" id="service" required>
+                                <option value="">Choose a service</option>
+                            </select>
+
+                            <div class="form-text">
+                                Select the service that best matches your reason for visiting.
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label" for="doctor">
+                                Preferred Doctor <span class="required-mark">*</span>
+                            </label>
+
+                            <select class="form-select" id="doctor" required>
+                                <option value="">Choose a doctor</option>
+                            </select>
+
+                            <div class="form-text">
+                                Your appointment request is subject to doctor availability.
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <hr class="form-divider">
+
+                    <!-- DATE AND TIME -->
+                    <div class="form-section-title">
+                        <i class="bi bi-calendar-week"></i>
+                        Date &amp; Time
+                    </div>
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+                            <label class="form-label" for="appointmentDate">
+                                Preferred Date <span class="required-mark">*</span>
+                            </label>
+
+                            <input
+                                type="date"
+                                class="form-control"
+                                id="appointmentDate"
+                                required
+                            >
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label" for="appointmentTime">
+                                Preferred Time <span class="required-mark">*</span>
+                            </label>
+
+                            <select class="form-select" id="appointmentTime" required>
+                                <option value="">Choose a time</option>
+                                <option value="09:00 AM">09:00 AM</option>
+                                <option value="09:30 AM">09:30 AM</option>
+                                <option value="10:00 AM">10:00 AM</option>
+                                <option value="10:30 AM">10:30 AM</option>
+                                <option value="11:00 AM">11:00 AM</option>
+                                <option value="11:30 AM">11:30 AM</option>
+                                <option value="12:00 PM">12:00 PM</option>
+                                <option value="01:00 PM">01:00 PM</option>
+                                <option value="01:30 PM">01:30 PM</option>
+                                <option value="02:00 PM">02:00 PM</option>
+                                <option value="02:30 PM">02:30 PM</option>
+                                <option value="03:00 PM">03:00 PM</option>
+                                <option value="03:30 PM">03:30 PM</option>
+                                <option value="04:00 PM">04:00 PM</option>
+                                <option value="04:30 PM">04:30 PM</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <hr class="form-divider">
+
+                    <!-- VISIT INFORMATION -->
+                    <div class="form-section-title">
+                        <i class="bi bi-chat-left-text"></i>
+                        Visit Information
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="reason">
+                            Reason for Visit <span class="required-mark">*</span>
+                        </label>
+
+                        <select class="form-select" id="reason" required>
+                            <option value="">Select your reason</option>
+                            <option value="General Check-up">General Check-up</option>
+                            <option value="Follow-up Consultation">Follow-up Consultation</option>
+                            <option value="Fever or Flu Symptoms">Fever or Flu Symptoms</option>
+                            <option value="Headache or Migraine">Headache or Migraine</option>
+                            <option value="Cough or Sore Throat">Cough or Sore Throat</option>
+                            <option value="Stomach Pain">Stomach Pain</option>
+                            <option value="Skin Problems">Skin Problems</option>
+                            <option value="Medication Review">Medication Review</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-2">
+                        <label class="form-label" for="notes">
+                            Additional Notes <span class="text-muted">(Optional)</span>
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            id="notes"
+                            placeholder="Share any additional information that may help the clinic prepare for your visit..."
+                        ></textarea>
+                    </div>
+
+                    <div class="form-actions">
+
+                        <button type="reset" class="btn-reset">
+                            Clear Form
+                        </button>
+
+                        <button type="submit" class="btn-submit">
+                            <i class="bi bi-calendar-check me-2"></i>
+                            Submit Appointment
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+            <!-- INFORMATION COLUMN -->
+            <aside class="info-column">
+
+                <section class="content-card info-card">
+
+                    <h4>How It Works</h4>
+
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div>
+                            <strong>Choose Your Service</strong>
+                            <p>Select the medical service you need from the available options.</p>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div>
+                            <strong>Select Doctor &amp; Time</strong>
+                            <p>Choose your preferred doctor, date and appointment time.</p>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div>
+                            <strong>Submit Your Request</strong>
+                            <p>Your request will be recorded with a pending status for clinic review.</p>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <div>
+                            <strong>Check Your Appointment</strong>
+                            <p>Visit My Appointments to check the latest status of your request.</p>
+                        </div>
+                    </div>
+
+                </section>
+
+                <section class="reminder-card">
+
+                    <div class="reminder-icon">
+                        <i class="bi bi-info-circle"></i>
+                    </div>
+
+                    <h4>Before Your Visit</h4>
+
+                    <p>
+                        Please arrive early for your appointment. Bring your
+                        identification card and any relevant medical documents
+                        or previous prescriptions. If you need to change your
+                        appointment, contact the clinic for assistance.
+                    </p>
+
+                </section>
+
+                <section class="help-card">
+
+                    <i class="bi bi-headset"></i>
+
+                    <h4>Need Assistance?</h4>
+
+                    <p>
+                        If you have questions about booking an appointment or
+                        choosing a service, our support section is available to help.
+                    </p>
+
+                    <a href="patient-help-support.html">
+                        Visit Help &amp; Support
+                        <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+
+                </section>
+
+            </aside>
+
+        </div>
+
+        <div class="footer-note">
+            © 2026 Healora Clinic. Your health, our priority.
+        </div>
+
+    </main>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/data.js"></script>
+    <script src="../js/auth.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // =====================================
+            // 1. GET CURRENT LOGGED-IN USER
+            // =====================================
+
+            const currentUser = window.HealoraStorage
+                ? window.HealoraStorage.getCurrentUser()
+                : null;
+
+            if (!currentUser) {
+                window.location.href = "../index.html";
+                return;
+            }
+
+            const defaultPatientName =
+                currentUser.fullName ||
+                currentUser.name ||
+                currentUser.username ||
+                "";
+
+            const defaultPatientEmail = currentUser.email || "";
+
+            const nameParts = defaultPatientName.trim().split(/\s+/);
+
+            const initials = nameParts
+                .filter(Boolean)
+                .slice(0, 2)
+                .map(part => part.charAt(0).toUpperCase())
+                .join("") || "P";
+
+            // =====================================
+            // 2. DISPLAY USER INFORMATION
+            // =====================================
+
+            document.getElementById("sidebarProfileName").textContent =
+                defaultPatientName || "Patient";
+
+            document.getElementById("sidebarProfileInitial").textContent = initials;
+
+            document.getElementById("topbarName").textContent =
+                defaultPatientName || "Patient";
+
+            document.getElementById("topbarAvatar").textContent = initials;
+
+            // =====================================
+            // 3. LOCAL STORAGE FUNCTIONS
+            // =====================================
+
+            function readStorageArray(key) {
+                try {
+                    const stored = localStorage.getItem(key);
+                    const parsed = stored ? JSON.parse(stored) : [];
+
+                    return Array.isArray(parsed) ? parsed : [];
+
+                } catch (error) {
+                    console.error("Unable to read storage:", key, error);
+                    return [];
+                }
+            }
+
+            function saveStorageArray(key, data) {
+                try {
+                    localStorage.setItem(key, JSON.stringify(data));
+                    return true;
+
+                } catch (error) {
+                    console.error("Unable to save storage:", key, error);
+                    return false;
+                }
+            }
+
+            // =====================================
+            // 4. FIND PATIENT RECORD
+            // =====================================
+
+            const patients = readStorageArray("healora_patients");
+
+            const currentUserId = currentUser.id || currentUser.userId || "";
+
+            const patient = patients.find(function (item) {
+
+                const sameUserId =
+                    (item.userId && currentUserId &&
+                    String(item.userId) === String(currentUserId)) ||
+                    (item.id && currentUserId &&
+                    String(item.id) === String(currentUserId));
+
+                const sameEmail =
+                    String(item.email || "").trim().toLowerCase() ===
+                    String(defaultPatientEmail).trim().toLowerCase();
+
+                return sameUserId || (defaultPatientEmail && sameEmail);
+            });
+
+            if (!patient) {
+                alert(
+                    "Your patient profile could not be found. " +
+                    "Please contact the clinic administrator."
+                );
+                return;
+            }
+
+            const patientId = patient.id || currentUserId || "";
+
+            const defaultPatientGender =
+                patient.gender ||
+                currentUser.gender ||
+                "";
+
+            // =====================================
+            // 5. FILL PATIENT INFORMATION
+            // =====================================
+
+            const patientNameInput = document.getElementById("patientName");
+            const patientEmailInput = document.getElementById("patientEmail");
+            const patientGenderInput = document.getElementById("patientGender");
+
+            function restorePatientInformation() {
+                patientNameInput.value = defaultPatientName;
+                patientEmailInput.value = defaultPatientEmail;
+                patientGenderInput.value = defaultPatientGender;
+            }
+
+            restorePatientInformation();
+
+            // =====================================
+            // 6. SET MINIMUM APPOINTMENT DATE
+            // =====================================
+
+            const dateInput = document.getElementById("appointmentDate");
+
+            function getLocalDateString() {
+                const today = new Date();
+                const year = today.getFullYear();
+                const month = String(today.getMonth() + 1).padStart(2, "0");
+                const day = String(today.getDate()).padStart(2, "0");
+
+                return `${year}-${month}-${day}`;
+            }
+
+            const localToday = getLocalDateString();
+            dateInput.min = localToday;
+
+            // =====================================
+            // 7. LOAD CLINIC SERVICES
+            // =====================================
+
+            const serviceSelect = document.getElementById("service");
+            const services = readStorageArray("healora_services");
+
+            function addOption(selectElement, value, label) {
+                if (!value) return;
+
+                const exists = Array.from(selectElement.options).some(function (option) {
+                    return option.value.toLowerCase() === String(value).toLowerCase();
+                });
+
+                if (exists) return;
+
+                const option = document.createElement("option");
+                option.value = value;
+                option.textContent = label || value;
+
+                selectElement.appendChild(option);
+            }
+
+            services.forEach(function (service) {
+
+                const serviceName = typeof service === "string"
+                    ? service
+                    : service.name ||
+                      service.serviceName ||
+                      service.title ||
+                      "";
+
+                if (!serviceName) return;
+
+                // Show active services only when service status is available.
+                if (
+                    typeof service === "object" &&
+                    service.status &&
+                    String(service.status).toLowerCase() !== "active"
+                ) {
+                    return;
+                }
+
+                addOption(serviceSelect, serviceName, serviceName);
+            });
+
+            if (serviceSelect.options.length === 1) {
+
+                const fallbackServices = [
+                    "General Consultation",
+                    "Health Screening",
+                    "Vaccination",
+                    "Women's Health",
+                    "Paediatric Consultation",
+                    "Cardiology Consultation",
+                    "Dermatology Consultation",
+                    "Chronic Disease Management",
+                    "Minor Injury & Wound Care"
+                ];
+
+                fallbackServices.forEach(function (serviceName) {
+                    addOption(serviceSelect, serviceName, serviceName);
+                });
+            }
+
+            // =====================================
+            // 8. LOAD DOCTORS
+            // =====================================
+
+            const doctorSelect = document.getElementById("doctor");
+            const doctors = readStorageArray("healora_doctors");
+
+            doctors.forEach(function (doctor) {
+
+                const doctorName = typeof doctor === "string"
+                    ? doctor
+                    : doctor.name ||
+                      doctor.doctorName ||
+                      doctor.fullName ||
+                      "";
+
+                if (!doctorName) return;
+
+                if (
+                    typeof doctor === "object" &&
+                    doctor.status &&
+                    String(doctor.status).toLowerCase() !== "active"
+                ) {
+                    return;
+                }
+
+                addOption(doctorSelect, doctorName, doctorName);
+            });
+
+            if (doctorSelect.options.length === 1) {
+
+                const fallbackDoctors = [
+                    "Dr. Nur Aisyah Hassan",
+                    "Dr. Muhammad Amir Hakim",
+                    "Dr. Siti Hajar Abdullah",
+                    "Dr. Nurul Izzah Rahman",
+                    "Dr. Daniel Tan Wei Ming",
+                    "Dr. Lim Jia Hui",
+                    "Dr. Kavitha Raj",
+                    "Dr. Farah Nadia Ismail"
+                ];
+
+                fallbackDoctors.forEach(function (doctorName) {
+                    addOption(doctorSelect, doctorName, doctorName);
+                });
+            }
+
+            // =====================================
+            // 9. CHECK APPOINTMENT SLOT
+            // =====================================
+
+            function normalizeStatus(status) {
+                return String(status || "Pending").trim().toLowerCase();
+            }
+
+            function getAppointmentDoctor(appointment) {
+                return String(
+                    appointment.doctorName ||
+                    appointment.doctor ||
+                    ""
+                ).trim().toLowerCase();
+            }
+
+            function getAppointmentDate(appointment) {
+                return String(
+                    appointment.appointmentDate ||
+                    appointment.date ||
+                    ""
+                ).trim();
+            }
+
+            function getAppointmentTime(appointment) {
+                return String(
+                    appointment.appointmentTime ||
+                    appointment.time ||
+                    appointment.slot ||
+                    ""
+                ).trim().toLowerCase();
+            }
+
+            function isActiveAppointment(appointment) {
+                const status = normalizeStatus(appointment.status);
+
+                return ![
+                    "cancelled",
+                    "canceled",
+                    "rejected",
+                    "completed"
+                ].includes(status);
+            }
+
+            // =====================================
+            // 10. SUBMIT APPOINTMENT
+            // =====================================
+
+            const bookingForm = document.getElementById("bookingForm");
+
+            bookingForm.addEventListener("submit", function (event) {
+
+                event.preventDefault();
+
+                if (!bookingForm.checkValidity()) {
+                    bookingForm.reportValidity();
+                    return;
+                }
+
+                // Get the latest values entered by the patient.
+                const enteredPatientName = patientNameInput.value.trim();
+                const enteredPatientEmail = patientEmailInput.value.trim();
+                const enteredPatientGender = patientGenderInput.value;
+
+                if (!enteredPatientName || !enteredPatientEmail || !enteredPatientGender) {
+                    alert("Please complete all patient information fields.");
+                    return;
+                }
+
+                const selectedDate = dateInput.value;
+
+                if (selectedDate < localToday) {
+                    alert("Please select a valid appointment date.");
+                    return;
+                }
+
+                const selectedService = serviceSelect.value;
+                const selectedDoctor = doctorSelect.value;
+                const selectedTime = document.getElementById("appointmentTime").value;
+                const selectedReason = document.getElementById("reason").value;
+                const additionalNotes = document.getElementById("notes").value.trim();
+
+                const appointments = readStorageArray("healora_appointments");
+
+                // Check whether the selected doctor already has
+                // an active appointment at the same date and time.
+
+                const duplicateAppointment = appointments.some(function (appointment) {
+
+                    const sameDoctor =
+                        getAppointmentDoctor(appointment) ===
+                        selectedDoctor.trim().toLowerCase();
+
+                    const sameDate =
+                        getAppointmentDate(appointment) === selectedDate;
+
+                    const sameTime =
+                        getAppointmentTime(appointment) ===
+                        selectedTime.trim().toLowerCase();
+
+                    return (
+                        sameDoctor &&
+                        sameDate &&
+                        sameTime &&
+                        isActiveAppointment(appointment)
+                    );
+                });
+
+                if (duplicateAppointment) {
+                    alert(
+                        "This doctor already has an active appointment " +
+                        "for the selected date and time. Please choose another time."
+                    );
+                    return;
+                }
+
+                // Generate unique appointment reference.
+
+                const appointmentId = "APT" + Date.now();
+                const currentDateTime = new Date().toISOString();
+
+                // Save appointment details.
+
+                const newAppointment = {
+
+                    id: appointmentId,
+                    appointmentId: appointmentId,
+
+                    patientId: patientId,
+                    userId: currentUserId,
+
+                    patientName: enteredPatientName,
+                    patientEmail: enteredPatientEmail,
+                    gender: enteredPatientGender,
+
+                    service: selectedService,
+                    serviceName: selectedService,
+
+                    doctorName: selectedDoctor,
+                    doctor: selectedDoctor,
+
+                    date: selectedDate,
+                    appointmentDate: selectedDate,
+
+                    time: selectedTime,
+                    appointmentTime: selectedTime,
+                    slot: selectedTime,
+
+                    reason: selectedReason,
+                    visitReason: selectedReason,
+
+                    notes: additionalNotes,
+
+                    status: "Pending",
+
+                    createdAt: currentDateTime,
+                    bookingDate: currentDateTime
+                };
+
+                appointments.push(newAppointment);
+
+                const saved = saveStorageArray(
+                    "healora_appointments",
+                    appointments
+                );
+
+                if (!saved) {
+                    alert("Unable to save your appointment. Please try again.");
+                    return;
+                }
+
+                alert(
+                    "Your appointment request has been submitted successfully! " +
+                    "Your appointment status is Pending. " +
+                    "Please check My Appointments for updates."
+                );
+
+                bookingForm.reset();
+
+                // Restore default patient information after reset.
+
+                restorePatientInformation();
+
+                // Keep the date restriction after resetting.
+
+                dateInput.min = localToday;
+
+            });
+
+            // =====================================
+            // 11. CLEAR FORM
+            // =====================================
+
+            bookingForm.addEventListener("reset", function () {
+
+                setTimeout(function () {
+                    restorePatientInformation();
+                    dateInput.min = localToday;
+                }, 0);
+
+            });
+
+            // =====================================
+            // 12. MOBILE SIDEBAR
+            // =====================================
+
+            const sidebar = document.getElementById("sidebar");
+            const mobileToggle = document.getElementById("mobileToggle");
+            const sidebarOverlay = document.getElementById("sidebarOverlay");
+
+            mobileToggle.addEventListener("click", function () {
+                sidebar.classList.toggle("open");
+                sidebarOverlay.classList.toggle("show");
+            });
+
+            sidebarOverlay.addEventListener("click", function () {
+                sidebar.classList.remove("open");
+                sidebarOverlay.classList.remove("show");
+            });
+
+            document.querySelectorAll(".sidebar-nav a").forEach(function (link) {
+                link.addEventListener("click", function () {
+                    sidebar.classList.remove("open");
+                    sidebarOverlay.classList.remove("show");
+                });
+            });
+
+            // =====================================
+            // 13. LOGOUT
+            // =====================================
+
+            document.getElementById("logoutBtn").addEventListener("click", function (event) {
+
+                event.preventDefault();
+
+                if (
+                    window.HealoraStorage &&
+                    typeof window.HealoraStorage.logout === "function"
+                ) {
+                    window.HealoraStorage.logout();
+                }
+
+                window.location.href = "../index.html";
+
+            });
+
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,896 @@
+
+/* =========================================
+   HEALORA CLINIC - REGISTER PAGE
+   Patient Registration Design
+========================================= */
+
+
+/* =========================================
+   1. ROOT VARIABLES
+========================================= */
+
+.register-page {
+    --wine: #542532;
+    --wine-dark: #3d1b26;
+    --wine-deep: #2e141d;
+    --wine-light: #754451;
+
+    --gold: #c4a36a;
+    --gold-dark: #a78348;
+    --gold-light: #dfc99d;
+    --gold-pale: #efe4cd;
+
+    --ivory: #faf8f4;
+    --cream: #f3eee6;
+    --white: #ffffff;
+
+    --text-dark: #30272a;
+    --text-muted: #777075;
+    --border-soft: #e9e1d8;
+
+    margin: 0;
+    min-height: 100vh;
+    background: var(--ivory);
+    color: var(--text-dark);
+    font-family: "Manrope", sans-serif;
+}
+
+.register-page *,
+.register-page *::before,
+.register-page *::after {
+    box-sizing: border-box;
+}
+
+.register-page a {
+    text-decoration: none;
+}
+
+.register-page button,
+.register-page input {
+    font-family: "Manrope", sans-serif;
+}
+
+
+/* =========================================
+   2. NAVIGATION
+========================================= */
+
+.register-navbar {
+    height: 88px;
+    display: flex;
+    align-items: center;
+    background: rgba(250, 248, 244, 0.97);
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.register-navbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-mark {
+    width: 43px;
+    height: 43px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    color: var(--gold);
+    font-family: "Bodoni Moda", serif;
+    font-size: 25px;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.brand-name {
+    color: var(--wine);
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.brand-name span {
+    color: var(--gold-dark);
+    font-family: "Bodoni Moda", serif;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.brand-tagline {
+    margin-top: 6px;
+    color: var(--text-muted);
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 2.1px;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--wine);
+    font-size: 12px;
+    font-weight: 700;
+    transition: 0.3s ease;
+}
+
+.back-link:hover {
+    color: var(--gold-dark);
+    transform: translateX(-3px);
+}
+
+
+/* =========================================
+   3. MAIN LAYOUT
+========================================= */
+
+.register-main {
+    min-height: calc(100vh - 145px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 55px 24px;
+}
+
+.register-container {
+    width: 100%;
+    max-width: 1120px;
+    min-height: 690px;
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    background: var(--white);
+    border: 1px solid var(--border-soft);
+    box-shadow: 0 25px 70px rgba(48, 25, 32, 0.09);
+}
+
+
+/* =========================================
+   4. LEFT INTRO PANEL
+========================================= */
+
+.register-intro {
+    position: relative;
+    min-height: 690px;
+    overflow: hidden;
+    display: flex;
+    align-items: stretch;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(46, 20, 29, 0.94),
+            rgba(84, 37, 50, 0.86)
+        ),
+        url("../assets/images/clinic-interior.jpg") center / cover no-repeat;
+}
+
+.intro-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(223, 201, 157, 0.13),
+            transparent 38%
+        );
+}
+
+.intro-content {
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    padding: 65px 48px 35px;
+    color: var(--white);
+}
+
+.intro-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    color: var(--gold-light);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+}
+
+.intro-label span {
+    width: 25px;
+    height: 1px;
+    background: var(--gold);
+}
+
+.intro-content h1 {
+    margin: 35px 0 18px;
+
+    color: var(--white);
+    font-family: "Bodoni Moda", serif;
+    font-size: clamp(37px, 4vw, 51px);
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.intro-content h1 em {
+    color: var(--gold-light);
+    font-weight: 400;
+}
+
+.intro-content > p {
+    max-width: 370px;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 12px;
+    line-height: 2;
+}
+
+.intro-divider {
+    width: 100%;
+    height: 1px;
+    margin: 30px 0;
+    background: rgba(223, 201, 157, 0.25);
+}
+
+.intro-benefits {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.benefit-icon {
+    flex-shrink: 0;
+
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(223, 201, 157, 0.5);
+    border-radius: 50%;
+
+    color: var(--gold-light);
+    font-size: 17px;
+}
+
+.benefit-item h3 {
+    margin: 0 0 5px;
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.benefit-item p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+.intro-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+
+    margin-top: auto;
+    padding-top: 45px;
+
+    color: var(--gold-light);
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+
+/* =========================================
+   5. RIGHT FORM SECTION
+========================================= */
+
+.register-form-section {
+    padding: 55px 65px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-heading {
+    margin-bottom: 30px;
+}
+
+.form-eyebrow {
+    color: var(--gold-dark);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+}
+
+.form-heading h2 {
+    margin: 12px 0 10px;
+
+    color: var(--wine);
+    font-family: "Bodoni Moda", serif;
+    font-size: 36px;
+    font-weight: 500;
+}
+
+.form-heading h2 em {
+    color: var(--gold-dark);
+    font-weight: 400;
+}
+
+.form-heading p {
+    max-width: 390px;
+    margin: 0;
+
+    color: var(--text-muted);
+    font-size: 11px;
+    line-height: 1.9;
+}
+
+
+/* =========================================
+   6. FORM INPUTS
+========================================= */
+
+.register-page .form-group {
+    margin-bottom: 17px;
+}
+
+.register-page .form-group label {
+    display: block;
+    margin-bottom: 8px;
+
+    color: var(--text-dark);
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.register-page .form-group label > span {
+    color: #a65c5c;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper > i {
+    position: absolute;
+    left: 15px;
+
+    color: #a18c8e;
+    font-size: 14px;
+
+    pointer-events: none;
+}
+
+.input-wrapper input {
+    width: 100%;
+    height: 47px;
+
+    padding: 0 45px 0 43px;
+
+    border: 1px solid var(--border-soft);
+    border-radius: 2px;
+    outline: none;
+
+    background: #fdfcfb;
+    color: var(--text-dark);
+
+    font-family: "Manrope", sans-serif;
+    font-size: 11px;
+
+    transition: 0.25s ease;
+}
+
+.input-wrapper input::placeholder {
+    color: #aaa2a1;
+    font-size: 10px;
+}
+
+.input-wrapper input:focus {
+    border-color: var(--gold);
+    background: var(--white);
+    box-shadow: 0 0 0 3px rgba(196, 163, 106, 0.10);
+}
+
+.input-wrapper input:focus-visible {
+    outline: none;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 13px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 5px;
+    border: none;
+
+    background: transparent;
+    color: #938589;
+
+    font-size: 15px;
+    cursor: pointer;
+
+    transition: color 0.2s ease;
+}
+
+.password-toggle:hover {
+    color: var(--wine);
+}
+
+.password-toggle:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+    border-radius: 3px;
+}
+
+.field-hint {
+    display: block;
+    margin-top: 7px;
+
+    color: #92898b;
+    font-size: 9px;
+}
+
+
+/* =========================================
+   7. TERMS AND CONDITIONS
+========================================= */
+
+.terms-group {
+    margin: 22px 0 20px;
+}
+
+.terms-label {
+    position: relative;
+
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+
+    color: var(--text-muted);
+    font-size: 9px;
+    line-height: 1.8;
+
+    cursor: pointer;
+}
+
+.terms-label input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+}
+
+.custom-checkbox {
+    position: relative;
+    flex-shrink: 0;
+
+    width: 15px;
+    height: 15px;
+    margin-top: 1px;
+
+    border: 1px solid #cfc3b9;
+    background: var(--white);
+
+    transition: 0.2s ease;
+}
+
+.terms-label input:checked + .custom-checkbox {
+    border-color: var(--wine);
+    background: var(--wine);
+}
+
+.terms-label input:checked + .custom-checkbox::after {
+    content: "";
+
+    position: absolute;
+    top: 2px;
+    left: 4px;
+
+    width: 5px;
+    height: 8px;
+
+    border: solid var(--white);
+    border-width: 0 1.5px 1.5px 0;
+
+    transform: rotate(45deg);
+}
+
+.terms-label input:focus-visible + .custom-checkbox {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+}
+
+
+/* =========================================
+   8. FORM MESSAGE
+========================================= */
+
+.register-message {
+    display: none;
+
+    margin-bottom: 16px;
+    padding: 11px 13px;
+
+    border-radius: 2px;
+
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+.register-message.error,
+.register-message.success {
+    display: block;
+}
+
+.register-message.error {
+    border: 1px solid #e8caca;
+    background: #fff5f4;
+    color: #a34747;
+}
+
+.register-message.success {
+    border: 1px solid #c9dfcf;
+    background: #f3faf4;
+    color: #39734b;
+}
+
+
+/* =========================================
+   9. REGISTER BUTTON
+========================================= */
+
+.register-button {
+    width: 100%;
+    height: 49px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    border: 1px solid var(--wine);
+    background: var(--wine);
+    color: var(--white);
+
+    font-family: "Manrope", sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.register-button i {
+    font-size: 14px;
+    transition: transform 0.3s ease;
+}
+
+.register-button:hover {
+    border-color: var(--wine-dark);
+    background: var(--wine-dark);
+    box-shadow: 0 8px 20px rgba(84, 37, 50, 0.17);
+}
+
+.register-button:hover i {
+    transform: translateX(4px);
+}
+
+.register-button:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+}
+
+.register-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+
+/* =========================================
+   10. LOGIN PROMPT
+========================================= */
+
+.login-prompt {
+    margin-top: 23px;
+
+    color: var(--text-muted);
+    text-align: center;
+    font-size: 10px;
+}
+
+.login-prompt a {
+    margin-left: 4px;
+
+    color: var(--wine);
+    font-weight: 800;
+
+    transition: 0.2s ease;
+}
+
+.login-prompt a:hover {
+    color: var(--gold-dark);
+}
+
+
+/* =========================================
+   11. SECURITY NOTE
+========================================= */
+
+.register-security {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    margin-top: 28px;
+    padding-top: 19px;
+
+    border-top: 1px solid var(--border-soft);
+
+    color: #92898b;
+    font-size: 9px;
+}
+
+.register-security i {
+    color: var(--gold-dark);
+    font-size: 13px;
+}
+
+
+/* =========================================
+   12. FOOTER
+========================================= */
+
+.register-footer {
+    padding: 18px 20px;
+
+    border-top: 1px solid var(--border-soft);
+    background: var(--ivory);
+
+    text-align: center;
+}
+
+.register-footer p {
+    margin: 0;
+
+    color: #968d8e;
+    font-size: 9px;
+    letter-spacing: 0.3px;
+}
+
+
+/* =========================================
+   13. RESPONSIVE - TABLET
+========================================= */
+
+@media (max-width: 991px) {
+
+    .register-main {
+        padding: 40px 20px;
+    }
+
+    .register-container {
+        max-width: 720px;
+        grid-template-columns: 1fr;
+    }
+
+    .register-intro {
+        min-height: 390px;
+    }
+
+    .intro-content {
+        padding: 45px 40px 30px;
+    }
+
+    .intro-content h1 {
+        margin-top: 22px;
+        font-size: 42px;
+    }
+
+    .intro-divider {
+        margin: 20px 0;
+    }
+
+    .intro-benefits {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .intro-bottom {
+        padding-top: 30px;
+    }
+
+    .register-form-section {
+        padding: 45px 55px;
+    }
+
+}
+
+
+/* =========================================
+   14. RESPONSIVE - MOBILE
+========================================= */
+
+@media (max-width: 575px) {
+
+    .register-navbar {
+        height: 75px;
+    }
+
+    .brand-mark {
+        width: 37px;
+        height: 37px;
+        font-size: 22px;
+    }
+
+    .brand-name {
+        font-size: 17px;
+    }
+
+    .brand-tagline {
+        font-size: 7px;
+    }
+
+    .back-link {
+        gap: 5px;
+        font-size: 10px;
+    }
+
+    .register-main {
+        min-height: auto;
+        padding: 25px 13px;
+    }
+
+    .register-container {
+        border-radius: 2px;
+    }
+
+    .register-intro {
+        min-height: 360px;
+    }
+
+    .intro-content {
+        padding: 35px 25px 25px;
+    }
+
+    .intro-content h1 {
+        margin: 22px 0 12px;
+        font-size: 36px;
+    }
+
+    .intro-content > p {
+        font-size: 11px;
+    }
+
+    .intro-benefits {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .benefit-icon {
+        width: 37px;
+        height: 37px;
+        font-size: 15px;
+    }
+
+    .intro-bottom {
+        padding-top: 28px;
+        font-size: 7px;
+    }
+
+    .register-form-section {
+        padding: 35px 23px;
+    }
+
+    .form-heading {
+        margin-bottom: 25px;
+    }
+
+    .form-heading h2 {
+        font-size: 31px;
+    }
+
+    .form-heading p {
+        font-size: 10px;
+    }
+
+    .input-wrapper input {
+        height: 45px;
+    }
+
+    .register-footer {
+        padding: 16px 10px;
+    }
+
+}
+
+
+/* =========================================
+   15. SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+
+    .register-navbar .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .brand-logo {
+        gap: 8px;
+    }
+
+    .brand-name {
+        font-size: 15px;
+        letter-spacing: 1.5px;
+    }
+
+    .back-link {
+        font-size: 9px;
+    }
+
+    .intro-content {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .intro-content h1 {
+        font-size: 32px;
+    }
+
+    .register-form-section {
+        padding: 30px 18px;
+    }
+
+}
+
+
+/* =========================================
+   16. ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .register-page *,
+    .register-page *::before,
+    .register-page *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+}

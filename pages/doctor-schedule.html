@@ -1,0 +1,1658 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Schedule | Healora Clinic</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #FAF8F5;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            background: linear-gradient(180deg, #350017, #4A001F);
+        }
+
+        .sidebar-brand {
+            width: 100%;
+            padding: 28px 15px;
+            border-bottom: 1px solid rgba(247, 231, 206, 0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .brand-logo-light {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            width: 100%;
+            font-family: 'Manrope', sans-serif;
+            font-size: 27px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .brand-heal {
+            color: #D6B77A !important;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 800;
+        }
+
+        .brand-ora {
+            color: #F7E7CE !important;
+            font-family: 'Bodoni Moda', serif;
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        .brand-clinic {
+            color: #F7E7CE !important;
+            font-family: 'Manrope', sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            margin-top: 7px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .sidebar nav {
+            margin-top: 25px;
+        }
+
+        .sidebar a {
+            color: #F7E7CE;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 12px 18px;
+            margin: 4px 12px;
+            border-radius: 9px;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .sidebar a i {
+            color: #D6B77A;
+            font-size: 17px;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: #800020;
+            color: #FFFFFF;
+        }
+
+        .sidebar a.active {
+            border-left: 3px solid #D6B77A;
+        }
+
+        .sidebar-footer {
+            border-top: 1px solid rgba(247, 231, 206, 0.15);
+            padding: 18px;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            margin-left: 260px;
+            padding: 30px;
+            min-height: 100vh;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .page-heading {
+            font-family: 'Manrope', sans-serif;
+            font-weight: 800;
+            color: #4A001F;
+            font-size: 25px;
+        }
+
+        /* ADMIN PROFILE */
+        .admin-profile {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .admin-top-name {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 17px;
+            font-style: italic;
+            font-weight: 700;
+            color: #4A001F;
+        }
+
+        .admin-top-role {
+            font-family: 'Manrope', sans-serif;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #B89555;
+            margin-top: 3px;
+        }
+
+        .admin-top-logo {
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            border: 2px solid #D6B77A;
+            background: linear-gradient(145deg, #F7E7CE, #D6B77A);
+            color: #4A001F;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 29px;
+            font-weight: 700;
+        }
+
+        /* WELCOME BANNER */
+        .welcome-banner {
+            background: linear-gradient(135deg, #350017, #4A001F);
+            border-radius: 18px;
+            padding: 35px 38px;
+            margin-bottom: 28px;
+            border: 1px solid rgba(214, 183, 122, 0.35);
+            box-shadow: 0 8px 25px rgba(74, 0, 31, 0.12);
+        }
+
+        .welcome-content h2 {
+            color: #D6B77A;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 29px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .welcome-content p {
+            color: #F7E7CE;
+            font-size: 13px;
+            margin-bottom: 0;
+            opacity: 0.9;
+        }
+
+        /* STATISTICS */
+        .dashboard-stat {
+            background: #FFFFFF;
+            border: 1px solid #E8E2E5;
+            border-radius: 14px;
+            padding: 22px;
+            height: 100%;
+            box-shadow: 0 5px 18px rgba(74, 0, 31, 0.04);
+        }
+
+        .dashboard-stat .stat-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #F7E7CE;
+            color: #800020;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .dashboard-stat h3 {
+            color: #4A001F;
+            font-size: 27px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .dashboard-stat p {
+            color: #70666C;
+            font-size: 12px;
+            margin: 0;
+        }
+
+        /* SECTION */
+        .section-heading {
+            color: #4A001F;
+            font-size: 17px;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .section-description {
+            color: #958A90;
+            font-size: 11px;
+            margin-bottom: 0;
+        }
+
+        .btn-add {
+            background: #4A001F;
+            border: 1px solid #4A001F;
+            color: #FFFFFF;
+            padding: 11px 17px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .btn-add:hover {
+            background: #800020;
+            color: #FFFFFF;
+        }
+
+        /* FILTER PANEL */
+        .filter-panel {
+            background: #FFFFFF;
+            border: 1px solid #E8E2E5;
+            border-radius: 12px;
+            padding: 17px;
+            margin: 20px 0;
+            box-shadow: 0 5px 18px rgba(74, 0, 31, 0.03);
+        }
+
+        .filter-label {
+            display: block;
+            color: #70666C;
+            font-size: 10px;
+            font-weight: 800;
+            margin-bottom: 7px;
+        }
+
+        .form-control,
+        .form-select {
+            border: 1px solid #E8E2E5;
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 12px;
+            color: #292329;
+            box-shadow: none !important;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #B89555;
+        }
+
+        .btn-reset {
+            background: #F7E7CE;
+            border: 1px solid #E8D7B8;
+            color: #4A001F;
+            border-radius: 8px;
+            padding: 10px 15px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .btn-reset:hover {
+            background: #EED9B5;
+        }
+
+        /* SCHEDULE TABLE */
+        .schedule-card {
+            background: #FFFFFF;
+            border: 1px solid #E8E2E5;
+            border-radius: 14px;
+            padding: 22px;
+            box-shadow: 0 5px 18px rgba(74, 0, 31, 0.04);
+        }
+
+        .table {
+            margin-bottom: 0;
+            min-width: 850px;
+        }
+
+        .table thead th {
+            background: #4A001F !important;
+            color: #D6B77A !important;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 16px 13px;
+            border-bottom: 2px solid #B89555;
+            white-space: nowrap;
+        }
+
+        .table tbody td {
+            background: #FFFFFF;
+            color: #70666C;
+            padding: 15px 13px;
+            font-size: 12px;
+            vertical-align: middle;
+        }
+
+        .table tbody tr:nth-child(even) td {
+            background: #FAF8F5;
+        }
+
+        .table tbody tr:hover td {
+            background: #F7E7CE;
+            transition: 0.2s ease;
+        }
+
+        .doctor-name-cell {
+            color: #4A001F;
+            font-weight: 800;
+        }
+
+        .schedule-status {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 9px;
+            font-weight: 800;
+        }
+
+        .status-active {
+            background: #E6F2EA;
+            color: #326B4B;
+        }
+
+        .status-inactive {
+            background: #F8E8EA;
+            color: #98505A;
+        }
+
+        .action-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #E8E2E5;
+            background: #FFFFFF;
+            color: #4A001F;
+            border-radius: 7px;
+            margin-right: 3px;
+        }
+
+        .action-btn:hover {
+            background: #F7E7CE;
+            border-color: #D6B77A;
+        }
+
+        .action-btn.delete {
+            color: #A13C4A;
+        }
+
+        .action-btn.delete:hover {
+            background: #F8E8EA;
+            border-color: #E8BFC5;
+        }
+
+        /* WEEKLY OVERVIEW */
+        .overview-card {
+            background: #FFFFFF;
+            border: 1px solid #E8E2E5;
+            border-radius: 14px;
+            padding: 22px;
+            height: 100%;
+            box-shadow: 0 5px 18px rgba(74, 0, 31, 0.04);
+        }
+
+        .overview-card h5 {
+            color: #4A001F;
+            font-size: 15px;
+            font-weight: 800;
+            margin-bottom: 18px;
+        }
+
+        .day-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 11px 0;
+            border-bottom: 1px solid #F0EAED;
+            font-size: 11px;
+        }
+
+        .day-row:last-child {
+            border-bottom: none;
+        }
+
+        .day-name {
+            color: #4A001F;
+            font-weight: 700;
+        }
+
+        .day-count {
+            color: #B89555;
+            font-weight: 800;
+        }
+
+        /* EMPTY STATE */
+        .empty-state {
+            text-align: center;
+            padding: 45px 20px;
+            color: #70666C;
+        }
+
+        .empty-state i {
+            font-size: 38px;
+            color: #B89555;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .empty-state strong {
+            color: #4A001F;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* MODAL */
+        .modal-content {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #350017, #4A001F);
+            padding: 20px 24px;
+            border: none;
+        }
+
+        .modal-title {
+            color: #F7E7CE;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .modal-header .btn-close {
+            filter: invert(1);
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        .modal-footer {
+            border-top: 1px solid #E8E2E5;
+            padding: 15px 24px;
+        }
+
+        .modal-label {
+            color: #4A001F;
+            font-size: 11px;
+            font-weight: 800;
+            margin-bottom: 7px;
+        }
+
+        .btn-save {
+            background: #4A001F;
+            color: #FFFFFF;
+            border: 1px solid #4A001F;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .btn-save:hover {
+            background: #800020;
+            color: #FFFFFF;
+        }
+
+        .btn-cancel {
+            background: #F7E7CE;
+            color: #4A001F;
+            border: 1px solid #E8D7B8;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* FOOTER */
+        .dashboard-footer {
+            text-align: center;
+            padding: 25px 0 5px;
+            color: #958A90;
+            font-size: 11px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 991px) {
+            .sidebar {
+                width: 220px;
+            }
+
+            .main-content {
+                margin-left: 220px;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 18px;
+            }
+
+            .topbar {
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            .admin-top-name {
+                font-size: 14px;
+            }
+
+            .admin-top-logo {
+                width: 42px;
+                height: 42px;
+                font-size: 25px;
+            }
+
+            .welcome-banner {
+                padding: 25px 22px;
+            }
+        }
+    </style>
+</head>
+
+<body data-requires-auth="admin">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            <div class="brand-logo-light">
+                <span class="brand-heal">HEAL</span><span class="brand-ora">ORA</span>
+            </div>
+            <div class="brand-clinic">C L I N I C</div>
+        </div>
+
+        <nav>
+            <a href="admin-dashboard.html">
+                <i class="bi bi-grid-1x2-fill"></i>
+                Dashboard
+            </a>
+
+            <a href="appointments.html">
+                <i class="bi bi-calendar-check"></i>
+                Appointments
+            </a>
+
+            <a href="patients.html">
+                <i class="bi bi-people"></i>
+                Patients
+            </a>
+
+            <a href="doctors.html">
+                <i class="bi bi-person-badge"></i>
+                Doctors
+            </a>
+
+            <a href="doctor-schedule.html" class="active">
+                <i class="bi bi-calendar-week"></i>
+                Doctor Schedule
+            </a>
+
+            <a href="clinic-services.html">
+                <i class="bi bi-heart-pulse"></i>
+                Clinic Services
+            </a>
+
+            <a href="appointment-history.html">
+                <i class="bi bi-clock-history"></i>
+                Appointment History
+            </a>
+
+            <a href="reports.html">
+                <i class="bi bi-bar-chart-line"></i>
+                Reports
+            </a>
+
+            <a href="profile.html">
+                <i class="bi bi-person-circle"></i>
+                My Profile
+            </a>
+
+            <a href="help-support.html">
+                <i class="bi bi-question-circle"></i>
+                Help & Support
+            </a>
+        </nav>
+
+        <div class="sidebar-footer mt-4">
+
+            <div class="d-flex align-items-center gap-2 mb-3">
+
+                <div class="admin-top-logo"
+                     style="width:40px;height:40px;font-size:24px;">
+                    H
+                </div>
+
+                <div>
+                    <div class="admin-top-name"
+                         style="color:#F7E7CE;font-size:14px;">
+                        Healora Administrator
+                    </div>
+
+                    <div class="admin-top-role">ADMIN</div>
+                </div>
+
+            </div>
+
+            <a href="#" data-logout>
+                <i class="bi bi-box-arrow-left"></i>
+                Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+
+            <div>
+                <h1 class="page-heading mb-1">Doctor Schedule</h1>
+
+                <p class="text-muted small mb-0">
+                    Organise doctors' working hours and consultation schedules.
+                </p>
+            </div>
+
+            <div class="admin-profile">
+
+                <div class="text-end">
+                    <div class="admin-top-name">
+                        Healora Administrator
+                    </div>
+
+                    <div class="admin-top-role">ADMIN</div>
+                </div>
+
+                <div class="admin-top-logo">H</div>
+
+            </div>
+
+        </div>
+
+        <!-- WELCOME BANNER -->
+        <section class="welcome-banner">
+
+            <div class="welcome-content">
+                <h2>Manage Doctor Availability</h2>
+
+                <p>
+                    Keep track of doctors' working days, consultation hours
+                    and assigned rooms to support smooth clinic operations.
+                </p>
+            </div>
+
+        </section>
+
+        <!-- STATISTICS -->
+        <section class="row g-3 mb-4">
+
+            <div class="col-6 col-xl-3">
+                <div class="dashboard-stat">
+                    <div class="stat-icon">
+                        <i class="bi bi-calendar2-week"></i>
+                    </div>
+
+                    <h3 id="totalSchedules">0</h3>
+                    <p>Total Schedules</p>
+                </div>
+            </div>
+
+            <div class="col-6 col-xl-3">
+                <div class="dashboard-stat">
+                    <div class="stat-icon">
+                        <i class="bi bi-person-check"></i>
+                    </div>
+
+                    <h3 id="scheduledDoctors">0</h3>
+                    <p>Scheduled Doctors</p>
+                </div>
+            </div>
+
+            <div class="col-6 col-xl-3">
+                <div class="dashboard-stat">
+                    <div class="stat-icon">
+                        <i class="bi bi-check-circle"></i>
+                    </div>
+
+                    <h3 id="activeSchedules">0</h3>
+                    <p>Active Schedules</p>
+                </div>
+            </div>
+
+            <div class="col-6 col-xl-3">
+                <div class="dashboard-stat">
+                    <div class="stat-icon">
+                        <i class="bi bi-door-open"></i>
+                    </div>
+
+                    <h3 id="totalRooms">0</h3>
+                    <p>Rooms Used</p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- DIRECTORY HEADING -->
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+
+            <div>
+                <h4 class="section-heading">Schedule Directory</h4>
+
+                <p class="section-description">
+                    View and manage doctors' consultation schedules.
+                </p>
+            </div>
+
+            <button class="btn-add" type="button" onclick="openAddModal()">
+                <i class="bi bi-plus-lg me-2"></i>
+                Add Schedule
+            </button>
+
+        </div>
+
+        <!-- SEARCH AND FILTER -->
+        <section class="filter-panel">
+
+            <div class="row g-3 align-items-end">
+
+                <div class="col-lg-4 col-md-6">
+                    <label class="filter-label" for="searchSchedule">
+                        SEARCH SCHEDULE
+                    </label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="searchSchedule"
+                        placeholder="Search doctor or room..."
+                    >
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <label class="filter-label" for="dayFilter">
+                        DAY
+                    </label>
+
+                    <select class="form-select" id="dayFilter">
+                        <option value="">All Days</option>
+                        <option>Monday</option>
+                        <option>Tuesday</option>
+                        <option>Wednesday</option>
+                        <option>Thursday</option>
+                        <option>Friday</option>
+                        <option>Saturday</option>
+                        <option>Sunday</option>
+                    </select>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <label class="filter-label" for="statusFilter">
+                        STATUS
+                    </label>
+
+                    <select class="form-select" id="statusFilter">
+                        <option value="">All Status</option>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+                    <button class="btn-reset w-100" type="button" id="resetFilters">
+                        <i class="bi bi-arrow-counterclockwise me-1"></i>
+                        Reset
+                    </button>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- WEEKLY OVERVIEW -->
+        <section class="overview-card mb-4">
+
+            <h5>
+                <i class="bi bi-calendar3 me-2" style="color:#B89555;"></i>
+                Weekly Schedule Overview
+            </h5>
+
+            <div class="row g-3" id="weeklyOverview"></div>
+
+        </section>
+
+        <!-- SCHEDULE TABLE -->
+        <section class="schedule-card">
+
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+
+                <div>
+                    <h4 class="section-heading">All Doctor Schedules</h4>
+
+                    <p class="section-description">
+                        Complete list of registered doctor schedules.
+                    </p>
+                </div>
+
+                <span class="small text-muted" id="scheduleCount">
+                    0 schedules
+                </span>
+
+            </div>
+
+            <div class="table-responsive">
+
+                <table class="table align-middle">
+
+                    <thead>
+                        <tr>
+                            <th>Doctor</th>
+                            <th>Day</th>
+                            <th>Working Hours</th>
+                            <th>Room</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="scheduleTableBody">
+                        <tr>
+                            <td colspan="6" class="text-center text-muted py-4">
+                                Loading schedules...
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="dashboard-footer">
+
+            © 2026 Healora Clinic. All Rights Reserved.
+
+            <br>
+
+            <span class="fst-italic">
+                Your Health, Our Priority.
+            </span>
+
+        </footer>
+
+    </main>
+
+    <!-- ADD / EDIT SCHEDULE MODAL -->
+    <div class="modal fade" id="scheduleModal" tabindex="-1" aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="scheduleModalTitle">
+                        Add Doctor Schedule
+                    </h5>
+
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close">
+                    </button>
+
+                </div>
+
+                <form id="scheduleForm">
+
+                    <div class="modal-body">
+
+                        <input type="hidden" id="scheduleId">
+
+                        <div class="mb-3">
+                            <label class="modal-label" for="doctorId">
+                                Select Doctor
+                            </label>
+
+                            <select class="form-select" id="doctorId" required>
+                                <option value="">Choose a doctor</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="modal-label" for="scheduleDay">
+                                Working Day
+                            </label>
+
+                            <select class="form-select" id="scheduleDay" required>
+                                <option value="">Select a day</option>
+                                <option>Monday</option>
+                                <option>Tuesday</option>
+                                <option>Wednesday</option>
+                                <option>Thursday</option>
+                                <option>Friday</option>
+                                <option>Saturday</option>
+                                <option>Sunday</option>
+                            </select>
+                        </div>
+
+                        <div class="row g-3 mb-3">
+
+                            <div class="col-6">
+                                <label class="modal-label" for="startTime">
+                                    Start Time
+                                </label>
+
+                                <input type="time"
+                                       class="form-control"
+                                       id="startTime"
+                                       required>
+                            </div>
+
+                            <div class="col-6">
+                                <label class="modal-label" for="endTime">
+                                    End Time
+                                </label>
+
+                                <input type="time"
+                                       class="form-control"
+                                       id="endTime"
+                                       required>
+                            </div>
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="modal-label" for="room">
+                                Consultation Room
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   id="room"
+                                   placeholder="e.g. Room 01"
+                                   required>
+                        </div>
+
+                        <div class="mb-2">
+                            <label class="modal-label" for="scheduleStatus">
+                                Schedule Status
+                            </label>
+
+                            <select class="form-select" id="scheduleStatus" required>
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+
+                        <button type="button"
+                                class="btn-cancel"
+                                data-bs-dismiss="modal">
+                            Cancel
+                        </button>
+
+                        <button type="submit" class="btn-save">
+                            <i class="bi bi-floppy me-2"></i>
+                            Save Schedule
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/data.js"></script>
+    <script src="../js/auth.js"></script>
+
+    <script>
+        const SCHEDULE_KEY = 'healora_doctor_schedules';
+
+        const DAYS = [
+            'Monday',
+            'Tuesday',
+            'Wednesday',
+            'Thursday',
+            'Friday',
+            'Saturday',
+            'Sunday'
+        ];
+
+        let schedules = [];
+        let doctors = [];
+        let scheduleModal;
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            scheduleModal = new bootstrap.Modal(
+                document.getElementById('scheduleModal')
+            );
+
+            loadDoctors();
+            loadSchedules();
+
+            document.getElementById('searchSchedule')
+                .addEventListener('input', renderSchedules);
+
+            document.getElementById('dayFilter')
+                .addEventListener('change', renderSchedules);
+
+            document.getElementById('statusFilter')
+                .addEventListener('change', renderSchedules);
+
+            document.getElementById('resetFilters')
+                .addEventListener('click', resetFilters);
+
+            document.getElementById('scheduleForm')
+                .addEventListener('submit', saveSchedule);
+
+        });
+
+        /* LOAD DOCTORS */
+        function loadDoctors() {
+
+            try {
+                doctors = HealoraStorage.getDoctors() || [];
+            } catch (error) {
+                console.error('Unable to load doctors:', error);
+                doctors = [];
+            }
+
+            const select = document.getElementById('doctorId');
+
+            select.innerHTML = '<option value="">Choose a doctor</option>';
+
+            doctors.forEach(doctor => {
+
+                const option = document.createElement('option');
+
+                option.value = doctor.id;
+                option.textContent = doctor.name || 'Unnamed Doctor';
+
+                select.appendChild(option);
+
+            });
+
+        }
+
+        /* LOAD SCHEDULES */
+        function loadSchedules() {
+
+            try {
+                schedules = JSON.parse(localStorage.getItem(SCHEDULE_KEY)) || [];
+
+                if (!Array.isArray(schedules)) {
+                    schedules = [];
+                }
+
+            } catch (error) {
+
+                console.error('Unable to load schedules:', error);
+                schedules = [];
+
+            }
+
+            updateStatistics();
+            renderSchedules();
+            renderWeeklyOverview();
+
+        }
+
+        /* SAVE SCHEDULE DATA */
+        function persistSchedules() {
+
+            localStorage.setItem(
+                SCHEDULE_KEY,
+                JSON.stringify(schedules)
+            );
+
+        }
+
+        /* GET DOCTOR NAME */
+        function getDoctorName(doctorId) {
+
+            const doctor = doctors.find(
+                item => String(item.id) === String(doctorId)
+            );
+
+            return doctor
+                ? doctor.name
+                : 'Unknown Doctor';
+
+        }
+
+        /* UPDATE STATISTICS */
+        function updateStatistics() {
+
+            const total = schedules.length;
+
+            const active = schedules.filter(
+                item => item.status === 'Active'
+            ).length;
+
+            const uniqueDoctors = new Set(
+                schedules.map(item => String(item.doctorId))
+            );
+
+            const uniqueRooms = new Set(
+                schedules
+                    .filter(item => item.room)
+                    .map(item => item.room.trim().toLowerCase())
+            );
+
+            document.getElementById('totalSchedules').textContent = total;
+
+            document.getElementById('scheduledDoctors').textContent =
+                uniqueDoctors.size;
+
+            document.getElementById('activeSchedules').textContent =
+                active;
+
+            document.getElementById('totalRooms').textContent =
+                uniqueRooms.size;
+
+        }
+
+        /* RENDER SCHEDULE TABLE */
+        function renderSchedules() {
+
+            const tbody = document.getElementById('scheduleTableBody');
+
+            const search = document.getElementById('searchSchedule')
+                .value.toLowerCase().trim();
+
+            const selectedDay = document.getElementById('dayFilter').value;
+
+            const selectedStatus = document.getElementById('statusFilter').value;
+
+            const filtered = schedules.filter(item => {
+
+                const doctorName = getDoctorName(item.doctorId).toLowerCase();
+
+                const room = (item.room || '').toLowerCase();
+
+                const matchesSearch =
+                    doctorName.includes(search) ||
+                    room.includes(search);
+
+                const matchesDay =
+                    !selectedDay || item.day === selectedDay;
+
+                const matchesStatus =
+                    !selectedStatus || item.status === selectedStatus;
+
+                return matchesSearch && matchesDay && matchesStatus;
+
+            }).sort((a, b) => {
+
+                return DAYS.indexOf(a.day) - DAYS.indexOf(b.day);
+
+            });
+
+            document.getElementById('scheduleCount').textContent =
+                `${filtered.length} schedule${filtered.length === 1 ? '' : 's'}`;
+
+            if (filtered.length === 0) {
+
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6">
+                            <div class="empty-state">
+                                <i class="bi bi-calendar-x"></i>
+                                <strong>No Schedules Found</strong>
+                                <span>No matching doctor schedules are available.</span>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+
+                return;
+
+            }
+
+            tbody.innerHTML = filtered.map(item => {
+
+                const doctorName = escapeHTML(getDoctorName(item.doctorId));
+                const room = escapeHTML(item.room || '-');
+
+                const status = item.status === 'Inactive'
+                    ? 'Inactive'
+                    : 'Active';
+
+                return `
+                    <tr>
+
+                        <td>
+                            <span class="doctor-name-cell">
+                                ${doctorName}
+                            </span>
+                        </td>
+
+                        <td>${escapeHTML(item.day)}</td>
+
+                        <td>
+                            ${escapeHTML(formatTime(item.startTime))}
+                            -
+                            ${escapeHTML(formatTime(item.endTime))}
+                        </td>
+
+                        <td>${room}</td>
+
+                        <td>
+                            <span class="schedule-status ${
+                                status === 'Active'
+                                    ? 'status-active'
+                                    : 'status-inactive'
+                            }">
+                                ${status}
+                            </span>
+                        </td>
+
+                        <td>
+                            <button
+                                class="action-btn"
+                                type="button"
+                                title="Edit"
+                                onclick="editSchedule('${escapeJS(item.id)}')">
+
+                                <i class="bi bi-pencil-square"></i>
+
+                            </button>
+
+                            <button
+                                class="action-btn delete"
+                                type="button"
+                                title="Delete"
+                                onclick="deleteSchedule('${escapeJS(item.id)}')">
+
+                                <i class="bi bi-trash"></i>
+
+                            </button>
+                        </td>
+
+                    </tr>
+                `;
+
+            }).join('');
+
+        }
+
+        /* WEEKLY OVERVIEW */
+        function renderWeeklyOverview() {
+
+            const container = document.getElementById('weeklyOverview');
+
+            container.innerHTML = DAYS.map(day => {
+
+                const count = schedules.filter(
+                    item => item.day === day && item.status === 'Active'
+                ).length;
+
+                return `
+                    <div class="col-6 col-md">
+                        <div class="day-row">
+                            <span class="day-name">${day.substring(0, 3)}</span>
+                            <span class="day-count">${count}</span>
+                        </div>
+                    </div>
+                `;
+
+            }).join('');
+
+        }
+
+        /* OPEN ADD MODAL */
+        function openAddModal() {
+
+            if (doctors.length === 0) {
+                alert('Please add a doctor in the Doctors page before creating a schedule.');
+                return;
+            }
+
+            document.getElementById('scheduleForm').reset();
+
+            document.getElementById('scheduleId').value = '';
+
+            document.getElementById('scheduleStatus').value = 'Active';
+
+            document.getElementById('scheduleModalTitle').textContent =
+                'Add Doctor Schedule';
+
+            scheduleModal.show();
+
+        }
+
+        /* EDIT SCHEDULE */
+        function editSchedule(id) {
+
+            const item = schedules.find(
+                schedule => String(schedule.id) === String(id)
+            );
+
+            if (!item) {
+                alert('Schedule record could not be found.');
+                return;
+            }
+
+            document.getElementById('scheduleId').value = item.id;
+            document.getElementById('doctorId').value = item.doctorId;
+            document.getElementById('scheduleDay').value = item.day;
+            document.getElementById('startTime').value = item.startTime;
+            document.getElementById('endTime').value = item.endTime;
+            document.getElementById('room').value = item.room;
+            document.getElementById('scheduleStatus').value = item.status;
+
+            document.getElementById('scheduleModalTitle').textContent =
+                'Edit Doctor Schedule';
+
+            scheduleModal.show();
+
+        }
+
+        /* CHECK TIME OVERLAP */
+        function hasScheduleOverlap(data, currentId) {
+
+            if (data.status !== 'Active') {
+                return false;
+            }
+
+            return schedules.some(item => {
+
+                if (String(item.id) === String(currentId)) {
+                    return false;
+                }
+
+                if (
+                    String(item.doctorId) !== String(data.doctorId) ||
+                    item.day !== data.day ||
+                    item.status !== 'Active'
+                ) {
+                    return false;
+                }
+
+                return (
+                    data.startTime < item.endTime &&
+                    data.endTime > item.startTime
+                );
+
+            });
+
+        }
+
+        /* SAVE SCHEDULE */
+        function saveSchedule(event) {
+
+            event.preventDefault();
+
+            const id = document.getElementById('scheduleId').value;
+
+            const data = {
+
+                doctorId: document.getElementById('doctorId').value,
+
+                day: document.getElementById('scheduleDay').value,
+
+                startTime: document.getElementById('startTime').value,
+
+                endTime: document.getElementById('endTime').value,
+
+                room: document.getElementById('room').value.trim(),
+
+                status: document.getElementById('scheduleStatus').value
+
+            };
+
+            if (
+                !data.doctorId ||
+                !data.day ||
+                !data.startTime ||
+                !data.endTime ||
+                !data.room
+            ) {
+
+                alert('Please complete all required fields.');
+                return;
+
+            }
+
+            if (data.startTime >= data.endTime) {
+
+                alert('End time must be later than start time.');
+                return;
+
+            }
+
+            if (hasScheduleOverlap(data, id)) {
+
+                alert('This doctor already has an overlapping schedule on the selected day.');
+                return;
+
+            }
+
+            const duplicateRoom = schedules.some(item => {
+
+                if (
+                    String(item.id) === String(id) ||
+                    item.day !== data.day ||
+                    item.room.toLowerCase() !== data.room.toLowerCase() ||
+                    item.status !== 'Active' ||
+                    data.status !== 'Active'
+                ) {
+                    return false;
+                }
+
+                return (
+                    data.startTime < item.endTime &&
+                    data.endTime > item.startTime
+                );
+
+            });
+
+            if (duplicateRoom) {
+
+                alert('This room is already assigned to another doctor during the selected time.');
+                return;
+
+            }
+
+            const now = new Date().toISOString();
+
+            if (id) {
+
+                const index = schedules.findIndex(
+                    item => String(item.id) === String(id)
+                );
+
+                if (index === -1) {
+                    alert('Schedule record could not be found.');
+                    return;
+                }
+
+                schedules[index] = {
+                    ...schedules[index],
+                    ...data,
+                    updatedAt: now
+                };
+
+                alert('Doctor schedule updated successfully.');
+
+            } else {
+
+                schedules.push({
+
+                    id: 'SCH-' + Date.now(),
+
+                    ...data,
+
+                    createdAt: now,
+                    updatedAt: now
+
+                });
+
+                alert('New doctor schedule added successfully.');
+
+            }
+
+            try {
+
+                persistSchedules();
+
+                scheduleModal.hide();
+
+                loadSchedules();
+
+            } catch (error) {
+
+                console.error('Unable to save schedule:', error);
+
+                alert('Unable to save schedule. Please try again.');
+
+            }
+
+        }
+
+        /* DELETE SCHEDULE */
+        function deleteSchedule(id) {
+
+            const item = schedules.find(
+                schedule => String(schedule.id) === String(id)
+            );
+
+            if (!item) {
+                alert('Schedule record could not be found.');
+                return;
+            }
+
+            const doctorName = getDoctorName(item.doctorId);
+
+            if (!confirm(`Delete the schedule for ${doctorName} on ${item.day}?`)) {
+                return;
+            }
+
+            schedules = schedules.filter(
+                schedule => String(schedule.id) !== String(id)
+            );
+
+            try {
+
+                persistSchedules();
+
+                loadSchedules();
+
+                alert('Doctor schedule deleted successfully.');
+
+            } catch (error) {
+
+                console.error('Unable to delete schedule:', error);
+
+                alert('Unable to delete schedule. Please try again.');
+
+            }
+
+        }
+
+        /* RESET FILTERS */
+        function resetFilters() {
+
+            document.getElementById('searchSchedule').value = '';
+            document.getElementById('dayFilter').value = '';
+            document.getElementById('statusFilter').value = '';
+
+            renderSchedules();
+
+        }
+
+        /* FORMAT TIME */
+        function formatTime(time) {
+
+            if (!time) return '-';
+
+            const [hours, minutes] = time.split(':');
+
+            const date = new Date();
+
+            date.setHours(Number(hours), Number(minutes));
+
+            return date.toLocaleTimeString('en-US', {
+                hour: 'numeric',
+                minute: '2-digit',
+                hour12: true
+            });
+
+        }
+
+        /* ESCAPE HTML */
+        function escapeHTML(value) {
+
+            return String(value).replace(/[&<>"']/g, function (character) {
+
+                const entities = {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#039;'
+                };
+
+                return entities[character];
+
+            });
+
+        }
+
+        /* ESCAPE JAVASCRIPT */
+        function escapeJS(value) {
+
+            return String(value)
+                .replace(/\\/g, '\\\\')
+                .replace(/'/g, "\\'")
+                .replace(/"/g, '\\"')
+                .replace(/\n/g, '\\n')
+                .replace(/\r/g, '\\r');
+
+        }
+
+    </script>
+
+</body>
+</html>

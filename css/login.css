@@ -1,0 +1,968 @@
+
+/* =========================================================
+   HEALORA CLINIC
+   LOGIN PAGE STYLESHEET
+   ========================================================= */
+
+
+/* =========================================================
+   01. ROOT & GLOBAL
+========================================================= */
+
+.login-page {
+    --wine: #542532;
+    --wine-dark: #3d1b26;
+    --wine-deep: #2e141d;
+    --wine-light: #754451;
+
+    --gold: #c4a36a;
+    --gold-dark: #a78348;
+    --gold-light: #dfc99d;
+    --gold-pale: #efe4cd;
+
+    --ivory: #faf8f4;
+    --cream: #f3eee6;
+    --white: #ffffff;
+
+    --text-dark: #30272a;
+    --text-muted: #777075;
+    --border-soft: #e9e1d8;
+
+    --font-heading: "Bodoni Moda", Georgia, serif;
+    --font-body: "Manrope", Arial, sans-serif;
+
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    color: var(--text-dark);
+    background: var(--ivory);
+    font-family: var(--font-body);
+}
+
+.login-page *,
+.login-page *::before,
+.login-page *::after {
+    box-sizing: border-box;
+}
+
+.login-page a {
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.login-page button,
+.login-page input {
+    font-family: var(--font-body);
+}
+
+
+/* =========================================================
+   02. NAVIGATION & BRAND
+========================================================= */
+
+.login-page .login-navbar {
+    position: relative;
+    z-index: 10;
+    padding: 19px 0;
+    background: var(--wine-deep);
+    border-bottom: 1px solid rgba(223, 201, 157, 0.2);
+}
+
+.login-page .login-navbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.login-page .healora-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--white);
+}
+
+.login-page .logo-monogram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    color: var(--gold-light);
+    font-family: var(--font-heading);
+    font-size: 26px;
+    font-style: italic;
+    font-weight: 500;
+    box-shadow:
+        inset 0 0 0 3px var(--wine-deep),
+        0 0 0 1px rgba(223, 201, 157, 0.35);
+}
+
+.login-page .logo-branding {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-page .logo-word {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 25px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    line-height: 1.05;
+}
+
+.login-page .logo-heal {
+    color: var(--gold);
+}
+
+.login-page .logo-ora {
+    color: var(--gold-light);
+    font-style: italic;
+    font-weight: 400;
+}
+
+.login-page .logo-branding small {
+    display: block;
+    margin-top: 5px;
+    color: var(--gold-pale);
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 2.8px;
+}
+
+.login-page .back-home-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--gold-light);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.login-page .back-home-link:hover {
+    color: var(--white);
+    gap: 13px;
+}
+
+
+/* =========================================================
+   03. MAIN LOGIN AREA
+========================================================= */
+
+.login-page .login-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 65px 0;
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(196, 163, 106, 0.09),
+            transparent 30%
+        ),
+        var(--ivory);
+}
+
+.login-page .login-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 0.88fr;
+    width: calc(100% - 48px);
+    max-width: 1080px;
+    min-height: 620px;
+    margin: 0 auto;
+    background: var(--white);
+    border: 1px solid var(--border-soft);
+    box-shadow: 0 25px 70px rgba(46, 20, 29, 0.12);
+}
+
+
+/* =========================================================
+   04. LEFT VISUAL PANEL
+========================================================= */
+
+.login-page .login-visual {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    min-height: 620px;
+    overflow: hidden;
+    padding: 65px 55px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(46, 20, 29, 0.97),
+            rgba(84, 37, 50, 0.89)
+        ),
+        url("../assets/images/clinic-interior.jpg") center / cover no-repeat;
+}
+
+.login-page .visual-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(223, 201, 157, 0.14),
+            transparent 32%
+        ),
+        linear-gradient(
+            0deg,
+            rgba(46, 20, 29, 0.25),
+            transparent 55%
+        );
+}
+
+.login-page .login-visual::before {
+    content: "";
+    position: absolute;
+    top: 28px;
+    right: 28px;
+    bottom: 28px;
+    left: 28px;
+    border: 1px solid rgba(223, 201, 157, 0.28);
+    pointer-events: none;
+}
+
+.login-page .visual-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.login-page .visual-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    color: var(--gold-light);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+}
+
+.login-page .visual-eyebrow span {
+    width: 25px;
+    height: 1px;
+    background: var(--gold);
+}
+
+.login-page .visual-content h1 {
+    max-width: 420px;
+    margin: 32px 0 20px;
+    color: var(--white);
+    font-family: var(--font-heading);
+    font-size: clamp(43px, 5vw, 62px);
+    font-weight: 400;
+    line-height: 1.15;
+}
+
+.login-page .visual-content h1 em {
+    display: block;
+    color: var(--gold-light);
+    font-weight: 400;
+}
+
+.login-page .visual-content > p {
+    max-width: 390px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 11px;
+    line-height: 2;
+}
+
+.login-page .visual-divider {
+    width: 55px;
+    height: 1px;
+    margin: 35px 0 30px;
+    background: var(--gold);
+}
+
+.login-page .visual-points {
+    display: grid;
+    gap: 24px;
+}
+
+.login-page .visual-point {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.login-page .visual-point-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    flex-shrink: 0;
+    color: var(--gold-light);
+    background: rgba(223, 201, 157, 0.1);
+    border: 1px solid rgba(223, 201, 157, 0.38);
+    font-size: 18px;
+}
+
+.login-page .visual-point h3 {
+    margin: 0 0 4px;
+    color: var(--white);
+    font-family: var(--font-heading);
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.login-page .visual-point p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 9px;
+}
+
+.login-page .visual-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding-top: 20px;
+    margin-top: auto;
+    border-top: 1px solid rgba(223, 201, 157, 0.25);
+}
+
+.login-page .visual-footer span {
+    color: var(--gold-light);
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+
+/* =========================================================
+   05. RIGHT LOGIN FORM PANEL
+========================================================= */
+
+.login-page .login-form-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 65px 55px;
+    background: var(--white);
+}
+
+.login-page .login-form-content {
+    width: 100%;
+    max-width: 390px;
+}
+
+.login-page .form-heading {
+    margin-bottom: 40px;
+}
+
+.login-page .form-eyebrow {
+    display: inline-block;
+    margin-bottom: 16px;
+    color: var(--gold-dark);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+}
+
+.login-page .form-heading h2 {
+    margin-bottom: 14px;
+    color: var(--wine-dark);
+    font-family: var(--font-heading);
+    font-size: clamp(38px, 4vw, 48px);
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.login-page .form-heading h2 em {
+    color: var(--gold-dark);
+    font-weight: 400;
+}
+
+.login-page .form-heading p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   06. FORM INPUTS
+========================================================= */
+
+.login-page .form-group-custom {
+    margin-bottom: 25px;
+}
+
+.login-page .form-group-custom label {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--wine);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.4px;
+}
+
+.login-page .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 54px;
+    background: var(--ivory);
+    border: 1px solid var(--border-soft);
+    transition: all 0.3s ease;
+}
+
+.login-page .input-wrapper:focus-within {
+    background: var(--white);
+    border-color: var(--gold-dark);
+    box-shadow: 0 0 0 3px rgba(196, 163, 106, 0.12);
+}
+
+.login-page .input-wrapper > i:first-child {
+    position: absolute;
+    left: 17px;
+    color: var(--gold-dark);
+    font-size: 16px;
+    pointer-events: none;
+}
+
+.login-page .input-wrapper input {
+    width: 100%;
+    height: 52px;
+    padding: 0 48px;
+    color: var(--text-dark);
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 10px;
+}
+
+.login-page .input-wrapper input::placeholder {
+    color: #aaa2a1;
+    font-size: 9px;
+}
+
+.login-page .input-wrapper input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.login-page .password-toggle {
+    position: absolute;
+    right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    color: var(--text-muted);
+    background: transparent;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.login-page .password-toggle:hover {
+    color: var(--gold-dark);
+}
+
+.login-page .password-toggle:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+    border-radius: 3px;
+}
+
+
+/* =========================================================
+   07. LOGIN OPTIONS
+========================================================= */
+
+.login-page .login-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin: 3px 0 25px;
+}
+
+.login-page .remember-option {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--text-muted);
+    font-size: 9px;
+    cursor: pointer;
+}
+
+.login-page .remember-option input {
+    width: 14px;
+    height: 14px;
+    accent-color: var(--wine);
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   08. LOGIN ERROR & SUCCESS MESSAGES
+========================================================= */
+
+.login-page .login-error {
+    padding: 12px 14px;
+    margin-bottom: 20px;
+    border: 1px solid #f0d0ca;
+    border-left: 3px solid #b94b45;
+    color: #9d3030;
+    background: #fff1ef;
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+.login-page .login-error.error {
+    border-color: #f0d0ca;
+    border-left-color: #b94b45;
+    color: #9d3030;
+    background: #fff1ef;
+}
+
+.login-page .login-error.success {
+    border-color: #c9dfcf;
+    border-left-color: #4c9361;
+    color: #39734b;
+    background: #f3faf4;
+}
+
+.login-page .login-error[hidden] {
+    display: none !important;
+}
+
+
+/* =========================================================
+   09. LOGIN BUTTON
+========================================================= */
+
+.login-page .login-submit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 55px;
+    padding: 0 22px;
+    color: var(--wine-deep);
+    background: linear-gradient(
+        110deg,
+        var(--gold-light),
+        var(--gold)
+    );
+    border: 1px solid var(--gold);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.login-page .login-submit-btn i {
+    font-size: 17px;
+    transition: transform 0.3s ease;
+}
+
+.login-page .login-submit-btn:hover:not(:disabled) {
+    color: var(--white);
+    background: var(--wine);
+    border-color: var(--wine);
+    box-shadow: 0 10px 25px rgba(46, 20, 29, 0.15);
+}
+
+.login-page .login-submit-btn:hover:not(:disabled) i {
+    transform: translateX(5px);
+}
+
+.login-page .login-submit-btn:focus-visible {
+    outline: 2px solid var(--gold-dark);
+    outline-offset: 3px;
+}
+
+.login-page .login-submit-btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+
+/* =========================================================
+   10. ADMIN DEMO ACCESS
+========================================================= */
+
+.login-page .admin-demo-card {
+    position: relative;
+    padding: 20px;
+    margin-top: 22px;
+    overflow: hidden;
+    background: linear-gradient(
+        135deg,
+        #fbf8f1,
+        #f6f0e5
+    );
+    border: 1px solid rgba(196, 163, 106, 0.45);
+    border-left: 3px solid var(--gold-dark);
+}
+
+.login-page .admin-demo-heading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(196, 163, 106, 0.25);
+}
+
+.login-page .admin-demo-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    color: var(--gold-light);
+    background: var(--wine);
+    border: 1px solid rgba(196, 163, 106, 0.6);
+    font-size: 16px;
+}
+
+.login-page .admin-demo-heading h3 {
+    margin: 0 0 4px;
+    color: var(--wine-dark);
+    font-family: var(--font-heading);
+    font-size: 19px;
+    font-weight: 600;
+}
+
+.login-page .admin-demo-heading p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 9px;
+}
+
+.login-page .admin-demo-details {
+    display: grid;
+    gap: 12px;
+    padding: 15px 0;
+}
+
+.login-page .demo-credential {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.login-page .demo-credential span {
+    color: var(--gold-dark);
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+.login-page .demo-credential strong {
+    color: var(--wine-dark);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    overflow-wrap: anywhere;
+}
+
+.login-page .admin-demo-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(196, 163, 106, 0.25);
+}
+
+.login-page .admin-demo-note i {
+    margin-top: 1px;
+    color: var(--gold-dark);
+    font-size: 12px;
+}
+
+.login-page .admin-demo-note span {
+    color: var(--text-muted);
+    font-size: 8px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   11. REGISTRATION PROMPT
+========================================================= */
+
+.login-page .register-prompt {
+    padding: 25px 0;
+    margin-top: 25px;
+    text-align: center;
+    border-top: 1px solid var(--border-soft);
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.login-page .register-prompt p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 10px;
+}
+
+.login-page .register-prompt a {
+    margin-left: 4px;
+    color: var(--gold-dark);
+    font-weight: 800;
+}
+
+.login-page .register-prompt a:hover {
+    color: var(--wine);
+}
+
+
+/* =========================================================
+   12. SECURITY NOTE
+========================================================= */
+
+.login-page .login-security-note {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 9px;
+    margin-top: 25px;
+}
+
+.login-page .login-security-note i {
+    color: var(--gold-dark);
+    font-size: 13px;
+}
+
+.login-page .login-security-note span {
+    max-width: 280px;
+    color: var(--text-muted);
+    font-size: 8px;
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   13. FOOTER
+========================================================= */
+
+.login-page .login-footer {
+    padding: 19px 0;
+    background: var(--wine-deep);
+    border-top: 1px solid rgba(223, 201, 157, 0.2);
+}
+
+.login-page .login-footer .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.login-page .login-footer p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 8px;
+}
+
+.login-page .login-footer > .container > span {
+    color: var(--gold-light);
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+
+/* =========================================================
+   14. TABLET RESPONSIVE
+========================================================= */
+
+@media (max-width: 991.98px) {
+
+    .login-page .login-main {
+        padding: 45px 0;
+    }
+
+    .login-page .login-wrapper {
+        grid-template-columns: 1fr 0.95fr;
+    }
+
+    .login-page .login-visual {
+        padding: 55px 38px;
+    }
+
+    .login-page .login-form-panel {
+        padding: 50px 35px;
+    }
+
+    .login-page .visual-content h1 {
+        font-size: 47px;
+    }
+
+}
+
+
+/* =========================================================
+   15. MOBILE RESPONSIVE
+========================================================= */
+
+@media (max-width: 767.98px) {
+
+    .login-page .login-navbar {
+        padding: 15px 0;
+    }
+
+    .login-page .login-main {
+        padding: 30px 0;
+    }
+
+    .login-page .login-wrapper {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+    }
+
+    .login-page .login-visual {
+        min-height: auto;
+        padding: 48px 38px;
+    }
+
+    .login-page .login-visual::before {
+        top: 17px;
+        right: 17px;
+        bottom: 17px;
+        left: 17px;
+    }
+
+    .login-page .visual-content h1 {
+        max-width: 350px;
+        margin-top: 25px;
+        font-size: 46px;
+    }
+
+    .login-page .visual-content > p {
+        max-width: 360px;
+    }
+
+    .login-page .visual-divider {
+        margin: 25px 0;
+    }
+
+    .login-page .visual-points {
+        gap: 18px;
+    }
+
+    .login-page .visual-footer {
+        margin-top: 35px;
+    }
+
+    .login-page .login-form-panel {
+        padding: 48px 38px;
+    }
+
+    .login-page .form-heading {
+        margin-bottom: 30px;
+    }
+
+}
+
+
+/* =========================================================
+   16. SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .login-page .login-navbar .container {
+        gap: 10px;
+    }
+
+    .login-page .logo-monogram {
+        width: 38px;
+        height: 38px;
+        font-size: 22px;
+    }
+
+    .login-page .logo-word {
+        font-size: 21px;
+    }
+
+    .login-page .logo-branding small {
+        font-size: 7px;
+        letter-spacing: 2px;
+    }
+
+    .login-page .back-home-link {
+        gap: 5px;
+        font-size: 8px;
+        letter-spacing: 0.5px;
+    }
+
+    .login-page .login-visual {
+        padding: 40px 27px;
+    }
+
+    .login-page .visual-content h1 {
+        font-size: 40px;
+    }
+
+    .login-page .visual-footer span {
+        font-size: 7px;
+        letter-spacing: 1px;
+    }
+
+    .login-page .login-form-panel {
+        padding: 40px 25px;
+    }
+
+    .login-page .form-heading h2 {
+        font-size: 39px;
+    }
+
+    .login-page .admin-demo-card {
+        padding: 17px;
+    }
+
+    .login-page .admin-demo-heading h3 {
+        font-size: 18px;
+    }
+
+    .login-page .login-footer .container {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        gap: 8px;
+    }
+
+}
+
+
+/* =========================================================
+   17. ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .login-page *,
+    .login-page *::before,
+    .login-page *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+}

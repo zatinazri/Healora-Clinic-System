@@ -1,0 +1,1567 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Management | Healora Clinic</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #FAF8F5;
+            color: #292329;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            background: linear-gradient(180deg, #350017, #4A001F);
+        }
+
+        .sidebar-brand {
+            width: 100%;
+            padding: 28px 15px;
+            border-bottom: 1px solid rgba(247, 231, 206, 0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .brand-logo-light {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            width: 100%;
+            font-family: 'Manrope', sans-serif;
+            font-size: 27px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .brand-heal {
+            color: #D6B77A !important;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 800;
+        }
+
+        .brand-ora {
+            color: #F7E7CE !important;
+            font-family: 'Bodoni Moda', serif;
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        .brand-clinic {
+            color: #F7E7CE !important;
+            font-family: 'Manrope', sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            margin-top: 7px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .sidebar nav {
+            margin-top: 25px;
+        }
+
+        .sidebar a {
+            color: #F7E7CE;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 12px 18px;
+            margin: 4px 12px;
+            border-radius: 9px;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .sidebar a i {
+            color: #D6B77A;
+            font-size: 17px;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: #800020;
+            color: #FFFFFF;
+        }
+
+        .sidebar a.active {
+            border-left: 3px solid #D6B77A;
+        }
+
+        .sidebar-footer {
+            border-top: 1px solid rgba(247, 231, 206, 0.15);
+            padding: 18px;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            margin-left: 260px;
+            padding: 30px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .page-heading {
+            font-family: 'Manrope', sans-serif;
+            font-weight: 800;
+            color: #4A001F;
+            font-size: 25px;
+        }
+
+        .page-subtitle {
+            color: #958A90;
+            font-size: 12px;
+        }
+
+        /* ADMIN PROFILE */
+        .admin-profile {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .admin-top-name {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 17px;
+            font-style: italic;
+            font-weight: 700;
+            color: #4A001F;
+        }
+
+        .admin-top-role {
+            font-family: 'Manrope', sans-serif;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #B89555;
+            margin-top: 3px;
+        }
+
+        .admin-top-logo {
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            border: 2px solid #D6B77A;
+            background: linear-gradient(145deg, #F7E7CE, #D6B77A);
+            color: #4A001F;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 29px;
+            font-weight: 700;
+        }
+
+        /* PAGE INTRO - MAROON BANNER */
+        .page-intro {
+            background: linear-gradient(135deg, #350017, #4A001F);
+            border-radius: 18px;
+            padding: 35px 38px;
+            margin-bottom: 28px;
+            border: 1px solid rgba(214, 183, 122, 0.35);
+            box-shadow: 0 8px 25px rgba(74, 0, 31, 0.12);
+        }
+
+        .page-intro h2 {
+            color: #D6B77A;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 29px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .page-intro p {
+            color: #F7E7CE;
+            font-size: 13px;
+            margin-bottom: 0;
+            opacity: 0.9;
+        }
+
+        /* STATISTICS */
+        .summary-card {
+            background: #FFFFFF;
+            border: 1px solid #E8E2E5;
+            border-radius: 14px;
+            padding: 20px;
+            height: 100%;
+            box-shadow: 0 5px 18px rgba(74, 0, 31, 0.04);
+        }
+
+        .summary-icon {
+            width: 43px;
+            height: 43px;
+            border-radius: 12px;
+            background: #F7E7CE;
+            color: #800020;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+            margin-bottom: 13px;
+        }
+
+        .summary-card h3 {
+            color: #4A001F;
+            font-size: 25px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .summary-card p {
+            color: #70666C;
+            font-size: 12px;
+            margin: 0;
+        }
+
+        /* CONTENT CARD */
+        .content-card {
+            background: #FFFFFF;
+            border: 1px solid #E8E2E5;
+            border-radius: 14px;
+            padding: 23px;
+            box-shadow: 0 5px 18px rgba(74, 0, 31, 0.04);
+        }
+
+        .content-card h5 {
+            color: #4A001F;
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        /* BUTTONS */
+        .btn-luxury {
+            background: #4A001F;
+            color: #F7E7CE;
+            border: 1px solid #4A001F;
+            border-radius: 8px;
+            padding: 10px 17px;
+            font-size: 12px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .btn-luxury:hover {
+            background: #800020;
+            color: #FFFFFF;
+            border-color: #800020;
+        }
+
+        .btn-outline-luxury {
+            border: 1px solid #B89555;
+            color: #4A001F;
+            background: #FFFFFF;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 9px 14px;
+        }
+
+        .btn-outline-luxury:hover {
+            background: #F7E7CE;
+            color: #4A001F;
+        }
+
+        /* FILTERS */
+        .form-control,
+        .form-select {
+            border: 1px solid #E8E2E5;
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 12px;
+            color: #292329;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #B89555;
+            box-shadow: 0 0 0 0.2rem rgba(214, 183, 122, 0.16);
+        }
+
+        /* TABLE */
+        .table {
+            min-width: 850px;
+        }
+
+        .table thead th {
+            background: #4A001F !important;
+            color: #D6B77A !important;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 16px 13px;
+            border-bottom: 2px solid #B89555;
+            white-space: nowrap;
+        }
+
+        .table tbody td {
+            background: #FFFFFF;
+            color: #70666C;
+            padding: 15px 13px;
+            font-size: 12px;
+            vertical-align: middle;
+        }
+
+        .table tbody tr:nth-child(even) td {
+            background: #FAF8F5;
+        }
+
+        .table tbody tr:hover td {
+            background: #F7E7CE;
+            transition: 0.2s ease;
+        }
+
+        .patient-name {
+            color: #4A001F;
+            font-weight: 700;
+        }
+
+        /* STATUS BADGES */
+        .status-badge {
+            display: inline-block;
+            padding: 6px 11px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .status-pending {
+            background: #FFF1D6;
+            color: #946200;
+        }
+
+        .status-confirmed {
+            background: #E6F3EA;
+            color: #287344;
+        }
+
+        .status-completed {
+            background: #E9E7F5;
+            color: #5B4B91;
+        }
+
+        .status-cancelled {
+            background: #F9E5E8;
+            color: #A52A42;
+        }
+
+        /* ACTION BUTTONS */
+        .action-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #E8E2E5;
+            background: #FFFFFF;
+            color: #4A001F;
+            border-radius: 7px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 4px;
+            transition: 0.2s;
+        }
+
+        .action-btn:hover {
+            background: #F7E7CE;
+            border-color: #D6B77A;
+        }
+
+        .delete-btn:hover {
+            background: #F9E5E8;
+            border-color: #D98B99;
+            color: #A52A42;
+        }
+
+        /* MODAL */
+        .modal-content {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .modal-header {
+            background: #4A001F;
+            color: #F7E7CE;
+            border-bottom: 2px solid #B89555;
+            padding: 18px 22px;
+        }
+
+        .modal-title {
+            font-family: 'Bodoni Moda', serif;
+            font-weight: 700;
+        }
+
+        .modal-header .btn-close {
+            filter: brightness(0) invert(1);
+        }
+
+        .modal-body {
+            padding: 23px;
+        }
+
+        .modal-body label {
+            color: #4A001F;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+
+        .modal-footer {
+            border-top: 1px solid #E8E2E5;
+            padding: 15px 23px;
+        }
+
+        /* FOOTER */
+        .dashboard-footer {
+            text-align: center;
+            padding: 25px 0 5px;
+            color: #958A90;
+            font-size: 11px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 991px) {
+            .sidebar {
+                width: 220px;
+            }
+
+            .main-content {
+                margin-left: 220px;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 18px;
+            }
+
+            .topbar {
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            .admin-top-name {
+                font-size: 14px;
+            }
+
+            .admin-top-logo {
+                width: 42px;
+                height: 42px;
+                font-size: 25px;
+            }
+
+            .content-card {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body data-requires-auth="admin">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            <div class="brand-logo-light">
+                <span class="brand-heal">HEAL</span><span class="brand-ora">ORA</span>
+            </div>
+            <div class="brand-clinic">C L I N I C</div>
+        </div>
+
+        <nav>
+            <a href="admin-dashboard.html">
+                <i class="bi bi-grid-1x2-fill"></i>
+                Dashboard
+            </a>
+
+            <a href="appointments.html" class="active">
+                <i class="bi bi-calendar-check"></i>
+                Appointments
+            </a>
+
+            <a href="patients.html">
+                <i class="bi bi-people"></i>
+                Patients
+            </a>
+
+            <a href="doctors.html">
+                <i class="bi bi-person-badge"></i>
+                Doctors
+            </a>
+
+            <a href="doctor-schedule.html">
+                <i class="bi bi-calendar-week"></i>
+                Doctor Schedule
+            </a>
+
+            <a href="clinic-services.html">
+                <i class="bi bi-heart-pulse"></i>
+                Clinic Services
+            </a>
+
+            <a href="appointment-history.html">
+                <i class="bi bi-clock-history"></i>
+                Appointment History
+            </a>
+
+            <a href="reports.html">
+                <i class="bi bi-bar-chart-line"></i>
+                Reports
+            </a>
+
+            <a href="profile.html">
+                <i class="bi bi-person-circle"></i>
+                My Profile
+            </a>
+
+            <a href="help-support.html">
+                <i class="bi bi-question-circle"></i>
+                Help & Support
+            </a>
+        </nav>
+
+        <div class="sidebar-footer mt-4">
+            <div class="d-flex align-items-center gap-2 mb-3">
+                <div class="admin-top-logo" style="width:40px;height:40px;font-size:24px;">
+                    H
+                </div>
+
+                <div>
+                    <div class="admin-top-name" style="color:#F7E7CE;font-size:14px;">
+                        Healora Administrator
+                    </div>
+                    <div class="admin-top-role">ADMIN</div>
+                </div>
+            </div>
+
+            <a href="#" data-logout>
+                <i class="bi bi-box-arrow-left"></i>
+                Logout
+            </a>
+        </div>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <div>
+                <h1 class="page-heading mb-1">Appointment Management</h1>
+                <p class="page-subtitle mb-0">
+                    Manage and monitor all clinic appointments.
+                </p>
+            </div>
+
+            <div class="admin-profile">
+                <div class="text-end">
+                    <div class="admin-top-name">Healora Administrator</div>
+                    <div class="admin-top-role">ADMIN</div>
+                </div>
+                <div class="admin-top-logo">H</div>
+            </div>
+        </div>
+
+        <!-- PAGE INTRO -->
+        <section class="page-intro">
+            <h2>Appointments</h2>
+            <p>View, organise and manage patient appointment records.</p>
+        </section>
+
+        <!-- SUMMARY CARDS -->
+        <section class="row g-3 mb-4">
+
+            <div class="col-6 col-xl-3">
+                <div class="summary-card">
+                    <div class="summary-icon">
+                        <i class="bi bi-calendar2-check"></i>
+                    </div>
+                    <h3 id="totalAppointmentCount">0</h3>
+                    <p>Total Appointments</p>
+                </div>
+            </div>
+
+            <div class="col-6 col-xl-3">
+                <div class="summary-card">
+                    <div class="summary-icon">
+                        <i class="bi bi-hourglass-split"></i>
+                    </div>
+                    <h3 id="pendingAppointmentCount">0</h3>
+                    <p>Pending Appointments</p>
+                </div>
+            </div>
+
+            <div class="col-6 col-xl-3">
+                <div class="summary-card">
+                    <div class="summary-icon">
+                        <i class="bi bi-calendar-check"></i>
+                    </div>
+                    <h3 id="confirmedAppointmentCount">0</h3>
+                    <p>Confirmed Appointments</p>
+                </div>
+            </div>
+
+            <div class="col-6 col-xl-3">
+                <div class="summary-card">
+                    <div class="summary-icon">
+                        <i class="bi bi-check-circle"></i>
+                    </div>
+                    <h3 id="completedAppointmentCount">0</h3>
+                    <p>Completed Appointments</p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- APPOINTMENT TABLE -->
+        <section class="content-card">
+
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+                <div>
+                    <h5 class="mb-1">Appointment Records</h5>
+                    <p class="text-muted small mb-0">
+                        Review and manage scheduled appointments.
+                    </p>
+                </div>
+
+                <button class="btn btn-luxury" type="button" data-bs-toggle="modal" data-bs-target="#appointmentModal" id="addAppointmentBtn">
+                    <i class="bi bi-plus-lg me-1"></i>
+                    Add Appointment
+                </button>
+            </div>
+
+            <!-- SEARCH AND FILTER -->
+            <div class="row g-2 mb-4">
+
+                <div class="col-lg-5">
+                    <div class="input-group">
+                        <span class="input-group-text bg-white border-end-0">
+                            <i class="bi bi-search" style="color:#B89555;"></i>
+                        </span>
+                        <input type="text" class="form-control border-start-0" id="searchAppointment" placeholder="Search patient, doctor or service...">
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <select class="form-select" id="filterStatus">
+                        <option value="">All Status</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Confirmed">Confirmed</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Cancelled">Cancelled</option>
+                    </select>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <input type="date" class="form-control" id="filterDate">
+                </div>
+
+                <div class="col-lg-1">
+                    <button class="btn btn-outline-luxury w-100" id="resetFilters" title="Reset filters">
+                        <i class="bi bi-arrow-counterclockwise"></i>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- TABLE -->
+            <div class="table-responsive">
+                <table class="table align-middle mb-0">
+
+                    <thead>
+                        <tr>
+                            <th>Patient</th>
+                            <th>Doctor</th>
+                            <th>Service</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="appointmentTableBody">
+                        <tr>
+                            <td colspan="7" class="text-center py-4 text-muted">
+                                Loading appointments...
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mt-3">
+                <small class="text-muted" id="appointmentResultCount">
+                    Showing 0 appointments
+                </small>
+            </div>
+
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="dashboard-footer">
+            © 2026 Healora Clinic. All Rights Reserved.
+            <br>
+            <span class="fst-italic">Your Health, Our Priority.</span>
+        </footer>
+
+    </main>
+
+    <!-- ADD / EDIT APPOINTMENT MODAL -->
+    <div class="modal fade" id="appointmentModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="appointmentModalTitle">
+                        Add New Appointment
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <form id="appointmentForm">
+
+                    <div class="modal-body">
+
+                        <input type="hidden" id="appointmentId">
+
+                        <div class="row g-3">
+
+                            <div class="col-md-6">
+                                <label for="appointmentPatient">Patient</label>
+                                <select class="form-select" id="appointmentPatient" required>
+                                    <option value="">Select Patient</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="appointmentDoctor">Doctor</label>
+                                <select class="form-select" id="appointmentDoctor" required>
+                                    <option value="">Select Doctor</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="appointmentService">Service</label>
+                                <select class="form-select" id="appointmentService" required>
+                                    <option value="">Select Service</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="appointmentDate">Appointment Date</label>
+                                <input type="date" class="form-control" id="appointmentDate" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="appointmentTime">Appointment Time</label>
+                                <input type="time" class="form-control" id="appointmentTime" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="appointmentStatus">Status</label>
+                                <select class="form-select" id="appointmentStatus" required>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Confirmed">Confirmed</option>
+                                    <option value="Completed">Completed</option>
+                                    <option value="Cancelled">Cancelled</option>
+                                </select>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="appointmentReason">Reason for Visit</label>
+                                <textarea class="form-control" id="appointmentReason" rows="3" placeholder="Enter reason for appointment..."></textarea>
+                            </div>
+
+                        </div>
+
+                        <div class="alert alert-danger mt-3 d-none" id="appointmentFormError"></div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-luxury" data-bs-dismiss="modal">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-luxury" id="saveAppointmentBtn">
+                            Save Appointment
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/data.js"></script>
+    <script src="../js/auth.js"></script>
+
+    <script>
+        
+document.addEventListener("DOMContentLoaded", function () {
+
+    const storage = window.HealoraStorage;
+
+    if (!storage) {
+        console.error("HealoraStorage is not available.");
+        return;
+    }
+
+    const tableBody = document.getElementById("appointmentTableBody");
+    const appointmentForm = document.getElementById("appointmentForm");
+    const appointmentModalElement = document.getElementById("appointmentModal");
+    const appointmentModal = bootstrap.Modal.getOrCreateInstance(appointmentModalElement);
+
+    let appointments = [];
+    let patients = [];
+    let doctors = [];
+    let services = [];
+
+    // ==========================================
+    // HELPER FUNCTIONS
+    // ==========================================
+
+    function getPatientName(patient) {
+        return patient.name ||
+            patient.fullName ||
+            patient.patientName ||
+            "Unknown Patient";
+    }
+
+    function getDoctorName(doctor) {
+        return doctor.name ||
+            doctor.fullName ||
+            doctor.doctorName ||
+            "Unknown Doctor";
+    }
+
+    function getServiceName(service) {
+        return typeof service === "string"
+            ? service
+            : service.name || service.serviceName || service.title || "Unknown Service";
+    }
+
+    function getAppointmentPatientName(appointment) {
+
+        const patient = patients.find(p =>
+            String(p.id) === String(appointment.patientId)
+        );
+
+        return appointment.patientName ||
+            (patient ? getPatientName(patient) : "Unknown Patient");
+    }
+
+    function getAppointmentDoctorName(appointment) {
+
+        const doctor = doctors.find(d =>
+            String(d.id) === String(appointment.doctorId)
+        );
+
+        return appointment.doctorName ||
+            (doctor ? getDoctorName(doctor) : "Unknown Doctor");
+    }
+
+    function getAppointmentServiceName(appointment) {
+        return appointment.service ||
+            appointment.serviceName ||
+            "General Consultation";
+    }
+
+    // ==========================================
+    // REQUESTED DATE AND CONFIRMED DATE
+    // ==========================================
+
+    function getRequestedDate(appointment) {
+        return appointment.requestedDate ||
+            appointment.appointmentDate ||
+            appointment.date ||
+            "";
+    }
+
+    function getConfirmedDate(appointment) {
+        if (appointment.status === "Confirmed" && appointment.confirmedDate) {
+            return appointment.confirmedDate;
+        }
+
+        return getRequestedDate(appointment);
+    }
+
+    // ==========================================
+    // REQUESTED TIME AND CONFIRMED TIME
+    // ==========================================
+
+    function getRequestedTime(appointment) {
+        return appointment.requestedTime ||
+            appointment.appointmentTime ||
+            appointment.time ||
+            appointment.slot ||
+            "";
+    }
+
+    function getConfirmedTime(appointment) {
+
+        if (appointment.status === "Confirmed" && appointment.confirmedTime) {
+            return appointment.confirmedTime;
+        }
+
+        return getRequestedTime(appointment);
+    }
+
+    // ==========================================
+    // FORMAT DATE WITHOUT TIMEZONE SHIFT
+    // ==========================================
+
+    function formatDate(dateValue) {
+
+        if (!dateValue) return "-";
+
+        const dateString = String(dateValue).split("T")[0];
+        const parts = dateString.split("-");
+
+        if (parts.length !== 3) return String(dateValue);
+
+        const year = Number(parts[0]);
+        const month = Number(parts[1]);
+        const day = Number(parts[2]);
+
+        const date = new Date(year, month - 1, day);
+
+        if (Number.isNaN(date.getTime())) {
+            return String(dateValue);
+        }
+
+        return date.toLocaleDateString("en-MY", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric"
+        });
+    }
+
+    // ==========================================
+    // FORMAT TIME TO AM / PM
+    // ==========================================
+
+    function formatTime(timeValue) {
+
+        if (!timeValue) return "-";
+
+        const value = String(timeValue).trim();
+
+        // Already in AM / PM format
+        if (/\b(AM|PM)\b/i.test(value)) {
+            return value.replace(/\b(am|pm)\b/gi, match => match.toUpperCase());
+        }
+
+        // Convert 24-hour time
+        const match = value.match(/^(\d{1,2}):(\d{2})(?::\d{2})?$/);
+
+        if (!match) return value;
+
+        let hour = Number(match[1]);
+        const minute = match[2];
+
+        if (hour < 0 || hour > 23) return value;
+
+        const period = hour >= 12 ? "PM" : "AM";
+        hour = hour % 12 || 12;
+
+        return `${hour}:${minute} ${period}`;
+    }
+
+    // ==========================================
+    // STATUS CLASS
+    // ==========================================
+
+    function getStatusClass(status) {
+
+        const value = (status || "Pending").toLowerCase();
+
+        if (value === "confirmed") return "status-confirmed";
+        if (value === "completed") return "status-completed";
+        if (value === "cancelled") return "status-cancelled";
+
+        return "status-pending";
+    }
+
+    // ==========================================
+    // ESCAPE HTML
+    // ==========================================
+
+    function escapeHTML(value) {
+
+        return String(value ?? "").replace(/[&<>"']/g, function (character) {
+
+            return {
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;"
+            }[character];
+
+        });
+    }
+
+    // ==========================================
+    // LOAD DATA
+    // ==========================================
+
+    function loadData() {
+
+        appointments = storage.getAppointments() || [];
+        patients = storage.getPatients() || [];
+        doctors = storage.getDoctors() || [];
+        services = storage.getServices() || [];
+
+        populateDropdowns();
+        updateSummary();
+        renderAppointments();
+    }
+
+    // ==========================================
+    // POPULATE DROPDOWNS
+    // ==========================================
+
+    function populateDropdowns() {
+
+        const patientSelect = document.getElementById("appointmentPatient");
+        const doctorSelect = document.getElementById("appointmentDoctor");
+        const serviceSelect = document.getElementById("appointmentService");
+
+        patientSelect.innerHTML = '<option value="">Select Patient</option>';
+        doctorSelect.innerHTML = '<option value="">Select Doctor</option>';
+        serviceSelect.innerHTML = '<option value="">Select Service</option>';
+
+        patients.forEach(patient => {
+
+            patientSelect.innerHTML += `
+                <option value="${escapeHTML(patient.id)}">
+                    ${escapeHTML(getPatientName(patient))}
+                </option>
+            `;
+
+        });
+
+        doctors.forEach(doctor => {
+
+            doctorSelect.innerHTML += `
+                <option value="${escapeHTML(doctor.id)}">
+                    ${escapeHTML(getDoctorName(doctor))}
+                </option>
+            `;
+
+        });
+
+        services.forEach(service => {
+
+            const name = getServiceName(service);
+
+            serviceSelect.innerHTML += `
+                <option value="${escapeHTML(name)}">
+                    ${escapeHTML(name)}
+                </option>
+            `;
+
+        });
+    }
+
+    // ==========================================
+    // UPDATE SUMMARY
+    // ==========================================
+
+    function updateSummary() {
+
+        document.getElementById("totalAppointmentCount").textContent =
+            appointments.length;
+
+        document.getElementById("pendingAppointmentCount").textContent =
+            appointments.filter(a => a.status === "Pending").length;
+
+        document.getElementById("confirmedAppointmentCount").textContent =
+            appointments.filter(a => a.status === "Confirmed").length;
+
+        document.getElementById("completedAppointmentCount").textContent =
+            appointments.filter(a => a.status === "Completed").length;
+    }
+
+    // ==========================================
+    // RENDER APPOINTMENTS
+    // ==========================================
+
+    function renderAppointments() {
+
+        const searchValue = document
+            .getElementById("searchAppointment")
+            .value.toLowerCase();
+
+        const statusValue = document.getElementById("filterStatus").value;
+        const dateValue = document.getElementById("filterDate").value;
+
+        const filteredAppointments = appointments.filter(appointment => {
+
+            const patientName =
+                getAppointmentPatientName(appointment).toLowerCase();
+
+            const doctorName =
+                getAppointmentDoctorName(appointment).toLowerCase();
+
+            const serviceName =
+                getAppointmentServiceName(appointment).toLowerCase();
+
+            const matchesSearch =
+                patientName.includes(searchValue) ||
+                doctorName.includes(searchValue) ||
+                serviceName.includes(searchValue);
+
+            const matchesStatus =
+                !statusValue || appointment.status === statusValue;
+
+            const appointmentDate = getConfirmedDate(appointment);
+
+            const matchesDate =
+                !dateValue || appointmentDate === dateValue;
+
+            return matchesSearch && matchesStatus && matchesDate;
+        });
+
+        if (filteredAppointments.length === 0) {
+
+            tableBody.innerHTML = `
+                <tr>
+                    <td colspan="7" class="text-center py-5 text-muted">
+                        <i class="bi bi-calendar-x fs-3 d-block mb-2"></i>
+                        No appointments found.
+                    </td>
+                </tr>
+            `;
+
+        } else {
+
+            tableBody.innerHTML = filteredAppointments.map(appointment => {
+
+                const displayDate = getConfirmedDate(appointment);
+                const displayTime = getConfirmedTime(appointment);
+
+                return `
+                    <tr>
+
+                        <td>
+                            <span class="patient-name">
+                                ${escapeHTML(getAppointmentPatientName(appointment))}
+                            </span>
+                        </td>
+
+                        <td>
+                            ${escapeHTML(getAppointmentDoctorName(appointment))}
+                        </td>
+
+                        <td>
+                            ${escapeHTML(getAppointmentServiceName(appointment))}
+                        </td>
+
+                        <td>
+                            ${escapeHTML(formatDate(displayDate))}
+                        </td>
+
+                        <td>
+                            ${escapeHTML(formatTime(displayTime))}
+                        </td>
+
+                        <td>
+                            <span class="status-badge ${getStatusClass(appointment.status)}">
+                                ${escapeHTML(appointment.status || "Pending")}
+                            </span>
+                        </td>
+
+                        <td>
+
+                            <button
+                                class="action-btn edit-btn"
+                                data-id="${escapeHTML(appointment.id)}"
+                                title="Edit appointment">
+
+                                <i class="bi bi-pencil"></i>
+
+                            </button>
+
+                            <button
+                                class="action-btn delete-btn"
+                                data-id="${escapeHTML(appointment.id)}"
+                                title="Delete appointment">
+
+                                <i class="bi bi-trash"></i>
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+                `;
+
+            }).join("");
+        }
+
+        document.getElementById("appointmentResultCount").textContent =
+            `Showing ${filteredAppointments.length} of ${appointments.length} appointments`;
+
+        attachTableActions();
+    }
+
+    // ==========================================
+    // TABLE ACTIONS
+    // ==========================================
+
+    function attachTableActions() {
+
+        document.querySelectorAll(".edit-btn").forEach(button => {
+
+            button.addEventListener("click", function () {
+                editAppointment(this.dataset.id);
+            });
+
+        });
+
+        document.querySelectorAll(".delete-btn").forEach(button => {
+
+            button.addEventListener("click", function () {
+                deleteAppointment(this.dataset.id);
+            });
+
+        });
+    }
+
+    // ==========================================
+    // RESET FORM
+    // ==========================================
+
+    function resetForm() {
+
+        appointmentForm.reset();
+
+        document.getElementById("appointmentId").value = "";
+
+        document.getElementById("appointmentModalTitle").textContent =
+            "Add New Appointment";
+
+        document.getElementById("saveAppointmentBtn").textContent =
+            "Save Appointment";
+
+        document.getElementById("appointmentFormError").classList.add("d-none");
+    }
+
+    // ==========================================
+    // EDIT APPOINTMENT
+    // ==========================================
+
+    function editAppointment(id) {
+
+        const appointment = appointments.find(
+            a => String(a.id) === String(id)
+        );
+
+        if (!appointment) return;
+
+        resetForm();
+
+        document.getElementById("appointmentId").value =
+            appointment.id;
+
+        document.getElementById("appointmentPatient").value =
+            appointment.patientId || "";
+
+        document.getElementById("appointmentDoctor").value =
+            appointment.doctorId || "";
+
+        document.getElementById("appointmentService").value =
+            getAppointmentServiceName(appointment);
+
+        document.getElementById("appointmentDate").value =
+            getConfirmedDate(appointment);
+
+        document.getElementById("appointmentTime").value =
+            getConfirmedTime(appointment);
+
+        document.getElementById("appointmentStatus").value =
+            appointment.status || "Pending";
+
+        document.getElementById("appointmentReason").value =
+            appointment.reason ||
+            appointment.visitReason ||
+            appointment.notes ||
+            "";
+
+        document.getElementById("appointmentModalTitle").textContent =
+            "Edit Appointment";
+
+        document.getElementById("saveAppointmentBtn").textContent =
+            "Update Appointment";
+
+        appointmentModal.show();
+    }
+
+    // ==========================================
+    // DELETE APPOINTMENT
+    // ==========================================
+
+    function deleteAppointment(id) {
+
+        const confirmed = window.confirm(
+            "Are you sure you want to delete this appointment?"
+        );
+
+        if (!confirmed) return;
+
+        const success = storage.deleteAppointment(id);
+
+        if (success === false) {
+
+            window.alert("Unable to delete this appointment.");
+            return;
+        }
+
+        loadData();
+    }
+
+    // ==========================================
+    // SAVE APPOINTMENT
+    // ==========================================
+
+    appointmentForm.addEventListener("submit", function (event) {
+
+        event.preventDefault();
+
+        const id = document.getElementById("appointmentId").value;
+
+        const patientId =
+            document.getElementById("appointmentPatient").value;
+
+        const doctorId =
+            document.getElementById("appointmentDoctor").value;
+
+        const serviceName =
+            document.getElementById("appointmentService").value;
+
+        const date =
+            document.getElementById("appointmentDate").value;
+
+        const time =
+            document.getElementById("appointmentTime").value;
+
+        const status =
+            document.getElementById("appointmentStatus").value;
+
+        const reason =
+            document.getElementById("appointmentReason").value.trim();
+
+        const patient = patients.find(
+            p => String(p.id) === String(patientId)
+        );
+
+        const doctor = doctors.find(
+            d => String(d.id) === String(doctorId)
+        );
+
+        const errorBox =
+            document.getElementById("appointmentFormError");
+
+        if (!patient || !doctor || !serviceName || !date || !time) {
+
+            errorBox.textContent =
+                "Please complete all required fields.";
+
+            errorBox.classList.remove("d-none");
+            return;
+        }
+
+        const existingAppointment = appointments.find(
+            a => String(a.id) === String(id)
+        );
+
+        // Keep the patient's original requested date
+        const originalRequestedDate = existingAppointment
+            ? getRequestedDate(existingAppointment)
+            : date;
+
+        // Keep the patient's original requested time
+        const originalRequestedTime = existingAppointment
+            ? getRequestedTime(existingAppointment)
+            : time;
+
+        // Save admin-confirmed date and time separately
+        const finalConfirmedDate =
+            status === "Confirmed" ? date : "";
+
+        const finalConfirmedTime =
+            status === "Confirmed" ? time : "";
+
+        const appointmentData = {
+
+            patientId: patient.id,
+            patientName: getPatientName(patient),
+
+            doctorId: doctor.id,
+            doctorName: getDoctorName(doctor),
+
+            service: serviceName,
+            serviceName: serviceName,
+
+            // Original date selected by patient
+            requestedDate: originalRequestedDate,
+
+            // Original time selected by patient
+            requestedTime: originalRequestedTime,
+
+            // Admin-confirmed date and time
+            confirmedDate: finalConfirmedDate,
+            confirmedTime: finalConfirmedTime,
+
+            // Keep existing date fields for compatibility
+            date: originalRequestedDate,
+            appointmentDate: originalRequestedDate,
+
+            // Keep existing time fields for compatibility
+            time: originalRequestedTime,
+            appointmentTime: originalRequestedTime,
+            slot: originalRequestedTime,
+
+            status: status,
+
+            reason: reason,
+            visitReason: reason,
+            notes: reason
+
+        };
+
+        let success;
+
+        if (id) {
+
+            success = storage.updateAppointment(id, appointmentData);
+
+        } else {
+
+            success = storage.addAppointment(appointmentData);
+
+        }
+
+        if (success === false) {
+
+            errorBox.textContent =
+                "Unable to save appointment. Please try again.";
+
+            errorBox.classList.remove("d-none");
+            return;
+        }
+
+        appointmentModal.hide();
+        resetForm();
+        loadData();
+
+    });
+
+    // ==========================================
+    // ADD APPOINTMENT BUTTON
+    // ==========================================
+
+    document.getElementById("addAppointmentBtn").addEventListener(
+        "click",
+        function () {
+            resetForm();
+        }
+    );
+
+    // ==========================================
+    // SEARCH
+    // ==========================================
+
+    document.getElementById("searchAppointment").addEventListener(
+        "input",
+        renderAppointments
+    );
+
+    // ==========================================
+    // FILTER STATUS
+    // ==========================================
+
+    document.getElementById("filterStatus").addEventListener(
+        "change",
+        renderAppointments
+    );
+
+    // ==========================================
+    // FILTER DATE
+    // ==========================================
+
+    document.getElementById("filterDate").addEventListener(
+        "change",
+        renderAppointments
+    );
+
+    // ==========================================
+    // RESET FILTERS
+    // ==========================================
+
+    document.getElementById("resetFilters").addEventListener(
+        "click",
+        function () {
+
+            document.getElementById("searchAppointment").value = "";
+            document.getElementById("filterStatus").value = "";
+            document.getElementById("filterDate").value = "";
+
+            renderAppointments();
+        }
+    );
+
+    // ==========================================
+    // RESET FORM WHEN MODAL CLOSES
+    // ==========================================
+
+    appointmentModalElement.addEventListener(
+        "hidden.bs.modal",
+        resetForm
+    );
+
+    // ==========================================
+    // INITIAL LOAD
+    // ==========================================
+
+    loadData();
+
+});
+
+    </script>
+
+</body>
+</html>

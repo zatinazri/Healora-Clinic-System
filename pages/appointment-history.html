@@ -1,0 +1,1215 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment History | Healora Clinic</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #FAF8F5;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            background: linear-gradient(180deg, #350017, #4A001F);
+        }
+
+        /* CENTERED BRANDING */
+        .sidebar-brand {
+            width: 100%;
+            padding: 28px 15px;
+            border-bottom: 1px solid rgba(247, 231, 206, 0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .brand-logo-light {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            width: 100%;
+            font-family: 'Manrope', sans-serif;
+            font-size: 27px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .brand-heal {
+            color: #D6B77A !important;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 800;
+        }
+
+        .brand-ora {
+            color: #F7E7CE !important;
+            font-family: 'Bodoni Moda', serif;
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        .brand-clinic {
+            color: #F7E7CE !important;
+            font-family: 'Manrope', sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            margin-top: 7px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .sidebar nav {
+            margin-top: 25px;
+        }
+
+        .sidebar a {
+            color: #F7E7CE;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 12px 18px;
+            margin: 4px 12px;
+            border-radius: 9px;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .sidebar a i {
+            color: #D6B77A;
+            font-size: 17px;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: #800020;
+            color: #FFFFFF;
+        }
+
+        .sidebar a.active {
+            border-left: 3px solid #D6B77A;
+        }
+
+        .sidebar-footer {
+            border-top: 1px solid rgba(247, 231, 206, 0.15);
+            padding: 18px;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            margin-left: 260px;
+            padding: 30px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .page-heading {
+            font-family: 'Manrope', sans-serif;
+            font-weight: 800;
+            color: #4A001F;
+            font-size: 25px;
+        }
+
+        /* ADMIN PROFILE */
+        .admin-profile {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .admin-top-name {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 17px;
+            font-style: italic;
+            font-weight: 700;
+            color: #4A001F;
+        }
+
+        .admin-top-role {
+            font-family: 'Manrope', sans-serif;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #B89555;
+            margin-top: 3px;
+        }
+
+        .admin-top-logo {
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            border: 2px solid #D6B77A;
+            background: linear-gradient(145deg, #F7E7CE, #D6B77A);
+            color: #4A001F;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 29px;
+            font-weight: 700;
+        }
+
+        /* WELCOME BANNER */
+        .welcome-banner {
+            background: linear-gradient(135deg, #350017, #4A001F);
+            border-radius: 18px;
+            padding: 35px 38px;
+            margin-bottom: 28px;
+            border: 1px solid rgba(214, 183, 122, 0.35);
+            box-shadow: 0 8px 25px rgba(74, 0, 31, 0.12);
+        }
+
+        .welcome-content h2 {
+            color: #D6B77A;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 29px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .welcome-content p {
+            color: #F7E7CE;
+            font-size: 13px;
+            margin-bottom: 0;
+            opacity: 0.9;
+        }
+
+        /* STATISTICS */
+        .dashboard-stat {
+            background: #FFFFFF;
+            border: 1px solid #E8E2E5;
+            border-radius: 14px;
+            padding: 22px;
+            height: 100%;
+            box-shadow: 0 5px 18px rgba(74, 0, 31, 0.04);
+        }
+
+        .dashboard-stat .stat-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #F7E7CE;
+            color: #800020;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .dashboard-stat h3 {
+            color: #4A001F;
+            font-size: 27px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .dashboard-stat p {
+            color: #70666C;
+            font-size: 12px;
+            margin: 0;
+        }
+
+        /* DASHBOARD CARDS */
+        .dashboard-card {
+            background: #FFFFFF;
+            border: 1px solid #E8E2E5;
+            border-radius: 14px;
+            padding: 22px;
+            box-shadow: 0 5px 18px rgba(74, 0, 31, 0.04);
+            height: 100%;
+        }
+
+        .dashboard-card h5 {
+            color: #4A001F;
+            font-weight: 800;
+            font-size: 15px;
+        }
+
+        /* TABLE */
+        .table thead th {
+            background: #4A001F !important;
+            color: #D6B77A !important;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 16px 13px;
+            border-bottom: 2px solid #B89555;
+            white-space: nowrap;
+        }
+
+        .table tbody td {
+            background: #FFFFFF;
+            color: #70666C;
+            padding: 15px 13px;
+            font-size: 12px;
+        }
+
+        .table tbody tr:nth-child(even) td {
+            background: #FAF8F5;
+        }
+
+        .table tbody tr:hover td {
+            background: #F7E7CE;
+            transition: 0.2s ease;
+        }
+
+        /* SEARCH AND FILTER */
+        .form-control,
+        .form-select {
+            border: 1px solid #E8E2E5;
+            border-radius: 8px;
+            padding: 10px 13px;
+            font-size: 12px;
+            color: #4A001F;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #B89555;
+            box-shadow: 0 0 0 0.2rem rgba(214, 183, 122, 0.15);
+        }
+
+        .input-group-text {
+            background: #FFFFFF;
+            border: 1px solid #E8E2E5;
+            color: #B89555;
+        }
+
+        /* APPOINTMENT STATUS */
+        .status-badge {
+            display: inline-block;
+            padding: 6px 11px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .status-pending {
+            background: #FFF2D8;
+            color: #9A6817;
+        }
+
+        .status-confirmed {
+            background: #E5F3EA;
+            color: #32734A;
+        }
+
+        .status-completed {
+            background: #E8EDF7;
+            color: #49628F;
+        }
+
+        .status-cancelled {
+            background: #F8E6E8;
+            color: #A33D4B;
+        }
+
+        .appointment-id {
+            color: #4A001F;
+            font-weight: 700;
+        }
+
+        .patient-name {
+            color: #4A001F;
+            font-weight: 700;
+        }
+
+        .view-btn {
+            background: #F7E7CE;
+            color: #800020;
+            border: 1px solid #D6B77A;
+            border-radius: 7px;
+            padding: 6px 10px;
+            font-size: 12px;
+        }
+
+        .view-btn:hover {
+            background: #4A001F;
+            color: #F7E7CE;
+        }
+
+        .empty-state {
+            padding: 40px 15px !important;
+            text-align: center;
+            color: #958A90 !important;
+        }
+
+        .empty-state i {
+            display: block;
+            font-size: 32px;
+            color: #D6B77A;
+            margin-bottom: 10px;
+        }
+
+        /* MODAL */
+        .modal-content {
+            border: 1px solid #E8E2E5;
+            border-radius: 14px;
+            overflow: hidden;
+        }
+
+        .modal-header {
+            background: #4A001F;
+            color: #F7E7CE;
+            border-bottom: 2px solid #B89555;
+        }
+
+        .modal-header .btn-close {
+            filter: brightness(0) invert(1);
+        }
+
+        .detail-label {
+            color: #958A90;
+            font-size: 11px;
+            margin-bottom: 5px;
+        }
+
+        .detail-value {
+            color: #4A001F;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 18px;
+            overflow-wrap: anywhere;
+        }
+
+        /* FOOTER */
+        .dashboard-footer {
+            text-align: center;
+            padding: 25px 0 5px;
+            color: #958A90;
+            font-size: 11px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 991px) {
+            .sidebar {
+                width: 220px;
+            }
+
+            .main-content {
+                margin-left: 220px;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 18px;
+            }
+
+            .topbar {
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            .admin-top-name {
+                font-size: 14px;
+            }
+
+            .admin-top-logo {
+                width: 42px;
+                height: 42px;
+                font-size: 25px;
+            }
+
+            .welcome-decoration {
+                display: none;
+            }
+
+            .welcome-banner {
+                padding: 25px;
+            }
+
+            .welcome-content h2 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body data-requires-auth="admin">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <!-- HEALORA CLINIC BRAND -->
+        <div class="sidebar-brand">
+
+            <div class="brand-logo-light">
+                <span class="brand-heal">HEAL</span><span class="brand-ora">ORA</span>
+            </div>
+
+            <div class="brand-clinic">C L I N I C</div>
+
+        </div>
+
+        <!-- NAVIGATION -->
+        <nav>
+
+            <a href="admin-dashboard.html">
+                <i class="bi bi-grid-1x2-fill"></i>
+                Dashboard
+            </a>
+
+            <a href="appointments.html">
+                <i class="bi bi-calendar-check"></i>
+                Appointments
+            </a>
+
+            <a href="patients.html">
+                <i class="bi bi-people"></i>
+                Patients
+            </a>
+
+            <a href="doctors.html">
+                <i class="bi bi-person-badge"></i>
+                Doctors
+            </a>
+
+            <a href="doctor-schedule.html">
+                <i class="bi bi-calendar-week"></i>
+                Doctor Schedule
+            </a>
+
+            <a href="clinic-services.html">
+                <i class="bi bi-heart-pulse"></i>
+                Clinic Services
+            </a>
+
+            <a href="appointment-history.html" class="active">
+                <i class="bi bi-clock-history"></i>
+                Appointment History
+            </a>
+
+            <a href="reports.html">
+                <i class="bi bi-bar-chart-line"></i>
+                Reports
+            </a>
+
+            <a href="profile.html">
+                <i class="bi bi-person-circle"></i>
+                My Profile
+            </a>
+
+            <a href="help-support.html">
+                <i class="bi bi-question-circle"></i>
+                Help & Support
+            </a>
+
+        </nav>
+
+        <!-- SIDEBAR ADMIN PROFILE -->
+        <div class="sidebar-footer mt-4">
+
+            <div class="d-flex align-items-center gap-2 mb-3">
+
+                <div class="admin-top-logo"
+                     style="width:40px;height:40px;font-size:24px;">
+                    H
+                </div>
+
+                <div>
+                    <div class="admin-top-name"
+                         style="color:#F7E7CE;font-size:14px;">
+                        Healora Administrator
+                    </div>
+
+                    <div class="admin-top-role">ADMIN</div>
+                </div>
+
+            </div>
+
+            <a href="#" data-logout>
+                <i class="bi bi-box-arrow-left"></i>
+                Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+
+            <div>
+                <h1 class="page-heading mb-1">Appointment History</h1>
+
+                <p class="text-muted small mb-0">
+                    Review and keep track of previous clinic appointments.
+                </p>
+            </div>
+
+            <!-- TOP RIGHT ADMIN PROFILE -->
+            <div class="admin-profile">
+
+                <div class="text-end">
+
+                    <div class="admin-top-name">
+                        Healora Administrator
+                    </div>
+
+                    <div class="admin-top-role">ADMIN</div>
+
+                </div>
+
+                <div class="admin-top-logo">H</div>
+
+            </div>
+
+        </div>
+
+
+        <!-- WELCOME BANNER -->
+        <section class="welcome-banner">
+
+            <div class="welcome-content">
+
+                <h2>Appointment History</h2>
+
+                <p>
+                    Access and review appointment records at Healora Clinic.
+                    Monitor appointment details and their current status.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- APPOINTMENT STATISTICS -->
+        <section class="row g-3 mb-4">
+
+            <div class="col-6 col-xl-3">
+                <div class="dashboard-stat">
+
+                    <div class="stat-icon">
+                        <i class="bi bi-calendar2-check-fill"></i>
+                    </div>
+
+                    <h3 id="totalAppointments">0</h3>
+                    <p>Total Appointments</p>
+
+                </div>
+            </div>
+
+            <div class="col-6 col-xl-3">
+                <div class="dashboard-stat">
+
+                    <div class="stat-icon">
+                        <i class="bi bi-hourglass-split"></i>
+                    </div>
+
+                    <h3 id="pendingAppointments">0</h3>
+                    <p>Pending Appointments</p>
+
+                </div>
+            </div>
+
+            <div class="col-6 col-xl-3">
+                <div class="dashboard-stat">
+
+                    <div class="stat-icon">
+                        <i class="bi bi-check-circle-fill"></i>
+                    </div>
+
+                    <h3 id="completedAppointments">0</h3>
+                    <p>Completed Appointments</p>
+
+                </div>
+            </div>
+
+            <div class="col-6 col-xl-3">
+                <div class="dashboard-stat">
+
+                    <div class="stat-icon">
+                        <i class="bi bi-calendar-x-fill"></i>
+                    </div>
+
+                    <h3 id="cancelledAppointments">0</h3>
+                    <p>Cancelled Appointments</p>
+
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- APPOINTMENT HISTORY TABLE -->
+        <section class="dashboard-card">
+
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+
+                <div>
+                    <h5 class="mb-1">All Appointment Records</h5>
+
+                    <p class="text-muted small mb-0">
+                        View and search appointment records.
+                    </p>
+                </div>
+
+                <span class="small text-muted" id="recordCount">
+                    0 records
+                </span>
+
+            </div>
+
+
+            <!-- SEARCH AND FILTER -->
+            <div class="row g-3 mb-4">
+
+                <div class="col-lg-7">
+
+                    <div class="input-group">
+
+                        <span class="input-group-text">
+                            <i class="bi bi-search"></i>
+                        </span>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="searchInput"
+                            placeholder="Search appointment ID, patient or doctor..."
+                        >
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+
+                    <select class="form-select" id="statusFilter">
+
+                        <option value="All">All Statuses</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Confirmed">Confirmed</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Cancelled">Cancelled</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+
+                    <button
+                        type="button"
+                        class="btn btn-outline-secondary w-100"
+                        id="resetButton"
+                        style="font-size:12px;padding:10px;"
+                    >
+                        <i class="bi bi-arrow-counterclockwise me-1"></i>
+                        Reset
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- APPOINTMENT TABLE -->
+            <div class="table-responsive">
+
+                <table class="table align-middle mb-0">
+
+                    <thead>
+                        <tr>
+                            <th>Appointment ID</th>
+                            <th>Patient</th>
+                            <th>Doctor</th>
+                            <th>Service</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="appointmentHistoryTable">
+
+                        <tr>
+                            <td colspan="8" class="text-center text-muted py-4">
+                                Loading appointment records...
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer class="dashboard-footer">
+
+            © 2026 Healora Clinic. All Rights Reserved.
+
+            <br>
+
+            <span class="fst-italic">
+                Your Health, Our Priority.
+            </span>
+
+        </footer>
+
+    </main>
+
+
+    <!-- VIEW APPOINTMENT MODAL -->
+    <div class="modal fade" id="appointmentDetailsModal" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <div>
+                        <h5 class="modal-title"
+                            style="font-family:'Bodoni Moda',serif;font-weight:700;">
+                            Appointment Details
+                        </h5>
+
+                        <small style="color:#D6B77A;">
+                            Healora Clinic Records
+                        </small>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="row">
+
+                        <div class="col-6">
+                            <div class="detail-label">Appointment ID</div>
+                            <div class="detail-value" id="detailId">-</div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="detail-label">Appointment Status</div>
+                            <div class="detail-value" id="detailStatus">-</div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="detail-label">Patient Name</div>
+                            <div class="detail-value" id="detailPatient">-</div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="detail-label">Doctor Name</div>
+                            <div class="detail-value" id="detailDoctor">-</div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="detail-label">Service</div>
+                            <div class="detail-value" id="detailService">-</div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="detail-label">Appointment Date</div>
+                            <div class="detail-value" id="detailDate">-</div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="detail-label">Appointment Time</div>
+                            <div class="detail-value" id="detailTime">-</div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="detail-label">Reason for Visit</div>
+                            <div class="detail-value" id="detailReason">-</div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer border-0">
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary btn-sm"
+                        data-bs-dismiss="modal">
+                        Close
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/data.js"></script>
+    <script src="../js/auth.js"></script>
+
+    <script>
+
+        let appointments = [];
+
+        const detailsModal = new bootstrap.Modal(
+            document.getElementById("appointmentDetailsModal")
+        );
+
+
+        /* LOAD APPOINTMENTS */
+        function loadAppointments() {
+
+            try {
+
+                if (
+                    window.HealoraStorage &&
+                    typeof window.HealoraStorage.getAppointments === "function"
+                ) {
+
+                    appointments = window.HealoraStorage.getAppointments() || [];
+
+                } else {
+
+                    appointments = JSON.parse(
+                        localStorage.getItem("healora_appointments") || "[]"
+                    );
+
+                }
+
+            } catch (error) {
+
+                console.error("Error loading appointments:", error);
+                appointments = [];
+
+            }
+
+            updateStatistics();
+            renderAppointmentHistory();
+
+        }
+
+
+        /* ESCAPE HTML */
+        function escapeHTML(value) {
+
+            return String(value ?? "").replace(/[&<>"']/g, function(character) {
+
+                const entities = {
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    '"': "&quot;",
+                    "'": "&#039;"
+                };
+
+                return entities[character];
+
+            });
+
+        }
+
+
+        /* UPDATE STATISTICS */
+        function updateStatistics() {
+
+            document.getElementById("totalAppointments").textContent =
+                appointments.length;
+
+            document.getElementById("pendingAppointments").textContent =
+                appointments.filter(item => item.status === "Pending").length;
+
+            document.getElementById("completedAppointments").textContent =
+                appointments.filter(item => item.status === "Completed").length;
+
+            document.getElementById("cancelledAppointments").textContent =
+                appointments.filter(item => item.status === "Cancelled").length;
+
+        }
+
+
+        /* FORMAT DATE */
+        function formatDate(dateValue) {
+
+            if (!dateValue) {
+                return "-";
+            }
+
+            const date = new Date(dateValue + "T00:00:00");
+
+            if (isNaN(date.getTime())) {
+                return escapeHTML(dateValue);
+            }
+
+            return date.toLocaleDateString("en-MY", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            });
+
+        }
+
+
+        /* STATUS BADGE */
+        function getStatusBadge(status) {
+
+            const statusClasses = {
+                Pending: "status-pending",
+                Confirmed: "status-confirmed",
+                Completed: "status-completed",
+                Cancelled: "status-cancelled"
+            };
+
+            const badgeClass = statusClasses[status] || "status-pending";
+
+            return `
+                <span class="status-badge ${badgeClass}">
+                    ${escapeHTML(status || "Pending")}
+                </span>
+            `;
+
+        }
+
+
+        /* DISPLAY APPOINTMENT HISTORY */
+        function renderAppointmentHistory() {
+
+            const table = document.getElementById("appointmentHistoryTable");
+
+            const searchValue = document
+                .getElementById("searchInput")
+                .value
+                .trim()
+                .toLowerCase();
+
+            const selectedStatus = document
+                .getElementById("statusFilter")
+                .value;
+
+
+            const filteredAppointments = appointments.filter(appointment => {
+
+                const searchableContent = [
+
+                    appointment.id,
+                    appointment.patientName,
+                    appointment.patientEmail,
+                    appointment.doctorName,
+                    appointment.service
+
+                ].join(" ").toLowerCase();
+
+
+                const matchesSearch =
+                    searchableContent.includes(searchValue);
+
+                const matchesStatus =
+                    selectedStatus === "All" ||
+                    appointment.status === selectedStatus;
+
+
+                return matchesSearch && matchesStatus;
+
+            });
+
+
+            document.getElementById("recordCount").textContent =
+                filteredAppointments.length +
+                (filteredAppointments.length === 1 ? " record" : " records");
+
+
+            if (filteredAppointments.length === 0) {
+
+                table.innerHTML = `
+                    <tr>
+                        <td colspan="8" class="empty-state">
+
+                            <i class="bi bi-calendar2-x"></i>
+
+                            <strong>No Appointment Records Found</strong>
+
+                            <div class="small mt-2">
+                                No appointment records match your search.
+                            </div>
+
+                        </td>
+                    </tr>
+                `;
+
+                return;
+
+            }
+
+
+            table.innerHTML = filteredAppointments.map(appointment => {
+
+                const id = escapeHTML(appointment.id || "-");
+                const patient = escapeHTML(appointment.patientName || "-");
+                const doctor = escapeHTML(appointment.doctorName || "-");
+                const service = escapeHTML(appointment.service || "-");
+                const date = formatDate(appointment.date);
+                const time = escapeHTML(appointment.time || "-");
+
+                return `
+                    <tr>
+
+                        <td>
+                            <span class="appointment-id">${id}</span>
+                        </td>
+
+                        <td>
+                            <span class="patient-name">${patient}</span>
+                        </td>
+
+                        <td>${doctor}</td>
+
+                        <td>${service}</td>
+
+                        <td>${date}</td>
+
+                        <td>${time}</td>
+
+                        <td>
+                            ${getStatusBadge(appointment.status)}
+                        </td>
+
+                        <td>
+                            <button
+                                type="button"
+                                class="view-btn"
+                                onclick="viewAppointment('${encodeURIComponent(String(appointment.id))}')"
+                                title="View Appointment Details"
+                            >
+                                <i class="bi bi-eye"></i>
+                                View
+                            </button>
+                        </td>
+
+                    </tr>
+                `;
+
+            }).join("");
+
+        }
+
+
+        /* VIEW APPOINTMENT DETAILS */
+        function viewAppointment(encodedId) {
+
+            const id = decodeURIComponent(encodedId);
+
+            const appointment = appointments.find(item =>
+                String(item.id) === String(id)
+            );
+
+            if (!appointment) {
+
+                alert("Appointment record could not be found.");
+                return;
+
+            }
+
+
+            document.getElementById("detailId").textContent =
+                appointment.id || "-";
+
+            document.getElementById("detailStatus").innerHTML =
+                getStatusBadge(appointment.status);
+
+            document.getElementById("detailPatient").textContent =
+                appointment.patientName || "-";
+
+            document.getElementById("detailDoctor").textContent =
+                appointment.doctorName || "-";
+
+            document.getElementById("detailService").textContent =
+                appointment.service || "-";
+
+            document.getElementById("detailDate").textContent =
+                formatDate(appointment.date);
+
+            document.getElementById("detailTime").textContent =
+                appointment.time || "-";
+
+            document.getElementById("detailReason").textContent =
+                appointment.reason || "-";
+
+
+            detailsModal.show();
+
+        }
+
+
+        /* RESET SEARCH AND FILTER */
+        function resetFilters() {
+
+            document.getElementById("searchInput").value = "";
+            document.getElementById("statusFilter").value = "All";
+
+            renderAppointmentHistory();
+
+        }
+
+
+        /* EVENT LISTENERS */
+        document.getElementById("searchInput").addEventListener(
+            "input",
+            renderAppointmentHistory
+        );
+
+        document.getElementById("statusFilter").addEventListener(
+            "change",
+            renderAppointmentHistory
+        );
+
+        document.getElementById("resetButton").addEventListener(
+            "click",
+            resetFilters
+        );
+
+
+        /* INITIALIZE PAGE */
+        document.addEventListener("DOMContentLoaded", loadAppointments);
+
+    </script>
+
+</body>
+</html>

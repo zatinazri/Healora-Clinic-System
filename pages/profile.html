@@ -1,0 +1,1053 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | Healora Clinic</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #FAF8F5;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            background: linear-gradient(180deg, #350017, #4A001F);
+        }
+
+        .sidebar-brand {
+            width: 100%;
+            padding: 28px 15px;
+            border-bottom: 1px solid rgba(247, 231, 206, 0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .brand-logo-light {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            width: 100%;
+            font-family: 'Manrope', sans-serif;
+            font-size: 27px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .brand-heal {
+            color: #D6B77A !important;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 800;
+        }
+
+        .brand-ora {
+            color: #F7E7CE !important;
+            font-family: 'Bodoni Moda', serif;
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        .brand-clinic {
+            color: #F7E7CE !important;
+            font-family: 'Manrope', sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            margin-top: 7px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .sidebar nav {
+            margin-top: 25px;
+        }
+
+        .sidebar a {
+            color: #F7E7CE;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 12px 18px;
+            margin: 4px 12px;
+            border-radius: 9px;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .sidebar a i {
+            color: #D6B77A;
+            font-size: 17px;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: #800020;
+            color: #FFFFFF;
+        }
+
+        .sidebar a.active {
+            border-left: 3px solid #D6B77A;
+        }
+
+        .sidebar-footer {
+            border-top: 1px solid rgba(247, 231, 206, 0.15);
+            padding: 18px;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            margin-left: 260px;
+            padding: 30px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .page-heading {
+            font-family: 'Manrope', sans-serif;
+            font-weight: 800;
+            color: #4A001F;
+            font-size: 25px;
+        }
+
+        /* ADMIN PROFILE */
+        .admin-profile {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .admin-top-name {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 17px;
+            font-style: italic;
+            font-weight: 700;
+            color: #4A001F;
+        }
+
+        .admin-top-role {
+            font-family: 'Manrope', sans-serif;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #B89555;
+            margin-top: 3px;
+        }
+
+        .admin-top-logo {
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            border: 2px solid #D6B77A;
+            background: linear-gradient(145deg, #F7E7CE, #D6B77A);
+            color: #4A001F;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 29px;
+            font-weight: 700;
+        }
+
+        /* WELCOME BANNER */
+        .welcome-banner {
+            background: linear-gradient(135deg, #350017, #4A001F);
+            border-radius: 18px;
+            padding: 35px 38px;
+            margin-bottom: 28px;
+            border: 1px solid rgba(214, 183, 122, 0.35);
+            box-shadow: 0 8px 25px rgba(74, 0, 31, 0.12);
+        }
+
+        .welcome-content h2 {
+            color: #D6B77A;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 29px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .welcome-content p {
+            color: #F7E7CE;
+            font-size: 13px;
+            margin-bottom: 0;
+            opacity: 0.9;
+        }
+
+        /* DASHBOARD CARDS - SAME AS DASHBOARD */
+        .dashboard-card {
+            background: #FFFFFF;
+            border: 1px solid #E8E2E5;
+            border-radius: 14px;
+            padding: 22px;
+            box-shadow: 0 5px 18px rgba(74, 0, 31, 0.04);
+            height: 100%;
+        }
+
+        .dashboard-card h5 {
+            color: #4A001F;
+            font-weight: 800;
+            font-size: 15px;
+        }
+
+        /* PROFILE CONTENT */
+        .profile-avatar {
+            width: 85px;
+            height: 85px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            border: 2px solid #D6B77A;
+            background: linear-gradient(145deg, #F7E7CE, #D6B77A);
+            color: #4A001F;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        .profile-name {
+            color: #4A001F;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 22px;
+            font-weight: 700;
+            text-align: center;
+            overflow-wrap: anywhere;
+        }
+
+        .profile-role {
+            color: #B89555;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        .profile-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 13px 0;
+            border-bottom: 1px solid #E8E2E5;
+            font-size: 12px;
+        }
+
+        .profile-detail:last-child {
+            border-bottom: none;
+        }
+
+        .profile-detail i {
+            color: #B89555;
+            font-size: 17px;
+        }
+
+        .profile-detail small {
+            display: block;
+            color: #70666C;
+            margin-bottom: 3px;
+        }
+
+        .profile-detail strong {
+            color: #292329;
+            font-weight: 600;
+            overflow-wrap: anywhere;
+        }
+
+        .profile-page .form-label {
+            color: #4A001F;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .profile-page .form-control {
+            border: 1px solid #E8E2E5;
+            border-radius: 8px;
+            font-size: 12px;
+            min-height: 42px;
+        }
+
+        .profile-page .form-control:focus {
+            border-color: #D6B77A;
+            box-shadow: 0 0 0 0.2rem rgba(214, 183, 122, 0.15);
+        }
+
+        .password-note {
+            background: #FAF8F5;
+            border-radius: 8px;
+            padding: 12px 15px;
+            color: #70666C;
+            font-size: 12px;
+        }
+
+        /* FOOTER */
+        .dashboard-footer {
+            text-align: center;
+            padding: 25px 0 5px;
+            color: #958A90;
+            font-size: 11px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 991px) {
+            .sidebar {
+                width: 220px;
+            }
+
+            .main-content {
+                margin-left: 220px;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 18px;
+            }
+
+            .topbar {
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            .admin-top-name {
+                font-size: 14px;
+            }
+
+            .admin-top-logo {
+                width: 42px;
+                height: 42px;
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body data-requires-auth="admin">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            <div class="brand-logo-light">
+                <span class="brand-heal">HEAL</span><span class="brand-ora">ORA</span>
+            </div>
+            <div class="brand-clinic">C L I N I C</div>
+        </div>
+
+        <nav>
+            <a href="admin-dashboard.html">
+                <i class="bi bi-grid-1x2-fill"></i>
+                Dashboard
+            </a>
+
+            <a href="appointments.html">
+                <i class="bi bi-calendar-check"></i>
+                Appointments
+            </a>
+
+            <a href="patients.html">
+                <i class="bi bi-people"></i>
+                Patients
+            </a>
+
+            <a href="doctors.html">
+                <i class="bi bi-person-badge"></i>
+                Doctors
+            </a>
+
+            <a href="doctor-schedule.html">
+                <i class="bi bi-calendar-week"></i>
+                Doctor Schedule
+            </a>
+
+            <a href="clinic-services.html">
+                <i class="bi bi-heart-pulse"></i>
+                Clinic Services
+            </a>
+
+            <a href="appointment-history.html">
+                <i class="bi bi-clock-history"></i>
+                Appointment History
+            </a>
+
+            <a href="reports.html">
+                <i class="bi bi-bar-chart-line"></i>
+                Reports
+            </a>
+
+            <a href="profile.html" class="active">
+                <i class="bi bi-person-circle"></i>
+                My Profile
+            </a>
+
+            <a href="help-support.html">
+                <i class="bi bi-question-circle"></i>
+                Help & Support
+            </a>
+        </nav>
+
+        <div class="sidebar-footer mt-4">
+
+            <div class="d-flex align-items-center gap-2 mb-3">
+                <div class="admin-top-logo"
+                     style="width:40px;height:40px;font-size:24px;">
+                    H
+                </div>
+
+                <div>
+                    <div class="admin-top-name"
+                         style="color:#F7E7CE;font-size:14px;">
+                        Healora Administrator
+                    </div>
+                    <div class="admin-top-role">ADMIN</div>
+                </div>
+            </div>
+
+            <a href="#" data-logout>
+                <i class="bi bi-box-arrow-left"></i>
+                Logout
+            </a>
+
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+
+            <div>
+                <h1 class="page-heading mb-1">My Profile</h1>
+                <p class="text-muted small mb-0">
+                    Manage your administrator account information.
+                </p>
+            </div>
+
+            <div class="admin-profile">
+                <div class="text-end">
+                    <div class="admin-top-name">
+                        Healora Administrator
+                    </div>
+                    <div class="admin-top-role">ADMIN</div>
+                </div>
+
+                <div class="admin-top-logo">H</div>
+            </div>
+
+        </div>
+
+        <!-- WELCOME BANNER -->
+        <section class="welcome-banner">
+            <div class="welcome-content">
+                <h2>Administrator Profile</h2>
+                <p>
+                    Manage your personal information and account security.
+                </p>
+            </div>
+        </section>
+
+        <!-- PROFILE CONTENT -->
+        <section class="row g-3 mb-4 align-items-start">
+
+            <!-- LEFT COLUMN: PROFILE SUMMARY -->
+            <div class="col-lg-4">
+
+                <div class="dashboard-card">
+
+                    <div class="profile-avatar" id="profileAvatar">H</div>
+
+                    <h3 class="profile-name" id="summaryName">
+                        Healora Administrator
+                    </h3>
+
+                    <p class="profile-role mb-4">ADMINISTRATOR</p>
+
+                    <div class="profile-detail">
+                        <i class="bi bi-envelope"></i>
+                        <div>
+                            <small>Email Address</small>
+                            <strong id="summaryEmail">Not available</strong>
+                        </div>
+                    </div>
+
+                    <div class="profile-detail">
+                        <i class="bi bi-telephone"></i>
+                        <div>
+                            <small>Phone Number</small>
+                            <strong id="summaryPhone">Not available</strong>
+                        </div>
+                    </div>
+
+                    <div class="profile-detail">
+                        <i class="bi bi-shield-check"></i>
+                        <div>
+                            <small>Account Role</small>
+                            <strong>Administrator</strong>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN: BOTH FORMS -->
+            <div class="col-lg-8">
+
+                <!-- PERSONAL INFORMATION -->
+                <div class="dashboard-card mb-3">
+
+                    <h5 class="mb-3">
+                        <i class="bi bi-person-lines-fill me-2"></i>
+                        Personal Information
+                    </h5>
+
+                    <div id="profileMessage"
+                         class="alert d-none"
+                         role="alert">
+                    </div>
+
+                    <form id="profileForm">
+
+                        <div class="row g-3">
+
+                            <div class="col-md-6">
+                                <label for="profileName" class="form-label">
+                                    Full Name
+                                </label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="profileName"
+                                       required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="profileEmail" class="form-label">
+                                    Email Address
+                                </label>
+                                <input type="email"
+                                       class="form-control"
+                                       id="profileEmail"
+                                       required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="profilePhone" class="form-label">
+                                    Phone Number
+                                </label>
+                                <input type="tel"
+                                       class="form-control"
+                                       id="profilePhone"
+                                       required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="profileRole" class="form-label">
+                                    Account Role
+                                </label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="profileRole"
+                                       value="Administrator"
+                                       disabled>
+                            </div>
+
+                        </div>
+
+                        <div class="d-flex justify-content-end gap-2 mt-4">
+
+                            <button type="reset"
+                                    class="btn btn-outline-secondary btn-sm">
+                                Reset
+                            </button>
+
+                            <button type="submit"
+                                    class="btn btn-primary btn-sm">
+                                <i class="bi bi-check2-circle me-1"></i>
+                                Save Changes
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <!-- CHANGE PASSWORD -->
+                <div class="dashboard-card">
+
+                    <h5 class="mb-3">
+                        <i class="bi bi-lock me-2"></i>
+                        Change Password
+                    </h5>
+
+                    <div id="passwordMessage"
+                         class="alert d-none"
+                         role="alert">
+                    </div>
+
+                    <form id="passwordForm">
+
+                        <div class="row g-3">
+
+                            <div class="col-12">
+                                <label for="currentPassword" class="form-label">
+                                    Current Password
+                                </label>
+                                <input type="password"
+                                       class="form-control"
+                                       id="currentPassword"
+                                       required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="newPassword" class="form-label">
+                                    New Password
+                                </label>
+                                <input type="password"
+                                       class="form-control"
+                                       id="newPassword"
+                                       minlength="6"
+                                       required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="confirmPassword" class="form-label">
+                                    Confirm New Password
+                                </label>
+                                <input type="password"
+                                       class="form-control"
+                                       id="confirmPassword"
+                                       minlength="6"
+                                       required>
+                            </div>
+
+                        </div>
+
+                        <div class="password-note mt-3">
+                            <i class="bi bi-info-circle me-1"></i>
+                            Use at least 6 characters for your new password.
+                        </div>
+
+                        <div class="d-flex justify-content-end mt-4">
+                            <button type="submit"
+                                    class="btn btn-primary btn-sm">
+                                <i class="bi bi-shield-lock me-1"></i>
+                                Update Password
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- FOOTER: AFTER THE COMPLETE PROFILE SECTION -->
+        <footer class="dashboard-footer">
+            © 2026 Healora Clinic. All Rights Reserved.
+            <br>
+            <span class="fst-italic">
+                Your Health, Our Priority.
+            </span>
+        </footer>
+
+    </main>
+
+    <!-- JAVASCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/data.js"></script>
+    <script src="../js/auth.js"></script>
+
+    <script>
+        
+document.addEventListener("DOMContentLoaded", function () {
+
+    const storage = window.HealoraStorage;
+
+    const profileForm = document.getElementById("profileForm");
+    const passwordForm = document.getElementById("passwordForm");
+
+    const profileMessage = document.getElementById("profileMessage");
+    const passwordMessage = document.getElementById("passwordMessage");
+
+    const SESSION_KEY = "healora_current_user";
+    const USERS_KEY = "healora_users";
+
+    let currentSession = null;
+    let adminAccount = null;
+
+    // ==========================================
+    // GET CURRENT HEALORA ADMIN ACCOUNT
+    // ==========================================
+
+    function getAdminAccount() {
+
+        if (!storage || typeof storage.getCurrentUser !== "function") {
+            return null;
+        }
+
+        currentSession = storage.getCurrentUser();
+
+        if (!currentSession || currentSession.role !== "admin") {
+            return null;
+        }
+
+        const users = JSON.parse(
+            localStorage.getItem(USERS_KEY) || "[]"
+        );
+
+        adminAccount = users.find(user =>
+            String(user.id) === String(currentSession.id)
+        );
+
+        if (!adminAccount) {
+            adminAccount = users.find(user =>
+                user.email?.toLowerCase() ===
+                currentSession.email?.toLowerCase()
+            );
+        }
+
+        return adminAccount || null;
+    }
+
+    // ==========================================
+    // SAVE ADMIN ACCOUNT
+    // ==========================================
+
+    function saveAdminAccount(updatedAccount) {
+
+        const users = JSON.parse(
+            localStorage.getItem(USERS_KEY) || "[]"
+        );
+
+        const index = users.findIndex(user =>
+            String(user.id) === String(adminAccount.id)
+        );
+
+        if (index === -1) {
+            return false;
+        }
+
+        users[index] = updatedAccount;
+
+        localStorage.setItem(
+            USERS_KEY,
+            JSON.stringify(users)
+        );
+
+        adminAccount = updatedAccount;
+
+        // Update current login session
+        currentSession = {
+            ...currentSession,
+            id: updatedAccount.id,
+            name: updatedAccount.name || updatedAccount.fullName,
+            email: updatedAccount.email,
+            role: updatedAccount.role
+        };
+
+        localStorage.setItem(
+            SESSION_KEY,
+            JSON.stringify(currentSession)
+        );
+
+        return true;
+    }
+
+    // ==========================================
+    // DISPLAY MESSAGE
+    // ==========================================
+
+    function showMessage(element, message, type) {
+
+        element.textContent = message;
+        element.className = "alert alert-" + type;
+    }
+
+    // ==========================================
+    // LOAD ADMIN PROFILE
+    // ==========================================
+
+    function loadProfile() {
+
+        adminAccount = getAdminAccount();
+
+        if (!adminAccount) {
+
+            showMessage(
+                profileMessage,
+                "Unable to load the Healora Administrator account. Please log in again.",
+                "danger"
+            );
+
+            return;
+        }
+
+        const name =
+            adminAccount.name ||
+            adminAccount.fullName ||
+            "Healora Administrator";
+
+        const email = adminAccount.email || "";
+
+        const phone =
+            adminAccount.phone ||
+            adminAccount.phoneNumber ||
+            "";
+
+        document.getElementById("profileName").value = name;
+        document.getElementById("profileEmail").value = email;
+        document.getElementById("profilePhone").value = phone;
+
+        document.getElementById("summaryName").textContent = name;
+
+        document.getElementById("summaryEmail").textContent =
+            email || "Not available";
+
+        document.getElementById("summaryPhone").textContent =
+            phone || "Not available";
+
+        document.getElementById("profileAvatar").textContent =
+            name.charAt(0).toUpperCase();
+
+    }
+
+    // ==========================================
+    // SAVE PERSONAL INFORMATION
+    // ==========================================
+
+    profileForm.addEventListener("submit", function (event) {
+
+        event.preventDefault();
+
+        if (!adminAccount) {
+            loadProfile();
+            return;
+        }
+
+        const name =
+            document.getElementById("profileName").value.trim();
+
+        const email =
+            document.getElementById("profileEmail").value.trim();
+
+        const phone =
+            document.getElementById("profilePhone").value.trim();
+
+        if (!name || !email || !phone) {
+
+            showMessage(
+                profileMessage,
+                "Please complete all required fields.",
+                "danger"
+            );
+
+            return;
+        }
+
+        const users = JSON.parse(
+            localStorage.getItem(USERS_KEY) || "[]"
+        );
+
+        const emailExists = users.some(user =>
+            user.email?.toLowerCase() === email.toLowerCase() &&
+            String(user.id) !== String(adminAccount.id)
+        );
+
+        if (emailExists) {
+
+            showMessage(
+                profileMessage,
+                "This email address is already registered.",
+                "danger"
+            );
+
+            return;
+        }
+
+        const updatedAccount = {
+            ...adminAccount,
+            name: name,
+            fullName: name,
+            email: email,
+            phone: phone
+        };
+
+        const success = saveAdminAccount(updatedAccount);
+
+        if (!success) {
+
+            showMessage(
+                profileMessage,
+                "Unable to update the administrator account.",
+                "danger"
+            );
+
+            return;
+        }
+
+        loadProfile();
+
+        showMessage(
+            profileMessage,
+            "Healora Administrator account updated successfully.",
+            "success"
+        );
+
+    });
+
+    // ==========================================
+    // RESET PROFILE FORM
+    // ==========================================
+
+    profileForm.addEventListener("reset", function () {
+
+        setTimeout(function () {
+            loadProfile();
+            profileMessage.className = "alert d-none";
+        }, 0);
+
+    });
+
+    // ==========================================
+    // CHANGE ADMIN PASSWORD
+    // ==========================================
+
+    passwordForm.addEventListener("submit", function (event) {
+
+        event.preventDefault();
+
+        if (!adminAccount) {
+            loadProfile();
+            return;
+        }
+
+        const currentPassword =
+            document.getElementById("currentPassword").value;
+
+        const newPassword =
+            document.getElementById("newPassword").value;
+
+        const confirmPassword =
+            document.getElementById("confirmPassword").value;
+
+        if (!adminAccount.password) {
+
+            showMessage(
+                passwordMessage,
+                "Administrator password information could not be found.",
+                "danger"
+            );
+
+            return;
+        }
+
+        if (currentPassword !== adminAccount.password) {
+
+            showMessage(
+                passwordMessage,
+                "Your current password is incorrect.",
+                "danger"
+            );
+
+            return;
+        }
+
+        if (newPassword.length < 6) {
+
+            showMessage(
+                passwordMessage,
+                "Your new password must contain at least 6 characters.",
+                "danger"
+            );
+
+            return;
+        }
+
+        if (newPassword !== confirmPassword) {
+
+            showMessage(
+                passwordMessage,
+                "The new passwords do not match.",
+                "danger"
+            );
+
+            return;
+        }
+
+        if (newPassword === currentPassword) {
+
+            showMessage(
+                passwordMessage,
+                "Please choose a different password.",
+                "warning"
+            );
+
+            return;
+        }
+
+        const updatedAccount = {
+            ...adminAccount,
+            password: newPassword
+        };
+
+        const success = saveAdminAccount(updatedAccount);
+
+        if (!success) {
+
+            showMessage(
+                passwordMessage,
+                "Unable to update your password.",
+                "danger"
+            );
+
+            return;
+        }
+
+        passwordForm.reset();
+
+        showMessage(
+            passwordMessage,
+            "Healora Administrator password updated successfully.",
+            "success"
+        );
+
+    });
+
+    // ==========================================
+    // INITIALIZE PROFILE
+    // ==========================================
+
+    loadProfile();
+
+});
+
+    </script>
+
+</body>
+</html>

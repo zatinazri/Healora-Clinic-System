@@ -1,0 +1,858 @@
+
+/* =====================================================
+   HEALORA CLINIC
+===================================================== */
+
+
+/* 1. GOOGLE FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,500;1,6..96,600&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+
+/* 2. OFFICIAL COLOUR PALETTE */
+:root {
+    /* Primary colours */
+    --burgundy: #4A001F;
+    --burgundy-dark: #350017;
+    --maroon: #800020;
+    --maroon-light: #9B2948;
+
+    /* Gold and champagne */
+    --champagne: #F7E7CE;
+    --gold: #D6B77A;
+    --gold-dark: #B89555;
+
+    /* Background colours */
+    --ivory: #FAF8F5;
+    --white: #FFFFFF;
+    --soft-grey: #E8E2E5;
+    --light-grey: #F3F0F1;
+
+    /* Text colours */
+    --text-primary: #292329;
+    --text-secondary: #70666C;
+    --text-muted: #958A90;
+    --text-light: #FFFFFF;
+
+    /* Status colours */
+    --success: #287A52;
+    --success-bg: #E5F3EB;
+
+    --warning: #A66A12;
+    --warning-bg: #FFF2D9;
+
+    --danger: #B83245;
+    --danger-bg: #FCE8EB;
+
+    --info: #356A9A;
+    --info-bg: #E8F1FA;
+
+    /* General design */
+    --border-color: #E8E2E5;
+    --shadow-sm: 0 2px 8px rgba(74, 0, 31, 0.05);
+    --shadow-md: 0 6px 20px rgba(74, 0, 31, 0.08);
+    --shadow-lg: 0 12px 35px rgba(74, 0, 31, 0.12);
+
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+
+    --transition: all 0.25s ease;
+}
+
+
+/* 3. GLOBAL RESET */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Manrope', sans-serif;
+    background-color: var(--ivory);
+    color: var(--text-primary);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Manrope', sans-serif;
+    color: var(--burgundy);
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+p {
+    color: var(--text-secondary);
+}
+
+a {
+    color: var(--maroon);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--gold-dark);
+}
+
+img {
+    max-width: 100%;
+}
+
+
+/* 4. HEALORA BRAND LOGO */
+.brand-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    font-family: 'Manrope', sans-serif;
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: var(--burgundy);
+    text-decoration: none;
+}
+
+.brand-logo:hover {
+    color: var(--burgundy);
+}
+
+.brand-heal {
+    color: var(--burgundy);
+    font-weight: 800;
+}
+
+.brand-ora {
+    color: var(--gold-dark);
+    font-family: 'Bodoni Moda', serif;
+    font-style: italic;
+    font-weight: 600;
+}
+
+.brand-clinic {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.brand-logo-light,
+.brand-logo-light .brand-heal {
+    color: var(--white);
+}
+
+.brand-logo-light .brand-ora {
+    color: var(--gold);
+}
+
+.brand-logo-light .brand-clinic {
+    color: var(--champagne);
+}
+
+
+/* 5. MAIN LAYOUT */
+.main-content {
+    min-height: 100vh;
+    margin-left: 260px;
+    padding: 30px;
+    background-color: var(--ivory);
+}
+
+.page-content {
+    padding: 25px;
+}
+
+.page-header {
+    margin-bottom: 28px;
+}
+
+.page-header h1,
+.page-header h2 {
+    margin-bottom: 6px;
+    color: var(--burgundy);
+}
+
+.page-header p {
+    margin-bottom: 0;
+    color: var(--text-secondary);
+}
+
+
+/* 6. SIDEBAR */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100vh;
+    padding: 25px 16px;
+    overflow-y: auto;
+    background: linear-gradient(
+        180deg,
+        var(--burgundy) 0%,
+        var(--burgundy-dark) 100%
+    );
+    color: var(--white);
+    z-index: 1000;
+    box-shadow: 4px 0 20px rgba(53, 0, 23, 0.12);
+}
+
+.sidebar-brand {
+    padding: 5px 12px 28px;
+    border-bottom: 1px solid rgba(247, 231, 206, 0.18);
+    margin-bottom: 25px;
+}
+
+.sidebar-title {
+    padding: 0 12px;
+    margin: 22px 0 10px;
+    color: var(--gold);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.sidebar a,
+.sidebar-link,
+.sidebar .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    margin: 4px 0;
+    border-radius: var(--radius-sm);
+    color: var(--champagne);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.sidebar a:hover,
+.sidebar-link:hover,
+.sidebar .nav-link:hover {
+    background-color: rgba(247, 231, 206, 0.12);
+    color: var(--white);
+}
+
+.sidebar a.active,
+.sidebar-link.active,
+.sidebar .nav-link.active {
+    background-color: var(--maroon);
+    color: var(--white);
+    box-shadow: inset 3px 0 0 var(--gold);
+}
+
+.sidebar i,
+.sidebar .nav-link i {
+    color: var(--gold);
+    font-size: 17px;
+}
+
+.sidebar a.active i,
+.sidebar .nav-link.active i {
+    color: var(--champagne);
+}
+
+.sidebar-footer {
+    padding: 18px 12px;
+    margin-top: 25px;
+    border-top: 1px solid rgba(247, 231, 206, 0.18);
+    color: var(--champagne);
+}
+
+
+/* 7. TOPBAR */
+.topbar,
+.dashboard-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 16px 22px;
+    margin-bottom: 25px;
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+.topbar h1,
+.topbar h2,
+.dashboard-topbar h1,
+.dashboard-topbar h2 {
+    margin: 0;
+    color: var(--burgundy);
+}
+
+.topbar p,
+.dashboard-topbar p {
+    margin: 4px 0 0;
+    color: var(--text-secondary);
+}
+
+
+/* 8. CARDS */
+.card,
+.dashboard-card,
+.stat-card,
+.content-card {
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    color: var(--text-primary);
+}
+
+.card {
+    overflow: hidden;
+}
+
+.card-header {
+    padding: 16px 20px;
+    background-color: var(--white);
+    border-bottom: 1px solid var(--border-color);
+    color: var(--burgundy);
+    font-weight: 800;
+}
+
+.card-body {
+    padding: 20px;
+    color: var(--text-primary);
+}
+
+.card-title {
+    color: var(--burgundy);
+    font-weight: 800;
+}
+
+.card-text {
+    color: var(--text-secondary);
+}
+
+
+/* 9. STATISTIC CARDS */
+.stat-card {
+    padding: 22px;
+    transition: var(--transition);
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.stat-card h3,
+.stat-card h4 {
+    margin: 0;
+    color: var(--burgundy);
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.stat-card p {
+    margin: 5px 0 0;
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.stat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    background-color: var(--champagne);
+    color: var(--burgundy);
+    font-size: 20px;
+}
+
+
+/* 10. BUTTONS */
+.btn {
+    border-radius: var(--radius-sm);
+    padding: 10px 18px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background-color: var(--maroon);
+    border-color: var(--maroon);
+    color: var(--white);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--burgundy);
+    border-color: var(--burgundy);
+    color: var(--white);
+}
+
+.btn-secondary {
+    background-color: var(--champagne);
+    border-color: var(--champagne);
+    color: var(--burgundy);
+}
+
+.btn-secondary:hover {
+    background-color: var(--gold);
+    border-color: var(--gold);
+    color: var(--burgundy-dark);
+}
+
+.btn-outline-primary {
+    border-color: var(--maroon);
+    color: var(--maroon);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--maroon);
+    border-color: var(--maroon);
+    color: var(--white);
+}
+
+.btn-outline-secondary {
+    border-color: var(--gold-dark);
+    color: var(--burgundy);
+}
+
+.btn-outline-secondary:hover {
+    background-color: var(--champagne);
+    border-color: var(--gold-dark);
+    color: var(--burgundy);
+}
+
+.btn-danger {
+    background-color: var(--danger);
+    border-color: var(--danger);
+    color: var(--white);
+}
+
+.btn-success {
+    background-color: var(--success);
+    border-color: var(--success);
+    color: var(--white);
+}
+
+
+/* 11. FORMS AND INPUTS */
+.form-label {
+    margin-bottom: 7px;
+    color: var(--burgundy);
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.form-control,
+.form-select {
+    min-height: 43px;
+    padding: 10px 13px;
+    background-color: var(--white);
+    border: 1px solid #D9CFD4;
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-family: 'Manrope', sans-serif;
+    font-size: 13px;
+}
+
+.form-control::placeholder {
+    color: var(--text-muted);
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: var(--white);
+    border-color: var(--maroon);
+    color: var(--text-primary);
+    box-shadow: 0 0 0 3px rgba(128, 0, 32, 0.10);
+}
+
+.form-check-input:checked {
+    background-color: var(--maroon);
+    border-color: var(--maroon);
+}
+
+.form-text {
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+
+/* 12. TABLES */
+.table-responsive {
+    border-radius: var(--radius-md);
+}
+
+.table {
+    margin-bottom: 0;
+    background-color: var(--white);
+    color: var(--text-primary);
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.table thead th {
+    padding: 14px 13px;
+    background-color: var(--burgundy);
+    border-color: rgba(255, 255, 255, 0.12);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.table tbody td {
+    padding: 13px;
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.table tbody tr:hover td {
+    background-color: #FCF7F8;
+}
+
+.table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+
+/* 13. STATUS BADGES */
+.badge {
+    padding: 6px 10px;
+    border-radius: 30px;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.status-pending {
+    background-color: var(--warning-bg);
+    color: var(--warning);
+}
+
+.status-confirmed {
+    background-color: var(--success-bg);
+    color: var(--success);
+}
+
+.status-completed {
+    background-color: var(--info-bg);
+    color: var(--info);
+}
+
+.status-cancelled {
+    background-color: var(--danger-bg);
+    color: var(--danger);
+}
+
+
+/* 14. MODALS */
+.modal-content {
+    overflow: hidden;
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.modal-header {
+    padding: 18px 22px;
+    background-color: var(--burgundy);
+    border-bottom: 0;
+    color: var(--white);
+}
+
+.modal-title {
+    color: var(--white);
+    font-weight: 800;
+}
+
+.modal-header .btn-close {
+    filter: brightness(0) invert(1);
+}
+
+.modal-body {
+    padding: 22px;
+    color: var(--text-primary);
+}
+
+.modal-footer {
+    padding: 16px 22px;
+    background-color: var(--ivory);
+    border-top: 1px solid var(--border-color);
+}
+
+
+/* 15. ALERTS */
+.alert-success {
+    background-color: var(--success-bg);
+    border-color: #C8E6D4;
+    color: var(--success);
+}
+
+.alert-danger {
+    background-color: var(--danger-bg);
+    border-color: #F2C9D0;
+    color: var(--danger);
+}
+
+.alert-warning {
+    background-color: var(--warning-bg);
+    border-color: #F0DCA9;
+    color: var(--warning);
+}
+
+.alert-info {
+    background-color: var(--info-bg);
+    border-color: #C9DDF0;
+    color: var(--info);
+}
+
+
+/* 16. AUTHENTICATION PAGES */
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 15px;
+    background:
+        radial-gradient(circle at top left, #F7E7CE 0%, transparent 40%),
+        linear-gradient(135deg, #FAF8F5 0%, #F2E8E9 100%);
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 460px;
+    padding: 38px;
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.auth-container h1,
+.auth-container h2 {
+    color: var(--burgundy);
+}
+
+.auth-container p {
+    color: var(--text-secondary);
+}
+
+
+/* 17. DOCTOR AND SERVICE CARDS */
+.doctor-card,
+.service-card {
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+
+.doctor-card:hover,
+.service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.doctor-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.doctor-card h5,
+.service-card h5 {
+    color: var(--burgundy);
+    font-weight: 800;
+}
+
+.doctor-card p,
+.service-card p {
+    color: var(--text-secondary);
+}
+
+
+/* 18. FOOTER */
+footer,
+.main-footer {
+    padding: 25px;
+    background-color: var(--burgundy-dark);
+    color: var(--champagne);
+    text-align: center;
+}
+
+footer p,
+.main-footer p {
+    margin: 0;
+    color: var(--champagne);
+    font-size: 12px;
+}
+
+footer a,
+.main-footer a {
+    color: var(--gold);
+}
+
+footer a:hover,
+.main-footer a:hover {
+    color: var(--white);
+}
+
+/* Dashboard footer: transparent style */
+.dashboard-footer {
+    padding: 25px 0 5px;
+    margin-top: 0;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 11px;
+    text-align: center;
+}
+
+
+/* 19. DROPDOWN */
+.dropdown-menu {
+    padding: 8px;
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md);
+}
+
+.dropdown-item {
+    padding: 9px 12px;
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 12px;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: var(--champagne);
+    color: var(--burgundy);
+}
+
+
+/* 20. PAGINATION */
+.pagination .page-link {
+    border-color: var(--border-color);
+    color: var(--burgundy);
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--maroon);
+    border-color: var(--maroon);
+    color: var(--white);
+}
+
+
+/* 21. SCROLLBAR */
+.sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: rgba(247, 231, 206, 0.35);
+    border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+
+/* 22. RESPONSIVE DESIGN */
+@media (max-width: 991px) {
+    .sidebar {
+        width: 220px;
+    }
+
+    .main-content {
+        margin-left: 220px;
+        padding: 22px;
+    }
+}
+
+@media (max-width: 767px) {
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        min-height: auto;
+        padding: 15px;
+    }
+
+    .sidebar-brand {
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 16px;
+    }
+
+    .page-content {
+        padding: 15px;
+    }
+
+    .topbar,
+    .dashboard-topbar {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .auth-container {
+        padding: 25px 20px;
+    }
+
+    .stat-card {
+        padding: 17px;
+    }
+
+    .stat-card h3,
+    .stat-card h4 {
+        font-size: 23px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 13px;
+    }
+
+    .main-content {
+        padding: 12px;
+    }
+
+    .page-header h1 {
+        font-size: 22px;
+    }
+
+    .btn {
+        padding: 9px 13px;
+        font-size: 12px;
+    }
+
+    .table {
+        font-size: 11px;
+    }
+}
