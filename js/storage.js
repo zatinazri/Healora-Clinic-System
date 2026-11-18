@@ -1,4 +1,3 @@
-
 /* =========================================
    HEALORA CLINIC
    LOCAL STORAGE MANAGEMENT
@@ -23,7 +22,9 @@ const HealoraStorage = (() => {
         DATA_VERSION: "healora_initial_data_version"
     };
 
-    const DATA_VERSION = "4";
+    // Version 5: Reset initial patients and appointments to exactly 30.
+    const DATA_VERSION = "5";
+
 
     // =====================================
     // 2. BASIC STORAGE FUNCTIONS
@@ -45,6 +46,7 @@ const HealoraStorage = (() => {
         }
     }
 
+
     function saveData(key, data) {
         try {
             localStorage.setItem(key, JSON.stringify(data));
@@ -56,6 +58,7 @@ const HealoraStorage = (() => {
         }
     }
 
+
     function generateId(prefix = "HLR") {
         const random = Math.random()
             .toString(36)
@@ -63,6 +66,19 @@ const HealoraStorage = (() => {
 
         return `${prefix}-${Date.now()}-${random}`;
     }
+
+
+    function generateAppointmentId(date = getCurrentDate()) {
+        const year = String(date).substring(0, 4);
+
+        const random = Math.random()
+            .toString(36)
+            .substring(2, 7)
+            .toUpperCase();
+
+        return `HLR-APT-${year}-${Date.now()}-${random}`;
+    }
+
 
     function getCurrentDate() {
         const date = new Date();
@@ -73,6 +89,8 @@ const HealoraStorage = (() => {
             String(date.getDate()).padStart(2, "0")
         ].join("-");
     }
+
+
 
     // =====================================
     // 3. DEFAULT DOCTORS
@@ -146,6 +164,8 @@ const HealoraStorage = (() => {
             }
         ];
     }
+
+
 
     // =====================================
     // 4. DEFAULT CLINIC SERVICES
@@ -236,6 +256,8 @@ const HealoraStorage = (() => {
             }
         ];
     }
+
+
 
     // =====================================
     // 5. PATIENT RECORDS
@@ -637,6 +659,8 @@ const HealoraStorage = (() => {
         ];
     }
 
+
+
     // =====================================
     // 6. APPOINTMENT RECORDS
     // TOTAL: 30 APPOINTMENTS
@@ -763,6 +787,8 @@ const HealoraStorage = (() => {
         });
     }
 
+
+
     // =====================================
     // 7. DOCTOR SCHEDULES
     // =====================================
@@ -860,6 +886,8 @@ const HealoraStorage = (() => {
         ];
     }
 
+
+
     // =====================================
     // 8. SUPPORT REQUESTS
     // =====================================
@@ -902,6 +930,8 @@ const HealoraStorage = (() => {
         ];
     }
 
+
+
     // =====================================
     // 9. INITIAL DATA MIGRATION
     // =====================================
@@ -913,31 +943,12 @@ const HealoraStorage = (() => {
         const cleanedRecords = existingRecords.filter(record => {
 
             const id = String(record.id || "");
-            const appointmentId = String(record.appointmentId || "");
 
-            // Replace previous fixed patient records.
+            // Remove previous initial schedules.
             if (
-                storageKey === KEYS.PATIENTS &&
-                /^PAT-\d{3}$/.test(id)
+                prefix &&
+                id.startsWith(prefix)
             ) {
-                return false;
-            }
-
-            // Replace previous appointment records.
-            if (
-                storageKey === KEYS.APPOINTMENTS &&
-                (
-                    id.startsWith("SAMPLE-APT-") ||
-                    id.startsWith("HLR-APT-") ||
-                    appointmentId.startsWith("SAMPLE-APT-") ||
-                    appointmentId.startsWith("HLR-APT-")
-                )
-            ) {
-                return false;
-            }
-
-            // Replace initial schedules and support requests.
-            if (prefix && id.startsWith(prefix)) {
                 return false;
             }
 
@@ -952,25 +963,32 @@ const HealoraStorage = (() => {
         return saveData(storageKey, updatedRecords);
     }
 
+
     function seedInitialData() {
 
         const currentVersion =
             localStorage.getItem(KEYS.DATA_VERSION);
 
+        // Do not reset data again if version 5 is already installed.
         if (currentVersion === DATA_VERSION) {
             return;
         }
 
-        const patientsSaved = replaceInitialRecords(
+        /*
+           IMPORTANT:
+           Patients and appointments are replaced completely.
+           This prevents old registered patient records from
+           being added on top of the 30 initial records.
+        */
+
+        const patientsSaved = saveData(
             KEYS.PATIENTS,
-            getInitialPatients(),
-            ""
+            getInitialPatients()
         );
 
-        const appointmentsSaved = replaceInitialRecords(
+        const appointmentsSaved = saveData(
             KEYS.APPOINTMENTS,
-            getInitialAppointments(),
-            ""
+            getInitialAppointments()
         );
 
         const schedulesSaved = replaceInitialRecords(
@@ -991,21 +1009,28 @@ const HealoraStorage = (() => {
             schedulesSaved &&
             supportSaved
         ) {
+
             localStorage.setItem(
                 KEYS.DATA_VERSION,
                 DATA_VERSION
             );
 
             console.log(
-                "Healora Clinic initial records updated successfully."
+                "Healora Clinic data updated successfully."
             );
 
+            console.log("Total initial patients: 30");
+            console.log("Total initial appointments: 30");
+
         } else {
+
             console.error(
                 "Unable to update Healora Clinic records."
             );
         }
     }
+
+
 
     // =====================================
     // 10. INITIALIZE DATA
@@ -1030,6 +1055,7 @@ const HealoraStorage = (() => {
 
         saveData(KEYS.DOCTORS, doctors);
 
+
         const services = getData(KEYS.SERVICES);
 
         getDefaultServices().forEach(defaultService => {
@@ -1052,6 +1078,8 @@ const HealoraStorage = (() => {
         );
     }
 
+
+
     // =====================================
     // 11. USER MANAGEMENT
     // =====================================
@@ -1059,6 +1087,7 @@ const HealoraStorage = (() => {
     function getUsers() {
         return getData(KEYS.USERS);
     }
+
 
     function findUserByEmail(email) {
 
@@ -1072,6 +1101,7 @@ const HealoraStorage = (() => {
                 .toLowerCase() === normalizedEmail
         ) || null;
     }
+
 
     function ensureAdminAccount() {
 
@@ -1088,6 +1118,7 @@ const HealoraStorage = (() => {
         if (existingAdmin) {
 
             existingAdmin.role = "admin";
+
             existingAdmin.name =
                 existingAdmin.name || "Healora Administrator";
 
@@ -1111,6 +1142,8 @@ const HealoraStorage = (() => {
 
         return saveData(KEYS.USERS, users);
     }
+
+
 
     // =====================================
     // 12. USER REGISTRATION
@@ -1195,6 +1228,8 @@ const HealoraStorage = (() => {
         };
     }
 
+
+
     // =====================================
     // 13. LOGIN AND SESSION MANAGEMENT
     // =====================================
@@ -1246,6 +1281,7 @@ const HealoraStorage = (() => {
         };
     }
 
+
     function getCurrentUser() {
 
         try {
@@ -1282,9 +1318,12 @@ const HealoraStorage = (() => {
         }
     }
 
+
     function logout() {
         sessionStorage.removeItem(KEYS.CURRENT_USER);
     }
+
+
 
     // =====================================
     // 14. PATIENT MANAGEMENT
@@ -1293,6 +1332,7 @@ const HealoraStorage = (() => {
     function getPatients() {
         return getData(KEYS.PATIENTS);
     }
+
 
     function addPatient(patientData) {
 
@@ -1323,6 +1363,7 @@ const HealoraStorage = (() => {
         return saveData(KEYS.PATIENTS, patients);
     }
 
+
     function updatePatient(id, updatedData) {
 
         const patients = getPatients();
@@ -1341,6 +1382,7 @@ const HealoraStorage = (() => {
         return saveData(KEYS.PATIENTS, patients);
     }
 
+
     function deletePatient(id) {
 
         const patients = getPatients().filter(
@@ -1350,6 +1392,8 @@ const HealoraStorage = (() => {
         return saveData(KEYS.PATIENTS, patients);
     }
 
+
+
     // =====================================
     // 15. DOCTOR MANAGEMENT
     // =====================================
@@ -1357,6 +1401,7 @@ const HealoraStorage = (() => {
     function getDoctors() {
         return getData(KEYS.DOCTORS);
     }
+
 
     function addDoctor(doctorData) {
 
@@ -1369,6 +1414,7 @@ const HealoraStorage = (() => {
 
         return saveData(KEYS.DOCTORS, doctors);
     }
+
 
     function updateDoctor(id, updatedData) {
 
@@ -1388,6 +1434,7 @@ const HealoraStorage = (() => {
         return saveData(KEYS.DOCTORS, doctors);
     }
 
+
     function deleteDoctor(id) {
 
         const doctors = getDoctors().filter(
@@ -1397,6 +1444,8 @@ const HealoraStorage = (() => {
         return saveData(KEYS.DOCTORS, doctors);
     }
 
+
+
     // =====================================
     // 16. CLINIC SERVICES
     // =====================================
@@ -1404,6 +1453,7 @@ const HealoraStorage = (() => {
     function getServices() {
         return getData(KEYS.SERVICES);
     }
+
 
     function addService(serviceData) {
 
@@ -1416,6 +1466,7 @@ const HealoraStorage = (() => {
 
         return saveData(KEYS.SERVICES, services);
     }
+
 
     function updateService(id, updatedData) {
 
@@ -1435,6 +1486,7 @@ const HealoraStorage = (() => {
         return saveData(KEYS.SERVICES, services);
     }
 
+
     function deleteService(id) {
 
         const services = getServices().filter(
@@ -1444,6 +1496,8 @@ const HealoraStorage = (() => {
         return saveData(KEYS.SERVICES, services);
     }
 
+
+
     // =====================================
     // 17. APPOINTMENT MANAGEMENT
     // =====================================
@@ -1452,11 +1506,16 @@ const HealoraStorage = (() => {
         return getData(KEYS.APPOINTMENTS);
     }
 
+
     function addAppointment(appointmentData) {
 
         const appointments = getAppointments();
 
-        const appointmentId = generateId("APT");
+        const appointmentDate =
+            appointmentData.date || getCurrentDate();
+
+        const appointmentId =
+            generateAppointmentId(appointmentDate);
 
         const newAppointment = {
 
@@ -1480,11 +1539,14 @@ const HealoraStorage = (() => {
 
             service: appointmentData.service || "",
 
-            serviceName: appointmentData.serviceName || appointmentData.service || "",
+            serviceName:
+                appointmentData.serviceName ||
+                appointmentData.service ||
+                "",
 
-            date: appointmentData.date || "",
+            date: appointmentDate,
 
-            appointmentDate: appointmentData.date || "",
+            appointmentDate,
 
             time: appointmentData.time || "",
 
@@ -1514,6 +1576,7 @@ const HealoraStorage = (() => {
         return newAppointment;
     }
 
+
     function updateAppointment(id, updatedData) {
 
         const appointments = getAppointments();
@@ -1534,6 +1597,7 @@ const HealoraStorage = (() => {
         return saveData(KEYS.APPOINTMENTS, appointments);
     }
 
+
     function deleteAppointment(id) {
 
         const appointments = getAppointments().filter(
@@ -1544,6 +1608,8 @@ const HealoraStorage = (() => {
 
         return saveData(KEYS.APPOINTMENTS, appointments);
     }
+
+
 
     // =====================================
     // 18. DASHBOARD STATISTICS
@@ -1588,11 +1654,15 @@ const HealoraStorage = (() => {
         };
     }
 
+
+
     // =====================================
     // 19. INITIALIZE SYSTEM
     // =====================================
 
     initializeData();
+
+
 
     // =====================================
     // 20. PUBLIC FUNCTIONS
@@ -1635,6 +1705,8 @@ const HealoraStorage = (() => {
     };
 
 })();
+
+
 
 // =====================================
 // 21. MAKE STORAGE AVAILABLE GLOBALLY
