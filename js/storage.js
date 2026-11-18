@@ -1,3 +1,4 @@
+
 /* =========================================
    HEALORA CLINIC
    LOCAL STORAGE MANAGEMENT
@@ -22,8 +23,8 @@ const HealoraStorage = (() => {
         DATA_VERSION: "healora_initial_data_version"
     };
 
-    // Version 5: Reset initial patients and appointments to exactly 30.
-    const DATA_VERSION = "5";
+    // Version 6: 25 initial patients and 25 appointments.
+    const DATA_VERSION = "6";
 
 
     // =====================================
@@ -261,410 +262,76 @@ const HealoraStorage = (() => {
 
     // =====================================
     // 5. PATIENT RECORDS
-    // TOTAL: 30 PATIENTS
+    // TOTAL: 25 PATIENTS
     // =====================================
 
     function getInitialPatients() {
-        return [
-            {
-                id: "PAT-001",
-                userId: "",
-                name: "Aiman Hakimi",
-                fullName: "Aiman Hakimi",
-                email: "aiman.hakimi88@gmail.com",
-                phone: "012-1112233",
-                age: 28,
-                gender: "Male",
-                status: "Active",
-                createdAt: "2026-07-01",
-                registrationDate: "2026-07-01"
-            },
-            {
-                id: "PAT-002",
-                userId: "",
-                name: "Nur Sarah Iman",
-                fullName: "Nur Sarah Iman",
-                email: "sarah.iman24@gmail.com",
-                phone: "013-2223344",
-                age: 24,
-                gender: "Female",
-                status: "Active",
-                createdAt: "2026-07-05",
-                registrationDate: "2026-07-05"
-            },
-            {
-                id: "PAT-003",
-                userId: "",
-                name: "Daniel Lee",
-                fullName: "Daniel Lee",
-                email: "daniel.lee88@gmail.com",
-                phone: "014-3334455",
-                age: 35,
-                gender: "Male",
-                status: "Active",
-                createdAt: "2026-07-10",
-                registrationDate: "2026-07-10"
-            },
-            {
-                id: "PAT-004",
-                userId: "",
-                name: "Siti Nur Amirah",
-                fullName: "Siti Nur Amirah",
-                email: "amirah.siti@gmail.com",
-                phone: "016-4445566",
-                age: 31,
-                gender: "Female",
-                status: "Active",
-                createdAt: "2026-08-01",
-                registrationDate: "2026-08-01"
-            },
-            {
-                id: "PAT-005",
-                userId: "",
-                name: "Muhammad Firdaus",
-                fullName: "Muhammad Firdaus",
-                email: "firdaus.m92@gmail.com",
-                phone: "017-5556677",
-                age: 42,
-                gender: "Male",
-                status: "Active",
-                createdAt: "2026-08-05",
-                registrationDate: "2026-08-05"
-            },
-            {
-                id: "PAT-006",
-                userId: "",
-                name: "Priya Nair",
-                fullName: "Priya Nair",
-                email: "priyanair29@gmail.com",
-                phone: "018-6667788",
-                age: 29,
-                gender: "Female",
-                status: "Active",
-                createdAt: "2026-08-10",
-                registrationDate: "2026-08-10"
-            },
-            {
-                id: "PAT-007",
-                userId: "",
-                name: "Amirul Danish",
-                fullName: "Amirul Danish",
-                email: "amirul.danish@gmail.com",
-                phone: "019-7778899",
-                age: 26,
-                gender: "Male",
-                status: "Active",
-                createdAt: "2026-08-15",
-                registrationDate: "2026-08-15"
-            },
-            {
-                id: "PAT-008",
-                userId: "",
-                name: "Lim Mei Xin",
-                fullName: "Lim Mei Xin",
-                email: "meixin.lim@gmail.com",
-                phone: "011-8889900",
-                age: 38,
-                gender: "Female",
-                status: "Active",
-                createdAt: "2026-09-01",
-                registrationDate: "2026-09-01"
-            },
-            {
-                id: "PAT-009",
-                userId: "",
-                name: "Farhan Azmi",
-                fullName: "Farhan Azmi",
-                email: "farhan.azmi@gmail.com",
-                phone: "012-9990011",
-                age: 33,
-                gender: "Male",
-                status: "Active",
-                createdAt: "2026-09-05",
-                registrationDate: "2026-09-05"
-            },
-            {
-                id: "PAT-010",
-                userId: "",
-                name: "Nurul Huda",
-                fullName: "Nurul Huda",
-                email: "nurul.huda27@gmail.com",
-                phone: "013-1011121",
-                age: 27,
-                gender: "Female",
-                status: "Active",
-                createdAt: "2026-09-10",
-                registrationDate: "2026-09-10"
-            },
-            {
-                id: "PAT-011",
-                userId: "",
-                name: "Muhammad Danish",
-                fullName: "Muhammad Danish",
-                email: "danish.muhammad@gmail.com",
-                phone: "014-1213141",
-                age: 30,
-                gender: "Male",
-                status: "Active",
-                createdAt: "2026-09-15",
-                registrationDate: "2026-09-15"
-            },
-            {
-                id: "PAT-012",
-                userId: "",
-                name: "Alya Sofea",
-                fullName: "Alya Sofea",
-                email: "alya.sofea26@gmail.com",
-                phone: "016-1516171",
-                age: 26,
-                gender: "Female",
-                status: "Active",
-                createdAt: "2026-10-01",
-                registrationDate: "2026-10-01"
-            },
-            {
-                id: "PAT-013",
-                userId: "",
-                name: "Jason Wong",
-                fullName: "Jason Wong",
-                email: "jason.wong90@gmail.com",
-                phone: "017-1819202",
-                age: 36,
-                gender: "Male",
-                status: "Active",
-                createdAt: "2026-10-04",
-                registrationDate: "2026-10-04"
-            },
-            {
-                id: "PAT-014",
-                userId: "",
-                name: "Nur Fatimah",
-                fullName: "Nur Fatimah",
-                email: "fatimah.nur@gmail.com",
-                phone: "018-2122232",
-                age: 32,
-                gender: "Female",
-                status: "Active",
-                createdAt: "2026-10-08",
-                registrationDate: "2026-10-08"
-            },
-            {
-                id: "PAT-015",
-                userId: "",
-                name: "Arif Hakim",
-                fullName: "Arif Hakim",
-                email: "arif.hakim95@gmail.com",
-                phone: "019-2425262",
-                age: 31,
-                gender: "Male",
-                status: "Active",
-                createdAt: "2026-10-12",
-                registrationDate: "2026-10-12"
-            },
-            {
-                id: "PAT-016",
-                userId: "",
-                name: "Kavitha Devi",
-                fullName: "Kavitha Devi",
-                email: "kavitha.devi@gmail.com",
-                phone: "011-2728293",
-                age: 34,
-                gender: "Female",
-                status: "Active",
-                createdAt: "2026-10-15",
-                registrationDate: "2026-10-15"
-            },
-            {
-                id: "PAT-017",
-                userId: "",
-                name: "Syafiq Rahman",
-                fullName: "Syafiq Rahman",
-                email: "syafiq.rahman@gmail.com",
-                phone: "012-3031323",
-                age: 29,
-                gender: "Male",
-                status: "Active",
-                createdAt: "2026-10-18",
-                registrationDate: "2026-10-18"
-            },
-            {
-                id: "PAT-018",
-                userId: "",
-                name: "Chloe Tan",
-                fullName: "Chloe Tan",
-                email: "chloe.tan94@gmail.com",
-                phone: "013-3334353",
-                age: 32,
-                gender: "Female",
-                status: "Active",
-                createdAt: "2026-10-20",
-                registrationDate: "2026-10-20"
-            },
-            {
-                id: "PAT-019",
-                userId: "",
-                name: "Haziq Iskandar",
-                fullName: "Haziq Iskandar",
-                email: "haziq.iskandar@gmail.com",
-                phone: "014-3637383",
-                age: 27,
-                gender: "Male",
-                status: "Active",
-                createdAt: "2026-10-23",
-                registrationDate: "2026-10-23"
-            },
-            {
-                id: "PAT-020",
-                userId: "",
-                name: "Puteri Balqis",
-                fullName: "Puteri Balqis",
-                email: "puteri.balqis@gmail.com",
-                phone: "016-3940414",
-                age: 25,
-                gender: "Female",
-                status: "Active",
-                createdAt: "2026-10-25",
-                registrationDate: "2026-10-25"
-            },
-            {
-                id: "PAT-021",
-                userId: "",
-                name: "Adam Firash",
-                fullName: "Adam Firash",
-                email: "adam.firash@gmail.com",
-                phone: "017-4243444",
-                age: 30,
-                gender: "Male",
-                status: "Active",
-                createdAt: "2026-10-27",
-                registrationDate: "2026-10-27"
-            },
-            {
-                id: "PAT-022",
-                userId: "",
-                name: "Nadia Maisarah",
-                fullName: "Nadia Maisarah",
-                email: "nadia.maisarah@gmail.com",
-                phone: "018-4546474",
-                age: 28,
-                gender: "Female",
-                status: "Active",
-                createdAt: "2026-10-29",
-                registrationDate: "2026-10-29"
-            },
-            {
-                id: "PAT-023",
-                userId: "",
-                name: "Tan Wei Jian",
-                fullName: "Tan Wei Jian",
-                email: "wei.jian.tan@gmail.com",
-                phone: "019-4849505",
-                age: 39,
-                gender: "Male",
-                status: "Active",
-                createdAt: "2026-11-01",
-                registrationDate: "2026-11-01"
-            },
-            {
-                id: "PAT-024",
-                userId: "",
-                name: "Aisyah Humaira",
-                fullName: "Aisyah Humaira",
-                email: "aisyah.humaira@gmail.com",
-                phone: "011-5152535",
-                age: 23,
-                gender: "Female",
-                status: "Active",
-                createdAt: "2026-11-03",
-                registrationDate: "2026-11-03"
-            },
-            {
-                id: "PAT-025",
-                userId: "",
-                name: "Ravi Kumar",
-                fullName: "Ravi Kumar",
-                email: "ravi.kumar91@gmail.com",
-                phone: "012-5455565",
-                age: 35,
-                gender: "Male",
-                status: "Active",
-                createdAt: "2026-11-05",
-                registrationDate: "2026-11-05"
-            },
-            {
-                id: "PAT-026",
-                userId: "",
-                name: "Hannah Lee",
-                fullName: "Hannah Lee",
-                email: "hannah.lee@gmail.com",
-                phone: "013-5758595",
-                age: 27,
-                gender: "Female",
-                status: "Active",
-                createdAt: "2026-11-07",
-                registrationDate: "2026-11-07"
-            },
-            {
-                id: "PAT-027",
-                userId: "",
-                name: "Faris Zulkifli",
-                fullName: "Faris Zulkifli",
-                email: "faris.zulkifli@gmail.com",
-                phone: "014-6061626",
-                age: 33,
-                gender: "Male",
-                status: "Active",
-                createdAt: "2026-11-09",
-                registrationDate: "2026-11-09"
-            },
-            {
-                id: "PAT-028",
-                userId: "",
-                name: "Sofea Natasha",
-                fullName: "Sofea Natasha",
-                email: "sofea.natasha@gmail.com",
-                phone: "016-6364656",
-                age: 26,
-                gender: "Female",
-                status: "Active",
-                createdAt: "2026-11-11",
-                registrationDate: "2026-11-11"
-            },
-            {
-                id: "PAT-029",
-                userId: "",
-                name: "Marcus Lim",
-                fullName: "Marcus Lim",
-                email: "marcus.lim@gmail.com",
-                phone: "017-6667686",
-                age: 41,
-                gender: "Male",
-                status: "Active",
-                createdAt: "2026-11-13",
-                registrationDate: "2026-11-13"
-            },
-            {
-                id: "PAT-030",
-                userId: "",
-                name: "Nur Iman Syuhada",
-                fullName: "Nur Iman Syuhada",
-                email: "iman.syuhada@gmail.com",
-                phone: "018-6970717",
-                age: 29,
-                gender: "Female",
-                status: "Active",
-                createdAt: "2026-11-15",
-                registrationDate: "2026-11-15"
-            }
+
+        const records = [
+            ["Aiman Hakimi", "aiman.hakimi88@gmail.com", "012-1112233", 28, "Male", "2026-07-01"],
+            ["Nur Sarah Iman", "sarah.iman24@gmail.com", "013-2223344", 24, "Female", "2026-07-05"],
+            ["Daniel Lee", "daniel.lee88@gmail.com", "014-3334455", 35, "Male", "2026-07-10"],
+
+            ["Siti Nur Amirah", "amirah.siti@gmail.com", "016-4445566", 31, "Female", "2026-08-01"],
+            ["Muhammad Firdaus", "firdaus.m92@gmail.com", "017-5556677", 42, "Male", "2026-08-05"],
+            ["Priya Nair", "priyanair29@gmail.com", "018-6667788", 29, "Female", "2026-08-10"],
+            ["Amirul Danish", "amirul.danish@gmail.com", "019-7778899", 26, "Male", "2026-08-15"],
+
+            ["Lim Mei Xin", "meixin.lim@gmail.com", "011-8889900", 38, "Female", "2026-09-01"],
+            ["Farhan Azmi", "farhan.azmi@gmail.com", "012-9990011", 33, "Male", "2026-09-05"],
+            ["Nurul Huda", "nurul.huda27@gmail.com", "013-1011121", 27, "Female", "2026-09-10"],
+            ["Muhammad Danish", "danish.muhammad@gmail.com", "014-1213141", 30, "Male", "2026-09-15"],
+
+            ["Alya Sofea", "alya.sofea26@gmail.com", "016-1516171", 26, "Female", "2026-10-01"],
+            ["Jason Wong", "jason.wong90@gmail.com", "017-1819202", 36, "Male", "2026-10-04"],
+            ["Nur Fatimah", "fatimah.nur@gmail.com", "018-2122232", 32, "Female", "2026-10-08"],
+            ["Arif Hakim", "arif.hakim95@gmail.com", "019-2425262", 31, "Male", "2026-10-12"],
+            ["Kavitha Devi", "kavitha.devi@gmail.com", "011-2728293", 34, "Female", "2026-10-15"],
+            ["Syafiq Rahman", "syafiq.rahman@gmail.com", "012-3031323", 29, "Male", "2026-10-18"],
+            ["Chloe Tan", "chloe.tan94@gmail.com", "013-3334353", 32, "Female", "2026-10-20"],
+            ["Haziq Iskandar", "haziq.iskandar@gmail.com", "014-3637383", 27, "Male", "2026-10-23"],
+            ["Puteri Balqis", "puteri.balqis@gmail.com", "016-3940414", 25, "Female", "2026-10-25"],
+            ["Adam Firash", "adam.firash@gmail.com", "017-4243444", 30, "Male", "2026-10-27"],
+            ["Nadia Maisarah", "nadia.maisarah@gmail.com", "018-4546474", 28, "Female", "2026-10-29"],
+
+            ["Tan Wei Jian", "wei.jian.tan@gmail.com", "019-4849505", 39, "Male", "2026-11-01"],
+            ["Aisyah Humaira", "aisyah.humaira@gmail.com", "011-5152535", 23, "Female", "2026-11-03"],
+            ["Ravi Kumar", "ravi.kumar91@gmail.com", "012-5455565", 35, "Male", "2026-11-05"]
         ];
+
+        return records.map((record, index) => {
+
+            const [
+                name,
+                email,
+                phone,
+                age,
+                gender,
+                date
+            ] = record;
+
+            return {
+                id: `PAT-${String(index + 1).padStart(3, "0")}`,
+                userId: "",
+                name,
+                fullName: name,
+                email,
+                phone,
+                age,
+                gender,
+                status: "Active",
+                createdAt: date,
+                registrationDate: date
+            };
+        });
     }
 
 
 
     // =====================================
     // 6. APPOINTMENT RECORDS
-    // TOTAL: 30 APPOINTMENTS
-    // JULY 2026 - JANUARY 2027
+    // TOTAL: 25 APPOINTMENTS
+    // JULY 2026 - DECEMBER 2026
     // =====================================
 
     function getInitialAppointments() {
@@ -712,15 +379,7 @@ const HealoraStorage = (() => {
             ["2026-12-08", "10:00 AM", 22, "Women's Health", "DOC-004", "Follow-up Consultation", "Confirmed"],
             ["2026-12-14", "11:00 AM", 23, "Cardiology Consultation", "DOC-006", "Follow-up Consultation", "Pending"],
             ["2026-12-20", "02:00 PM", 24, "Dermatology Consultation", "DOC-007", "Skin Problems", "Confirmed"],
-            ["2026-12-28", "09:30 AM", 25, "Health Screening", "DOC-005", "General Check-up", "Pending"],
-
-            // JANUARY 2027 - 5 APPOINTMENTS
-
-            ["2027-01-05", "09:00 AM", 26, "General Consultation", "DOC-001", "General Check-up", "Confirmed"],
-            ["2027-01-12", "10:30 AM", 27, "Cardiology Consultation", "DOC-006", "Follow-up Consultation", "Pending"],
-            ["2027-01-19", "01:00 PM", 28, "Women's Health", "DOC-008", "Follow-up Consultation", "Confirmed"],
-            ["2027-01-26", "02:30 PM", 29, "Dermatology Consultation", "DOC-007", "Skin Problems", "Pending"],
-            ["2027-01-30", "11:00 AM", 30, "Vaccination", "DOC-003", "Other", "Confirmed"]
+            ["2026-12-28", "09:30 AM", 25, "Health Screening", "DOC-005", "General Check-up", "Pending"]
         ];
 
         const patients = getInitialPatients();
@@ -944,7 +603,6 @@ const HealoraStorage = (() => {
 
             const id = String(record.id || "");
 
-            // Remove previous initial schedules.
             if (
                 prefix &&
                 id.startsWith(prefix)
@@ -969,16 +627,19 @@ const HealoraStorage = (() => {
         const currentVersion =
             localStorage.getItem(KEYS.DATA_VERSION);
 
-        // Do not reset data again if version 5 is already installed.
         if (currentVersion === DATA_VERSION) {
             return;
         }
 
         /*
-           IMPORTANT:
-           Patients and appointments are replaced completely.
-           This prevents old registered patient records from
-           being added on top of the 30 initial records.
+           Initial patients and appointments are replaced
+           with 25 records each.
+
+           Previous initial records are removed.
+           PAT-026 to PAT-030 are no longer included.
+           January 2027 appointments are no longer included.
+
+           Existing user accounts are not deleted.
         */
 
         const patientsSaved = saveData(
@@ -1019,8 +680,8 @@ const HealoraStorage = (() => {
                 "Healora Clinic data updated successfully."
             );
 
-            console.log("Total initial patients: 30");
-            console.log("Total initial appointments: 30");
+            console.log("Total initial patients: 25");
+            console.log("Total initial appointments: 25");
 
         } else {
 
