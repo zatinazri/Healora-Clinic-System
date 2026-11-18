@@ -1,3 +1,4 @@
+
 /* =========================================
    HEALORA CLINIC
    LOCAL STORAGE MANAGEMENT
@@ -19,10 +20,10 @@ const HealoraStorage = (() => {
         CURRENT_USER: "healora_current_user",
         DOCTOR_SCHEDULES: "healora_doctor_schedules",
         SUPPORT_REQUESTS: "healora_support_requests",
-        SAMPLE_DATA_VERSION: "healora_sample_data_version"
+        DATA_VERSION: "healora_initial_data_version"
     };
 
-    const SAMPLE_VERSION = "3";
+    const DATA_VERSION = "4";
 
     // =====================================
     // 2. BASIC STORAGE FUNCTIONS
@@ -237,10 +238,11 @@ const HealoraStorage = (() => {
     }
 
     // =====================================
-    // 5. SAMPLE PATIENTS
+    // 5. PATIENT RECORDS
+    // TOTAL: 30 PATIENTS
     // =====================================
 
-    function getSamplePatients() {
+    function getInitialPatients() {
         return [
             {
                 id: "PAT-001",
@@ -330,8 +332,8 @@ const HealoraStorage = (() => {
                 age: 26,
                 gender: "Male",
                 status: "Active",
-                createdAt: "2026-09-01",
-                registrationDate: "2026-09-01"
+                createdAt: "2026-08-15",
+                registrationDate: "2026-08-15"
             },
             {
                 id: "PAT-008",
@@ -343,8 +345,8 @@ const HealoraStorage = (() => {
                 age: 38,
                 gender: "Female",
                 status: "Active",
-                createdAt: "2026-09-05",
-                registrationDate: "2026-09-05"
+                createdAt: "2026-09-01",
+                registrationDate: "2026-09-01"
             },
             {
                 id: "PAT-009",
@@ -356,8 +358,8 @@ const HealoraStorage = (() => {
                 age: 33,
                 gender: "Male",
                 status: "Active",
-                createdAt: "2026-09-10",
-                registrationDate: "2026-09-10"
+                createdAt: "2026-09-05",
+                registrationDate: "2026-09-05"
             },
             {
                 id: "PAT-010",
@@ -369,68 +371,335 @@ const HealoraStorage = (() => {
                 age: 27,
                 gender: "Female",
                 status: "Active",
+                createdAt: "2026-09-10",
+                registrationDate: "2026-09-10"
+            },
+            {
+                id: "PAT-011",
+                userId: "",
+                name: "Muhammad Danish",
+                fullName: "Muhammad Danish",
+                email: "danish.muhammad@gmail.com",
+                phone: "014-1213141",
+                age: 30,
+                gender: "Male",
+                status: "Active",
+                createdAt: "2026-09-15",
+                registrationDate: "2026-09-15"
+            },
+            {
+                id: "PAT-012",
+                userId: "",
+                name: "Alya Sofea",
+                fullName: "Alya Sofea",
+                email: "alya.sofea26@gmail.com",
+                phone: "016-1516171",
+                age: 26,
+                gender: "Female",
+                status: "Active",
                 createdAt: "2026-10-01",
                 registrationDate: "2026-10-01"
+            },
+            {
+                id: "PAT-013",
+                userId: "",
+                name: "Jason Wong",
+                fullName: "Jason Wong",
+                email: "jason.wong90@gmail.com",
+                phone: "017-1819202",
+                age: 36,
+                gender: "Male",
+                status: "Active",
+                createdAt: "2026-10-04",
+                registrationDate: "2026-10-04"
+            },
+            {
+                id: "PAT-014",
+                userId: "",
+                name: "Nur Fatimah",
+                fullName: "Nur Fatimah",
+                email: "fatimah.nur@gmail.com",
+                phone: "018-2122232",
+                age: 32,
+                gender: "Female",
+                status: "Active",
+                createdAt: "2026-10-08",
+                registrationDate: "2026-10-08"
+            },
+            {
+                id: "PAT-015",
+                userId: "",
+                name: "Arif Hakim",
+                fullName: "Arif Hakim",
+                email: "arif.hakim95@gmail.com",
+                phone: "019-2425262",
+                age: 31,
+                gender: "Male",
+                status: "Active",
+                createdAt: "2026-10-12",
+                registrationDate: "2026-10-12"
+            },
+            {
+                id: "PAT-016",
+                userId: "",
+                name: "Kavitha Devi",
+                fullName: "Kavitha Devi",
+                email: "kavitha.devi@gmail.com",
+                phone: "011-2728293",
+                age: 34,
+                gender: "Female",
+                status: "Active",
+                createdAt: "2026-10-15",
+                registrationDate: "2026-10-15"
+            },
+            {
+                id: "PAT-017",
+                userId: "",
+                name: "Syafiq Rahman",
+                fullName: "Syafiq Rahman",
+                email: "syafiq.rahman@gmail.com",
+                phone: "012-3031323",
+                age: 29,
+                gender: "Male",
+                status: "Active",
+                createdAt: "2026-10-18",
+                registrationDate: "2026-10-18"
+            },
+            {
+                id: "PAT-018",
+                userId: "",
+                name: "Chloe Tan",
+                fullName: "Chloe Tan",
+                email: "chloe.tan94@gmail.com",
+                phone: "013-3334353",
+                age: 32,
+                gender: "Female",
+                status: "Active",
+                createdAt: "2026-10-20",
+                registrationDate: "2026-10-20"
+            },
+            {
+                id: "PAT-019",
+                userId: "",
+                name: "Haziq Iskandar",
+                fullName: "Haziq Iskandar",
+                email: "haziq.iskandar@gmail.com",
+                phone: "014-3637383",
+                age: 27,
+                gender: "Male",
+                status: "Active",
+                createdAt: "2026-10-23",
+                registrationDate: "2026-10-23"
+            },
+            {
+                id: "PAT-020",
+                userId: "",
+                name: "Puteri Balqis",
+                fullName: "Puteri Balqis",
+                email: "puteri.balqis@gmail.com",
+                phone: "016-3940414",
+                age: 25,
+                gender: "Female",
+                status: "Active",
+                createdAt: "2026-10-25",
+                registrationDate: "2026-10-25"
+            },
+            {
+                id: "PAT-021",
+                userId: "",
+                name: "Adam Firash",
+                fullName: "Adam Firash",
+                email: "adam.firash@gmail.com",
+                phone: "017-4243444",
+                age: 30,
+                gender: "Male",
+                status: "Active",
+                createdAt: "2026-10-27",
+                registrationDate: "2026-10-27"
+            },
+            {
+                id: "PAT-022",
+                userId: "",
+                name: "Nadia Maisarah",
+                fullName: "Nadia Maisarah",
+                email: "nadia.maisarah@gmail.com",
+                phone: "018-4546474",
+                age: 28,
+                gender: "Female",
+                status: "Active",
+                createdAt: "2026-10-29",
+                registrationDate: "2026-10-29"
+            },
+            {
+                id: "PAT-023",
+                userId: "",
+                name: "Tan Wei Jian",
+                fullName: "Tan Wei Jian",
+                email: "wei.jian.tan@gmail.com",
+                phone: "019-4849505",
+                age: 39,
+                gender: "Male",
+                status: "Active",
+                createdAt: "2026-11-01",
+                registrationDate: "2026-11-01"
+            },
+            {
+                id: "PAT-024",
+                userId: "",
+                name: "Aisyah Humaira",
+                fullName: "Aisyah Humaira",
+                email: "aisyah.humaira@gmail.com",
+                phone: "011-5152535",
+                age: 23,
+                gender: "Female",
+                status: "Active",
+                createdAt: "2026-11-03",
+                registrationDate: "2026-11-03"
+            },
+            {
+                id: "PAT-025",
+                userId: "",
+                name: "Ravi Kumar",
+                fullName: "Ravi Kumar",
+                email: "ravi.kumar91@gmail.com",
+                phone: "012-5455565",
+                age: 35,
+                gender: "Male",
+                status: "Active",
+                createdAt: "2026-11-05",
+                registrationDate: "2026-11-05"
+            },
+            {
+                id: "PAT-026",
+                userId: "",
+                name: "Hannah Lee",
+                fullName: "Hannah Lee",
+                email: "hannah.lee@gmail.com",
+                phone: "013-5758595",
+                age: 27,
+                gender: "Female",
+                status: "Active",
+                createdAt: "2026-11-07",
+                registrationDate: "2026-11-07"
+            },
+            {
+                id: "PAT-027",
+                userId: "",
+                name: "Faris Zulkifli",
+                fullName: "Faris Zulkifli",
+                email: "faris.zulkifli@gmail.com",
+                phone: "014-6061626",
+                age: 33,
+                gender: "Male",
+                status: "Active",
+                createdAt: "2026-11-09",
+                registrationDate: "2026-11-09"
+            },
+            {
+                id: "PAT-028",
+                userId: "",
+                name: "Sofea Natasha",
+                fullName: "Sofea Natasha",
+                email: "sofea.natasha@gmail.com",
+                phone: "016-6364656",
+                age: 26,
+                gender: "Female",
+                status: "Active",
+                createdAt: "2026-11-11",
+                registrationDate: "2026-11-11"
+            },
+            {
+                id: "PAT-029",
+                userId: "",
+                name: "Marcus Lim",
+                fullName: "Marcus Lim",
+                email: "marcus.lim@gmail.com",
+                phone: "017-6667686",
+                age: 41,
+                gender: "Male",
+                status: "Active",
+                createdAt: "2026-11-13",
+                registrationDate: "2026-11-13"
+            },
+            {
+                id: "PAT-030",
+                userId: "",
+                name: "Nur Iman Syuhada",
+                fullName: "Nur Iman Syuhada",
+                email: "iman.syuhada@gmail.com",
+                phone: "018-6970717",
+                age: 29,
+                gender: "Female",
+                status: "Active",
+                createdAt: "2026-11-15",
+                registrationDate: "2026-11-15"
             }
         ];
     }
 
     // =====================================
-    // 6. SAMPLE APPOINTMENTS
-    // JULY 2026 - JANUARY 2027
+    // 6. APPOINTMENT RECORDS
     // TOTAL: 30 APPOINTMENTS
+    // JULY 2026 - JANUARY 2027
     // =====================================
 
-    function getSampleAppointments() {
+    function getInitialAppointments() {
 
         const records = [
 
             // JULY 2026 - 3 APPOINTMENTS
+
             ["2026-07-08", "09:00 AM", 1, "General Consultation", "DOC-001", "Fever or Flu Symptoms", "Completed"],
             ["2026-07-16", "10:30 AM", 2, "Women's Health", "DOC-004", "Follow-up Consultation", "Completed"],
             ["2026-07-25", "02:00 PM", 3, "Health Screening", "DOC-005", "General Check-up", "Cancelled"],
 
             // AUGUST 2026 - 4 APPOINTMENTS
+
             ["2026-08-04", "09:30 AM", 4, "General Consultation", "DOC-002", "Headache or Migraine", "Completed"],
             ["2026-08-11", "11:00 AM", 5, "Cardiology Consultation", "DOC-006", "Follow-up Consultation", "Completed"],
             ["2026-08-19", "01:00 PM", 6, "Dermatology Consultation", "DOC-007", "Skin Problems", "Completed"],
             ["2026-08-27", "10:00 AM", 7, "Vaccination", "DOC-003", "Other", "Cancelled"],
 
-            // SEPTEMBER 2026 - 5 APPOINTMENTS
+            // SEPTEMBER 2026 - 4 APPOINTMENTS
+
             ["2026-09-03", "09:00 AM", 8, "General Consultation", "DOC-001", "Stomach Pain", "Completed"],
             ["2026-09-09", "10:30 AM", 9, "Women's Health", "DOC-008", "Follow-up Consultation", "Completed"],
             ["2026-09-15", "11:00 AM", 10, "Health Screening", "DOC-005", "General Check-up", "Completed"],
-            ["2026-09-21", "02:00 PM", 1, "Paediatric Consultation", "DOC-003", "General Check-up", "Completed"],
-            ["2026-09-28", "03:00 PM", 2, "General Consultation", "DOC-002", "Cough or Sore Throat", "Cancelled"],
+            ["2026-09-21", "02:00 PM", 11, "Paediatric Consultation", "DOC-003", "General Check-up", "Completed"],
 
-            // OCTOBER 2026 - 5 APPOINTMENTS
-            ["2026-10-03", "09:00 AM", 3, "Cardiology Consultation", "DOC-006", "Follow-up Consultation", "Completed"],
-            ["2026-10-09", "10:00 AM", 4, "Dermatology Consultation", "DOC-007", "Skin Problems", "Completed"],
-            ["2026-10-15", "11:30 AM", 5, "General Consultation", "DOC-001", "Fever or Flu Symptoms", "Completed"],
-            ["2026-10-22", "01:00 PM", 6, "Women's Health", "DOC-004", "Follow-up Consultation", "Completed"],
-            ["2026-10-29", "02:30 PM", 7, "Health Screening", "DOC-005", "General Check-up", "Cancelled"],
+            // OCTOBER 2026 - 4 APPOINTMENTS
 
-            // NOVEMBER 2026 - 4 APPOINTMENTS
-            ["2026-11-04", "10:00 AM", 8, "General Consultation", "DOC-001", "Fever or Flu Symptoms", "Completed"],
-            ["2026-11-07", "11:30 AM", 9, "Paediatric Consultation", "DOC-003", "General Check-up", "Completed"],
-            ["2026-11-12", "01:00 PM", 10, "General Consultation", "DOC-002", "Stomach Pain", "Cancelled"],
-            ["2026-11-17", "03:00 PM", 5, "Health Screening", "DOC-005", "Medication Review", "Completed"],
+            ["2026-10-03", "09:00 AM", 12, "Cardiology Consultation", "DOC-006", "Follow-up Consultation", "Completed"],
+            ["2026-10-09", "10:00 AM", 13, "Dermatology Consultation", "DOC-007", "Skin Problems", "Completed"],
+            ["2026-10-15", "11:30 AM", 14, "General Consultation", "DOC-001", "Fever or Flu Symptoms", "Completed"],
+            ["2026-10-22", "01:00 PM", 15, "Women's Health", "DOC-004", "Follow-up Consultation", "Completed"],
+
+            // NOVEMBER 2026 - 5 APPOINTMENTS
+
+            ["2026-11-04", "10:00 AM", 16, "General Consultation", "DOC-001", "Fever or Flu Symptoms", "Completed"],
+            ["2026-11-07", "11:30 AM", 17, "Paediatric Consultation", "DOC-003", "General Check-up", "Completed"],
+            ["2026-11-12", "01:00 PM", 18, "General Consultation", "DOC-002", "Stomach Pain", "Cancelled"],
+            ["2026-11-17", "03:00 PM", 19, "Health Screening", "DOC-005", "Medication Review", "Completed"],
+            ["2026-11-25", "09:30 AM", 20, "General Consultation", "DOC-002", "Cough or Sore Throat", "Confirmed"],
 
             // DECEMBER 2026 - 5 APPOINTMENTS
-            ["2026-12-01", "09:00 AM", 1, "General Consultation", "DOC-001", "Fever or Flu Symptoms", "Confirmed"],
-            ["2026-12-05", "10:00 AM", 2, "Women's Health", "DOC-004", "Follow-up Consultation", "Confirmed"],
-            ["2026-12-10", "11:00 AM", 3, "Cardiology Consultation", "DOC-006", "Follow-up Consultation", "Pending"],
-            ["2026-12-18", "02:00 PM", 4, "Dermatology Consultation", "DOC-007", "Skin Problems", "Confirmed"],
-            ["2026-12-26", "09:30 AM", 6, "Health Screening", "DOC-005", "General Check-up", "Pending"],
 
-            // JANUARY 2027 - 4 APPOINTMENTS
-            ["2027-01-04", "09:00 AM", 7, "General Consultation", "DOC-001", "General Check-up", "Confirmed"],
-            ["2027-01-11", "10:30 AM", 8, "Cardiology Consultation", "DOC-006", "Follow-up Consultation", "Pending"],
-            ["2027-01-19", "01:00 PM", 9, "Women's Health", "DOC-008", "Follow-up Consultation", "Confirmed"],
-            ["2027-01-27", "02:30 PM", 10, "Dermatology Consultation", "DOC-007", "Skin Problems", "Pending"]
+            ["2026-12-02", "09:00 AM", 21, "General Consultation", "DOC-001", "Fever or Flu Symptoms", "Confirmed"],
+            ["2026-12-08", "10:00 AM", 22, "Women's Health", "DOC-004", "Follow-up Consultation", "Confirmed"],
+            ["2026-12-14", "11:00 AM", 23, "Cardiology Consultation", "DOC-006", "Follow-up Consultation", "Pending"],
+            ["2026-12-20", "02:00 PM", 24, "Dermatology Consultation", "DOC-007", "Skin Problems", "Confirmed"],
+            ["2026-12-28", "09:30 AM", 25, "Health Screening", "DOC-005", "General Check-up", "Pending"],
+
+            // JANUARY 2027 - 5 APPOINTMENTS
+
+            ["2027-01-05", "09:00 AM", 26, "General Consultation", "DOC-001", "General Check-up", "Confirmed"],
+            ["2027-01-12", "10:30 AM", 27, "Cardiology Consultation", "DOC-006", "Follow-up Consultation", "Pending"],
+            ["2027-01-19", "01:00 PM", 28, "Women's Health", "DOC-008", "Follow-up Consultation", "Confirmed"],
+            ["2027-01-26", "02:30 PM", 29, "Dermatology Consultation", "DOC-007", "Skin Problems", "Pending"],
+            ["2027-01-30", "11:00 AM", 30, "Vaccination", "DOC-003", "Other", "Confirmed"]
         ];
 
-        const patients = getSamplePatients();
+        const patients = getInitialPatients();
         const doctors = getDefaultDoctors();
 
         return records.map((record, index) => {
@@ -454,7 +723,7 @@ const HealoraStorage = (() => {
             const year = date.substring(0, 4);
 
             const appointmentId =
-                `SAMPLE-APT-${year}-${String(index + 1).padStart(3, "0")}`;
+                `HLR-APT-${year}-${String(index + 1).padStart(3, "0")}`;
 
             return {
                 id: appointmentId,
@@ -484,7 +753,7 @@ const HealoraStorage = (() => {
                 reason,
                 visitReason: reason,
 
-                notes: "Sample appointment record for system demonstration.",
+                notes: "Appointment recorded in Healora Clinic system.",
 
                 status,
 
@@ -495,10 +764,10 @@ const HealoraStorage = (() => {
     }
 
     // =====================================
-    // 7. SAMPLE DOCTOR SCHEDULES
+    // 7. DOCTOR SCHEDULES
     // =====================================
 
-    function getSampleDoctorSchedules() {
+    function getInitialDoctorSchedules() {
         return [
             {
                 id: "SCH-001",
@@ -592,10 +861,10 @@ const HealoraStorage = (() => {
     }
 
     // =====================================
-    // 8. SAMPLE SUPPORT REQUESTS
+    // 8. SUPPORT REQUESTS
     // =====================================
 
-    function getSampleSupportRequests() {
+    function getInitialSupportRequests() {
         return [
             {
                 id: "SUP-001",
@@ -634,60 +903,86 @@ const HealoraStorage = (() => {
     }
 
     // =====================================
-    // 9. SAMPLE DATA MIGRATION
+    // 9. INITIAL DATA MIGRATION
     // =====================================
 
-    function replaceSampleRecords(storageKey, sampleRecords, prefix) {
+    function replaceInitialRecords(storageKey, initialRecords, prefix) {
 
         const existingRecords = getData(storageKey);
 
-        // Remove only records previously identified as sample records.
         const cleanedRecords = existingRecords.filter(record => {
 
             const id = String(record.id || "");
+            const appointmentId = String(record.appointmentId || "");
 
-            return !id.startsWith(prefix);
+            // Replace previous fixed patient records.
+            if (
+                storageKey === KEYS.PATIENTS &&
+                /^PAT-\d{3}$/.test(id)
+            ) {
+                return false;
+            }
+
+            // Replace previous appointment records.
+            if (
+                storageKey === KEYS.APPOINTMENTS &&
+                (
+                    id.startsWith("SAMPLE-APT-") ||
+                    id.startsWith("HLR-APT-") ||
+                    appointmentId.startsWith("SAMPLE-APT-") ||
+                    appointmentId.startsWith("HLR-APT-")
+                )
+            ) {
+                return false;
+            }
+
+            // Replace initial schedules and support requests.
+            if (prefix && id.startsWith(prefix)) {
+                return false;
+            }
+
+            return true;
         });
 
         const updatedRecords = [
             ...cleanedRecords,
-            ...sampleRecords
+            ...initialRecords
         ];
 
         return saveData(storageKey, updatedRecords);
     }
 
-    function seedSampleData() {
+    function seedInitialData() {
 
         const currentVersion =
-            localStorage.getItem(KEYS.SAMPLE_DATA_VERSION);
+            localStorage.getItem(KEYS.DATA_VERSION);
 
-        if (currentVersion === SAMPLE_VERSION) {
+        if (currentVersion === DATA_VERSION) {
             return;
         }
 
-        const patientsSaved = replaceSampleRecords(
+        const patientsSaved = replaceInitialRecords(
             KEYS.PATIENTS,
-            getSamplePatients(),
-            "SAMPLE-PAT-"
+            getInitialPatients(),
+            ""
         );
 
-        const appointmentsSaved = replaceSampleRecords(
+        const appointmentsSaved = replaceInitialRecords(
             KEYS.APPOINTMENTS,
-            getSampleAppointments(),
-            "SAMPLE-APT-"
+            getInitialAppointments(),
+            ""
         );
 
-        const schedulesSaved = replaceSampleRecords(
+        const schedulesSaved = replaceInitialRecords(
             KEYS.DOCTOR_SCHEDULES,
-            getSampleDoctorSchedules(),
-            "SAMPLE-SCH-"
+            getInitialDoctorSchedules(),
+            "SCH-"
         );
 
-        const supportSaved = replaceSampleRecords(
+        const supportSaved = replaceInitialRecords(
             KEYS.SUPPORT_REQUESTS,
-            getSampleSupportRequests(),
-            "SAMPLE-SUP-"
+            getInitialSupportRequests(),
+            "SUP-"
         );
 
         if (
@@ -697,23 +992,23 @@ const HealoraStorage = (() => {
             supportSaved
         ) {
             localStorage.setItem(
-                KEYS.SAMPLE_DATA_VERSION,
-                SAMPLE_VERSION
+                KEYS.DATA_VERSION,
+                DATA_VERSION
             );
 
             console.log(
-                "Healora sample data updated successfully."
+                "Healora Clinic initial records updated successfully."
             );
 
         } else {
             console.error(
-                "Unable to update Healora sample data."
+                "Unable to update Healora Clinic records."
             );
         }
     }
 
     // =====================================
-    // 10. INITIAL DATA
+    // 10. INITIALIZE DATA
     // =====================================
 
     function initializeData() {
@@ -750,7 +1045,7 @@ const HealoraStorage = (() => {
 
         saveData(KEYS.SERVICES, services);
 
-        seedSampleData();
+        seedInitialData();
 
         console.log(
             "Healora Clinic initialized successfully."
@@ -1140,6 +1435,15 @@ const HealoraStorage = (() => {
         return saveData(KEYS.SERVICES, services);
     }
 
+    function deleteService(id) {
+
+        const services = getServices().filter(
+            service => service.id !== id
+        );
+
+        return saveData(KEYS.SERVICES, services);
+    }
+
     // =====================================
     // 17. APPOINTMENT MANAGEMENT
     // =====================================
@@ -1152,13 +1456,17 @@ const HealoraStorage = (() => {
 
         const appointments = getAppointments();
 
+        const appointmentId = generateId("APT");
+
         const newAppointment = {
 
-            id: generateId("APT"),
+            id: appointmentId,
 
-            appointmentId: generateId("APT"),
+            appointmentId,
 
             patientId: appointmentData.patientId || "",
+
+            userId: appointmentData.userId || "",
 
             patientName: appointmentData.patientName || "",
 
@@ -1182,13 +1490,19 @@ const HealoraStorage = (() => {
 
             appointmentTime: appointmentData.time || "",
 
+            slot: appointmentData.time || "",
+
             reason: appointmentData.reason || "",
+
+            visitReason: appointmentData.reason || "",
 
             notes: appointmentData.notes || "",
 
             status: "Pending",
 
-            createdAt: getCurrentDate()
+            createdAt: getCurrentDate(),
+
+            bookingDate: getCurrentDate()
         };
 
         appointments.push(newAppointment);
@@ -1309,6 +1623,7 @@ const HealoraStorage = (() => {
         getServices,
         addService,
         updateService,
+        deleteService,
 
         getAppointments,
         addAppointment,
