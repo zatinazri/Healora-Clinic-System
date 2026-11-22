@@ -574,7 +574,7 @@
         /* PATIENT TABLE */
 
         .table {
-            min-width: 850px;
+            min-width: 1050px;
         }
 
         .table thead th {
@@ -622,6 +622,18 @@
             justify-content: center;
             margin-right: 9px;
             font-size: 15px;
+        }
+
+        .appointment-id-badge {
+            display: inline-block;
+            background: var(--cream);
+            color: var(--burgundy);
+            font-size: 10px;
+            font-weight: 800;
+            padding: 7px 9px;
+            border-radius: 6px;
+            margin-bottom: 4px;
+            white-space: nowrap;
         }
 
         /* ACTION BUTTONS */
@@ -1139,7 +1151,7 @@
                             type="search"
                             class="form-control border-start-0"
                             id="searchPatient"
-                            placeholder="Search by name, email or patient ID">
+                            placeholder="Search by name, email, patient ID or appointment ID">
 
                     </div>
 
@@ -1182,6 +1194,7 @@
                         <tr>
                             <th>Patient</th>
                             <th>Patient ID</th>
+                            <th>Appointment ID</th>
                             <th>Email Address</th>
                             <th>Phone Number</th>
                             <th>Gender</th>
@@ -1192,7 +1205,7 @@
                     <tbody id="patientTableBody">
 
                         <tr>
-                            <td colspan="6" class="text-center py-4 text-muted">
+                            <td colspan="7" class="text-center py-4 text-muted">
                                 Loading patient records...
                             </td>
                         </tr>
@@ -1437,6 +1450,62 @@
 
             }
 
+            /* GET PATIENT APPOINTMENT IDS */
+            function getPatientAppointmentIds(patient) {
+
+                const appointments = storage.getAppointments() || [];
+
+                const patientEmail = String(patient.email || "")
+                    .trim()
+                    .toLowerCase();
+
+                const patientUserId = String(patient.userId || "");
+                const patientId = String(patient.id || "");
+
+                const patientAppointments = appointments.filter(appointment => {
+
+                    const appointmentPatientId = String(
+                        appointment.patientId || ""
+                    );
+
+                    const appointmentUserId = String(
+                        appointment.userId || ""
+                    );
+
+                    const appointmentEmail = String(
+                        appointment.patientEmail || appointment.email || ""
+                    ).trim().toLowerCase();
+
+                    const matchesPatientId =
+                        patientId &&
+                        appointmentPatientId === patientId;
+
+                    const matchesUserId =
+                        patientUserId &&
+                        appointmentUserId === patientUserId;
+
+                    const matchesEmail =
+                        patientEmail &&
+                        appointmentEmail === patientEmail;
+
+                    return matchesPatientId || matchesUserId || matchesEmail;
+
+                });
+
+                const appointmentIds = [
+                    ...new Set(
+                        patientAppointments
+                            .map(appointment =>
+                                appointment.appointmentId || appointment.id
+                            )
+                            .filter(Boolean)
+                    )
+                ];
+
+                return appointmentIds;
+
+            }
+
             /* LOAD PATIENT DATA */
             function loadPatients() {
 
@@ -1472,11 +1541,14 @@
 
                 const filteredPatients = patients.filter(patient => {
 
+                    const appointmentIds = getPatientAppointmentIds(patient);
+
                     const searchableText = [
                         getName(patient),
                         patient.id,
                         patient.email,
-                        patient.phone
+                        patient.phone,
+                        appointmentIds.join(" ")
                     ].join(" ").toLowerCase();
 
                     const matchesSearch =
@@ -1496,7 +1568,7 @@
                     tableBody.innerHTML = `
 
                         <tr>
-                            <td colspan="6">
+                            <td colspan="7">
 
                                 <div class="empty-state">
 
@@ -1517,63 +1589,83 @@
 
                 } else {
 
-                    tableBody.innerHTML = filteredPatients.map(patient => `
+                    tableBody.innerHTML = filteredPatients.map(patient => {
 
-                        <tr>
+                        const appointmentIds = getPatientAppointmentIds(patient);
 
-                            <td>
+                        const appointmentIdDisplay = appointmentIds.length > 0
 
-                                <span class="patient-avatar">
-                                    <i class="bi bi-person-fill"></i>
+                            ? appointmentIds.map(id => `
+                                <span class="appointment-id-badge">
+                                    ${escapeHTML(id)}
                                 </span>
+                            `).join("<br>")
 
-                                <span class="patient-name">
-                                    ${escapeHTML(getName(patient))}
-                                </span>
+                            : `<span class="text-muted">No appointments</span>`;
 
-                            </td>
+                        return `
 
-                            <td>
-                                ${escapeHTML(patient.id)}
-                            </td>
+                            <tr>
 
-                            <td>
-                                ${escapeHTML(patient.email || "Not provided")}
-                            </td>
+                                <td>
 
-                            <td>
-                                ${escapeHTML(patient.phone || "Not provided")}
-                            </td>
+                                    <span class="patient-avatar">
+                                        <i class="bi bi-person-fill"></i>
+                                    </span>
 
-                            <td>
-                                ${escapeHTML(getGender(patient))}
-                            </td>
+                                    <span class="patient-name">
+                                        ${escapeHTML(getName(patient))}
+                                    </span>
 
-                            <td>
+                                </td>
 
-                                <button
-                                    class="action-btn edit-btn"
-                                    data-id="${escapeHTML(patient.id)}"
-                                    title="Edit Patient">
+                                <td>
+                                    ${escapeHTML(patient.id)}
+                                </td>
 
-                                    <i class="bi bi-pencil"></i>
+                                <td>
+                                    ${appointmentIdDisplay}
+                                </td>
 
-                                </button>
+                                <td>
+                                    ${escapeHTML(patient.email || "Not provided")}
+                                </td>
 
-                                <button
-                                    class="action-btn delete-btn"
-                                    data-id="${escapeHTML(patient.id)}"
-                                    title="Delete Patient">
+                                <td>
+                                    ${escapeHTML(patient.phone || "Not provided")}
+                                </td>
 
-                                    <i class="bi bi-trash"></i>
+                                <td>
+                                    ${escapeHTML(getGender(patient))}
+                                </td>
 
-                                </button>
+                                <td>
 
-                            </td>
+                                    <button
+                                        class="action-btn edit-btn"
+                                        data-id="${escapeHTML(patient.id)}"
+                                        title="Edit Patient">
 
-                        </tr>
+                                        <i class="bi bi-pencil"></i>
 
-                    `).join("");
+                                    </button>
+
+                                    <button
+                                        class="action-btn delete-btn"
+                                        data-id="${escapeHTML(patient.id)}"
+                                        title="Delete Patient">
+
+                                        <i class="bi bi-trash"></i>
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+                        `;
+
+                    }).join("");
 
                 }
 
