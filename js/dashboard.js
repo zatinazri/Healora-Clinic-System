@@ -149,8 +149,13 @@ const HealoraDashboard = (() => {
         const sortedAppointments = [...appointments].sort(
             (a, b) => {
 
-                const dateA = new Date(`${a.date}T${a.time || "00:00"}`);
-                const dateB = new Date(`${b.date}T${b.time || "00:00"}`);
+                const dateA = new Date(
+                    `${a.date}T${a.time || "00:00"}`
+                );
+
+                const dateB = new Date(
+                    `${b.date}T${b.time || "00:00"}`
+                );
 
                 return dateB - dateA;
             }
@@ -173,11 +178,11 @@ const HealoraDashboard = (() => {
 
         tableBody.innerHTML = recentAppointments.map(appointment => `
             <tr>
-                <td>${appointment.id || "-"}</td>
                 <td>${appointment.patientName || "-"}</td>
                 <td>${appointment.doctorName || "-"}</td>
                 <td>${appointment.service || "-"}</td>
                 <td>${formatDate(appointment.date)}</td>
+                <td>${appointment.time || "-"}</td>
                 <td>${getStatusBadge(appointment.status)}</td>
             </tr>
         `).join("");
