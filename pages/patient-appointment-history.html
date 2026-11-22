@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -411,7 +412,7 @@
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 18px;
             margin-bottom: 25px;
         }
@@ -464,15 +465,6 @@
         .stat-card.cancelled .stat-icon {
             background: #F9EFEC;
             color: #A65D4B;
-        }
-
-        .stat-card.rejected {
-            border-top-color: #A76D78;
-        }
-
-        .stat-card.rejected .stat-icon {
-            background: #F6ECEE;
-            color: #934252;
         }
 
         /* HISTORY CONTENT */
@@ -649,11 +641,6 @@
         .status-cancelled {
             color: #A65D4B;
             background: #F9EFEC;
-        }
-
-        .status-rejected {
-            color: #934252;
-            background: #F6ECEE;
         }
 
         .btn-view {
@@ -1173,7 +1160,7 @@
 
                 <p>
                     Keep track of your previous clinic visits and review the
-                    details of your completed, cancelled and rejected appointments.
+                    details of your completed and cancelled appointments.
                     Your health journey matters to us.
                 </p>
             </div>
@@ -1206,17 +1193,6 @@
 
                 <div class="stat-icon">
                     <i class="bi bi-calendar-x"></i>
-                </div>
-            </div>
-
-            <div class="stat-card rejected">
-                <div class="stat-info">
-                    <span>Rejected Appointments</span>
-                    <h3 id="rejectedCount">0</h3>
-                </div>
-
-                <div class="stat-icon">
-                    <i class="bi bi-calendar-minus"></i>
                 </div>
             </div>
 
@@ -1255,7 +1231,6 @@
                     <option value="all">All Statuses</option>
                     <option value="completed">Completed</option>
                     <option value="cancelled">Cancelled</option>
-                    <option value="rejected">Rejected</option>
                 </select>
 
                 <select class="filter-control" id="sortFilter">
@@ -1545,7 +1520,6 @@
 
                 if (normalized === "completed") return "Completed";
                 if (normalized === "cancelled") return "Cancelled";
-                if (normalized === "rejected") return "Rejected";
 
                 return status || "Unknown";
             }
@@ -1618,10 +1592,11 @@
                 belongsToCurrentPatient
             );
 
+            // Only Completed and Cancelled appointments are displayed in history.
+
             const historyStatuses = [
                 "completed",
-                "cancelled",
-                "rejected"
+                "cancelled"
             ];
 
             const historyAppointments = patientAppointments.filter(function (appointment) {
@@ -1644,13 +1619,8 @@
                     return normalizeStatus(appointment.status) === "cancelled";
                 }).length;
 
-                const rejected = historyAppointments.filter(function (appointment) {
-                    return normalizeStatus(appointment.status) === "rejected";
-                }).length;
-
                 document.getElementById("completedCount").textContent = completed;
                 document.getElementById("cancelledCount").textContent = cancelled;
-                document.getElementById("rejectedCount").textContent = rejected;
             }
 
             // =====================================
@@ -1750,9 +1720,6 @@
                     if (status === "cancelled") {
                         statusClass = "status-cancelled";
                         statusIcon = "bi-x-circle";
-                    } else if (status === "rejected") {
-                        statusClass = "status-rejected";
-                        statusIcon = "bi-exclamation-circle";
                     }
 
                     const appointmentId = getAppointmentId(appointment);
