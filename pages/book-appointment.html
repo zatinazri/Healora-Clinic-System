@@ -1715,7 +1715,53 @@
                     return;
                 }
 
-                const appointmentId = "APT" + Date.now();
+                // =====================================
+                // GENERATE STANDARDIZED APPOINTMENT ID
+                // =====================================
+
+                const appointmentYear = selectedDate.substring(0, 4);
+
+                const appointmentPattern = new RegExp(
+                    "^HLR-APT-" + appointmentYear + "-(\\d{3})$"
+                );
+
+                let highestAppointmentNumber = 0;
+
+                appointments.forEach(function (appointment) {
+
+                    const existingIds = [
+                        appointment.id,
+                        appointment.appointmentId
+                    ];
+
+                    existingIds.forEach(function (existingId) {
+
+                        if (!existingId) return;
+
+                        const match = String(existingId).match(appointmentPattern);
+
+                        if (match) {
+                            const number = parseInt(match[1], 10);
+
+                            if (number > highestAppointmentNumber) {
+                                highestAppointmentNumber = number;
+                            }
+                        }
+
+                    });
+
+                });
+
+                const nextAppointmentNumber = String(
+                    highestAppointmentNumber + 1
+                ).padStart(3, "0");
+
+                const appointmentId =
+                    "HLR-APT-" +
+                    appointmentYear +
+                    "-" +
+                    nextAppointmentNumber;
+
                 const currentDateTime = new Date().toISOString();
 
                 const newAppointment = {
