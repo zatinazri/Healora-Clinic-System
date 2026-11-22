@@ -574,7 +574,7 @@
         /* PATIENT TABLE */
 
         .table {
-            min-width: 1050px;
+            min-width: 950px;
         }
 
         .table thead th {
@@ -1151,7 +1151,7 @@
                             type="search"
                             class="form-control border-start-0"
                             id="searchPatient"
-                            placeholder="Search by name, email, patient ID or appointment ID">
+                            placeholder="Search by name, email or appointment ID">
 
                     </div>
 
@@ -1193,7 +1193,6 @@
                     <thead>
                         <tr>
                             <th>Patient</th>
-                            <th>Patient ID</th>
                             <th>Appointment ID</th>
                             <th>Email Address</th>
                             <th>Phone Number</th>
@@ -1205,7 +1204,7 @@
                     <tbody id="patientTableBody">
 
                         <tr>
-                            <td colspan="7" class="text-center py-4 text-muted">
+                            <td colspan="6" class="text-center py-4 text-muted">
                                 Loading patient records...
                             </td>
                         </tr>
@@ -1545,7 +1544,6 @@
 
                     const searchableText = [
                         getName(patient),
-                        patient.id,
                         patient.email,
                         patient.phone,
                         appointmentIds.join(" ")
@@ -1568,7 +1566,7 @@
                     tableBody.innerHTML = `
 
                         <tr>
-                            <td colspan="7">
+                            <td colspan="6">
 
                                 <div class="empty-state">
 
@@ -1617,10 +1615,6 @@
                                         ${escapeHTML(getName(patient))}
                                     </span>
 
-                                </td>
-
-                                <td>
-                                    ${escapeHTML(patient.id)}
                                 </td>
 
                                 <td>
