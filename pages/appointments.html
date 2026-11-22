@@ -565,7 +565,7 @@
         /* TABLE */
 
         .table {
-            min-width: 850px;
+            min-width: 1050px;
         }
 
         .table thead th {
@@ -600,6 +600,13 @@
         .patient-name {
             color: var(--burgundy);
             font-weight: 700;
+        }
+
+        .appointment-id {
+            color: var(--burgundy);
+            font-size: 11px;
+            font-weight: 800;
+            white-space: nowrap;
         }
 
         /* STATUS BADGES */
@@ -1199,6 +1206,7 @@
 
                     <thead>
                         <tr>
+                            <th>Appointment ID</th>
                             <th>Patient</th>
                             <th>Doctor</th>
                             <th>Service</th>
@@ -1211,7 +1219,7 @@
 
                     <tbody id="appointmentTableBody">
                         <tr>
-                            <td colspan="7" class="text-center py-4 text-muted">
+                            <td colspan="8" class="text-center py-4 text-muted">
                                 Loading appointments...
                             </td>
                         </tr>
@@ -1652,7 +1660,11 @@
                     const serviceName =
                         getAppointmentServiceName(appointment).toLowerCase();
 
+                    const appointmentId =
+                        String(appointment.id || appointment.appointmentId || "").toLowerCase();
+
                     const matchesSearch =
+                        appointmentId.includes(searchValue) ||
                         patientName.includes(searchValue) ||
                         doctorName.includes(searchValue) ||
                         serviceName.includes(searchValue);
@@ -1672,7 +1684,7 @@
 
                     tableBody.innerHTML = `
                         <tr>
-                            <td colspan="7" class="text-center py-5 text-muted">
+                            <td colspan="8" class="text-center py-5 text-muted">
                                 <i class="bi bi-calendar-x fs-3 d-block mb-2"></i>
                                 No appointments found.
                             </td>
@@ -1688,6 +1700,12 @@
 
                         return `
                             <tr>
+
+                                <td>
+                                    <span class="appointment-id">
+                                        ${escapeHTML(appointment.id || appointment.appointmentId || "-")}
+                                    </span>
+                                </td>
 
                                 <td>
                                     <span class="patient-name">
