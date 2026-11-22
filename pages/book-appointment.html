@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -730,7 +731,7 @@
             }
         }
 
-        /* MOBILE SIDEBAR - SAME BEHAVIOUR AS ADMIN DASHBOARD */
+        /* MOBILE SIDEBAR */
 
         @media (max-width: 900px) {
             .sidebar {
@@ -1764,6 +1765,55 @@
 
                 const currentDateTime = new Date().toISOString();
 
+                // =====================================
+                // UPDATE PATIENT GENDER
+                // =====================================
+
+                const patientIndex = patients.findIndex(function (item) {
+                    return item === patient;
+                });
+
+                if (patientIndex !== -1) {
+
+                    const existingGender = String(
+                        patients[patientIndex].gender || ""
+                    ).trim();
+
+                    // Only update gender if the patient record
+                    // does not already contain a gender value.
+                    if (!existingGender) {
+
+                        patients[patientIndex].gender = enteredPatientGender;
+
+                        const patientSaved = saveStorageArray(
+                            "healora_patients",
+                            patients
+                        );
+
+                        if (!patientSaved) {
+                            alert(
+                                "Unable to update your patient information. " +
+                                "Please try again."
+                            );
+                            return;
+                        }
+
+                    }
+
+                } else {
+
+                    alert(
+                        "Your patient profile could not be updated. " +
+                        "Please contact the clinic administrator."
+                    );
+                    return;
+
+                }
+
+                // =====================================
+                // CREATE APPOINTMENT RECORD
+                // =====================================
+
                 const newAppointment = {
 
                     id: appointmentId,
@@ -1840,7 +1890,6 @@
 
             // =====================================
             // 12. MOBILE SIDEBAR
-            // SAME BEHAVIOUR AS ADMIN DASHBOARD
             // =====================================
 
             const sidebar = document.getElementById("sidebar");
